@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 17:06:57 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/11/13 17:08:45 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/11/21 10:59:11 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/03/06 13:42:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstadd(t_list **alst, t_list *new_elem)
 {
-	new->next = *alst;
-	*alst = new;
+	if (alst != NULL && new_elem != NULL)
+	{
+		new_elem->next = *alst;
+		*alst = new_elem;
+	}
 }

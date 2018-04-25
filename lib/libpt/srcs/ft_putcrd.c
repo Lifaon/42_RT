@@ -6,12 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 20:14:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/17 22:37:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:08:57 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpt.h"
-#include "libft.h"
 
 void	ft_putcrd(t_point crd)
 {

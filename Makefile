@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 18:56:31 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/25 20:10:01 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ OBJS = $(addprefix $(OBJS_DIR), $(SRCNAMES:.c=.o))
 ## LIB DIR ##
 LIBFT_DIR = ./lib/libft/
 MLX_DIR = ./lib/Mlx_macOS/
+LIBMYSDL_DIR = ./lib/libmysdl/
+LIBPT_DIR = ./lib/libpt/
 
 ## FLAGS ##
 CC = gcc
@@ -62,7 +64,7 @@ LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS)
 
 PRINT = "make[1]: Nothing to be done for 'all'"
 
-all: print_lib LIBFT print_mlx MLX print_name $(NAME) print_done
+all: print_libft LIBFT print_mlx MLX print_libpt PT print_name $(NAME) print_done
 
 change_cflag:
 	$(eval CFLAGS = -fsanitize=address)
@@ -73,8 +75,14 @@ print_name:
 	@echo "\033[033m➼	\033[033mCompiling $(NAME) ... with flags : \033[36m$(CFLAGS)\033[0m"
 	@echo "\033[033m➼	\033[033mCreating $(NAME)'s objetcs\033[0m"
 
-print_lib:
+print_libft:
 	@echo "\033[033m➼	\033[033mCompiling Libft ...\033[0m"
+
+print_libmysdl:
+	@echo "\033[033m➼	\033[033mCompiling Libmysdl ...\033[0m"
+
+print_libpt:
+	@echo "\033[033m➼	\033[033mCompiling Libpt ...\033[0m"
 
 print_mlx:
 	@echo "\033[033m➼	\033[033mCompiling Mlx_macOS ...\033[0m"
@@ -99,19 +107,27 @@ LIBFT:
 MLX:
 	@make -C $(MLX_DIR)
 
+MYSDL:
+	@make -C $(LIBMYSDL_DIR)
+
+PT:
+	@make -C$(LIBPT_DIR)
+
 rm_obj:
 	@rm -rf $(OBJS_DIR)
 	@echo "❌	\033[031mRemouve $(NAME)'s objects\033[0m"
 
 clean: rm_obj
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(LIBPT_DIR) clean
 	@make -C $(MLX_DIR) clean
 
 fclean: rm_obj
 	@rm -rf $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@make -C $(MLX_DIR) fclean
 	@echo "❌	\033[031mRemouve $(NAME)'s executable\033[0m"
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBPT_DIR) fclean
+	@make -C $(MLX_DIR) fclean
 
 re: fclean all
 
@@ -119,4 +135,4 @@ re_MODE_DEBUG: fclean  MODE_DEBUG
 
 ret : clean test
 
-.PHONY: all fclean clean re MLX LIBFT print_name print_mlx print_done print_lib fclean MODE_DEBUG change_cflag rm_obj
+.PHONY: all fclean clean re MLX LIBFT print_name print_mlx print_done print_libft fclean MODE_DEBUG change_cflag rm_obj print_libmysdl print_libpt PT MYSDL

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/04/25 18:22:12 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:48:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void				ft_striter(char *s, void(*f)(char *));
 void				ft_striteri(char *s, void(*f)(unsigned int, char*));
 void				ft_printtab_char(char **tab);
 void				ft_printtab_int(int **tab);
-t_list				*ft_lstnew(void *content, int id);
 void				ft_lstadd(t_list **alst, t_list *nw);
 void				ft_lstdel(t_list **alst, void (*del)(void *));
 void				ft_lstdelone(t_list **alst, void (*del)(void*));
@@ -134,5 +133,6 @@ char				**ft_strsplit(char const *s, char c);
 
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstsrch(t_list *lst, int id);
+t_list				*ft_lstnew(void *content, int id);
 
 #endif

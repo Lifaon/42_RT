@@ -6,20 +6,26 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 18:46:04 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/25 20:00:40 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
+## Sources ##
 SRCS_DIR = ./srcs/
 SRCS_NAME = $(shell ls $(SRCS_DIR) | grep -E ".c")
 SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
+
+## Includes ##
 INC = ./includes/
 INCS = ./includes/get_next_line.h ./includes/libft.h
+
+## Objects ##
 OBJS_DIR = ./objets/
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
+## Flags ##
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 

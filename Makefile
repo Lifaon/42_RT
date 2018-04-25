@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 20:02:57 by mlantonn          #+#    #+#              #
-#    Updated: 2018/04/24 18:48:29 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/25 17:28:28 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ EOC = \033[37m
 
 NAME = rt
 DIR_NAME = RT
-LIBFT_DIR = Libft
-MLX_DIR = Mlx_macOS
+LIBFT_DIR = lib/libft
+MLX_DIR = lib/Mlx_macOS
 
 #CFLAGS = -Wall -Wextra -Werror
 FMWKS = -framework OpenGL -framework AppKit

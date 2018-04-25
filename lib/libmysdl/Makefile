@@ -6,40 +6,56 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/04/25 18:03:13 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/04/25 21:35:02 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libmysdl.a
 
-SRC_C = get_color.c texture_new.c free_tex.c pt_to_tex.c fill_tex_in_color.c \
+## Sources ##
+SRCS_DIR = ./srcs/
+SRCS_NAME = get_color.c texture_new.c free_tex.c pt_to_tex.c fill_tex_in_color.c \
 		lst_tex_new.c free_all_tex.c add_new_tex.c lst_tex_srch.c \
 		trace_line_tex.c put_tex_to_win.c win_new.c free_win.c
 
-SRC_O = $(SRC_C:.c=.o)
+SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
 
-USER = $(shell id -un)
+## Includes ##
+INC = ./includes/
+INCS = ./includes/libmysdl.h 
 
-INCLUDE = -I includes/ -I ../libpt/includes  -I ../libft/includes \
-	-I /Users/$(USER)/.brew/Cellar/sdl2/2.0.8/include/SDL2
-#INCLUDE = -I ../SDL2/SDL2-2.0.8/include/ -I ../includes/
+## Objects ##
+OBJS_DIR = ./objets/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
-CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
-
+## Flags ##
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all : $(OBJS_DIR) $(NAME)
 
-$(NAME): $(SRC_O)
-	ar rc $(NAME) $(SRC_O)
-	ranlib $(NAME)
+$(OBJS_DIR):
+	@mkdir $(OBJS_DIR)
+	@echo "\033[033m➼	\033[033mCreating Libpt's objects with flag : \033[36m $(CFLAGS)\033[0m"
 
-clean:
-	rm -f $(SRC_O)
+$(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(INCS)
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
+	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
-fclean: clean
-	rm -f $(NAME)
+$(NAME) : $(OBJS)
+	@echo "\033[032m✓	\033[0m\033[032mLibpt's objects created\033[0m"
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "\033[032m✓	\033[0m\033[032mLibpt created\033[0m"
 
-re: fclean all
+clean :
+	@rm -rf $(OBJS_DIR)
+	@echo "\033[36m❌	\033[0m\033[31mLibpt's objets removed\033[0m"
 
-.PHONY: all, clean, fclean, re, all
+fclean : clean
+	@rm -rf $(NAME)
+	@echo "\033[036m❌	\033[0m\033[31mLibpt removed"
+
+re : fclean all
+
+.PHONY : all clean fclean re

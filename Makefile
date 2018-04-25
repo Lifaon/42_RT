@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 21:24:09 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/25 21:38:42 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS) -L$(LIBPT_DIR) -lpt
 
 PRINT = "make[1]: Nothing to be done for 'all'"
 
-all: print_libft LIBFT print_mlx MLX print_libpt PT print_sdl SDL2 print_name $(NAME) print_done
+all: print_libft LIBFT print_mlx MLX print_libpt PT print_sdl SDL2 print_libmysdl MYSDL print_name $(NAME) print_done
 
 change_cflag:
 	$(eval CFLAGS = -fsanitize=address)
@@ -72,7 +72,7 @@ change_cflag:
 MODE_DEBUG: change_cflag all
 
 print_name:
-	@echo "\033[033m➼	\033[033mCompiling $(NAME) ... with flags : \033[36m$(CFLAGS)\033[0m"
+	@echo "\033[033m➼	\033[033mCompiling $(NAME) ... with flag : \033[36m$(CFLAGS)\033[0m"
 	@echo "\033[033m➼	\033[033mCreating $(NAME)'s objetcs\033[0m"
 
 print_libft:
@@ -134,6 +134,7 @@ clean: rm_obj
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(LIBPT_DIR) clean
 	@make -C $(MLX_DIR) clean
+	@make -C $(LIBMYSDL_DIR) clean
 
 fclean: rm_obj
 	@rm -rf $(NAME)
@@ -141,10 +142,11 @@ fclean: rm_obj
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(LIBPT_DIR) fclean
 	@make -C $(MLX_DIR) fclean
+	@make -C $(LIBMYSDL_DIR) fclean
 
 re: fclean all
 
-re_MODE_DEBUG: fclean  MODE_DEBUG
+re_MODE_DEBUG: fclean MODE_DEBUG
 
 ret : clean test
 

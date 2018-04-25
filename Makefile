@@ -6,11 +6,11 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 20:49:13 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/25 21:24:09 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rtv1
+NAME = rt
 
 ## color ##
 RED = \033[31m
@@ -23,8 +23,7 @@ EOC = \033[37m
 
 ## sources ##
 SRCDIR = ./srcs/
-SRCNAMES  = \
-			draw/draw_image.c \
+SRCNAMES  = draw/draw_image.c \
 			\
 			init/data_init.c \
 			init/img_init.c \
@@ -61,11 +60,11 @@ SDL2_DIR = ./lib/SDL2-2.0.8/
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit
-LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS) -L$(LIBPT_DIR) -lpt
+LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS) -L$(LIBPT_DIR) -lpt -L$(HOME)/LIBS/SDL2/lib -lSDL2
 
 PRINT = "make[1]: Nothing to be done for 'all'"
 
-all: print_libft LIBFT print_mlx MLX print_libpt PT print_sdl SDL print_name $(NAME) print_done
+all: print_libft LIBFT print_mlx MLX print_libpt PT print_sdl SDL2 print_name $(NAME) print_done
 
 change_cflag:
 	$(eval CFLAGS = -fsanitize=address)
@@ -117,14 +116,14 @@ MYSDL:
 PT:
 	@make -C$(LIBPT_DIR)
 
-SDL:
-ifeq ("$(shell) test ~/LIBS/SDL2/lib/libSDL2.dylib", "")
-	@mkdir -p ~/$(HOME)/LIBS/SDL2
-	@cd $(SDL2_DIR) && ./configure --prefix=$(HOME)/LIBS?SLD2
+SDL2:
+ifeq ("$(wildcard $(HOME)/LIBS/SDL2/lib/libSDL2.dylib)","")
+	@mkdir -p ~/LIBS/SDL2
+	@cd $(SDL2_DIR) && ./configure --prefix=$(HOME)/LIBS/SDL2
 	@make -C $(SDL2_DIR)
 	@make -C $(SDL2_DIR) install
 else
-	@echo "make[1]: Nothing ti be done for 'all'."
+	@echo "make[1]: Nothing to be done for 'all'."
 endif
 
 rm_obj:

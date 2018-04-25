@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/04/25 20:07:54 by pmiceli          ###   ########.fr        #
+#    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
+#    Updated: 2018/04/25 21:13:38 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,27 @@ NAME = libpt.a
 
 ## Sources ##
 SRCS_DIR = ./srcs/
-SRCS_NAME = $(shell ls $(SRCS_DIR) | grep -E ".c")
+SRCS_NAME = ft_putcrd.c\
+			pt_bc.c\
+			pt_op.c\
+			pt_set.c\
+			pt_swap.c\
+			pt_yplus.c\
+			pt_ypluseg.c\
+			ptdb_bc.c\
+			ptdb_op.c\
+			ptdb_set.c\
+			ptfl_bc.c\
+			ptfl_op.c\
+			ptfl_set.c\
+			ptfl_swap.c\
+			ptfl_yplus.c\
+			ptfl_ypluseg.c\
+			vec_bc.c\
+			vec_op.c\
+			vec_set.c\
+			vec_swap.c
+
 SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
 
 ## Includes ##

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   lst_tex_srch.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/04/06 15:40:26 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/20 14:08:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "libmysdl.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+t_texture		*lst_tex_srch(t_list *lst, int id)
 {
-	t_list		*list;
+	t_list		*item;
+	t_texture	*tex;
 
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	item = ft_lstsrch(lst, id);
+	if (!item || !(item->content))
+		return (NULL);
+	tex = (t_texture*)item->content;
+	return (tex);
 }

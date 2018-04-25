@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   free_win.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/02/26 20:08:29 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/20 14:43:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+#include "libmysdl.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void		free_win(t_win **win)
 {
-	t_list		*list;
-
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	if (!win || !*win)
+		return ;
+	free_all_tex(&(*win)->texs);
+	(*win)->texs = NULL;
+	if ((*win)->ren != NULL)
+		SDL_DestroyRenderer((*win)->ren);
+	SDL_DestroyWindow((*win)->ptr);
+	free(*win);
+	*win = NULL;
 }

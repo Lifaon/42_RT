@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ptfl_ypluseg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/03/15 18:41:00 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/17 22:36:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "libpt.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+t_ptfl			ptfl_ypluseg(t_ptfl src, t_ptfl incr, float ymin, float ymax)
 {
-	t_list		*list;
-
-	if (alst && del)
+	src.y = src.y + incr.y;
+	if (src.y >= ymax)
 	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
+		src.y = ymin;
+		src.x = src.x + incr.x;
 	}
+	return (src);
 }

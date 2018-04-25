@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2017/11/21 11:19:27 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/02/06 16:58:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	t_list		*list;
-
-	if (alst && del)
+	while (lst)
 	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
+		f(lst);
+		lst = lst->next;
 	}
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   free_all_tex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/03/23 16:37:39 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/20 14:06:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+#include "libmysdl.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void	free_all_tex(t_list **texs)
 {
-	t_list		*list;
+	t_list		*lst;
+	t_list		*lst_n;
+	t_texture	*tex;
 
-	if (alst && del)
+	if (!texs || !(*texs))
+		return ;
+	lst = *texs;
+	while (lst)
 	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
+		lst_n = lst->next;
+		tex = (t_texture*)lst->content;
+		free_tex(&tex);
+		free(lst);
+		lst = lst_n;
 	}
 }

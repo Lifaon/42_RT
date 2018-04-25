@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:43:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/04/25 18:25:04 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <pthread.h>
 # include <math.h>
 # include "mlx.h"
-# include "libft.h"
+# include "../lib/libft/includes/libft.h"
 # include "structs.h"
 # include "defines.h"
 # include "keys.h"

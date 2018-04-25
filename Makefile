@@ -3,13 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
+#    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/23 20:02:57 by mlantonn          #+#    #+#              #
-#    Updated: 2018/04/25 17:28:28 by pmiceli          ###   ########.fr        #
+#    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
+#    Updated: 2018/04/25 18:56:31 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = rtv1
+
+## color ##
 RED = \033[31m
 GRE = \033[32m
 YEL = \033[33m
@@ -18,77 +21,102 @@ MAG = \033[35m
 CYA = \033[36m
 EOC = \033[37m
 
-NAME = rt
-DIR_NAME = RT
-LIBFT_DIR = lib/libft
-MLX_DIR = lib/Mlx_macOS
+## sources ##
+SRCDIR = ./srcs/
+SRCNAMES  = \
+			draw/draw_image.c \
+			\
+			init/data_init.c \
+			init/img_init.c \
+			init/t_mlx_init.c \
+			\
+			vec/get_normal.c \
+			vec/intersect.c \
+			vec/shadow_ray.c \
+			vec/vec_operations.c \
+			vec/vec_operations2.c \
+			\
+			exit_all.c \
+			main.c
+SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
 
-#CFLAGS = -Wall -Wextra -Werror
-FMWKS = -framework OpenGL -framework AppKit
+## Includes ##
+INC = ./includes/
+INCS = ./includes/rtv1.h
+LIB_INCS = ./lib/libft/includes/get_next_line.h ./lib/libft/includes/libft.h\
+		   ./lib/Mlx_macOS/includes/mlx.h
 
-LIBS = $(LIBFT) $(LIBMLX)
-LIBFT = -L $(LIBFT_DIR) -lft
-LIBMLX = -L $(MLX_DIR) -lmlx
+## OBJECTS ##
+OBJS_DIR = ./objs/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCNAMES:.c=.o))
 
-INCS = $(INC) $(INCMLX)
-INC = -I includes -I $(LIBFT_DIR)/includes
-INCMLX = -I $(MLX_DIR)/includes
+## LIB DIR ##
+LIBFT_DIR = ./lib/libft/
+MLX_DIR = ./lib/Mlx_macOS/
 
-OBJS = $(SRCS:.c=.o)
-OBJS_DIR = objs
-OBJS_SUB_DIRS = draw init vec
-OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
+## FLAGS ##
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -framework OpenGL -framework AppKit
+LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS)
 
-SRCS_DIR = srcs
-SRCS =	draw/draw_image.c \
-		\
-		init/data_init.c \
-		init/img_init.c \
-		init/t_mlx_init.c \
-		\
-		vec/get_normal.c \
-		vec/intersect.c \
-		vec/shadow_ray.c \
-		vec/vec_operations.c \
-		vec/vec_operations2.c \
-		\
-		exit_all.c \
-		main.c
+PRINT = "make[1]: Nothing to be done for 'all'"
 
-.PHONY = all $(OBJS_DIR) $(NAME) clean del fclean re
+all: print_lib LIBFT print_mlx MLX print_name $(NAME) print_done
 
-all: $(NAME)
+change_cflag:
+	$(eval CFLAGS = -fsanitize=address)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@echo "gcc $(CFLAGS) $(INCS) -c $^ -o $(CYA)$@$(EOC)"
-	@gcc $(CFLAGS) $(INCS) -c $^ -o $@
+MODE_DEBUG: change_cflag all
 
-$(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
-	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
+print_name:
+	@echo "\033[033m➼	\033[033mCompiling $(NAME) ... with flags : \033[36m$(CFLAGS)\033[0m"
+	@echo "\033[033m➼	\033[033mCreating $(NAME)'s objetcs\033[0m"
 
-$(NAME): $(OBJS_DIR) $(OBJS_PRE)
-	@make -sC $(LIBFT_DIR)
-	@make -sC $(MLX_DIR)
-	@echo "gcc $(CFLAGS) $(OBJS_PRE) $(LIBS) $(FMWKS) -o $(MAG)$(NAME)$(EOC)"
-	@gcc $(CFLAGS) $(OBJS_PRE) $(LIBS) $(FMWKS) -o $(NAME)
+print_lib:
+	@echo "\033[033m➼	\033[033mCompiling Libft ...\033[0m"
 
-del_objs:
-	@echo "$(RED)rm -rf$(EOC) $(OBJS_DIR) from $(DIR_NAME)"
+print_mlx:
+	@echo "\033[033m➼	\033[033mCompiling Mlx_macOS ...\033[0m"
+
+print_done:
+	@echo $(PRINT)
+	@echo "\n ========================================\n"
+
+$(NAME): $(OBJS) LIBFT MLX
+	@echo "\033[033m➼	\033[033mCreating $(NAME)'s executable\033[0m"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LFLAGS)
+	@$(eval PRINT ="\033[032m✓	\033[032mDONE !\033[0m")
+
+$(OBJS): $(OBJS_DIR)%.o:$(SRCDIR)%.c $(INCS) $(LIB_INCS)
+	@echo "\033[038;2;255;153;0m⧖	Creating 	$@\033[0m"
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
+
+LIBFT:
+	@make -C $(LIBFT_DIR)
+
+MLX:
+	@make -C $(MLX_DIR)
+
+rm_obj:
 	@rm -rf $(OBJS_DIR)
+	@echo "❌	\033[031mRemouve $(NAME)'s objects\033[0m"
 
-del_exe:
-	@echo "$(RED)rm -rf$(EOC) $(NAME)"
+clean: rm_obj
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
+
+fclean: rm_obj
 	@rm -rf $(NAME)
-
-clean: del_objs
-	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(MLX_DIR)
-
-fclean: clean del_exe
-	@make del_exe -C $(LIBFT_DIR)
-	@make del_exe -C $(MLX_DIR)
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(MLX_DIR) fclean
+	@echo "❌	\033[031mRemouve $(NAME)'s executable\033[0m"
 
 re: fclean all
 
-exe: del_objs del_exe all
+re_MODE_DEBUG: fclean  MODE_DEBUG
+
+ret : clean test
+
+.PHONY: all fclean clean re MLX LIBFT print_name print_mlx print_done print_lib fclean MODE_DEBUG change_cflag rm_obj

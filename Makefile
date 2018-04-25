@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 20:10:01 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/25 20:49:13 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,16 +55,17 @@ LIBFT_DIR = ./lib/libft/
 MLX_DIR = ./lib/Mlx_macOS/
 LIBMYSDL_DIR = ./lib/libmysdl/
 LIBPT_DIR = ./lib/libpt/
+SDL2_DIR = ./lib/SDL2-2.0.8/
 
 ## FLAGS ##
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit
-LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS)
+LFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(MLX_FLAGS) -L$(LIBPT_DIR) -lpt
 
 PRINT = "make[1]: Nothing to be done for 'all'"
 
-all: print_libft LIBFT print_mlx MLX print_libpt PT print_name $(NAME) print_done
+all: print_libft LIBFT print_mlx MLX print_libpt PT print_sdl SDL print_name $(NAME) print_done
 
 change_cflag:
 	$(eval CFLAGS = -fsanitize=address)
@@ -86,6 +87,9 @@ print_libpt:
 
 print_mlx:
 	@echo "\033[033m➼	\033[033mCompiling Mlx_macOS ...\033[0m"
+
+print_sdl:
+	@echo "\033[033m➼	\033[033mCompiling SDL ...\033[0m"
 
 print_done:
 	@echo $(PRINT)
@@ -112,6 +116,16 @@ MYSDL:
 
 PT:
 	@make -C$(LIBPT_DIR)
+
+SDL:
+ifeq ("$(shell) test ~/LIBS/SDL2/lib/libSDL2.dylib", "")
+	@mkdir -p ~/$(HOME)/LIBS/SDL2
+	@cd $(SDL2_DIR) && ./configure --prefix=$(HOME)/LIBS?SLD2
+	@make -C $(SDL2_DIR)
+	@make -C $(SDL2_DIR) install
+else
+	@echo "make[1]: Nothing ti be done for 'all'."
+endif
 
 rm_obj:
 	@rm -rf $(OBJS_DIR)

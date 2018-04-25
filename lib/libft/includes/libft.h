@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/04/22 22:45:27 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:22:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 typedef struct		s_list
 {
 	void			*content;
-	size_t			content_size;
+	int				id;
 	struct s_list	*next;
 }					t_list;
 
@@ -62,9 +62,10 @@ void				ft_striter(char *s, void(*f)(char *));
 void				ft_striteri(char *s, void(*f)(unsigned int, char*));
 void				ft_printtab_char(char **tab);
 void				ft_printtab_int(int **tab);
+t_list				*ft_lstnew(void *content, int id);
 void				ft_lstadd(t_list **alst, t_list *nw);
-void				ft_lstdel(t_list **alst, void(*del)(void *, size_t));
-void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstdel(t_list **alst, void (*del)(void *));
+void				ft_lstdelone(t_list **alst, void (*del)(void*));
 void				ft_putnbr_endl(int nb);
 void				ft_printlst_char(t_list *chain);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
@@ -131,7 +132,7 @@ char				*ft_strjoin_free_2(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 
-t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list				*ft_lstsrch(t_list *lst, int id);
 
 #endif

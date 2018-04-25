@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   lst_tex_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/04/20 14:22:26 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/20 14:22:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "libmysdl.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+t_list		*lst_tex_new(t_point size, SDL_Renderer *ren, int id)
 {
-	t_list		*list;
+	t_texture	*tex;
+	t_list		*lst;
 
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	tex = texture_new(size, ren);
+	lst = ft_lstnew(tex, id);
+	return (lst);
 }

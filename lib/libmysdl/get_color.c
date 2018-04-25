@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/03/06 20:35:49 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/17 19:17:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include <stdint.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+uint32_t	get_color(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue)
 {
-	t_list		*list;
+	uint32_t color;
 
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	color = alpha;
+	color = (color * 256) + red;
+	color = (color * 256) + green;
+	color = (color * 256) + blue;
+	return (color);
 }

@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 17:07:19 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/11/13 17:07:22 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/11/21 11:24:44 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/19 14:55:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *new;
-	t_list *tmp;
-	t_list *start;
+	t_list	*dst;
+	t_list	*tempo;
 
-	if (!lst)
+	if (!(dst = ft_lstnew(NULL, 0)))
 		return (NULL);
-	tmp = (*f)(lst);
-	if (!(new = ft_lstnew(tmp->content, tmp->content_size)))
-		return (NULL);
-	start = new;
-	lst = lst->next;
-	while (lst)
+	dst = f(lst);
+	tempo = dst;
+	while (lst->next)
 	{
-		tmp = (*f)(lst);
-		if (!(new->next = ft_lstnew(tmp->content, tmp->content_size)))
+		tempo->next = f(lst->next);
+		if (tempo->next == NULL)
 			return (NULL);
-		new = new->next;
 		lst = lst->next;
+		tempo = tempo->next;
 	}
-	return (start);
+	return (dst);
 }

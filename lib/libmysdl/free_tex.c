@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   free_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/02/26 20:08:14 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/20 13:59:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libmysdl.h"
 #include <stdlib.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void		free_tex(t_texture **tex)
 {
-	t_list		*list;
-
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	if (!tex || !*tex)
+		return ;
+	free((*tex)->size);
+	free((*tex)->tab_pxl);
+	(*tex)->size = NULL;
+	(*tex)->tab_pxl = NULL;
+	SDL_DestroyTexture((*tex)->sdl_tex);
+	free(*tex);
+	*tex = NULL;
 }

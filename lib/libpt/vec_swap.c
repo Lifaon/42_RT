@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   vec_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/02/07 15:15:37 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/17 22:35:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "libpt.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void		vec_swap(t_vector *pt1, t_vector *pt2)
 {
-	t_list		*list;
+	t_vector	swap;
 
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	if (!pt1 || !pt2)
+		return ;
+	swap.x = pt1->x;
+	swap.y = pt1->y;
+	swap.z = pt1->z;
+	pt1->x = pt2->x;
+	pt1->y = pt2->y;
+	pt1->z = pt2->z;
+	pt2->x = swap.x;
+	pt2->y = swap.y;
+	pt2->z = swap.z;
 }

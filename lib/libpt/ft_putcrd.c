@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_putcrd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:11:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:32 by fchevrey         ###   ########.fr       */
+/*   Created: 2017/12/03 20:14:03 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/04/17 22:37:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libpt.h"
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void*))
+void	ft_putcrd(t_point crd)
 {
-	t_list		*list;
-
-	if (alst && del)
-	{
-		list = *alst;
-		del(list->content);
-		free(list);
-		*alst = NULL;
-	}
+	ft_putstr("x = ");
+	ft_putnbr(crd.x);
+	ft_putstr("  y = ");
+	ft_putnbr(crd.y);
+	ft_putchar('\n');
 }

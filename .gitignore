@@ -9,3 +9,13 @@ rt
 
 #other stuff
 .DS_Store
+
+#SDL
+lib/SDL2-2.0.8/Makefile
+lib/SDL2-2.0.8/Makefile.rules
+lib/SDL2-2.0.8/config.log
+lib/SDL2-2.0.8/config.status
+lib/SDL2-2.0.8/libtool
+lib/SDL2-2.0.8/sdl2-config
+lib/SDL2-2.0.8/sdl2-config.cmake
+lib/SDL2-2.0.8/sdl2.pc

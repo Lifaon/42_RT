@@ -1,0 +1,11 @@
+#objects
+*.o
+
+#libs
+*.a
+
+#exe
+rt
+
+#other stuff
+.DS_Store

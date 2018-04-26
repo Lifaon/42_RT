@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/05 15:52:44 by mlantonn          #+#    #+#              #
-#    Updated: 2018/04/26 15:56:54 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/26 16:50:19 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(NAME): $(OBJS_DIR) $(OBJS_DIRC) $(OBJS_DIRM) $(OBJS_PRE)
 	@echo "\033[032m✓	\033[0m\033[032m$(DIR_NAME)'s objects created\033[0m"
 	@ar rc $(NAME) $(OBJS_PRE)
 	@ranlib $(NAME)
-	@echo "\033[032m✓	\033[0m\033[032m$(NAME) created\033[0m"
+	@echo "\033[032m✓	\033[0m\033[032m$(DIR_NAME) created\033[0m"
 
 clean:
 	@echo "\033[36m❌	\033[0m\033[31m$(DIR_NAME)'s objects removed\033[0m"

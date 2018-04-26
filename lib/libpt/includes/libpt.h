@@ -6,12 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/17 18:07:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/04/25 20:08:38 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBPT_H
 # define LIBPT_H
+# include "../../libft/includes/libft.h"
 
 typedef struct		s_point
 {

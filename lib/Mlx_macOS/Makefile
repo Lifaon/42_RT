@@ -6,7 +6,7 @@
 #    By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/05 15:52:44 by mlantonn          #+#    #+#              #
-#    Updated: 2018/04/05 17:34:29 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/25 18:55:30 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,35 +48,32 @@ SRCSM =	m/mlx_new_window.m \
 all: $(NAME)
 
 $(OBJS_DIRC)/%.o: $(SRCS_DIRC)/%.c
-	@echo "gcc $(CFLAGS) $(INC) -c $^ -o $(CYA)$@$(EOC)"
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
 	@gcc $(CFLAGS) $(INC) -c $^ -o $@
 
 $(OBJS_DIRM)/%.o: $(SRCS_DIRM)/%.m
-	@echo "gcc $(CFLAGS) $(INC) -c $^ -o $(CYA)$@$(EOC)"
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
 	@gcc $(CFLAGS) $(INC) -c $^ -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIRC)
 	@mkdir -p $(OBJS_DIRM)
+	@echo "\033[033m➼	\033[033mCreating Mlx_macOS's objects with flag : \033[36m $(CFLAGS)\033[0m"
 
 $(NAME): $(OBJS_DIR) $(OBJS_DIRC) $(OBJS_DIRM) $(OBJS_PRE)
-	@echo "ar rc $(YEL)$(NAME)$(EOC) $(OBJS_PRE)"
+	@echo "\033[032m✓	\033[0m\033[032mMlx_macOS's objects created\033[0m"
 	@ar rc $(NAME) $(OBJS_PRE)
-	@echo "ranlib $(YEL)$(NAME)$(EOC)"
 	@ranlib $(NAME)
+	@echo "\033[032m✓	\033[0m\033[032mMlx_macOS created\033[0m"
 
-del_objs:
-	@echo "$(RED)rm -rf$(EOC) $(OBJS_DIR) from $(DIR_NAME)"
+clean:
+	@echo "\033[36m❌	\033[0m\033[31mMlx_macOS's objets removed\033[0m"
 	@rm -rf $(OBJS_DIR)
 
-del_exe:
-	@echo "$(RED)rm -rf$(EOC) $(NAME)"
+fclean: clean
+	@echo "\033[036m❌	\033[0m\033[31mMlx_macOS removed"
 	@rm -rf $(NAME)
-
-clean: del_objs
-
-fclean: clean del_exe
 
 re: fclean all
 

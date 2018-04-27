@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:38:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/04/27 14:57:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct		s_vec
 **	Storing 3D coordinates.
 */
 
+typedef struct		s_col
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_col;
+
 typedef struct		s_ray
 {
 	t_vec			o;
@@ -48,8 +55,13 @@ typedef struct		s_ray
 
 typedef struct		s_obj
 {
-	int				color;
 	double			r;
+	double			t1;
+	double			t2;
+	double			ambient;
+	double			diffuse;
+	double			specular;
+	t_col			color;
 	t_vec			c;
 	t_vec			oc;
 	t_vec			pi;

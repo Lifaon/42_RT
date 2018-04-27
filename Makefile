@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/26 16:08:59 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/27 17:37:46 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ CYA = \033[36m
 EOC = \033[37m
 
 ## sources ##
-SRCDIR = ./srcs/
-SRCNAMES  = draw/draw_image.c \
+SRCS_DIR = ./srcs/
+SRCS  = draw/draw_image.c \
 			\
 			init/data_init.c \
 			init/img_init.c \
@@ -38,7 +38,6 @@ SRCNAMES  = draw/draw_image.c \
 			\
 			exit_all.c \
 			main.c
-SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
 
 ## LIB DIR ##
 LIB_DIR = ./lib
@@ -48,14 +47,16 @@ LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
 LIBPT_DIR = $(LIB_DIR)/libpt/
 
 ## Includes ##
-INC = ./includes/
-INCS = ./includes/rtv1.h
-LIB_INCS = $(LIBFT_DIR)/includes/get_next_line.h $(LIBFT_DIR)/includes/libft.h\
-		   $(MLX_DIR)/includes/mlx.h
+INC = -I ./includes/
+LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
+			-I $(MLX_DIR)/includes/
+INCS = $(INC) $(LIB_INCS)
 
 ## OBJECTS ##
-OBJS_DIR = ./objs/
-OBJS = $(addprefix $(OBJS_DIR), $(SRCNAMES:.c=.o))
+OBJS = $(SRCS:.c=.o)
+OBJS_DIR = objs
+OBJS_SUB_DIRS = draw init vec
+OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## FLAGS ##
 CC = gcc
@@ -65,25 +66,28 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
 			-L $(LIBPT_DIR) -lpt
 
-PRINT = "make[1]: Nothing to be done for 'all'"
+ALREADY_DONE_MESSAGE = "make[1]: Nothing to be done for 'all'"
+DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
+				\n ========================================\n"
+MESSAGE = $(ALREADY_DONE_MESSAGE)
 
-all: LIBFT MLX PT MYSDL $(NAME)
 
-change_cflag:
-	$(eval CFLAGS = -fsanitize=address)
+all: LIBFT MLX PT MYSDL print_name $(NAME) print_end
 
-MODE_DEBUG: change_cflag all
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
+	@gcc $(CFLAGS) $(INCS) -c $^ -o $@
 
-$(NAME): print_name $(OBJS)
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
+	@echo "\033[033m➼	\033[033mCreating $(DIR_NAME)'s objects \
+	with flag : \033[36m $(CFLAGS)\033[0m"
+
+$(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LFLAGS)
-	@echo "\033[032m✓\t\033[032mDONE !\033[0m"
-	@echo "\n ========================================\n"
-
-$(OBJS): $(OBJS_DIR)%.o:$(SRCDIR)%.c $(INCS) $(LIB_INCS)
-	@echo "\033[038;2;255;153;0m⧖\tCreating\t$@\033[0m"
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJS_PRE)
+	@$(eval MESSAGE = $(DONE_MESSAGE))
 
 LIBFT: print_libft
 	@make -C $(LIBFT_DIR)
@@ -111,13 +115,18 @@ fclean: rm_obj
 	@rm -rf $(NAME)
 	@echo "❌\t\033[031m$(DIR_NAME)'s executable removed\033[0m"
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(LIBPT_DIR) fclean
 	@make -C $(MLX_DIR) fclean
+	@make -C $(LIBPT_DIR) fclean
 	@make -C $(LIBMYSDL_DIR) fclean
 
 re: fclean all
 
-exe: rm_obj $(NAME)
+exe: rm_obj print_name $(NAME) print_end
+
+change_cflag:
+	@$(eval CFLAGS = -fsanitize=address)
+
+MODE_DEBUG: change_cflag all
 
 re_MODE_DEBUG: fclean MODE_DEBUG
 
@@ -125,6 +134,9 @@ ret : clean test
 
 print_name:
 	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ...\033[0m"
+
+print_end:
+	@echo $(MESSAGE)
 
 print_libft:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"

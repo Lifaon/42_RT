@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/25 18:25:04 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:39:25 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 #ifndef RTV1_H
 # define RTV1_H
 
-# include <pthread.h>
+# include <unistd.h>
+# include <fcntl.h>
 # include <math.h>
+# include <errno.h>
+# include <stdio.h>
+
+# include "libft.h"
 # include "mlx.h"
-# include "../lib/libft/includes/libft.h"
+
 # include "structs.h"
 # include "defines.h"
 # include "keys.h"

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/30 14:09:04 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/30 16:30:00 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,13 +45,7 @@ LIBFT_DIR = $(LIB_DIR)/libft/
 MLX_DIR = $(LIB_DIR)/mlx_sierra/
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
 LIBPT_DIR = $(LIB_DIR)/libpt/
-
-## SDL2 DIR ##
-BREW_PRE = /usr/bin/.brew
-BREW_SDL2_PATH = Cellar/sdl2/
-SDL2_GEN_DIR = $(addprefix $(BREW_PRE)/, $(BREW_SDL2_PATH))
-SDL2_VER = 2.0.8
-SDL2_DIR = $(addprefix $(SDL2_GEN_DIR), $(SDL2_VER)/)
+SDL2_DIR = usr/bin/.brew/opt/sdl2
 
 ## Includes ##
 INC = -I ./includes/
@@ -75,10 +69,9 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(SDL2_DIR)/lib -lsdl2
 
-ALREADY_DONE_MESSAGE = "make[1]: Nothing to be done for 'all'"
+MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 				\n ========================================\n"
-MESSAGE = $(ALREADY_DONE_MESSAGE)
 
 all: SDL2 LIBFT MLX PT MYSDL print_name $(NAME) print_end
 
@@ -137,14 +130,12 @@ print_end:
 SDL2:
 ifeq ($(shell brew list | grep sdl2), sdl2)
 	@echo "\033[032m✓\t\033[032mSDL2 already installed\033[0m"
-	@$(eval BREW_PRE = $(shell brew --prefix))
-	@$(eval SDL2_VER = $(shell ls $(SDL2_GEN_DIR)))
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
 else
 	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
 	@brew install sdl2
 	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
-	@$(eval BREW_PRE = $(shell brew --prefix))
-	@$(eval SDL2_VER = $(shell ls $(SDL2_GEN_DIR)))
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
 endif
 
 LIBFT: print_libft

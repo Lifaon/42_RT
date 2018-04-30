@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/27 17:37:46 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/30 14:09:04 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,18 @@ MLX_DIR = $(LIB_DIR)/mlx_sierra/
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
 LIBPT_DIR = $(LIB_DIR)/libpt/
 
+## SDL2 DIR ##
+BREW_PRE = /usr/bin/.brew
+BREW_SDL2_PATH = Cellar/sdl2/
+SDL2_GEN_DIR = $(addprefix $(BREW_PRE)/, $(BREW_SDL2_PATH))
+SDL2_VER = 2.0.8
+SDL2_DIR = $(addprefix $(SDL2_GEN_DIR), $(SDL2_VER)/)
+
 ## Includes ##
 INC = -I ./includes/
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
-			-I $(MLX_DIR)/includes/
+			-I $(MLX_DIR)/includes/ \
+			-I $(SDL2_DIR)/includes/SDL2
 INCS = $(INC) $(LIB_INCS)
 
 ## OBJECTS ##
@@ -64,15 +72,15 @@ CC = gcc
 MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
-			-L $(LIBPT_DIR) -lpt
+			-L $(LIBPT_DIR) -lpt \
+			-L $(SDL2_DIR)/lib -lsdl2
 
 ALREADY_DONE_MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 				\n ========================================\n"
 MESSAGE = $(ALREADY_DONE_MESSAGE)
 
-
-all: LIBFT MLX PT MYSDL print_name $(NAME) print_end
+all: SDL2 LIBFT MLX PT MYSDL print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -88,18 +96,6 @@ $(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"
 	@$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJS_PRE)
 	@$(eval MESSAGE = $(DONE_MESSAGE))
-
-LIBFT: print_libft
-	@make -C $(LIBFT_DIR)
-
-MLX: print_mlx
-	@make -C $(MLX_DIR)
-
-PT: print_libpt
-	@make -C$(LIBPT_DIR)
-
-MYSDL: print_libmysdl
-	@make -C $(LIBMYSDL_DIR)
 
 rm_obj:
 	@rm -rf $(OBJS_DIR)
@@ -121,7 +117,7 @@ fclean: rm_obj
 
 re: fclean all
 
-exe: rm_obj print_name $(NAME) print_end
+exe: rm_obj all
 
 change_cflag:
 	@$(eval CFLAGS = -fsanitize=address)
@@ -138,17 +134,42 @@ print_name:
 print_end:
 	@echo $(MESSAGE)
 
+SDL2:
+ifeq ($(shell brew list | grep sdl2), sdl2)
+	@echo "\033[032m✓\t\033[032mSDL2 already installed\033[0m"
+	@$(eval BREW_PRE = $(shell brew --prefix))
+	@$(eval SDL2_VER = $(shell ls $(SDL2_GEN_DIR)))
+else
+	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
+	@brew install sdl2
+	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
+	@$(eval BREW_PRE = $(shell brew --prefix))
+	@$(eval SDL2_VER = $(shell ls $(SDL2_GEN_DIR)))
+endif
+
+LIBFT: print_libft
+	@make -C $(LIBFT_DIR)
+
 print_libft:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
 
-print_libmysdl:
-	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
+MLX: print_mlx
+	@make -C $(MLX_DIR)
+
+print_mlx:
+	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
+
+PT: print_libpt
+	@make -C$(LIBPT_DIR)
 
 print_libpt:
 	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
 
-print_mlx:
-	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
+MYSDL: print_libmysdl
+	@make -C $(LIBMYSDL_DIR)
+
+print_libmysdl:
+	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
 
 .PHONY: all clean fclean re rm_obj LIBFT MLX PT MYSDL \
 		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_done \

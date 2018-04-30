@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/30 16:30:00 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/04/30 16:48:24 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,19 @@ EOC = \033[37m
 ## sources ##
 SRCS_DIR = ./srcs/
 SRCS  = draw/draw_image.c \
-			\
-			init/data_init.c \
-			init/img_init.c \
-			init/t_mlx_init.c \
-			\
-			vec/get_normal.c \
-			vec/intersect.c \
-			vec/shadow_ray.c \
-			vec/vec_operations.c \
-			vec/vec_operations2.c \
-			\
-			exit_all.c \
-			main.c
+		\
+		init/data_init.c \
+		init/img_init.c \
+		init/t_mlx_init.c \
+		\
+		vec/get_normal.c \
+		vec/intersect.c \
+		vec/shadow_ray.c \
+		vec/vec_operations.c \
+		vec/vec_operations2.c \
+		\
+		exit_all.c \
+		main.c
 
 ## LIB DIR ##
 LIB_DIR = ./lib
@@ -45,7 +45,7 @@ LIBFT_DIR = $(LIB_DIR)/libft/
 MLX_DIR = $(LIB_DIR)/mlx_sierra/
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
 LIBPT_DIR = $(LIB_DIR)/libpt/
-SDL2_DIR = usr/bin/.brew/opt/sdl2
+SDL2_DIR =
 
 ## Includes ##
 INC = -I ./includes/
@@ -62,7 +62,7 @@ OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## FLAGS ##
 CC = gcc
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
@@ -73,7 +73,7 @@ MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 				\n ========================================\n"
 
-all: SDL2 LIBFT MLX PT MYSDL print_name $(NAME) print_end
+all: SDL2 LIBFT MLX LIBPT MYSDL print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -112,14 +112,39 @@ re: fclean all
 
 exe: rm_obj all
 
-change_cflag:
-	@$(eval CFLAGS = -fsanitize=address)
-
 MODE_DEBUG: change_cflag all
 
 re_MODE_DEBUG: fclean MODE_DEBUG
 
-ret : clean test
+change_cflag:
+	@$(eval CFLAGS = -fsanitize=address)
+
+SDL2:
+ifeq ($(shell brew list | grep sdl2), sdl2)
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
+else
+	@echo "\033[033m⚠\t\033[033mSDL2 is not installed !\033[0m"
+	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
+	@brew install sdl2
+	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
+endif
+
+LIBFT:
+	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
+	@make -C $(LIBFT_DIR)
+
+MLX:
+	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
+	@make -C $(MLX_DIR)
+
+LIBPT:
+	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
+	@make -C$(LIBPT_DIR)
+
+MYSDL:
+	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
+	@make -C $(LIBMYSDL_DIR)
 
 print_name:
 	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ...\033[0m"
@@ -127,41 +152,5 @@ print_name:
 print_end:
 	@echo $(MESSAGE)
 
-SDL2:
-ifeq ($(shell brew list | grep sdl2), sdl2)
-	@echo "\033[032m✓\t\033[032mSDL2 already installed\033[0m"
-	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
-else
-	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
-	@brew install sdl2
-	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
-	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
-endif
-
-LIBFT: print_libft
-	@make -C $(LIBFT_DIR)
-
-print_libft:
-	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
-
-MLX: print_mlx
-	@make -C $(MLX_DIR)
-
-print_mlx:
-	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
-
-PT: print_libpt
-	@make -C$(LIBPT_DIR)
-
-print_libpt:
-	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
-
-MYSDL: print_libmysdl
-	@make -C $(LIBMYSDL_DIR)
-
-print_libmysdl:
-	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
-
-.PHONY: all clean fclean re rm_obj LIBFT MLX PT MYSDL \
-		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_done \
-		print_libft print_libmysdl print_libpt print_mlx
+.PHONY: all clean fclean re rm_obj exe SDL2 LIBFT MLX LIBPT MYSDL \
+		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_end

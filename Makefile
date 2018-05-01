@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/26 17:27:45 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/30 16:48:24 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,22 +23,21 @@ CYA = \033[36m
 EOC = \033[37m
 
 ## sources ##
-SRCDIR = ./srcs/
-SRCNAMES  = draw/draw_image.c \
-			\
-			init/data_init.c \
-			init/img_init.c \
-			init/t_mlx_init.c \
-			\
-			vec/get_normal.c \
-			vec/intersect.c \
-			vec/shadow_ray.c \
-			vec/vec_operations.c \
-			vec/vec_operations2.c \
-			\
-			exit_all.c \
-			main.c
-SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
+SRCS_DIR = ./srcs/
+SRCS  = draw/draw_image.c \
+		\
+		init/data_init.c \
+		init/img_init.c \
+		init/t_mlx_init.c \
+		\
+		vec/get_normal.c \
+		vec/intersect.c \
+		vec/shadow_ray.c \
+		vec/vec_operations.c \
+		vec/vec_operations2.c \
+		\
+		exit_all.c \
+		main.c
 
 ## LIB DIR ##
 LIB_DIR = ./lib
@@ -46,68 +45,50 @@ LIBFT_DIR = $(LIB_DIR)/libft/
 MLX_DIR = $(LIB_DIR)/mlx_sierra/
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
 LIBPT_DIR = $(LIB_DIR)/libpt/
-SLD2 = $(LIB_DIR)/SDL2-2.0.8/
+SDL2_DIR =
 
 ## Includes ##
-INC = ./includes/
-INCS = ./includes/rtv1.h
-LIB_INCS = $(LIBFT_DIR)/includes/get_next_line.h $(LIBFT_DIR)/includes/libft.h\
-		   $(MLX_DIR)/includes/mlx.h
+INC = -I ./includes/
+LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
+			-I $(MLX_DIR)/includes/ \
+			-I $(SDL2_DIR)/includes/SDL2
+INCS = $(INC) $(LIB_INCS)
 
 ## OBJECTS ##
-OBJS_DIR = ./objs/
-OBJS = $(addprefix $(OBJS_DIR), $(SRCNAMES:.c=.o))
+OBJS = $(SRCS:.c=.o)
+OBJS_DIR = objs
+OBJS_SUB_DIRS = draw init vec
+OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## FLAGS ##
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
-			-L $(LIBPT_DIR) -lpt
+			-L $(LIBPT_DIR) -lpt \
+			-L $(SDL2_DIR)/lib -lsdl2
 
-PRINT = "make[1]: Nothing to be done for \'all\'."
-PRINT2 = "make[1]: Nothing to be done for \'all\'."
+MESSAGE = "make[1]: Nothing to be done for 'all'"
+DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
+				\n ========================================\n"
 
-all: LIBFT MLX PT SDL2 MYSDL $(NAME) print_done
+all: SDL2 LIBFT MLX LIBPT MYSDL print_name $(NAME) print_end
 
-change_cflag:
-	$(eval CFLAGS = -fsanitize=address)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
+	@gcc $(CFLAGS) $(INCS) -c $^ -o $@
 
-MODE_DEBUG: change_cflag all
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
+	@echo "\033[033m➼	\033[033mCreating $(DIR_NAME)'s objects \
+	with flag : \033[36m $(CFLAGS)\033[0m"
 
-$(NAME): print_name $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LFLAGS)
-	@echo "$(PRINT2)"
-
-$(OBJS): $(OBJS_DIR)%.o:$(SRCDIR)%.c $(INCS) $(LIB_INCS)
-	@$(eval PRINT2 = "")
-	@echo "\033[038;2;255;153;0m⧖\tCreating\t$@\033[0m"
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
-
-LIBFT: print_libft
-	@make -C $(LIBFT_DIR)
-
-MLX: print_mlx
-	@make -C $(MLX_DIR)
-
-PT: print_libpt
-	@make -C$(LIBPT_DIR)
-
-MYSDL: print_libmysdl
-	@make -C $(LIBMYSDL_DIR)
-
-SDL2: print_sdl2
-ifeq ("$(wildcard $(HOME)/LIBS/SDL2/lib/libSDL2.dylib)","")
-	@mkdir -p ~/LIBS/SDL2
-	@make -C $(SDL2_DIR) clean
-	@cd $(SDL2_DIR) && ./configure --prefix=$(HOME)/LIBS/SDL2
-	@make -C $(SDL2_DIR)
-	@make -C $(SDL2_DIR) install
-else
-	@echo "make[1]: Nothing to be done for 'all'."
-endif
+$(NAME): $(OBJS_DIR) $(OBJS_PRE)
+	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"
+	@$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJS_PRE)
+	@$(eval MESSAGE = $(DONE_MESSAGE))
 
 rm_obj:
 	@rm -rf $(OBJS_DIR)
@@ -123,47 +104,53 @@ fclean: rm_obj
 	@rm -rf $(NAME)
 	@echo "❌\t\033[031m$(DIR_NAME)'s executable removed\033[0m"
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(LIBPT_DIR) fclean
 	@make -C $(MLX_DIR) fclean
+	@make -C $(LIBPT_DIR) fclean
 	@make -C $(LIBMYSDL_DIR) fclean
 
 re: fclean all
 
-exe: rm_obj $(NAME)
+exe: rm_obj all
+
+MODE_DEBUG: change_cflag all
 
 re_MODE_DEBUG: fclean MODE_DEBUG
 
-alias:
-	echo "alias maked=\"make MODE_DEBUG\"" >> $(HOME)/.zshrc
-	echo "alias makerd=\"make re_MODE_DEBUG\"" >> $(HOME)/.zshrc
-	echo "alias md=\"make MODE_DEBUG\"" >> $(HOME)/.zshrc
-	echo "alias mrd=\"make re_MODE_DEBUG\"" >> $(HOME)/.zshrc
+change_cflag:
+	@$(eval CFLAGS = -fsanitize=address)
 
-ret : clean test
+SDL2:
+ifeq ($(shell brew list | grep sdl2), sdl2)
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
+else
+	@echo "\033[033m⚠\t\033[033mSDL2 is not installed !\033[0m"
+	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
+	@brew install sdl2
+	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
+	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
+endif
+
+LIBFT:
+	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
+	@make -C $(LIBFT_DIR)
+
+MLX:
+	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
+	@make -C $(MLX_DIR)
+
+LIBPT:
+	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
+	@make -C$(LIBPT_DIR)
+
+MYSDL:
+	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
+	@make -C $(LIBMYSDL_DIR)
 
 print_name:
-	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ... with flag :\033[36m $(CFLAGS)\033[0m"
-	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"
+	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ...\033[0m"
 
-print_libft:
-	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
+print_end:
+	@echo $(MESSAGE)
 
-print_libmysdl:
-	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
-
-print_libpt:
-	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
-
-print_mlx:
-	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
-
-print_sdl2:
-	@echo "\033[033m➼\t\033[033mCompiling SDL2 ...\033[0m"
-
-print_done:
-	@echo "\033[032m✓\t\033[032mDONE !\033[0m"
-	@echo "\n ========================================\n"
-
-.PHONY: all clean fclean re rm_obj LIBFT MLX PT MYSDL \
-	MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_done \
-	print_libft print_libmysdl print_libpt print_mlx alias print_sdl2 SDL2
+.PHONY: all clean fclean re rm_obj exe SDL2 LIBFT MLX LIBPT MYSDL \
+		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_end

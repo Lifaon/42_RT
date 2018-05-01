@@ -6,11 +6,12 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/25 21:13:38 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/04/27 17:08:26 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libpt.a
+DIR_NAME = Libpt
 
 ## Sources ##
 SRCS_DIR = ./srcs/
@@ -53,25 +54,25 @@ all : $(OBJS_DIR) $(NAME)
 
 $(OBJS_DIR):
 	@mkdir $(OBJS_DIR)
-	@echo "\033[033m➼	\033[033mCreating Libpt's objects with flag : \033[36m $(CFLAGS)\033[0m"
+	@echo "\033[033m➼	\033[033mCreating $(DIR_NAME)'s objects with flag : \033[36m $(CFLAGS)\033[0m"
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(INCS)
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)
-	@echo "\033[032m✓	\033[0m\033[032mLibpt's objects created\033[0m"
+	@echo "\033[032m✓	\033[0m\033[032m$(DIR_NAME)'s objects created\033[0m"
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "\033[032m✓	\033[0m\033[032mLibpt created\033[0m"
+	@echo "\033[032m✓	\033[0m\033[032m$(NAME) created\033[0m"
 
 clean :
 	@rm -rf $(OBJS_DIR)
-	@echo "\033[36m❌	\033[0m\033[31mLibpt's objets removed\033[0m"
+	@echo "\033[36m❌	\033[0m\033[31m$(DIR_NAME)'s objets removed\033[0m"
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m❌	\033[0m\033[31mLibpt removed"
+	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed"
 
 re : fclean all
 

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/03 13:06:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:36:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ typedef struct		s_ray
 **	Ray struct -> o = origin ; d = direction.
 */
 
+typedef union		u_color
+{
+	uint32_t		c;
+	struct			s_argb
+	{
+		uint8_t		a;
+		uint8_t		r;
+		uint8_t		g;
+		uint8_t		b;
+	}				argb;
+}					t_color;
+
 typedef struct		s_obj
 {
 	double			r;
@@ -83,9 +95,20 @@ typedef struct		s_data
 	t_ray			ray;
 	t_mlx			mlx;
 	t_win			*win;
+	t_texture		*tex;
 }					t_data;
 /*
 **	Struct used to store different variables.
 */
 
+typedef struct		s_funar_keyb
+{
+	int		key;
+	void	(*f)(t_data*);
+}					t_funar_keyb;
+
+/*
+** This structure is used to handle the keyboard event
+** fill f with the function you want to use when the key is push
+*/
 #endif

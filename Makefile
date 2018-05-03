@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/03 13:10:27 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/03 19:28:30 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ EOC = \033[37m
 
 ## sources ##
 SRCS_DIR = ./srcs/
+
 SRCS  = draw/draw_image.c \
 		\
 		init/data_init.c \
@@ -37,23 +38,31 @@ SRCS  = draw/draw_image.c \
 		vec/vec_operations2.c \
 		\
 		exit_all.c \
+		ft_event.c\
+		ft_keyboard.c\
+		fill_funar_key_event.c \
+		ft_mouse.c \
+		ft_mouse_wheel.c \
 		main.c
 
 ## LIB DIR ##
+SDL2_PATH = $(shell brew --prefix sdl2)/include
 LIB_DIR = ./lib
-LIBFT_DIR = $(LIB_DIR)/libft/
-MLX_DIR = $(LIB_DIR)/mlx_sierra/
-LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
-LIBPT_DIR = $(LIB_DIR)/libpt/
-SDL2_DIR =
+LIBFT_DIR = $(LIB_DIR)/libft
+MLX_DIR = $(LIB_DIR)/mlx_sierra
+LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
+LIBPT_DIR = $(LIB_DIR)/libpt
 
 ## Includes ##
-INC = -I ./includes/
+INC = -I ./includes/ 
+
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(MLX_DIR)/includes/ \
 			-I $(SDL2_DIR)/includes/SDL2/ \
 			-I $(LIBMYSDL_DIR)/includes/\
-			-I $(LIBPT_DIR)/includes/
+			-I $(LIBPT_DIR)/includes/\
+			-I $(SDL2_PATH)
+
 INCS = $(INC) $(LIB_INCS)
 
 ## OBJECTS ##

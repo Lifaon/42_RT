@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:25:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/03 17:57:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	draw_pixel(t_data *data, t_obj *objs, t_ray light, int index)
+static void	draw_pixel(t_data *data, t_obj *objs, t_ray light, t_point crd)
 {
 	double	t;
 	double	tmp;
@@ -33,29 +33,25 @@ static void	draw_pixel(t_data *data, t_obj *objs, t_ray light, int index)
 		}
 	}
 	if (t < MAX_DIST)
-		data->mlx.addr[index] = shadow_ray(objs, light, i2);
+		pt_to_tex(crd, data->tex,  shadow_ray(objs, light, i2));
 	else
-		data->mlx.addr[index] = 0;
+		pt_to_tex(crd, data->tex,  0);
 }
 
 void		draw_image(t_data *data, t_obj *objs, t_ray light)
 {
-	int		x;
-	int		y;
-	t_vec	tmp;
+	t_point		crd;
+	t_vec		tmp;
 
-	y = -1.0;
+	crd = pt_set(0, 0);
 	tmp.z = data->vp00.z;
-	while (++y < WIN_H)
+	while (crd.x < WIN_W)
 	{
-		x = -1.0;
-		tmp.y = data->vp00.y - (double)y;
-		while (++x < WIN_W)
-		{
-			tmp.x = data->vp00.x + (double)x;
-			data->ray.d = vec_normalize(tmp);
-			draw_pixel(data, objs, light, (y * WIN_W) + x);
-		}
+		tmp.y = data->vp00.y - (double)crd.y;
+		tmp.x = data->vp00.x + (double)crd.x;
+		data->ray.d = vec_normalize(tmp);
+		draw_pixel(data, objs, light, crd);
+		crd = pt_ypluseg(crd, 0, WIN_H);
 	}
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
+	put_tex_to_win(data->tex, data->win->ren);
 }

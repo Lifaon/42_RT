@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:52:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:42:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		main(void)
 	t_obj	*objs;
 	t_ray	light;
 
+	SDL_Init(SDL_INIT_VIDEO);
 	data_init(&data);
 	//	là j'initialise les objets : sphère et plan, et la lumière de manière
 	//	dégueulasse
@@ -55,8 +56,6 @@ int		main(void)
 	light.o.y = 150;
 	light.o.z = 900;
 	draw_image(&data, objs, light);
-	mlx_mouse_hook(data.mlx.win, mouse_actions, &data);
-	mlx_hook(data.mlx.win, 2, 3, key_actions, &data);
-	mlx_hook(data.mlx.win, 17, 0, exit_all, &data);
-	return (mlx_loop(data.mlx.mlx));
+	ft_event(&data);
+	return (0);
 }

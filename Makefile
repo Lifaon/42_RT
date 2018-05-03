@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/30 16:48:24 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/03 13:10:27 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ SDL2_DIR =
 INC = -I ./includes/
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(MLX_DIR)/includes/ \
-			-I $(SDL2_DIR)/includes/SDL2
+			-I $(SDL2_DIR)/includes/SDL2/ \
+			-I $(LIBMYSDL_DIR)/includes/\
+			-I $(LIBPT_DIR)/includes/
 INCS = $(INC) $(LIB_INCS)
 
 ## OBJECTS ##
@@ -67,6 +69,7 @@ MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
 			-L $(LIBPT_DIR) -lpt \
+			-L $(LIBMYSDL_DIR) -lmysdl \
 			-L $(SDL2_DIR)/lib -lsdl2
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"

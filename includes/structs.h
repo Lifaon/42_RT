@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/27 14:57:22 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/03 13:06:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pthread.h>
 # include "defines.h"
+# include "libmysdl.h"
 
 typedef struct		s_mlx
 {
@@ -81,6 +82,7 @@ typedef struct		s_data
 	t_vec			vp00;
 	t_ray			ray;
 	t_mlx			mlx;
+	t_win			*win;
 }					t_data;
 /*
 **	Struct used to store different variables.

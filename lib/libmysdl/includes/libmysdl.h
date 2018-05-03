@@ -6,16 +6,18 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:29:02 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/25 21:34:01 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/05/03 13:34:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBMYSDL_H
 # define LIBMYSDL_H
-# include "../../libpt/includes/libpt.h"
-# include "../../libft/includes/libft.h"
-//# include "SDL2/SDL.h"
-# include "../../SDL2-2.0.8/include/SDL.h"
+# include "libpt.h"
+//# include "../../libpt/includes/libpt.h"
+# include "libft.h"
+//# include "../../libft/includes/libft.h"
+# include "SDL2/SDL.h"
+//# include "../../SDL2-2.0.8/include/SDL.h"
 # include <stdint.h>
 
 typedef struct		s_texture

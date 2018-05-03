@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/04/27 17:08:12 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/03 14:03:30 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,15 @@ SRCS_NAME = get_color.c texture_new.c free_tex.c pt_to_tex.c fill_tex_in_color.c
 
 SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
 
+SDL2_PATH = $(shell brew --prefix sdl2)/include
+
 ## Includes ##
-INC = ./includes/
-INCS = ./includes/libmysdl.h
+INC = ./includes/ -I ../libft/includes/ -I ../libpt/includes/ \
+	-I $(SDL2_PATH)/
+#	-I /Users/$(USER)/.brew/Cellar/sdl2/2.0.8/include/
+
+INCS = ./includes/libmysdl.h ../libpt/includes/libpt.h \
+	../libft/includes/libft.h $(SDL2_PATH)/SDL2/SDL.h
 
 ## Objects ##
 OBJS_DIR = ./objets/
@@ -41,7 +47,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(INCS)
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
-	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)
 	@echo "\033[032m✓	\033[0m\033[032m$(DIR_NAME)'s objects created\033[0m"

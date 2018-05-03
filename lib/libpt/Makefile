@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/27 17:08:26 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/03 13:39:50 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ SRCS_NAME = ft_putcrd.c\
 SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
 
 ## Includes ##
-INC = ./includes/
-INCS = ./includes/libpt.h
+INC = -I ./includes/ -I ../libft/includes/
+INCS = ./includes/libpt.h ../libft/includes/libft.h
 
 ## Objects ##
 OBJS_DIR = ./objets/
@@ -58,7 +58,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(INCS)
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
-	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)
 	@echo "\033[032m✓	\033[0m\033[032m$(DIR_NAME)'s objects created\033[0m"

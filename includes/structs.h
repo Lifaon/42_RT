@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/03 19:36:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:55:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 # include <pthread.h>
+# include <stdint.h>
 # include "defines.h"
 
 typedef struct		s_mlx
@@ -42,10 +43,10 @@ typedef union		u_color
     uint32_t		c;
     struct			s_argb
     {
-        uint8_t		a;
-        uint8_t		r;
+		uint8_t		b;
         uint8_t		g;
-        uint8_t		b;
+		uint8_t		r;
+		uint8_t		a;
     }				argb;
 }					t_color;
 
@@ -75,9 +76,9 @@ typedef struct		s_camera
 
 typedef struct		s_light
 {
+	int				is_para;
+	double			r;
 	t_vec			pos;
-	int				is_parallel;
-	int				r;
 	t_vec			dir;
 	t_color			color;
 }					t_light;
@@ -107,8 +108,10 @@ typedef struct		s_obj
 typedef struct		s_data
 {
 	t_camera		cams[4];
-	t_light			*ligths;
+	t_light			*lights;
+	int				nb_lights;
 	t_obj			*objs;
+	int				nb_objects;
 	t_ray			ray;
 	t_mlx			mlx;
 }					t_data;

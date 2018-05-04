@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/03 19:39:59 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/04 15:02:05 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS_DIR = ./srcs/
 SRCS  = parser/get_full_read_file.c \
 		parser/my_atof.c \
 		parser/parse_cameras.c \
+		parser/parse_lights.c \
 		parser/parse.c \
 		parser/remove_white_spaces.c \
 		parser/tools.c \

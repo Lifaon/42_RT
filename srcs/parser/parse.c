@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 13:17:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:32:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse(t_data *data, char *file_name)
 			if (read_quotes(str + i, "\"cameras\"", &i))
 				parse_cameras(data, str + i, &i);
 			else if (read_quotes(str + i, "\"lights\"", &i))
-				printf("lights not parsed yet\n");
+				parse_lights(data, str + i, &i);
 			else if (read_quotes(str + i, "\"objects\"", &i))
 				printf("objects not parsed yet\n");
 		}

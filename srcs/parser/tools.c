@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 13:02:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:22:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,35 @@ t_vec	parse_vec(char *str, int *index)
 	i = 0;
 	while (str[i] != '[')
 		++i;
-	++i;
-	ret.x = my_atof(str + i);
+	ret.x = my_atof(str + (++i));
 	while (str[i] != ',')
 		++i;
-	++i;
-	ret.y = my_atof(str + i);
+	ret.y = my_atof(str + (++i));
 	while (str[i] != ',')
 		++i;
-	++i;
-	ret.z = my_atof(str + i);
+	ret.z = my_atof(str + (++i));
+	while (str[i] != ']')
+		++i;
+	*index += i;
+	return (ret);
+}
+
+t_color	parse_color(char *str, int *index)
+{
+	t_color	ret;
+	int		i;
+
+	ret.c = 0;
+	i = 0;
+	while (str[i] != '[')
+		++i;
+	ret.argb.r = ft_atoi(str + (++i));
+	while (str[i] != ',')
+		++i;
+	ret.argb.g = ft_atoi(str + (++i));
+	while (str[i] != ',')
+		++i;
+	ret.argb.b = ft_atoi(str + (++i));
 	while (str[i] != ']')
 		++i;
 	*index += i;

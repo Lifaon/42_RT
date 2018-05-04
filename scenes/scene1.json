@@ -2,16 +2,13 @@
 	"cameras" :
 	[
 		{
-			"position" : [-36.2, 42.025, 666],
-			"direction" : [20, -40, 0],
-			"fov" : 50
+
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-400, 150, 900],
-			"color" : [255, 255, 255]
+			"position" : [-400, 150, 900]
 		}
 	],
 	"objects" :

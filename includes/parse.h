@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 13:20:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:34:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	remove_white_spaces(char **str);
 */
 
 void	parse_cameras(t_data *data, char *str, int *index);
+void	parse_lights(t_data *data, char *str, int *index);
 /*
-**	parse_cameras() initialize the t_cam array in *data with what is written
-**	in the string.
+**	parse_cameras(), parse_lights() and parse_objects() initialize the
+**	corresponding array in *data with what is written in the string.
 */
 
 int		read_quotes(char *str, char *word, int *index);
@@ -42,11 +43,12 @@ int		read_quotes(char *str, char *word, int *index);
 **	at the beginning of the string or not.
 */
 
-t_vec	parse_vec(char *str, int *index);
 double	parse_nb(char *str, int *index);
+t_vec	parse_vec(char *str, int *index);
+t_color	parse_color(char *str, int *index);
 /*
-**	parse_vec() and parse_nb() take a string and return either a struct t_vec
-**	or a double that matches what is in the string.
+**	parse_nb(), parse_vec() and parse_color() take a string and return either
+**	a double, a t_vec, or a t_color that matches what is written in the string.
 */
 
 double	my_atof(const char *str);

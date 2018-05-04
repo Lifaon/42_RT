@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 13:08:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:24:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,21 @@ int		main(int ac, char **av)
 	if (ac > 1)
 		parse(&data, av[1]);
 	else
+	{
 		ft_putendl("patate");
-	printf("pos : %f / %f / %f\n", \
-		data.cams[0].pos.x, data.cams[0].pos.y, data.cams[0].pos.z);
-	printf("pos : %f / %f / %f\n", \
-		data.cams[0].dir.x, data.cams[0].dir.y, data.cams[0].dir.z);
-	printf("fov : %f\n\n", data.cams[0].fov);
-	printf("pos : %f / %f / %f\n", \
-		data.cams[1].pos.x, data.cams[1].pos.y, data.cams[1].pos.z);
-	printf("pos : %f / %f / %f\n", \
-		data.cams[1].dir.x, data.cams[1].dir.y, data.cams[1].dir.z);
-	printf("fov : %f\n", data.cams[1].fov);
+		return (0);
+	}
+	for (int i = 0; i < data.nb_lights; i++)
+	{
+		printf("is_para = %d\n", data.lights[i].is_para);
+		printf("color = %u, %u, %u, %u\n", data.lights[i].color.argb.r, \
+			data.lights[i].color.argb.g, data.lights[i].color.argb.b, data.lights[i].color.argb.a);
+		printf("r = %f\n", data.lights[i].r);
+		printf("pos = %f, %f, %f\n", \
+			data.lights[i].pos.x, data.lights[i].pos.y, data.lights[i].pos.z);
+		printf("dir = %f, %f, %f\n\n", \
+			data.lights[i].dir.x, data.lights[i].dir.y, data.lights[i].dir.z);
+	}
+	free(data.lights);
 	return (0);
 }

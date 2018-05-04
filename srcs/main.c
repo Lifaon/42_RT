@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 16:24:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:40:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		main(int ac, char **av)
 	}
 	for (int i = 0; i < data.nb_lights; i++)
 	{
+		printf("LIGHT nb : %d;\n", i + 1);
 		printf("is_para = %d\n", data.lights[i].is_para);
 		printf("color = %u, %u, %u, %u\n", data.lights[i].color.argb.r, \
 			data.lights[i].color.argb.g, data.lights[i].color.argb.b, data.lights[i].color.argb.a);

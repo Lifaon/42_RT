@@ -1,21 +1,22 @@
 {
-	"scene" :
-	{
-		"camera" :
+	"cameras" :
+	[
 		{
-			"position" : [0, 0, 0],
-			"direction" : [0, 0, 1],
-			"fov" : 10
-		},
-		"light" :
+			"position" : [-36.2, 42.025, 666],
+			"direction" : [20, -40, 0],
+			"fov" : 50
+		}
+	],
+	"lights" :
+	[
 		{
 			"position" : [-400, 150, 900],
 			"color" : [255, 255, 255]
 		}
-	},
+	],
 	"objects" :
 	{
-		"sphere" :
+		"sphere 1" :
 		{
 			"position" : [0, 0, 2000],
 			"radius" : 50,
@@ -24,7 +25,7 @@
 			"diffuse" : 0.5,
 			"specular" : 0.98
 		},
-		"plane" :
+		"plane 1" :
 		{
 			"position" : [0, 0, 2000],
 			"normal" : [0, 1, 0.1],

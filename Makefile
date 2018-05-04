@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/30 16:48:24 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/03 19:39:59 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,20 @@ MAG = \033[35m
 CYA = \033[36m
 EOC = \033[37m
 
-## sources ##
+## Sources ##
 SRCS_DIR = ./srcs/
-SRCS  = draw/draw_image.c \
+#SRCS  = draw/draw_image.c \
 		\
 		init/data_init.c \
 		init/img_init.c \
 		init/t_mlx_init.c \
+		\
+		parser/get_full_read_file.c \
+		parser/my_atof.c \
+		parser/parse_cameras.c \
+		parser/parse.c \
+		parser/remove_white_spaces.c \
+		parser/tools.c \
 		\
 		vec/get_normal.c \
 		vec/intersect.c \
@@ -39,7 +46,23 @@ SRCS  = draw/draw_image.c \
 		exit_all.c \
 		main.c
 
-## LIB DIR ##
+SRCS  = parser/get_full_read_file.c \
+		parser/my_atof.c \
+		parser/parse_cameras.c \
+		parser/parse.c \
+		parser/remove_white_spaces.c \
+		parser/tools.c \
+		\
+		exit_all.c \
+		main.c
+
+## Objects ##
+OBJS = $(SRCS:.c=.o)
+OBJS_DIR = objs
+OBJS_SUB_DIRS = draw init parser vec
+OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
+
+## Lib dirs ##
 LIB_DIR = ./lib
 LIBFT_DIR = $(LIB_DIR)/libft/
 MLX_DIR = $(LIB_DIR)/mlx_sierra/
@@ -54,13 +77,7 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(SDL2_DIR)/includes/SDL2
 INCS = $(INC) $(LIB_INCS)
 
-## OBJECTS ##
-OBJS = $(SRCS:.c=.o)
-OBJS_DIR = objs
-OBJS_SUB_DIRS = draw init vec
-OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
-
-## FLAGS ##
+## Flags ##
 CC = gcc
 CFLAGS = #-Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit

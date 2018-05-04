@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:25:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:30:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	draw_pixel(t_data *data, t_obj *objs, t_ray light, int index)
 	{
 		if (objs[i].intersect(data->ray, objs[i], &tmp) && tmp < t)
 		{
-			objs[i].pi = vec_add(data->ray.o, vec_multiply(data->ray.d, tmp));
+			//objs[i].pi = vec_add(data->ray.o, vec_multiply(data->ray.d, tmp));
 			t = tmp;
 			i2 = i;
 		}

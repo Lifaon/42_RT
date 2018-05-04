@@ -6,19 +6,19 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 19:56:56 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/01 19:56:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/02 14:34:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "parse.h"
 
-char	*perror_and_return_null(void)
+static char	*perror_and_return_null(void)
 {
 	perror("Error ");
 	return (NULL);
 }
 
-char	*get_full_read_file(char *file_name)
+char		*get_full_read_file(char *file_name)
 {
 	char	buf[BUFF_SIZE + 1];
 	char	*str;

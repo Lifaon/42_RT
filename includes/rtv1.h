@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/01 18:11:54 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/02 14:53:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include "defines.h"
 # include "keys.h"
 
-# define BUFF_SIZE 4096
 /*
 **	Drawing functions.
 */
@@ -59,6 +58,8 @@ double	dot_product(t_vec u, t_vec v);
 int		intersect_sphere(t_ray ray, t_obj sphere, double *t);
 int		intersect_plane(t_ray ray, t_obj plane, double *t);
 int		shadow_ray(t_obj *objs, t_ray light, int index);
+
+void	parse(t_data *data, char *file_name);
 
 /*
 **	Frees everything that has to be freed.

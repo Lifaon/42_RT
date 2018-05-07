@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 16:41:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 20:47:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	parse(t_data *data, char *file_name)
 	char	*str;
 	int		i;
 
+	errno = 0;
 	if (!(str = get_full_read_file(file_name)))
 		exit_all(data);
-	remove_white_spaces(&str);
+	//remove_white_spaces(&str);
 	/*if (check_error(str))
 		exit_all(data);*/
 	i = -1;
@@ -46,7 +47,7 @@ void	parse(t_data *data, char *file_name)
 			else if (read_quotes(str + i, "\"lights\"", &i))
 				parse_lights(data, str + i, &i);
 			else if (read_quotes(str + i, "\"objects\"", &i))
-				printf("objects not parsed yet\n");
+				parse_objects(data, str + i, &i);
 		}
 	free(str);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 15:55:29 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:51:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ typedef struct		s_light
 typedef struct		s_obj
 {
 	double			r;
-	double			ambient;
-	double			diffuse;
-	double			specular;
-	t_vec			pos;
-	t_vec			rot;
-	t_vec			normal;
+	double			ambi;
+	double			diff;
+	double			spec;
 	t_color			color;
+	t_vec			pos;
+	t_vec			dir;
+	t_vec			normal;
 	int				(*intersect)(t_ray, struct s_obj, double *);
 	t_vec			(*get_normal)(struct s_obj);
 }					t_obj;

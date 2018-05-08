@@ -6,27 +6,14 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 19:51:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 13:40:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include <pthread.h>
 # include <stdint.h>
-# include "defines.h"
-
-typedef struct		s_mlx
-{
-	void			*mlx;
-	void			*win;
-	void			*img;
-	int				*addr;
-}					t_mlx;
-/*
-**	Storing the necessary pointers for the mlx usage.
-*/
 
 typedef struct		s_vec
 {
@@ -35,7 +22,7 @@ typedef struct		s_vec
 	double			z;
 }					t_vec;
 /*
-**	Storing 3D coordinates.
+**	Storing 3D coordinates or 3D vectors.
 */
 
 typedef union		u_color
@@ -49,29 +36,39 @@ typedef union		u_color
 		uint8_t		a;
     }				argb;
 }					t_color;
-
 /*
 **	Usage of an union for easy color management.
 */
 
-typedef struct		s_ray
+typedef struct		s_inter
 {
-	t_vec			o;
-	t_vec			d;
-}					t_ray;
+	double			t1;
+	double			t2;
+	double			t;
+	double			min_dist;
+	double			delta;
+	t_vec			ip;
+	t_vec			normal;
+}					t_inter;
 /*
-**	Ray struct -> o = origin ; d = direction.
+**	Intersection structure -> t1, t2 and delta are used for equations of degree
+**	two, and t is the smallest positive number between t1 and t2 ; min_dist =
+**	minimum distance before we consider there is an intersection ; ip =
+**	intersection point ; normal = the normal of the object at 'ip'.
 */
 
 typedef struct		s_camera
 {
 	t_vec			pos;
 	t_vec			dir;
-	t_vec			vp00;
+	t_vec			vp_up_left;
+	double			vp_dist;
 	double			fov;
 }					t_camera;
 /*
-**	Cam struct -> pos = position ; dir = direction ; fov = field of view.
+**	Cam struct -> pos = position ; dir = direction ; vp_up_left = the point at
+**	the top left of the view_place ; vp_dist = distance between the camera and
+**	the view plane ; fov = field of view.
 */
 
 typedef struct		s_light
@@ -83,7 +80,8 @@ typedef struct		s_light
 	t_color			color;
 }					t_light;
 /*
-**	Cam struct -> pos = position ; dir = direction ; fov = field of view.
+**	Cam struct -> is_para = 0 or 1 wether the light source is parallel or not ;
+**	r = radius of the light source ; pos = position ; dir = direction.
 */
 
 typedef struct		s_obj
@@ -95,28 +93,42 @@ typedef struct		s_obj
 	t_color			color;
 	t_vec			pos;
 	t_vec			dir;
+	t_vec			oc;
 	t_vec			normal;
-	int				(*intersect)(t_ray, struct s_obj, double *);
-	t_vec			(*get_normal)(struct s_obj);
+	int				(*intersect)(struct s_obj, t_vec, t_inter *);
+	t_vec			(*get_normal)(struct s_obj, t_inter);
 }					t_obj;
 /*
-**	Object structure -> r = radius ; pos = center of the object ; oc = distance
-**	between origin of the ray and center of the object ; pi = point of
-**	intersection ; norm = normal at the point of intersection.
+**	Object structure -> r = radius ; ambi, diff and spec = coeffs for Phong
+**	lightning ; pos = position which defines the object ; dir = direction in
+**	case it has one ; oc = vector between the current camera and 'pos' ;
+**	normal = surface normal in case it's constant (e.g. plane)
+*/
+
+typedef struct		s_mlx
+{
+	void			*mlx;
+	void			*win;
+	void			*img;
+	int				*addr;
+}					t_mlx;
+/*
+**	Storing the necessary pointers for the mlx usage.
 */
 
 typedef struct		s_data
 {
-	t_camera		cams[4];
-	t_light			*lights;
-	int				nb_lights;
-	t_obj			*objs;
 	int				nb_objects;
-	t_ray			ray;
+	t_obj			*objs;
+	int				nb_lights;
+	t_light			*lights;
+	int				i;
+	t_camera		cams[4];
 	t_mlx			mlx;
 }					t_data;
 /*
-**	Struct used to store different variables.
+**	Struct used to store objects, light sources, and the 4 possible cameras, in
+**	addition with the mlx struct;
 */
 
 #endif

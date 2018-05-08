@@ -6,55 +6,52 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/03 19:30:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:29:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	draw_pixel(t_data *data, t_obj *objs, t_ray light, int index)
+static void	draw_pixel(t_data *data, t_vec ray, int index)
 {
-	double	t;
+	t_inter	inter;
 	double	tmp;
 	int		i;
-	int		i2;
+	int		object_index;
 
-	t = MAX_DIST;
-	tmp = 0;
+	tmp = INFINITY;
 	i = -1;
-	// 2 car je test avec deux objets mais en vrai faudra faire un truc propre
-	while(++i < 2)
-	{
-		if (objs[i].intersect(data->ray, objs[i], &tmp) && tmp < t)
+	while (++i < data->nb_objects)
+		if (data->objs[i].intersect(data->objs[i], ray, &inter) && \
+			inter.t < tmp)
 		{
-			//objs[i].pi = vec_add(data->ray.o, vec_multiply(data->ray.d, tmp));
-			t = tmp;
-			i2 = i;
+			tmp = inter.t;
+			object_index = i;
 		}
+	if (tmp < INFINITY)
+	{
+		inter.t = tmp;
+		inter.ip = vec_add(data->cams[data->i].pos, vec_multiply(ray, inter.t));
+		data->mlx.addr[index] = shadow_ray(data, inter, object_index);
 	}
-	if (t < MAX_DIST)
-		data->mlx.addr[index] = shadow_ray(objs, light, i2);
-	else
-		data->mlx.addr[index] = 0;
 }
 
-void		draw_image(t_data *data, t_obj *objs, t_ray light)
+void		draw_image(t_data *data)
 {
 	int		x;
 	int		y;
-	t_vec	tmp;
+	t_vec	ray;
 
 	y = -1.0;
-	tmp.z = data->vp00.z;
+	ray.z = data->cams[data->i].vp_up_left.z;
 	while (++y < WIN_H)
 	{
 		x = -1.0;
-		tmp.y = data->vp00.y - (double)y;
+		ray.y = data->cams[data->i].vp_up_left.y - (double)y;
 		while (++x < WIN_W)
 		{
-			tmp.x = data->vp00.x + (double)x;
-			data->ray.d = vec_normalize(tmp);
-			draw_pixel(data, objs, light, (y * WIN_W) + x);
+			ray.x = data->cams[data->i].vp_up_left.x + (double)x;
+			draw_pixel(data, vec_normalize(ray), (y * WIN_W) + x);
 		}
 	}
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);

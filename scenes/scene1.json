@@ -2,31 +2,32 @@
 	"cameras" :
 	[
 		{
-
+			"position" : [0, 0, 0],
+			"fov" : 15
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-400, 150, 900]
+			"position" : [-300, 300, 800]
 		}
 	],
 	"objects" :
 	{
-		"sphere 1" :
+		"sphere" :
 		{
-			"position" : [0, 0, 2000],
-			"radius" : 50,
+			"position" : [0, 0, 1500],
+			"radius" : 150,
 			"color" : [0, 0, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,
 			"specular" : 0.98
 		},
-		"plane 1" :
+		"plane" :
 		{
-			"position" : [0, 0, 2000],
-			"normal" : [0, 1, 0.1],
-			"color" : [0, 0, 255],
+			"position" : [0, -200, 1000],
+			"normal" : [0, 1, 0],
+			"color" : [0, 190, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,
 			"specular" : 0.98

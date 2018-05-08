@@ -6,44 +6,44 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:13:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:41:54 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		light_path_is_blocked(t_obj *objs, t_ray light, int index)
+int		light_path_is_blocked(t_data *data, t_vec light, int index)
 {
 	double	length;
 	double	t;
 	int		i;
 
-	length = get_length(light.d);
-	light.d = vec_normalize(light.d);
+	length = get_length(light);
+	light = vec_normalize(light);
 	i = -1;
-	while(++i < 2)
+	while(++i < data->nb_objects)
 	{
 		if (i == index)
 			continue ;
-		/*
-		**	là il faudrait faire en sorte de check si on a une intersection
-		**	entre l'objet touché et la source de lumière
-		*/
+		// là il faudrait faire en sorte de check si on a une intersection
+		// entre l'objet et la lumière, et return 1 dans ce cas là.
 	}
 	return (0);
 }
 
-int		shadow_ray(t_obj *objs, t_ray light, int index)
+int		shadow_ray(t_data *data, t_inter inter, int index)
 {
+	t_vec	light;
 	double	dot;
-	double	t;
-	int		i;
 
-	objs[index].norm = objs[index].get_normal(objs[index]);
-	light.d = vec_substract(objs[index].pi, light.o);
-	//if (light_path_is_blocked(objs, light, index))
+	if (!data->nb_lights)
+		return (0x22);
+	light = vec_substract(data->lights[0].pos, inter.ip);
+	// data->light[0] parce qu'on a pas encore implémenté le multi-spot.
+	inter.normal = data->objs[index].get_normal(data->objs[index], inter);
+	//if (light_path_is_blocked(data, index))
 	//	return (0);
-	dot = dot_product(vec_normalize(light.d), vec_normalize(objs[index].norm));
+	dot = dot_product(vec_normalize(light), vec_normalize(inter.normal));
 	if (dot >= 0)
 		return (0xFF * dot);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:34:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:28:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,41 @@
 /*
 **	Dans le cas de la sphère, le a de b^2 - 4ac est toujours égal à 1.
 */
-int		intersect_sphere(t_ray ray, t_obj sphere, double *t)
+int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 {
 	double	b;
 	double	c;
-	double	det;
-	double	t1;
-	double	t2;
 
-	b = 2 * dot_product(ray.d, sphere.oc);
+	b = 2 * dot_product(ray, sphere.oc);
 	c = dot_product(sphere.oc, sphere.oc) - (sphere.r * sphere.r);
-	det = (b * b) - (4 * c);
-	if (det < 0)
+	inter->delta = (b * b) - (4 * c);
+	if (inter->delta < 0)
 		return (0);
-	t1 = (-b + sqrt(det)) / 2;
-	t2 = (-b - sqrt(det)) / 2;
-	if (t1 >= 0 && t2 >= 0)
-		*t = t1 < t2 ? t1 : t2;
+	inter->t1 = (-b + sqrt(inter->delta)) / 2;
+	inter->t2 = (-b - sqrt(inter->delta)) / 2;
+	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
+		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else
 	{
-		if (t1 >= 0 || t2 >= 0)
-			*t = t1 > t2 ? t1 : t2;
+		if (inter->t1 >= 0 || inter->t2 >= 0)
+			inter->t = inter->t1 > inter->t2 ? inter->t1 : inter->t2;
 		else
 			return (0);
 	}
 	return (1);
 }
 
-int		intersect_plane(t_ray ray, t_obj plane, double *t)
+int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
 {
 	double xv;
 	double dv;
 
-	xv = dot_product(plane.oc, plane.norm);
-	dv = dot_product(ray.d, plane.norm);
+	xv = dot_product(plane.oc, plane.normal);
+	dv = dot_product(ray, plane.normal);
 	if (dv == 0)
 		return (0);
-	*t = -xv / dv;
-	if (*t <= 0)
+	inter->t = -xv / dv;
+	if (inter->t < 0 || inter->t == INFINITY)
 		return (0);
 	return (1);
 }

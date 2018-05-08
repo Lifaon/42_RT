@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 19:47:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:41:05 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "structs.h"
+# include "defines.h"
 
 # define BUFF_SIZE 4096
 
@@ -24,10 +25,10 @@ char	*get_full_read_file(char *file_name);
 **	a malloced string of the file.
 */
 
-void	remove_white_spaces(char **str);
+int		read_quotes(char *str, char *word, int *index);
 /*
-**	remove_white_spaces() takes a pointer to a malloced string, and removes all
-**	white spaces (' ', '\t', '\n') that are not in quotes.
+**	read_quotes() takes a string and a word, and checks wether the word is
+**	at the beginning of the string or not.
 */
 
 void	parse_cameras(t_data *data, char *str, int *index);
@@ -38,10 +39,9 @@ void	parse_objects(t_data *data, char *str, int *index);
 **	corresponding array in *data with what is written in the string.
 */
 
-int		read_quotes(char *str, char *word, int *index);
+void	get_vp_up_left(t_camera *cam);
 /*
-**	read_quotes() takes a string and a word, and checks wether the word is
-**	at the beginning of the string or not.
+**	get_vp_up_left() has to be called after the current camera has been parsed.
 */
 
 double	parse_nb(char *str, int *index);
@@ -57,5 +57,13 @@ double	my_atof(const char *str);
 **	my_atof() is a reproduction of the atof() function which we are not allowed
 **	to use in this school project. It is used to parse floating point numbers.
 */
+
+void	remove_white_spaces(char **str);
+/*
+**	remove_white_spaces() takes a pointer to a malloced string, and removes all
+**	white spaces (' ', '\t', '\n') that are not in quotes.
+*/
+
+t_vec	vec_normalize(t_vec u);
 
 #endif

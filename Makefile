@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/04 20:33:48 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/07 20:12:41 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ CYA = \033[36m
 EOC = \033[37m
 
 ## Sources ##
-SRCS_DIR = ./srcs/
-#SRCS  = draw/draw_image.c \
+SRCS_DIR = ./srcs
+SRCS  = draw/draw_image.c \
 		\
 		init/data_init.c \
 		init/img_init.c \
@@ -33,6 +33,8 @@ SRCS_DIR = ./srcs/
 		parser/get_full_read_file.c \
 		parser/my_atof.c \
 		parser/parse_cameras.c \
+		parser/parse_lights.c \
+		parser/parse_objects.c \
 		parser/parse.c \
 		parser/remove_white_spaces.c \
 		parser/tools.c \
@@ -46,21 +48,9 @@ SRCS_DIR = ./srcs/
 		exit_all.c \
 		main.c
 
-SRCS  = parser/get_full_read_file.c \
-		parser/my_atof.c \
-		parser/parse_cameras.c \
-		parser/parse_lights.c \
-		parser/parse_objects.c \
-		parser/parse.c \
-		parser/remove_white_spaces.c \
-		parser/tools.c \
-		\
-		exit_all.c \
-		main.c
-
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
-OBJS_DIR = objs
+OBJS_DIR = ./objs
 OBJS_SUB_DIRS = draw init parser vec
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 

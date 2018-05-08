@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/07 14:25:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:26:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ static int	init_objects(t_data *data, int nb)
 		data->objs[i].ambi = 1;
 		data->objs[i].diff = 1;
 		data->objs[i].spec = 1;
-		data->objs[i].color.c = 0xAA00AA;
+		data->objs[i].color.c = 0xA600A6;
 		data->objs[i].pos = (t_vec){0, 0, 2000};
 		data->objs[i].dir = (t_vec){1, 1, 0};
 		data->objs[i].normal = (t_vec){1, 1, 0.001};
+		data->objs[i].intersect = intersect_sphere;
+		data->objs[i].get_normal = get_sphere_normal;
 	}
 	return (0);
 }
@@ -78,6 +80,8 @@ static void	parse_object(t_obj *object, char *str, int *index)
 				object->color = parse_color(str + i, &i);
 			else if (read_quotes(str + i, "\"direction\"", &i))
 				object->dir = parse_vec(str + i, &i);
+			else if (read_quotes(str + i, "\"normal\"", &i))
+				object->normal = parse_vec(str + i, &i);
 			else if (read_quotes(str + i, "\"radius\"", &i))
 				object->r = parse_nb(str + i, &i);
 			else if (read_quotes(str + i, "\"ambient\"", &i))
@@ -100,13 +104,13 @@ static void	which_object(t_data *data, char *str, int *index, int *object_index)
 	i = 0;
 	if (read_quotes(str, "\"sphere\"", &i))
 	{
-		/*data->objs[*object_index].intersect = intersect_sphere;
-		data->objs[*object_index].get_normal = get_sphere_normal;*/
+		data->objs[*object_index].intersect = intersect_sphere;
+		data->objs[*object_index].get_normal = get_sphere_normal;
 	}
 	else if (read_quotes(str, "\"plane\"", &i))
 	{
-		/*data->objs[*object_index].intersect = intersect_plane;
-		data->objs[*object_index].get_normal = get_plane_normal;*/
+		data->objs[*object_index].intersect = intersect_plane;
+		data->objs[*object_index].get_normal = get_plane_normal;
 	}
 	else if (read_quotes(str, "\"cylinder\"", &i))
 	{
@@ -115,8 +119,8 @@ static void	which_object(t_data *data, char *str, int *index, int *object_index)
 	}
 	else if (read_quotes(str, "\"cone\"", &i))
 	{
-		/*data->objs[*object_index].intersect = intersect_sphere;
-		data->obks[*object_index].get_normal = get_sphere_normal;*/
+		/*data->objs[*object_index].intersect = intersect_cone;
+		data->obks[*object_index].get_normal = get_cone_normal;*/
 	}
 	else
 		return ;

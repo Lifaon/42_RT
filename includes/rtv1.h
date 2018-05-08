@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/07 19:55:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/08 20:17:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "defines.h"
 # include "keys.h"
 
+# define BUFF_SIZE 4096
 /*
 **	Drawing functions.
 */

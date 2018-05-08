@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/07 20:12:41 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/08 20:16:59 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,13 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(SDL2_DIR)/includes/SDL2
 INCS = $(INC) $(LIB_INCS)
 
-## Flags ##
+## OBJECTS ##
+OBJS = $(SRCS:.c=.o)
+OBJS_DIR = objs
+OBJS_SUB_DIRS = draw init vec
+OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
+
+## FLAGS ##
 CC = gcc
 CFLAGS = #-Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit

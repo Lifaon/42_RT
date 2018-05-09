@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/09 14:31:18 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/09 20:15:39 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,16 +63,15 @@ LIB_DIR = ./lib
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
 LIBPT_DIR = $(LIB_DIR)/libpt
-SDL2_PATH = $(shell brew --prefix sdl2)/include
+SDL2_DIR = $(LIB_DIR)/sdl2
 
 ## Includes ##
 INC = -I ./includes/
 
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
-			-I $(SDL2_DIR)/includes/SDL2/ \
 			-I $(LIBMYSDL_DIR)/includes/\
 			-I $(LIBPT_DIR)/includes/\
-			-I $(SDL2_PATH)
+			-I $(SDL2_DIR)/include
 
 INCS = $(INC) $(LIB_INCS)
 
@@ -83,13 +82,18 @@ MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
-			-L $(SDL2_DIR)/lib -lsdl2
+			-L $(SDL2_DIR)/lib -lSDL2
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 				\n ========================================\n"
 
-all: SDL2 LIBFT LIBPT MYSDL print_name $(NAME) print_end
+SDL_VER = 2.0.8
+MAIN_DIR_PATH = $(shell pwd)
+SDL2_DIR = $(MAIN_DIR_PATH)/lib/sdl2
+SDL2_STATUS = installed
+
+all: LIBFT LIBPT MYSDL print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -133,7 +137,7 @@ re_MODE_DEBUG: fclean MODE_DEBUG
 change_cflag:
 	@$(eval CFLAGS = -fsanitize=address)
 
-SDL2:
+SDL2_old:
 ifeq ($(shell brew list | grep sdl2), sdl2)
 	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
 else
@@ -142,6 +146,19 @@ else
 	@brew install sdl2
 	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
 	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
+endif
+
+SDL2 : check_sdl2 install_sdl2
+
+check_sdl2:
+	test -d lib/sdl2
+	echo "salut"
+
+install_sdl2:
+ifeq ($(SDL2_STATUS), installed)
+	@echo "sbleh"
+else
+	@echo "pas sbleh"
 endif
 
 LIBFT:

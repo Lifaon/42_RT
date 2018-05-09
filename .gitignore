@@ -1,5 +1,5 @@
 #dirs
-sdl2
+sdl2/
 
 #objects
 *.o

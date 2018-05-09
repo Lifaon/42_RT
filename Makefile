@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/09 14:19:21 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/09 14:31:18 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,12 @@ EOC = \033[37m
 SRCS_DIR = ./srcs
 SRCS  = draw/draw_image.c \
 		\
+		events/ft_event.c \
+		events/ft_keyboard.c \
+		events/fill_funar_key_event.c \
+		events/ft_mouse.c \
+		events/ft_mouse_wheel.c \
+		\
 		init/data_init.c \
 		\
 		parser/get_full_read_file.c \
@@ -44,17 +50,12 @@ SRCS  = draw/draw_image.c \
 		vec/vec_operations2.c \
 		\
 		exit_all.c \
-		ft_event.c\
-		ft_keyboard.c\
-		fill_funar_key_event.c \
-		ft_mouse.c \
-		ft_mouse_wheel.c \
 		main.c
 
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = draw init parser vec
+OBJS_SUB_DIRS = draw events init parser vec
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   ft_keyboard.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:43:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/03 19:39:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:28:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int				ft_keyboard(int key, t_data *data)
 	if (!data || !win)
 		exit_all(data);
 	ret = 0;
-	ft_putstr("key = ");
+	/*ft_putstr("key = ");
 	ft_putnbr(key);
-	ft_putchar('\n');
+	ft_putchar('\n');*/
 	if ((ret = do_event(key, data)) == 1) // if do_event retourn 1 il faut retracer l'iamge
 		ft_putstr("do_event = 1");
 		//draw_image(data, data->objs, data->light);

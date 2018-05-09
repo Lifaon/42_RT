@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/08 14:01:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:49:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	choose_cam(t_data *data, int index)
 
 void	data_init(t_data *data, int ac, char **av)
 {
+	t_point		size;
+
 	if (ac != 2)
 	{
 		ft_putendl("Usage : ./rt \'file_name\'");
@@ -34,5 +36,8 @@ void	data_init(t_data *data, int ac, char **av)
 	data->nb_lights = 0;
 	parse(data, av[1]);
 	choose_cam(data, 0);
-	t_mlx_init(&data->mlx);
+	size = pt_set(WIN_W, WIN_H);
+	data->win = win_new(size, "RT");
+	data->win->ren = SDL_CreateRenderer(data->win->ptr, 0, 0);
+	data->tex = texture_new(size, data->win->ren);
 }

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_init.c                                         :+:      :+:    :+:   */
+/*   ft_mouse_wheel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 19:48:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/10 19:07:38 by mlantonn         ###   ########.fr       */
+/*   Created: 2018/04/09 14:17:35 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/03 19:30:14 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		img_init(t_mlx *mlx)
+int				ft_mouse_wheel(int y, t_data *data)
 {
-	int	bpp;
-	int	s_l;
-	int	endian;
-
-	if (!(mlx->img = mlx_new_image(mlx->mlx, WIN_W, WIN_H)))
+	if (data)
 	{
-		ft_putendl("mlx_new_image() error");
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		return (-1);
+		ft_putstr("Wheel y = ");
+		ft_putnbr(y);
+		ft_putchar('\n');
 	}
-	mlx->addr = (int *)mlx_get_data_addr(mlx->img, &bpp, &s_l, &endian);
 	return (0);
 }

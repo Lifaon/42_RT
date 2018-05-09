@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/08 20:22:37 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/09 14:19:21 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,6 @@ SRCS_DIR = ./srcs
 SRCS  = draw/draw_image.c \
 		\
 		init/data_init.c \
-		init/img_init.c \
-		init/t_mlx_init.c \
 		\
 		parser/get_full_read_file.c \
 		parser/my_atof.c \
@@ -46,6 +44,11 @@ SRCS  = draw/draw_image.c \
 		vec/vec_operations2.c \
 		\
 		exit_all.c \
+		ft_event.c\
+		ft_keyboard.c\
+		fill_funar_key_event.c \
+		ft_mouse.c \
+		ft_mouse_wheel.c \
 		main.c
 
 ## Objects ##
@@ -56,17 +59,20 @@ OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
 LIB_DIR = ./lib
-LIBFT_DIR = $(LIB_DIR)/libft/
-MLX_DIR = $(LIB_DIR)/mlx_sierra/
-LIBMYSDL_DIR = $(LIB_DIR)/libmysdl/
-LIBPT_DIR = $(LIB_DIR)/libpt/
-SDL2_DIR =
+LIBFT_DIR = $(LIB_DIR)/libft
+LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
+LIBPT_DIR = $(LIB_DIR)/libpt
+SDL2_PATH = $(shell brew --prefix sdl2)/include
 
 ## Includes ##
 INC = -I ./includes/
+
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
-			-I $(MLX_DIR)/includes/ \
-			-I $(SDL2_DIR)/includes/SDL2
+			-I $(SDL2_DIR)/includes/SDL2/ \
+			-I $(LIBMYSDL_DIR)/includes/\
+			-I $(LIBPT_DIR)/includes/\
+			-I $(SDL2_PATH)
+
 INCS = $(INC) $(LIB_INCS)
 
 ## FLAGS ##
@@ -74,15 +80,15 @@ CC = gcc
 CFLAGS = #-Wall -Wextra -Werror
 MLX_FLAGS = -framework OpenGL -framework AppKit
 LFLAGS =	-L $(LIBFT_DIR) -lft \
-			-L $(MLX_DIR) -lmlx $(MLX_FLAGS) \
 			-L $(LIBPT_DIR) -lpt \
+			-L $(LIBMYSDL_DIR) -lmysdl \
 			-L $(SDL2_DIR)/lib -lsdl2
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 				\n ========================================\n"
 
-all: SDL2 LIBFT MLX LIBPT MYSDL print_name $(NAME) print_end
+all: SDL2 LIBFT LIBPT MYSDL print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -106,14 +112,12 @@ rm_obj:
 clean: rm_obj
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(LIBPT_DIR) clean
-	@make -C $(MLX_DIR) clean
 	@make -C $(LIBMYSDL_DIR) clean
 
 fclean: rm_obj
 	@rm -rf $(NAME)
 	@echo "❌\t\033[031m$(DIR_NAME)'s executable removed\033[0m"
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(MLX_DIR) fclean
 	@make -C $(LIBPT_DIR) fclean
 	@make -C $(LIBMYSDL_DIR) fclean
 
@@ -143,10 +147,6 @@ LIBFT:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
 	@make -C $(LIBFT_DIR)
 
-MLX:
-	@echo "\033[033m➼\t\033[033mCompiling Mlx_sierra ...\033[0m"
-	@make -C $(MLX_DIR)
-
 LIBPT:
 	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
 	@make -C$(LIBPT_DIR)
@@ -161,5 +161,5 @@ print_name:
 print_end:
 	@echo $(MESSAGE)
 
-.PHONY: all clean fclean re rm_obj exe SDL2 LIBFT MLX LIBPT MYSDL \
+.PHONY: all clean fclean re rm_obj exe SDL2 LIBFT LIBPT MYSDL \
 		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_end

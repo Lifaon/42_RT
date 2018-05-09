@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/08 20:17:40 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:10:41 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define STRUCTS_H
 
 # include <stdint.h>
+# include "defines.h"
+# include "libmysdl.h"
 
 typedef struct		s_vec
 {
@@ -105,17 +107,6 @@ typedef struct		s_obj
 **	normal = surface normal in case it's constant (e.g. plane)
 */
 
-typedef struct		s_mlx
-{
-	void			*mlx;
-	void			*win;
-	void			*img;
-	int				*addr;
-}					t_mlx;
-/*
-**	Storing the necessary pointers for the mlx usage.
-*/
-
 typedef struct		s_data
 {
 	int				nb_objects;
@@ -124,11 +115,22 @@ typedef struct		s_data
 	t_light			*lights;
 	int				i;
 	t_camera		cams[4];
-	t_mlx			mlx;
+	t_win			*win;
+	t_texture		*tex;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in
 **	addition with the mlx struct;
+*/
+
+typedef struct		s_funar_keyb
+{
+	int				key;
+	void			(*f)(t_data*);
+}					t_funar_keyb;
+/*
+** This structure is used to handle the keyboard event
+** fill f with the function you want to use when the key is push
 */
 
 #endif

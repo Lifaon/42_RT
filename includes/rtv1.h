@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/08 20:17:11 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:07:26 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,19 @@ void	parse(t_data *data, char *file_name);
 **	Functions used to initialize the different structures.
 */
 void	data_init(t_data *data, int ac, char **av);
-void	t_mlx_init(t_mlx *mlx);
-int		img_init(t_mlx *mlx);
+
+/*
+** Functions use to handle event
+*/
+void			ft_event(t_data *data);
+t_funar_keyb	*fill_funar_key_event(int *size);
+int				ft_mouse_wheel(int y, t_data *data);
+int				ft_mouse(int x, int y, t_data *data);
+int				ft_keyboard(int key, t_data *data);
 
 /*
 **	Frees everything that has to be freed.
 */
-int		exit_all(t_data *data);
+int				exit_all(t_data *data);
 
 #endif

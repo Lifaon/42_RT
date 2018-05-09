@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_mlx_init.c                                       :+:      :+:    :+:   */
+/*   ft_mouse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 13:34:31 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 18:36:49 by mlantonn         ###   ########.fr       */
+/*   Created: 2018/03/27 20:15:31 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/03 19:42:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	t_mlx_init(t_mlx *mlx)
+int		ft_mouse(int x, int y, t_data *data)
 {
-	if (!(mlx->mlx = mlx_init()))
+	if (data)
 	{
-		ft_putendl("mlx_init() error.");
-		exit(-1);
+		ft_putstr("mouse move x = ");
+		ft_putnbr(x);
+		ft_putstr(" y = ");
+		ft_putnbr(y);
+		ft_putchar('\n');
 	}
-	if (!(mlx->win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, "RT")))
-	{
-		ft_putendl("mlx_new_window() error.");
-		exit(-1);
-	}
-	if (img_init(mlx))
-		exit(-1);
+	return (0);
 }

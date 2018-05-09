@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/08 18:29:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:59:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	draw_pixel(t_data *data, t_vec ray, int index)
+static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 {
 	t_inter	inter;
 	double	tmp;
@@ -32,27 +32,25 @@ static void	draw_pixel(t_data *data, t_vec ray, int index)
 	{
 		inter.t = tmp;
 		inter.ip = vec_add(data->cams[data->i].pos, vec_multiply(ray, inter.t));
-		data->mlx.addr[index] = shadow_ray(data, inter, object_index);
+		pt_to_tex(crd, data->tex,  shadow_ray(data, inter, object_index));
 	}
+	else
+		pt_to_tex(crd, data->tex,  0);
 }
 
 void		draw_image(t_data *data)
 {
-	int		x;
-	int		y;
-	t_vec	ray;
+	t_point		crd;
+	t_vec		ray;
 
-	y = -1.0;
+	crd = (t_point){0, 0};
 	ray.z = data->cams[data->i].vp_up_left.z;
-	while (++y < WIN_H)
+	while (crd.x < WIN_W)
 	{
-		x = -1.0;
-		ray.y = data->cams[data->i].vp_up_left.y - (double)y;
-		while (++x < WIN_W)
-		{
-			ray.x = data->cams[data->i].vp_up_left.x + (double)x;
-			draw_pixel(data, vec_normalize(ray), (y * WIN_W) + x);
-		}
+		ray.y = data->cams[data->i].vp_up_left.y - (double)crd.y;
+		ray.x = data->cams[data->i].vp_up_left.x + (double)crd.x;
+		draw_pixel(data, vec_normalize(ray), crd);
+		crd = pt_ypluseg(crd, 0, WIN_H);
 	}
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
+	put_tex_to_win(data->tex, data->win->ren);
 }

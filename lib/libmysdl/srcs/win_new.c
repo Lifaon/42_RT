@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   win_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:15:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/20 14:02:26 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/10 03:17:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ t_win		*win_new(t_point size, char *title)
 {
 	t_win		*info;
 
-	info = (t_win*)malloc(sizeof(t_win));
-	if (!(info->ptr = SDL_CreateWindow(title,
-			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED,
-			size.x,
-			size.y,
-			SDL_WINDOW_SHOWN | SDL_WINDOW_MINIMIZED)))
+	if (!(info = (t_win*)malloc(sizeof(t_win))))
 		return (NULL);
+	if (!(info->ptr = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, \
+		SDL_WINDOWPOS_CENTERED, size.x, size.y, 0)))
+	{
+		ft_putstr("SDL_CreateWindow error : ");
+		ft_putendl(SDL_GetError());
+		free(info);
+		return (NULL);
+	}
 	SDL_MaximizeWindow(info->ptr);
 	SDL_RestoreWindow(info->ptr);
 	if (!(info->size = (t_point*)malloc(sizeof(t_point))))

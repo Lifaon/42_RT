@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/09 14:14:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 03:03:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ int		main(int ac, char **av)
 {
 	t_data	data;
 
-	SDL_Init(SDL_INIT_VIDEO);
+	if (SDL_Init(SDL_INIT_VIDEO))
+	{
+		ft_putstr("SDL_Init error :");
+		ft_putendl(SDL_GetError());
+		return (0);
+	}
 	data_init(&data, ac, av);
 	draw_image(&data);
 	ft_event(&data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 19:24:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/03/12 22:55:24 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/05/10 00:15:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static t_reader			*init_reader(void)
 
 int						get_next_line(const int fd, char **line)
 {
-	static t_reader		*rd[OPEN_MAX];
+	static t_reader		*rd[FOPEN_MAX];
 
-	if (fd < 0 || fd > OPEN_MAX || (!(rd[fd]) && !(rd[fd] = init_reader()))
+	if (fd < 0 || fd > FOPEN_MAX || (!(rd[fd]) && !(rd[fd] = init_reader()))
 		|| !line || !(*line = (char *)ft_strnew(0)))
 		return (GNL_ERR);
 	while (1)

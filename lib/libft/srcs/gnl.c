@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 10:46:55 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 05:38:54 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/05/10 00:15:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				gnl(int fd, char **line)
 	char			buff[BUFF_SIZE + 1];
 	static char		*after;
 
-	if (fd <= 0 || fd >= OPEN_MAX)
+	if (fd <= 0 || fd >= FOPEN_MAX)
 		return (-1);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/09 20:15:39 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/10 01:18:35 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,21 +68,23 @@ SDL2_DIR = $(LIB_DIR)/sdl2
 ## Includes ##
 INC = -I ./includes/
 
+SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
-			-I $(LIBMYSDL_DIR)/includes/\
-			-I $(LIBPT_DIR)/includes/\
-			-I $(SDL2_DIR)/include
+			-I $(LIBMYSDL_DIR)/includes/ \
+			-I $(LIBPT_DIR)/includes/ \
+			$(SDL2_INC)
 
 INCS = $(INC) $(LIB_INCS)
 
 ## FLAGS ##
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
-MLX_FLAGS = -framework OpenGL -framework AppKit
+SDL2_FLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
-			-L $(SDL2_DIR)/lib -lSDL2
+			$(SDL2_FLAGS) \
+			-lm
+CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
@@ -107,7 +109,7 @@ $(OBJS_DIR):
 
 $(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJS_PRE)
+	@$(CC) -o $(NAME) $(CFLAGS) $(OBJS_PRE) $(LFLAGS)
 	@$(eval MESSAGE = $(DONE_MESSAGE))
 
 rm_obj:
@@ -137,29 +139,20 @@ re_MODE_DEBUG: fclean MODE_DEBUG
 change_cflag:
 	@$(eval CFLAGS = -fsanitize=address)
 
-SDL2_old:
-ifeq ($(shell brew list | grep sdl2), sdl2)
-	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
-else
-	@echo "\033[033m⚠\t\033[033mSDL2 is not installed !\033[0m"
-	@echo "\033[033m➼\t\033[033mInstalling SDL2 ...\033[0m"
-	@brew install sdl2
-	@echo "\033[032m✓\t\033[032mSDL2 installed\033[0m"
-	@$(eval SDL2_DIR = $(shell brew --prefix sdl2))
-endif
+SDL2 :
+	if [ -d "./lib/sdl2" ]; then \
+		curl -OL http://www.libsdl.org/release/SDL2-$SDL_VER.tar.gz; \
+		tar -zxvf SDL2-$SDL_VER.tar.gz; \
+		rm SDL2-$SDL_VER.tar.gz; \
+		mkdir -p $SDL2_DIR; \
+		cd SDL2-$SDL_VER; \
+		sh configure --prefix=$SDL2_DIR; \
+		make; \
+		make install; \
+		cd ..; \
+		rm -rf SDL2-$SDL_VER; \
+	fi
 
-SDL2 : check_sdl2 install_sdl2
-
-check_sdl2:
-	test -d lib/sdl2
-	echo "salut"
-
-install_sdl2:
-ifeq ($(SDL2_STATUS), installed)
-	@echo "sbleh"
-else
-	@echo "pas sbleh"
-endif
 
 LIBFT:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"

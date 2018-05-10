@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/09 13:49:30 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 03:17:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	data_init(t_data *data, int ac, char **av)
 	}
 	data->nb_objects = 0;
 	data->nb_lights = 0;
+	data->tex = NULL;
+	data->win = NULL;
 	parse(data, av[1]);
 	choose_cam(data, 0);
 	size = pt_set(WIN_W, WIN_H);
-	data->win = win_new(size, "RT");
+	if (!(data->win = win_new(size, "RT")))
+		exit_all(data);
 	data->win->ren = SDL_CreateRenderer(data->win->ptr, 0, 0);
 	data->tex = texture_new(size, data->win->ren);
 }

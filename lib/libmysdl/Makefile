@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/05/09 19:04:50 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/10 03:09:18 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,26 +15,27 @@ DIR_NAME = Libmysdl
 
 ## Sources ##
 SRCS_DIR = ./srcs/
-SRCS_NAME = get_color.c \
-			texture_new.c \
-			free_tex.c \
-			pt_to_tex.c \
+SRCS_NAME = add_new_tex.c \
 			fill_tex_in_color.c \
-			lst_tex_new.c \
 			free_all_tex.c \
-			add_new_tex.c \
+			free_tex.c \
+			free_win.c \
+			get_color.c \
+			lst_tex_new.c \
 			lst_tex_srch.c \
-			trace_line_tex.c \
+			pt_to_tex.c \
 			put_tex_to_win.c \
-			win_new.c \
-			free_win.c
+			texture_new.c \
+			trace_line_tex.c \
+			win_new.c
 SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
 
 ## Includes ##
+SDL2_INC = $(shell sh ../sdl2/bin/sdl2-config --cflags)
 INC =	-I ./includes/ \
 		-I ../libft/includes/ \
 		-I ../libpt/includes/ \
-		-I ../sdl2/include
+		$(SDL2_INC)
 
 ## Objects ##
 OBJS_DIR = ./objets/

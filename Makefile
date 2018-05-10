@@ -93,7 +93,6 @@ DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 SDL_VER = 2.0.8
 MAIN_DIR_PATH = $(shell pwd)
 SDL2_DIR = $(MAIN_DIR_PATH)/lib/sdl2
-SDL2_STATUS = installed
 
 all: LIBFT LIBPT MYSDL print_name $(NAME) print_end
 

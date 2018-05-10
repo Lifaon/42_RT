@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/09 14:10:41 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:03:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct		s_light
 typedef struct		s_obj
 {
 	double			r;
-	double			ambi;
-	double			diff;
 	double			spec;
 	t_color			color;
 	t_vec			pos;
@@ -101,8 +99,8 @@ typedef struct		s_obj
 	t_vec			(*get_normal)(struct s_obj, t_inter);
 }					t_obj;
 /*
-**	Object structure -> r = radius ; ambi, diff and spec = coeffs for Phong
-**	lightning ; pos = position which defines the object ; dir = direction in
+**	Object structure -> r = radius ; spec = specular coefficent for Phong
+**	shading ; pos = position which defines the object ; dir = direction in
 **	case it has one ; oc = vector between the current camera and 'pos' ;
 **	normal = surface normal in case it's constant (e.g. plane)
 */

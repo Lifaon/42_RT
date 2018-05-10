@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 03:03:15 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 20:04:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	print_parsed_data(t_data data)
 	{
 		printf("OBJECT nb : %d;\n", i + 1);
 		printf("r = %f\n", data.objs[i].r);
-		printf("ambi = %f\n", data.objs[i].ambi);
-		printf("diff = %f\n", data.objs[i].diff);
 		printf("spec = %f\n", data.objs[i].spec);
 		printf("color = %u, %u, %u, %u\n", data.objs[i].color.argb.r, \
 			data.objs[i].color.argb.g, data.objs[i].color.argb.b, data.objs[i].color.argb.a);
@@ -52,6 +50,21 @@ void	print_parsed_data(t_data data)
 			data.objs[i].normal.x, data.objs[i].normal.y, data.objs[i].normal.z);
 	}
 }
+
+/*int		main(int ac, char **av)
+{
+	t_data data;
+
+	if (ac != 2)
+	{
+		ft_putendl("Usage : ./rt \'file_name\'");
+		exit(-1);
+	}
+	parse(&data, av[1]);
+	print_parsed_data(data);
+	exit_all(&data);
+	return (0);
+}*/
 
 int		main(int ac, char **av)
 {
@@ -65,6 +78,7 @@ int		main(int ac, char **av)
 	}
 	data_init(&data, ac, av);
 	draw_image(&data);
+	//print_parsed_data(data);
 	ft_event(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/10 14:00:25 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/10 18:26:00 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ SRCS  = draw/draw_image.c \
 		init/data_init.c \
 		\
 		parser/get_full_read_file.c \
+		parser/get_nb_of_structs.c \
+		parser/init_structures.c \
 		parser/my_atof.c \
 		parser/parse_cameras.c \
 		parser/parse_lights.c \

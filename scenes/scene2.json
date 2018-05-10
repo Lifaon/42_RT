@@ -1,0 +1,73 @@
+{
+	"cameras" :
+	[
+		{
+			"position" : [0, 0, 0],
+			"fov" : 35
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [0, 0, 1300],
+		}
+	],
+	"objects" :
+	{
+		"plane" :
+		{
+			"position" : [0, 0, 1500],
+			"normal" : [0.3, 0, -1]
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 1500],
+			"normal" : [-0.3, 0, -1]
+		},
+		"plane" :
+		{
+			"position" : [0, 200, 1500],
+			"normal" : [0, -1, -1]
+		},
+		"plane" :
+		{
+			"position" : [0, -200, 1500],
+			"normal" : [0, 1, -1]
+		},
+		"sphere" :
+		{
+			"position" : [-300, 280, 1500],
+			"radius" : 200
+		},
+		"sphere" :
+		{
+			"position" : [300, -200, 1450],
+			"radius" : 80
+		},
+		"sphere" :
+		{
+			"position" : [0, -200, 1500],
+			"radius" : 120
+		},
+		"sphere" :
+		{
+			"position" : [-500, -200, 1200],
+			"radius" : 180
+		},
+		"sphere" :
+		{
+			"position" : [500, 180, 1200],
+			"radius" : 150
+		},
+		"sphere" :
+		{
+			"position" : [-850, 250, 1000],
+			"radius" : 300
+		},
+		"sphere" :
+		{
+			"position" : [1050, -200, 980],
+			"radius" : 350
+		}
+	}
+}

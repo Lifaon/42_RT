@@ -1,0 +1,26 @@
+{
+	"lights" :
+	[
+		{
+			"position" : [0, 500, 1000]
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [-500, 0, 2000],
+			"radius" : 200
+		},
+		"sphere" :
+		{
+			"position" : [500, 0, 2000],
+			"radius" : 200
+		},
+		"sphere" :
+		{
+			"position" : [0, 200, 2000],
+			"radius" : 100
+		}
+	}
+}

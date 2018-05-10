@@ -6,28 +6,22 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:15:42 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/08 20:02:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 20:12:43 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void		get_vp_up_left(t_camera *cam)
-{
-	double vp_dist;
-
-	vp_dist = (WIN_H / 2) / tan(cam->fov * M_PI / 180);
-	cam->vp_up_left.x = -(double)WIN_W / 2;
-	cam->vp_up_left.y = (double)WIN_H / 2;
-	cam->vp_up_left.z = vp_dist + cam->pos.z;
-}
-
 static void	parse_camera(t_camera *cam, char *str, int *index)
 {
 	int i;
+	int in_braces;
 
-	i = -1;
-	while (str[++i] != '}')
+	i = 0;
+	in_braces = 1;
+	while (in_braces)
+	{
+		++i;
 		if (str[i] == '\"')
 		{
 			if (read_quotes(str + i, "\"position\"", &i))
@@ -37,21 +31,31 @@ static void	parse_camera(t_camera *cam, char *str, int *index)
 			else if (read_quotes(str + i, "\"fov\"", &i))
 				cam->fov = parse_nb(str + i, &i);
 		}
+		if (str[i] == '{' || str[i] == '}')
+			in_braces += (str[i] == '{' ? 1 : -1);
+	}
 	get_vp_up_left(cam);
 	*index += i;
 }
 
 void		parse_cameras(t_data *data, char *str, int *index)
 {
-	int cam_nb;
+	int cam_index;
+	int in_braces;
 	int i;
 
 	i = 0;
 	while (str[i] != '[')
 		++i;
-	cam_nb = 0;
-	while (str[++i] != ']')
-		if (str[i] == '{' && cam_nb < 4)
-			parse_camera(&data->cams[cam_nb++], str + i, &i);
+	in_braces = 1;
+	cam_index = 0;
+	while (in_braces)
+	{
+		++i;
+		if (str[i] == '{' && cam_index < 4)
+			parse_camera(&data->cams[cam_index++], str + i, &i);
+		else if (str[i] == '[' || str[i] == ']')
+			in_braces += (str[i] == '[' ? 1 : -1);
+	}
 	*index += i;
 }

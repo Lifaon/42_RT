@@ -6,91 +6,71 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 16:33:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/10 20:12:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	get_nb_lights(char *str)
+static void	which_light_variable(t_light  *light, char *str, int *index)
 {
-	int i;
-	int in_brace;
-	int	nb_lights;
-
-	i = -1;
-	in_brace = 0;
-	nb_lights = 0;
-	while (str[++i] != ']' || in_brace)
+	if (read_quotes(str + *index, "\"position\"", index))
+		light->pos = parse_vec(str + *index, index);
+	else if (read_quotes(str + *index, "\"color\"", index))
+		light->color = parse_color(str + *index, index);
+	else if (read_quotes(str + *index, "\"radius\"", index))
+		light->r = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"direction\"", index))
 	{
-		if (str[i] == '{')
-		{
-			if (!in_brace)
-				++nb_lights;
-			++in_brace;
-		}
-		else if (str[i] == '}')
-			--in_brace;
+		light->dir = parse_vec(str + *index, index);
+		light->is_para = (light->dir.x != 0.0 || light->dir.y != 0.0 \
+			|| light->dir.z != 0.0) ? 1 : 0;
 	}
-	return (nb_lights);
-}
-
-static int	init_lights(t_data *data, int nb)
-{
-	int i;
-
-	i = -1;
-	if (!(data->lights = (t_light *)malloc(sizeof(t_light) * nb)))
-		return (-1);
-	while (++i < nb)
-	{
-		data->lights[i].is_para = 0;
-		data->lights[i].r = 1;
-		data->lights[i].pos = (t_vec){0.0, 0.0, 0.0};
-		data->lights[i].dir = (t_vec){0.0, 0.0, 0.0};
-		data->lights[i].color.c = 0xFFFFFF;
-	}
-	return (0);
 }
 
 static void	parse_light(t_light *light, char *str, int *index)
 {
 	int i;
+	int in_braces;
 
-	i = -1;
-	while (str[++i] != '}')
+	i = 0;
+	in_braces = 1;
+	while (in_braces)
+	{
+		++i;
 		if (str[i] == '\"')
-		{
-			if (read_quotes(str + i, "\"position\"", &i))
-				light->pos = parse_vec(str + i, &i);
-			else if (read_quotes(str + i, "\"color\"", &i))
-				light->color = parse_color(str + i, &i);
-			else if (read_quotes(str + i, "\"direction\"", &i))
-			{
-				light->dir = parse_vec(str + i, &i);
-				light->is_para = (light->dir.x != 0.0 || light->dir.y != 0.0 \
-					|| light->dir.z != 0.0) ? 1 : 0;
-			}
-			else if (read_quotes(str + i, "\"radius\"", &i))
-				light->r = parse_nb(str + i, &i);
-		}
+			which_light_variable(light, str, &i);
+		if (str[i] == '{' || str[i] == '}')
+			in_braces += (str[i] == '{' ? 1 : -1);
+	}
 	*index += i;
 }
 
-void		parse_lights(t_data *data, char *str, int *index)
+int			parse_lights(t_data *data, char *str, int *index)
 {
 	int light_index;
+	int in_braces;
 	int i;
 
 	i = 0;
 	while (str[i] != '[')
 		++i;
+	in_braces = 1;
 	if (!(data->nb_lights = get_nb_lights(str + i)))
-		return ;
-	init_lights(data, data->nb_lights);
+		return (1);
+	if (init_lights(data, data->nb_lights))
+		return (-1);
 	light_index = 0;
-	while (str[++i] != ']')
+	while (in_braces)
+	{
+		++i;
 		if (str[i] == '{' && light_index < data->nb_lights)
 			parse_light(&data->lights[light_index++], str + i, &i);
+		else if (str[i] == '[' || str[i] == ']')
+		{
+			in_braces += (str[i] == '[' ? 1 : -1);
+		}
+	}
 	*index += i;
+	return (0);
 }

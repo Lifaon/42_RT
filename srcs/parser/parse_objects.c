@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 20:12:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:14:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 	else if (read_quotes(str + *index, "\"radius\"", index))
 		object->r = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"normal\"", index))
-		object->normal = parse_vec(str + *index, index);
+		object->normal = vec_normalize(parse_vec(str + *index, index));
 	else if (read_quotes(str + *index, "\"color\"", index))
 		object->color = parse_color(str + *index, index);
 	else if (read_quotes(str + *index, "\"direction\"", index))
-		object->dir = parse_vec(str + *index, index);
+		object->dir = vec_normalize(parse_vec(str + *index, index));
 	else if (read_quotes(str + *index, "\"specular\"", index))
 		object->spec = parse_nb(str + *index, index);
 }

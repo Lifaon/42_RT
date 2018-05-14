@@ -3,7 +3,7 @@
 	[
 		{
 			"position" : [0, 0, 0],
-			"fov" : 80
+			"fov" : 35
 		}
 	],
 	"lights" :

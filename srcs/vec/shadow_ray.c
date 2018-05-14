@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 20:11:41 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 20:20:43 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ int		light_path_is_blocked(t_data *data, t_vec light, int index)
 	int		i;
 
 	inter.min_dist = 0;
-	inter.oc = vec_multiply(light, -1);
-	length = get_length(inter.oc);
+	length = get_length(light);
 	i = -1;
 	while(++i < data->nb_objects)
 	{
 		if (i == index)
 			continue ;
-		if (data->objs[i].intersect(data->objs[i], vec_normalize(inter.oc), \
+		if (data->objs[i].intersect(data->objs[i], vec_normalize(light), \
 			&inter) && inter.t < length)
 			return (1);
 	}

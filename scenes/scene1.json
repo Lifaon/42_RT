@@ -3,13 +3,13 @@
 	[
 		{
 			"position" : [0, 0, 0],
-			"fov" : 80
+			"fov" : 35
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-600, 0, 800]
+			"position" : [-200, 0, 800]
 		}
 	],
 	"objects" :
@@ -18,7 +18,7 @@
 		{
 			"position" : [0, 0, 1500],
 			"radius" : 200,
-			"color" : [0, 0, 255],
+			"color" : [120, 0, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,
 			"specular" : 0.98
@@ -27,7 +27,7 @@
 		{
 			"position" : [400, 200, 1500],
 			"radius" : 100,
-			"color" : [0, 0, 255],
+			"color" : [150, 0, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,
 			"specular" : 0.98
@@ -36,7 +36,7 @@
 		{
 			"position" : [-400, -150, 1300],
 			"radius" : 50,
-			"color" : [0, 0, 255],
+			"color" : [90, 0, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,
 			"specular" : 0.98
@@ -54,6 +54,15 @@
 		{
 			"position" : [0, 300, 1000],
 			"normal" : [0, -1, 0],
+			"color" : [0, 190, 255],
+			"ambient" : 0.9,
+			"diffuse" : 0.5,
+			"specular" : 0.98
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 2000],
+			"normal" : [0, 0, -1],
 			"color" : [0, 190, 255],
 			"ambient" : 0.9,
 			"diffuse" : 0.5,

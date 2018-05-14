@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:04:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 18:56:20 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@
 
 # include "structs.h"
 # include "defines.h"
-# include "keys.h"
 
-# define BUFF_SIZE 4096
 /*
 **	Drawing functions.
 */
@@ -44,7 +42,7 @@ int				intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
 int				intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
-int				shadow_ray(t_data *data, t_inter inter, int object_index);
+int				shadow_ray(t_data *data, t_inter inter, int index);
 
 /*
 **	Functions to get the normal of the objects at the intersection point.
@@ -83,6 +81,12 @@ t_funar_keyb	*fill_funar_key_event(int *size);
 int				ft_mouse_wheel(int y, t_data *data);
 int				ft_mouse(int x, int y, t_data *data);
 int				ft_keyboard(int key, t_data *data);
+
+/*
+**	Functions used for color management.
+*/
+t_color	col_multiply(t_color color, double nb);
+t_color col_divide(t_color color, double nb);
 
 /*
 **	Frees everything that has to be freed.

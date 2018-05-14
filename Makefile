@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/14 14:02:00 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/14 17:13:10 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ EOC = \033[37m
 
 ## Sources ##
 SRCS_DIR = ./srcs
-SRCS  = draw/draw_image.c \
+SRCS  = color/colors.c \
+		\
+		draw/draw_image.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
@@ -57,7 +59,7 @@ SRCS  = draw/draw_image.c \
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = draw events init parser vec
+OBJS_SUB_DIRS = color draw events init parser vec
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##

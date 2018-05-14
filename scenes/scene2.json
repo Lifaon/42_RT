@@ -3,7 +3,7 @@
 	[
 		{
 			"position" : [0, 0, 0],
-			"fov" : 35
+			"fov" : 80
 		}
 	],
 	"lights" :
@@ -17,57 +17,68 @@
 		"plane" :
 		{
 			"position" : [0, 0, 1500],
-			"normal" : [0.3, 0, -1]
+			"normal" : [0.3, 0, -1],
+			"color" : [80, 120, 180]
 		},
 		"plane" :
 		{
 			"position" : [0, 0, 1500],
-			"normal" : [-0.3, 0, -1]
+			"normal" : [-0.3, 0, -1],
+			"color" : [80, 120, 180]
 		},
 		"plane" :
 		{
 			"position" : [0, 200, 1500],
-			"normal" : [0, -1, -1]
+			"normal" : [0, -1, -1],
+			"color" : [0, 180, 180]
 		},
 		"plane" :
 		{
 			"position" : [0, -200, 1500],
-			"normal" : [0, 1, -1]
+			"normal" : [0, 1, -1],
+			"color" : [0, 180, 180]
 		},
 		"sphere" :
 		{
 			"position" : [-300, 280, 1500],
-			"radius" : 200
+			"radius" : 200,
+			"color" : [255, 0, 40]
 		},
 		"sphere" :
 		{
 			"position" : [300, -200, 1450],
-			"radius" : 80
+			"radius" : 80,
+			"color" : [255, 0, 80]
 		},
 		"sphere" :
 		{
 			"position" : [0, -200, 1500],
-			"radius" : 120
+			"radius" : 120,
+			"color" : [255, 0, 120]
 		},
 		"sphere" :
 		{
 			"position" : [-500, -200, 1200],
-			"radius" : 180
+			"radius" : 180,
+			"color" : [255, 0, 255]
 		},
 		"sphere" :
 		{
 			"position" : [500, 180, 1200],
-			"radius" : 150
+			"radius" : 150,
+			"color" : [120, 0, 255]
 		},
 		"sphere" :
 		{
 			"position" : [-850, 250, 1000],
-			"radius" : 300
+			"radius" : 300,
+			"color" : [80, 0, 255]
 		},
 		"sphere" :
 		{
 			"position" : [1050, -200, 980],
-			"radius" : 350
+			"radius" : 350,
+			"color" : [40, 0, 255]
 		}
 	}
 }

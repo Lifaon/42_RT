@@ -6,6 +6,7 @@ sdl2/
 
 #libs
 *.a
+sdl2/
 
 #exe
 rt

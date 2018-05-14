@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 18:20:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:12:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	init_function_ptrs(t_obj *object, int value)
 
 	intersect[0] = intersect_sphere;
 	intersect[1] = intersect_plane;
-	intersect[2] = intersect_sphere;
-	intersect[3] = intersect_sphere;
+	intersect[2] = intersect_cylinder;
+	intersect[3] = intersect_cone;
 	object->intersect = intersect[value];
 	get_normal[0] = get_sphere_normal;
 	get_normal[1] = get_plane_normal;

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 03:00:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:04:03 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void			draw_image(t_data *data);
 */
 int				intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
+int				intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
+int				intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
 int				shadow_ray(t_data *data, t_inter inter, int object_index);
 
 /*

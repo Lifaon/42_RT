@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 18:53:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:03:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double	my_atof(const char *str);
 void	remove_white_spaces(char **str);
 /*
 **	remove_white_spaces() takes a pointer to a malloced string, and removes all
-**	white spaces (' ', '\t', '\n') that are not in quotes. In is used to test
+**	white spaces (' ', '\t', '\n') that are not in quotes. It is used to test
 **	if the parser works with a file without white spaces.
 */
 

@@ -9,18 +9,20 @@
 	{
 		"sphere" :
 		{
-			"position" : [-500, 0, 2000],
-			"radius" : 200
+			"position" : [-400, 200, 1500],
+			"radius" : 200,
 		},
-		"sphere" :
+		"cylinder" :
 		{
-			"position" : [500, 0, 2000],
-			"radius" : 200
+			"position" : [200, 200, 1500],
+			"radius" : 100,
+			"direction" : [1, -3, 0]
 		},
-		"sphere" :
+		"cone" :
 		{
-			"position" : [0, 200, 2000],
-			"radius" : 100
+			"position" : [100, -200, 1500],
+			"radius" : 50,
+			"direction" : [1, 0.25, 0],
 		}
 	}
 }

@@ -31,20 +31,20 @@ t_vec	get_plane_normal(t_obj plane, t_inter inter)
 	return (plane.normal);
 }
 
-/*t_vec	get_cylinder_normal(t_obj cyl, t_inter inter)
+t_vec 		get_cylinder_normal(t_obj cyl, t_inter inter)
 {
-	t_vec	ray;
-	t_camera cam;
-	t_vec normal;
-	t_vec pi;
-	t_vec pos;
 	t_vec scaled;
+	t_camera cam;
+	t_vec ray;
 	t_vec new;
+	t_vec b;
+	t_vec a;
+	t_vec norm;
 
-	scaled = vec_multiply(ray, inter.t);
-	new = vec_add(cam.pos, scaled);
-	pi = vec_substract(new, cyl.pos);
-	pos = vec_multiply(cyl.oc, dot_product(pi, cyl.pos));
-	normal = vec_substract(pi, pos);
-	return (normal);
-}*/
+	scaled = cam.pos;//vec_multiply(cam.dir, inter.t);
+	new = cam.pos;//vec_add(cam.dir, scaled);
+	b = vec_substract(new, cyl.pos);
+	a = vec_multiply(cyl.dir, 1/*dot_product(b, cyl.dir)*/);
+	norm = vec_substract(b, a);
+	return (norm);
+}

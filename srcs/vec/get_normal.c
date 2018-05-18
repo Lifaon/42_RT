@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:13:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/18 16:59:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 t_vec	get_sphere_normal(t_obj sphere, t_inter inter)
 {
-	t_vec 	normal;
+	t_vec norm;
 
-	normal = vec_substract(inter.ip, sphere.pos);
-	normal.x /= sphere.r;
-	normal.y /= sphere.r;
-	normal.z /= sphere.r;
-	return (normal);
+	norm = vec_substract(inter.ip, sphere.pos);
+	return ((t_vec){norm.x / sphere.r, norm.y / sphere.r, norm.z / sphere.r});
 }
 
 /*
@@ -28,23 +25,30 @@ t_vec	get_sphere_normal(t_obj sphere, t_inter inter)
 */
 t_vec	get_plane_normal(t_obj plane, t_inter inter)
 {
+	(void)inter;
 	return (plane.normal);
 }
 
 t_vec 		get_cylinder_normal(t_obj cyl, t_inter inter)
 {
-	t_vec scaled;
-	t_camera cam;
-	t_vec ray;
-	t_vec new;
 	t_vec b;
 	t_vec a;
 	t_vec norm;
 
-	scaled = cam.pos;//vec_multiply(cam.dir, inter.t);
-	new = cam.pos;//vec_add(cam.dir, scaled);
-	b = vec_substract(new, cyl.pos);
-	a = vec_multiply(cyl.dir, 1/*dot_product(b, cyl.dir)*/);
+	b = vec_substract(inter.ip, cyl.pos);
+	a = vec_multiply(cyl.dir, dot_product(b, cyl.dir));
 	norm = vec_substract(b, a);
-	return (norm);
+	return ((t_vec){norm.x / cyl.r, norm.y / cyl.r, norm.z / cyl.r});
+}
+
+t_vec 		get_cone_normal(t_obj cone, t_inter inter)
+{
+	t_vec b;
+	t_vec a;
+	t_vec norm;
+
+	b = vec_substract(inter.ip, cone.pos);
+	a = vec_multiply(cone.dir, dot_product(b, cone.dir));
+	norm = vec_substract(b, a);
+	return (vec_normalize(norm));
 }

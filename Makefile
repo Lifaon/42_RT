@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/14 17:13:10 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/18 17:01:25 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,7 +145,7 @@ re_SDL2: fclean rm_SDL2 all
 
 MODE_DEBUG: change_cflag all
 
-re_MODE_DEBUG: fclean MODE_DEBUG
+re_MODE_DEBUG: rm_obj MODE_DEBUG
 
 change_cflag:
 	@$(eval CFLAGS = -fsanitize=address)

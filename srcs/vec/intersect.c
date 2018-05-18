@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:11:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/18 17:00:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int		intersect_cylinder(t_obj cyl, t_vec ray, t_inter *inter)
 	inter->delta = (b * b) - 4 * a * c;
 	if (inter->delta < 0)
 	return (0);
-	inter->t1 = (-b + sqrt(inter->delta)) / 2 * a;
-	inter->t2 = (-b - sqrt(inter->delta)) / 2 * a;
+	inter->t1 = (-b + sqrt(inter->delta)) / (2 * a);
+	inter->t2 = (-b - sqrt(inter->delta)) / (2 * a);
 	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
 		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else
@@ -78,7 +78,7 @@ int		intersect_cylinder(t_obj cyl, t_vec ray, t_inter *inter)
 		else
 			return (0);
 	}
-return (1);
+	return (1);
 }
 
 int		intersect_cone(t_obj cone, t_vec ray, t_inter *inter)
@@ -93,8 +93,8 @@ int		intersect_cone(t_obj cone, t_vec ray, t_inter *inter)
 	inter->delta = (b * b) - 4 * a * c;
 	if (inter->delta < 0)
 		return (0);
-	inter->t1 = (-b + sqrt(inter->delta)) / 2 * a;
-	inter->t2 = (-b - sqrt(inter->delta)) / 2 * a;
+	inter->t1 = (-b + sqrt(inter->delta)) / (2 * a);
+	inter->t2 = (-b - sqrt(inter->delta)) / (2 * a);
 	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
 		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else

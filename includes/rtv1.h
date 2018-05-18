@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 18:56:20 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/18 16:52:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int				shadow_ray(t_data *data, t_inter inter, int index);
 */
 t_vec			get_sphere_normal(t_obj sphere, t_inter inter);
 t_vec			get_plane_normal(t_obj plane, t_inter inter);
+t_vec 			get_cylinder_normal(t_obj cyl, t_inter inter);
+t_vec	 		get_cone_normal(t_obj cone, t_inter inter);
+
 
 /*
 **	Vector operations.

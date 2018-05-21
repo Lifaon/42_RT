@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/18 16:14:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 20:13:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		init_lights(t_data *data, int nb)
 	{
 		data->lights[i].is_para = 0;
 		data->lights[i].r = 1;
+		data->lights[i].ambi = 0.3;
 		data->lights[i].pos = (t_vec){0.0, 0.0, 0.0};
 		data->lights[i].dir = (t_vec){0.0, 0.0, 0.0};
 		data->lights[i].color.c = 0xFFFFFF;
@@ -74,21 +75,4 @@ int		init_objects(t_data *data, int nb)
 		data->objs[i].get_normal = get_sphere_normal;
 	}
 	return (0);
-}
-
-void	init_function_ptrs(t_obj *object, int value)
-{
-	int		(*intersect[4])(struct s_obj, t_vec, t_inter *);
-	t_vec	(*get_normal[4])(struct s_obj, t_inter);
-
-	intersect[0] = intersect_sphere;
-	intersect[1] = intersect_plane;
-	intersect[2] = intersect_cylinder;
-	intersect[3] = intersect_cone;
-	object->intersect = intersect[value];
-	get_normal[0] = get_sphere_normal;
-	get_normal[1] = get_plane_normal;
-	get_normal[2] = get_cylinder_normal;
-	get_normal[3] = get_cone_normal;
-	object->get_normal = get_normal[value];
 }

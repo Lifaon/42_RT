@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 16:28:46 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 20:13:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,25 @@ static void	parse_object(t_obj *object, char *str, int *index)
 
 static void	which_object(t_data *data, char *str, int *index, int *object_index)
 {
-	int i;
+	t_obj_type	obj_type;
+	int			i;
 
 	i = 0;
 	if (read_quotes(str, "\"sphere\"", &i))
-		init_function_ptrs(&data->objs[*object_index], 0);
+		obj_type = SPHERE;
 	else if (read_quotes(str, "\"plane\"", &i))
-		init_function_ptrs(&data->objs[*object_index], 1);
+		obj_type = PLANE;
 	else if (read_quotes(str, "\"cylinder\"", &i))
-		init_function_ptrs(&data->objs[*object_index], 2);
+		obj_type = CYLINDER;
 	else if (read_quotes(str, "\"cone\"", &i))
-		init_function_ptrs(&data->objs[*object_index], 3);
+		obj_type = CONE;
 	else
 		return ;
 	while (str[i] != '{')
 		++i;
+	data->objs[*object_index].obj_type = obj_type;
+	data->objs[*object_index].intersect = data->intersect[obj_type];
+	data->objs[*object_index].get_normal = data->get_normal[obj_type];
 	parse_object(&data->objs[(*object_index)++], str + i, &i);
 	*index += i;
 }

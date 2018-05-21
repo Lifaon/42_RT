@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:11:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:47:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ int		light_path_is_blocked(t_data *data, t_inter it1, t_vec lgh, int id)
 	return (0);
 }
 
+int		diffuse_shading(t_data *data, double dot, int index)
+{
+	return (col_multiply(data->objs[index].color, dot).c);
+}
+
+int		ambient_shading(t_data *data, int index)
+{
+	return (col_multiply(data->objs[index].color, data->lights[0].ambi).c);
+}
+
 int		shade(t_data *data, t_inter inter, int index)
 {
 	t_vec	light;
@@ -42,8 +52,8 @@ int		shade(t_data *data, t_inter inter, int index)
 	inter.normal = data->objs[index].get_normal(data->objs[index], inter);
 	dot = dot_product(vec_normalize(light), inter.normal);
 	if (dot >= 0 && light_path_is_blocked(data, inter, light, index))
-		return (col_multiply(data->objs[index].color, 0.3).c);
-	if (dot >= 0.3)
-		return (col_multiply(data->objs[index].color, dot).c);
-	return (col_multiply(data->objs[index].color, 0.3).c);
+		return (ambient_shading(data, index));
+	if (dot >= data->lights[0].ambi)
+		return (diffuse_shading(data, dot, index));
+	return (ambient_shading(data, index));
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:13:22 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:56:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	which_light_variable(t_light *light, char *str, int *index)
 		light->color = parse_color(str + *index, index);
 	else if (read_quotes(str + *index, "\"radius\"", index))
 		light->r = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"ambient\"", index))
+		light->ambi = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"direction\"", index))
 	{
 		light->dir = parse_vec(str + *index, index);
@@ -67,9 +69,7 @@ int			parse_lights(t_data *data, char *str, int *index)
 		if (str[i] == '{' && light_index < data->nb_lights)
 			parse_light(&data->lights[light_index++], str + i, &i);
 		else if (str[i] == '[' || str[i] == ']')
-		{
 			in_braces += (str[i] == '[' ? 1 : -1);
-		}
 	}
 	*index += i;
 	return (0);

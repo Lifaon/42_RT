@@ -10,6 +10,7 @@
 	[
 		{
 			"position" : [0, 0, 500],
+			"ambient" : 0.4
 		}
 	],
 	"objects" :

@@ -36,7 +36,7 @@ t_vec 		get_cylinder_normal(t_obj cyl, t_inter inter)
 	t_vec norm;
 
 	b = vec_substract(inter.ip, cyl.pos);
-	a = vec_multiply(cyl.dir, vec_cos(b, cyl.dir));
+	a = vec_multiply(cyl.dir, dot_product(b, cyl.dir));
 	norm = vec_substract(b, a);
 	return ((t_vec){norm.x / cyl.r, norm.y / cyl.r, norm.z / cyl.r});
 }
@@ -49,7 +49,7 @@ t_vec 		get_cone_normal(t_obj cone, t_inter inter)
 	t_vec norm;
 
 	b = vec_substract(inter.ip, cone.pos);
-	a = vec_multiply(cone.dir, dot_product(b, cone.dir));
+	a = vec_multiply(cone.dir, vec_cos(b, cone.dir));
 	norm = vec_substract(b, a);
 	scaled = vec_mult(b, norm);
 	norm = vec_mult(b, scaled);

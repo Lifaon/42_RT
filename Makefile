@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/18 17:01:25 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/21 20:17:31 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 LIB_DIR = ./lib
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
+LIBMYGTK_DIR = $(LIB_DIR)/libmygtk
 LIBPT_DIR = $(LIB_DIR)/libpt
 SDL2_DIR = $(LIB_DIR)/sdl2
 
@@ -80,6 +81,7 @@ SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
+			-I $(LIBMYGTK_DIR)/includes/ \
 			$(SDL2_INC)
 
 INCS = $(INC) $(LIB_INCS)
@@ -90,8 +92,10 @@ SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
+			-L $(LIBMYGTK_DIR) -lmygtk \
 			$(SDL2_LFLAGS) \
-			-lm
+			-lm \
+			`pkg-config --libs gtk+-3.0`
 CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
@@ -100,7 +104,7 @@ DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 
 ## RULES ##
 
-all: SDL2 LIBFT LIBPT MYSDL print_name $(NAME) print_end
+all: SDL2 LIBFT LIBPT MYSDL MYGTK print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -183,6 +187,10 @@ LIBPT:
 MYSDL:
 	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
 	@make -C $(LIBMYSDL_DIR)
+
+MYGTK:
+	@echo "\033[033m➼\t\033[033mCompiling Libmygtk ...\033[0m"
+	@make -C $(LIBMYGTK_DIR)
 
 print_name:
 	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ...\033[0m"

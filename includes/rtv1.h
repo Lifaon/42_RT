@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/18 16:52:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 21:24:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "libft.h"
 # include "libpt.h"
 # include "libmysdl.h"
+# include "mygtk.h"
 
 # include "structs.h"
 # include "defines.h"
@@ -97,5 +98,11 @@ t_color col_divide(t_color color, double nb);
 **	Frees everything that has to be freed.
 */
 void			exit_all(t_data *data);
+
+/*
+**	Functions for create User Interface and handle event
+*/
+int		create_ui(t_data *data);
+int		create_toolbar(t_data *data, GtkWidget *v_box);
 
 #endif

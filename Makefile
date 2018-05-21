@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/21 20:17:31 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/21 21:28:49 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,13 +53,16 @@ SRCS  = color/colors.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
+		ui/create_ui.c \
+		ui/toolbar.c \
+		\
 		exit_all.c \
 		main.c
 
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = color draw events init parser vec
+OBJS_SUB_DIRS = color draw events init parser vec ui
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
@@ -82,6 +85,7 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
 			-I $(LIBMYGTK_DIR)/includes/ \
+			`pkg-config --cflags gtk+-3.0`\
 			$(SDL2_INC)
 
 INCS = $(INC) $(LIB_INCS)

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/21 16:13:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/21 21:26:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ typedef struct	s_pixelbuf
 	t_point		size;
 	GtkWidget	*widget;
 }				t_pixelbuf;
-
-typedef union		u_color
-{
-	uint32_t		c;
-	struct			s_argb
-	{
-		uint8_t		b;
-		uint8_t		g;
-		uint8_t		r;
-		uint8_t		a;
-	}				argb;
-}					t_color;
 
 void			put_widgets_in_new_win(GtkWidget *wid, gint x, gint y);
 const gchar		*get_label_of_radio_list(GList *radio);

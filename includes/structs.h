@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:06:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 21:27:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include "defines.h"
 # include "libmysdl.h"
+# include "mygtk.h"
 
 typedef struct		s_vec
 {
@@ -114,6 +115,7 @@ typedef struct		s_data
 	int				i;
 	t_camera		cams[4];
 	t_win			*win;
+	GtkWidget		*win_gtk;
 	t_texture		*tex;
 }					t_data;
 /*

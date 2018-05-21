@@ -56,30 +56,6 @@
 			"radius" : 120,
 			"color" : [255, 0, 120]
 		},
-		"sphere" :
-		{
-			"position" : [-500, -200, 1200],
-			"radius" : 180,
-			"color" : [255, 0, 255]
-		},
-		"sphere" :
-		{
-			"position" : [350, 300, 1600],
-			"radius" : 180,
-			"color" : [120, 0, 255]
-		},
-		"sphere" :
-		{
-			"position" : [-850, 250, 1000],
-			"radius" : 300,
-			"color" : [80, 0, 255]
-		},
-		"sphere" :
-		{
-			"position" : [1050, -200, 980],
-			"radius" : 350,
-			"color" : [40, 0, 255]
-		},
 		"cylinder" :
 		{
 			"position" : [900, -400, 980],

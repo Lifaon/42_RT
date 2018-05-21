@@ -59,6 +59,8 @@ t_vec	 		get_cone_normal(t_obj cone, t_inter inter);
 t_vec			vec_add(t_vec u, t_vec v);
 t_vec			vec_substract(t_vec u, t_vec v);
 t_vec			vec_multiply(t_vec u, double t);
+double			vec_cos(t_vec u, t_vec v);
+t_vec			vec_mult(t_vec u, t_vec v);
 /*
 **	Vector operations 2.
 */

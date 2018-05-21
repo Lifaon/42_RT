@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/18 16:59:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 14:45:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_vec 		get_cone_normal(t_obj cone, t_inter inter)
 	t_vec scaled;
 	t_vec norm;
 
-	b = vec_substract(inter.ip, cone.pos);
+	b = vec_substract(cone.pos, inter.ip);
 	a = vec_multiply(cone.dir, vec_cos(b, cone.dir));
 	norm = vec_substract(b, a);
 	scaled = vec_mult(b, norm);

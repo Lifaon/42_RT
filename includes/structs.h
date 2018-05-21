@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:06:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:29:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_inter
 	double			delta;
 	t_vec			ip;
 	t_vec			normal;
+	t_vec			oc;
 }					t_inter;
 /*
 **	Intersection structure -> t1, t2 and delta are used for equations of degree

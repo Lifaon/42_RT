@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 20:19:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:31:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 	tmp = INFINITY;
 	i = -1;
 	while (++i < data->nb_objects)
+	{
+		inter.oc = data->objs[i].oc;
 		if (data->objs[i].intersect(data->objs[i], ray, &inter) && \
 			inter.t < tmp)
 		{
 			tmp = inter.t;
 			object_index = i;
 		}
+	}
 	if (tmp < INFINITY)
 	{
 		inter.t = tmp;

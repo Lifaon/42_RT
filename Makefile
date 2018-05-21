@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/18 17:01:25 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/21 19:19:43 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,15 @@ EOC = \033[37m
 
 ## Sources ##
 SRCS_DIR = ./srcs
-SRCS  = color/colors.c \
-		\
+SRCS  = draw/colors.c \
 		draw/draw_image.c \
+		draw/shade.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
 		events/fill_funar_key_event.c \
 		events/ft_mouse.c \
 		events/ft_mouse_wheel.c \
-		\
-		init/data_init.c \
 		\
 		parser/get_full_read_file.c \
 		parser/get_nb_of_structs.c \
@@ -49,17 +47,17 @@ SRCS  = color/colors.c \
 		\
 		vec/get_normal.c \
 		vec/intersect.c \
-		vec/shadow_ray.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
+		data_init.c \
 		exit_all.c \
 		main.c
 
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = color draw events init parser vec
+OBJS_SUB_DIRS = draw events parser vec
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
@@ -107,10 +105,10 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@gcc $(CFLAGS) $(INCS) -c $^ -o $@
 
 $(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
-	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
 	@echo "\033[033m➼	\033[033mCreating $(DIR_NAME)'s objects \
 	with flag : \033[36m $(CFLAGS)\033[0m"
+	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(addprefix $(OBJS_DIR)/, $(OBJS_SUB_DIRS))
 
 $(NAME): $(OBJS_DIR) $(OBJS_PRE)
 	@echo "\033[033m➼\t\033[033mCreating $(DIR_NAME)'s executable\033[0m"

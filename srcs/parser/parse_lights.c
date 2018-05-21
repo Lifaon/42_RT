@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:10:05 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:13:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void	which_light_variable(t_light  *light, char *str, int *index)
+static void	which_light_variable(t_light *light, char *str, int *index)
 {
 	if (read_quotes(str + *index, "\"position\"", index))
 		light->pos = parse_vec(str + *index, index);

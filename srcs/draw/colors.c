@@ -6,13 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:13:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/18 18:36:26 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:10:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_color add_colors(t_color col1, t_color col2)
+t_color	add_colors(t_color col1, t_color col2)
 {
 	t_color ret;
 
@@ -33,7 +33,7 @@ t_color	col_multiply(t_color color, double nb)
 	return (color);
 }
 
-t_color col_divide(t_color color, double nb)
+t_color	col_divide(t_color color, double nb)
 {
 	color.argb.r /= nb;
 	color.argb.g /= nb;

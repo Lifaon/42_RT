@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/18 16:52:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 18:00:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 **	Drawing functions.
 */
 void			draw_image(t_data *data);
+int				shade(t_data *data, t_inter inter, int index);
+
 
 /*
 **	Intersection functions.
@@ -42,7 +44,6 @@ int				intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
 int				intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
-int				shadow_ray(t_data *data, t_inter inter, int index);
 
 /*
 **	Functions to get the normal of the objects at the intersection point.

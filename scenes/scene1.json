@@ -12,10 +12,6 @@
 		{
 			"position" : [-800, 0, 400],
 			"ambient" : 0.3
-		},
-		{
-			"position" : [800, 0, 800],
-			"ambient" : 0.2
 		}
 	],
 	"objects" :

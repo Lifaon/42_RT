@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/22 16:17:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 16:44:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 **	Drawing functions.
 */
 void			draw_image(t_data *data);
-int				shade(t_data *data, t_inter inter, int index);
+int				get_px_color(t_data *data, t_inter inter, int index);
 
 /*
 **	Intersection functions.

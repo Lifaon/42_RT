@@ -11,6 +11,10 @@
 		{
 			"position" : [0, 400, 1300],
 			"ambient" : 0.3
+		},
+		{
+			"position" : [0, -400, 1300],
+			"ambient" : 0.3
 		}
 	],
 	"objects" :

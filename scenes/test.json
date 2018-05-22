@@ -8,7 +8,8 @@
 	"lights" :
 	[
 		{
-			"position" : [-800, 800, 0]
+			"position" : [-800, 800, 0],
+			"ambient" : 0.6
 		}
 	],
 	"objects" :

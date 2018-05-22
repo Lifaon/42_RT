@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:22:22 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 18:22:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:05:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int		get_nb_objects(char *str)
 	while (in_braces)
 	{
 		++i;
-		if (str[i] == '{')
-		{
-			if (in_braces == 1)
-				++nb_objects;
-			++in_braces;
-		}
-		else if (str[i] == '}')
-			--in_braces;
+		if (in_braces == 1 && str[i] == '\"' && (\
+			read_quotes(str + i, "\"sphere\"", &i) || \
+			read_quotes(str + i, "\"plane\"", &i) || \
+			read_quotes(str + i, "\"cylinder\"", &i) || \
+			read_quotes(str + i, "\"cone\"", &i)))
+			++nb_objects;
+		if (str[i] == '{' || str[i] == '}')
+			in_braces += str[i] == '{' ? 1 : -1;
 	}
 	return (nb_objects);
 }

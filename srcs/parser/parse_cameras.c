@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:15:42 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:09:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:35:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	parse_camera(t_camera *cam, char *str, int *index)
 	while (in_braces)
 	{
 		++i;
-		if (str[i] == '\"')
+		if (str[i] == '\"' && in_braces == 1)
 		{
 			if (read_quotes(str + i, "\"position\"", &i))
 				cam->pos = parse_vec(str + i, &i);

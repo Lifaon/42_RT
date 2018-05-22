@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:17:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:37:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 		return (0);
 	inter->t1 = (-b + sqrt(inter->delta)) / 2;
 	inter->t2 = (-b - sqrt(inter->delta)) / 2;
-	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
+	if (inter->t1 > inter->min_dist && inter->t2 > inter->min_dist)
 		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else
 	{
-		if (inter->t1 >= inter->min_dist || inter->t2 >= inter->min_dist)
+		if (inter->t1 > inter->min_dist || inter->t2 > inter->min_dist)
 			inter->t = inter->t1 > inter->t2 ? inter->t1 : inter->t2;
 		else
 			return (0);
@@ -46,7 +46,7 @@ int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
 	if (dv == 0)
 		return (0);
 	inter->t = -xv / dv;
-	if (inter->t < inter->min_dist || inter->t == INFINITY)
+	if (inter->t <= inter->min_dist || inter->t == INFINITY)
 		return (0);
 	return (1);
 }
@@ -68,11 +68,11 @@ int		intersect_cylinder(t_obj cyl, t_vec ray, t_inter *inter)
 		return (0);
 	inter->t1 = (-b + sqrt(inter->delta)) / (2 * a);
 	inter->t2 = (-b - sqrt(inter->delta)) / (2 * a);
-	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
+	if (inter->t1 > inter->min_dist && inter->t2 > inter->min_dist)
 		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else
 	{
-		if (inter->t1 >= inter->min_dist || inter->t2 >= inter->min_dist)
+		if (inter->t1 > inter->min_dist || inter->t2 > inter->min_dist)
 			inter->t = inter->t1 > inter->t2 ? inter->t1 : inter->t2;
 		else
 			return (0);
@@ -97,11 +97,11 @@ int		intersect_cone(t_obj cone, t_vec ray, t_inter *inter)
 		return (0);
 	inter->t1 = (-b + sqrt(inter->delta)) / (2 * a);
 	inter->t2 = (-b - sqrt(inter->delta)) / (2 * a);
-	if (inter->t1 >= inter->min_dist && inter->t2 >= inter->min_dist)
+	if (inter->t1 > inter->min_dist && inter->t2 > inter->min_dist)
 		inter->t = inter->t1 < inter->t2 ? inter->t1 : inter->t2;
 	else
 	{
-		if (inter->t1 >= inter->min_dist || inter->t2 >= inter->min_dist)
+		if (inter->t1 > inter->min_dist || inter->t2 > inter->min_dist)
 			inter->t = inter->t1 > inter->t2 ? inter->t1 : inter->t2;
 		else
 			return (0);

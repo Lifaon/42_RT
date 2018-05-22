@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:13:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:10:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 15:35:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ t_color	add_colors(t_color col1, t_color col2)
 		col1.argb.b + col2.argb.b : 255;
 	ret.argb.b = col1.argb.b + col2.argb.b <= 255 ? \
 		col1.argb.b + col2.argb.b : 255;
+	return (ret);
+}
+
+t_color	blend_colors(t_color col1, t_color col2)
+{
+	t_color ret;
+	t_vector added;
+
+	added.x = col1.argb.r + col2.argb.r;
+	added.y = col1.argb.g + col2.argb.g;
+	added.z = col1.argb.b + col2.argb.b;
+	ret.argb.r = added.x / 2;
+	ret.argb.g = added.y / 2;
+	ret.argb.b = added.z / 2;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:15:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 13:48:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 
 void		draw_image(t_data *data)
 {
-	t_point		crd;
-	t_vec		ray;
+	t_point	crd;
+	t_vec	ray;
 
 	crd = (t_point){0, 0};
 	ray.z = data->cams[data->i].vp_up_left.z;

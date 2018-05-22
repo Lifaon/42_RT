@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:56:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:35:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	parse_light(t_light *light, char *str, int *index)
 	while (in_braces)
 	{
 		++i;
-		if (str[i] == '\"')
+		if (str[i] == '\"' && in_braces == 1)
 			which_light_variable(light, str, &i);
 		if (str[i] == '{' || str[i] == '}')
 			in_braces += (str[i] == '{' ? 1 : -1);

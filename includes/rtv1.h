@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 18:00:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 16:17:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 void			draw_image(t_data *data);
 int				shade(t_data *data, t_inter inter, int index);
 
-
 /*
 **	Intersection functions.
 */
@@ -50,9 +49,8 @@ int				intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
 */
 t_vec			get_sphere_normal(t_obj sphere, t_inter inter);
 t_vec			get_plane_normal(t_obj plane, t_inter inter);
-t_vec 			get_cylinder_normal(t_obj cyl, t_inter inter);
-t_vec	 		get_cone_normal(t_obj cone, t_inter inter);
-
+t_vec			get_cylinder_normal(t_obj cyl, t_inter inter);
+t_vec			get_cone_normal(t_obj cone, t_inter inter);
 
 /*
 **	Vector operations.
@@ -91,8 +89,10 @@ int				ft_keyboard(int key, t_data *data);
 /*
 **	Functions used for color management.
 */
-t_color	col_multiply(t_color color, double nb);
-t_color col_divide(t_color color, double nb);
+t_color			add_colors(t_color col1, t_color col2);
+t_color			blend_colors(t_color col1, t_color col2);
+t_color			col_multiply(t_color color, double nb);
+t_color			col_divide(t_color color, double nb);
 
 /*
 **	Frees everything that has to be freed.

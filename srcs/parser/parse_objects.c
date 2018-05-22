@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 20:13:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:31:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	parse_object(t_obj *object, char *str, int *index)
 	while (in_braces)
 	{
 		++i;
-		if (str[i] == '\"')
+		if (str[i] == '\"' && in_braces == 1)
 			which_object_variable(object, str, &i);
 		if (str[i] == '{' || str[i] == '}')
 			in_braces += (str[i] == '{' ? 1 : -1);

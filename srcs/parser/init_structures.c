@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 20:13:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:09:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	get_vp_up_left(t_camera *cam)
 	cam->vp_up_left.z = vp_dist + cam->pos.z;
 }
 
-void	init_cameras(t_data *data, int nb)
+void	init_cameras(t_data *data)
 {
 	int i;
 
 	i = -1;
-	while (++i < nb)
+	while (++i < CAM_NB)
 	{
 		data->cams[i].pos = (t_vec){0, 0, 0};
 		data->cams[i].dir = (t_vec){0, 0, 1};

@@ -6,11 +6,12 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 20:14:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:12:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "parse.h"
 
 void	choose_cam(t_data *data, int index)
 {
@@ -48,6 +49,7 @@ void	data_init(t_data *data, int ac, char **av)
 	data->nb_lights = 0;
 	data->tex = NULL;
 	data->win = NULL;
+	init_cameras(data);
 	init_function_ptrs(data);
 	parse(data, av[1]);
 	choose_cam(data, 0);

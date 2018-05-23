@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 21:27:23 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:49:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,26 @@ typedef struct		s_funar_keyb
 }					t_funar_keyb;
 /*
 ** This structure is used to handle the keyboard event
-** fill f with the function you want to use when the key is push
+** fill f with the function you want to use when the key is pushed
 */
 
+typedef struct		s_quadra
+{
+	int		a;
+	int		b;
+	int		c;
+	int		d;
+}					t_quadra;
+
+typedef struct		s_wid_data
+{
+	t_point			pos;
+	t_point			size;
+	GtkWidget		*grid;
+	void			(*f)(GtkWidget*, gpointer);
+}					t_wid_data;
+/*
+** This tructure is used to make widget, position it to a grid
+** and link to function 
+*/
 #endif

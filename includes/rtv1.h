@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 21:24:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/23 20:05:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 # include "structs.h"
 # include "defines.h"
+
+t_data			*g_data;
 
 /*
 **	Drawing functions.
@@ -77,7 +79,7 @@ void			parse(t_data *data, char *file_name);
 /*
 **	Functions used to initialize the different structures.
 */
-void			data_init(t_data *data, int ac, char **av);
+t_data			*data_init(int ac, char **av);
 
 /*
 ** Functions use to handle event
@@ -100,9 +102,22 @@ t_color col_divide(t_color color, double nb);
 void			exit_all(t_data *data);
 
 /*
-**	Functions for create User Interface and handle event
+**	Functions for create User Interface and event associated
 */
-int		create_ui(t_data *data);
-int		create_toolbar(t_data *data, GtkWidget *v_box);
+int				create_ui(void);
+int				create_toolbar(GtkWidget *v_box);
+void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
+				int (*f)(GtkWidget*, gpointer));
+int				create_light_ui(GtkWidget *main_tab);
+int				create_object_ui(GtkWidget *main_tab);
+int				create_camera_ui(GtkWidget *main_tab);
+GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
+GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
+				gdouble step);
+GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
+GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
+void			switch_parallel_light(GtkWidget *widget, gpointer param);
+void			change_light_direction(GtkWidget *widget, gpointer param);
+void			change_light_distance(GtkWidget *widget, gpointer param);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/21 21:28:49 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/23 19:53:29 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,12 @@ SRCS  = color/colors.c \
 		\
 		ui/create_ui.c \
 		ui/toolbar.c \
+		ui/create_light_ui.c \
+		ui/create_camera_ui.c \
+		ui/create_object_ui.c \
+		ui/set_wid_data.c \
+		ui/create_widgets.c \
+		ui/modify_parallel_light.c\
 		\
 		exit_all.c \
 		main.c

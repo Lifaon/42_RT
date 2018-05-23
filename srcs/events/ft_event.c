@@ -6,13 +6,18 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 18:27:24 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/03 19:41:15 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/22 14:46:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "rtv1.h"
 
+void	ft_event(t_data *data)
+{
+	gtk_main();
+	exit_all(data);
+}
+/*
 void	ft_event(t_data *data)
 {
 	SDL_Event	event;
@@ -32,4 +37,4 @@ void	ft_event(t_data *data)
 			ft_mouse_wheel(event.wheel.y, data);
 	}
 	exit_all(data);
-}
+}*/

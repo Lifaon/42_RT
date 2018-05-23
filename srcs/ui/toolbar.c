@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_ui.c                                        :+:      :+:    :+:   */
+/*   toolbar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/21 21:21:18 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/23 18:40:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static GtkWidget	*create_item(char *img, char *b_text, char *tooltip)
+static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 {
 	GtkToolItem		*item;
 	GtkWidget		*img;
+	char			*str;
 
-	if (!(img = gtk_image_new_from_file(img)))
+	str = ft_strjoin("./srcs/ui/assets/", img_name);
+	if (!(img = gtk_image_new_from_file(str)))
 		return (NULL);
 	if (!(item = gtk_tool_button_new(img, b_text)))
-			return (NULL);
+		return (NULL);
 	gtk_tool_item_set_tooltip_text(item, tooltip);
+	ft_strdel(&str);
 	return (item);
 }
 
-int				create_toolbar(t_data *data, GtkWidget *v_box)
+int				create_toolbar(GtkWidget *v_box)
 {
 	GtkWidget		*bar;
 	GtkToolItem		*item[3];
@@ -34,11 +37,11 @@ int				create_toolbar(t_data *data, GtkWidget *v_box)
 
 	if (!(bar = gtk_toolbar_new()))
 		return (0);
-	if (!(item[0] = create_item("./assets/exit.png", "", "open a file")))
+	if (!(item[0] = create_item("exit.png", "open", "open a file")))
 		return (0);
-	if (!(item[1] = create_item("./assets/save.png", "", "save work")))
+	if (!(item[1] = create_item("save.png", "save", "save work")))
 		return (0);
-	if (!(item[2] = create_item("./assets/squar.png", "", "export work")))
+	if (!(item[2] = create_item("squar.png", "export", "export work")))
 		return (0);
 	i = -1;
 	while (++i < 3)

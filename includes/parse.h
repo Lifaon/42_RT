@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 15:10:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 16:59:21 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ int		read_quotes(char *str, char *word, int *index);
 /*
 **	read_quotes() takes a string and a word, and checks wether the word is
 **	at the beginning of the string or not.
+*/
+
+int		check_error(char *str);
+int		brackets(char *str);
+/*
+**	check_error() checks if the given scene file will crash the program.
+**	brackets() checks if brackets in the given file are correctly formated.
 */
 
 void	parse_cameras(t_data *data, char *str, int *index);

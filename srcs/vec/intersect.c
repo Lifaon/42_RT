@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 16:21:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:15:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 
 	b = 2 * dot_product(ray, inter->oc);
 	c = dot_product(inter->oc, inter->oc) - (sphere.r * sphere.r);
-	inter->delta = (b * b) - (4 * c);
-	if (inter->delta < 0)
-		return (0);
-	inter->t1 = (-b + sqrt(inter->delta)) / 2;
-	inter->t2 = (-b - sqrt(inter->delta)) / 2;
 	return (solve_quadratic_equation(inter, 1, b, c));
 }
 

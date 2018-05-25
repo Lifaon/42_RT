@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/22 16:44:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/25 19:40:19 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_vec			vec_mult(t_vec u, t_vec v);
 t_vec			vec_normalize(t_vec u);
 double			get_length(t_vec u);
 double			dot_product(t_vec u, t_vec v);
+void			rotation_3d(t_vec *vec, double rot_x, double rot_y, double rot_z); // avec rot_x, rot_y et rot_z en degre
 
 /*
 **	Function used to parse the given file.
@@ -90,7 +91,7 @@ int				ft_keyboard(int key, t_data *data);
 **	Functions used for color management.
 */
 t_color			add_colors(t_color col1, t_color col2);
-t_color			blend_colors(t_color col1, t_color col2);
+t_color			blend_colors(t_color col1, t_color col2, t_color col3);
 t_color			col_multiply(t_color color, double nb);
 t_color			col_divide(t_color color, double nb);
 

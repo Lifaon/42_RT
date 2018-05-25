@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/23 20:09:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:14:22 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	f_data = (gpointer)g_data;
 	if (!(l_new(wid_d, "parrallele light")))
 		return (0);
-	wid_d->pos.y = 1;
-	wid_d->f = &switch_parallel_light;
-	if (!(tgb_new(wid_d, f_data, "ON")))
-		return (0);
 	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (0);
 	wid_d->f = &change_light_distance;
@@ -71,6 +67,10 @@ static int		construct_phase_1(t_wid_data *wid_d)
 		ft_strdel(&str);
 		s++;
 	}
+	wid_d->pos = pt_set(0, 1);
+	wid_d->f = &switch_parallel_light;
+	if (!(tgb_new(wid_d, (gpointer)group, "ON")))
+		return (0);
 	return (1);
 }
 

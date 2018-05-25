@@ -6,28 +6,26 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/22 16:48:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/25 16:04:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		objects_in_light_path(t_data *data, t_vec ip, t_vec light, double len)
+int		is_light_path_blocked(t_data *data, t_vec ip, t_vec light, double len)
 {
 	t_inter	it;
 	int		i;
-	int		nb;
 
 	it.min_dist = 0.1;
 	i = -1;
-	nb = 1;
 	while (++i < data->nb_objects)
 	{
 		it.oc = vec_substract(ip, data->objs[i].pos);
 		if (data->objs[i].intersect(data->objs[i], light, &it) && it.t < len)
-			++nb;
+			return (1);
 	}
-	return (nb);
+	return (0);
 }
 
 t_color	diffuse_shading(t_data *data, double dot, int index)
@@ -54,9 +52,10 @@ t_color	shade(t_data *data, t_inter inter, int light_i, int index)
 	light = vec_normalize(light);
 	inter.normal = data->objs[index].get_normal(data->objs[index], inter);
 	dot = dot_product(light, inter.normal);
-	nb = objects_in_light_path(data, inter.ip, light, len);
+	if (dot >= 0 && is_light_path_blocked(data, inter.ip, light, len))
+		return (col_divide(ambient_shading(data, dot, index), 2));
 	return (blend_colors(\
-		col_divide(diffuse_shading(data, dot, index), (double)nb), \
+		diffuse_shading(data, dot, index), \
 		ambient_shading(data, light_i, index)));
 }
 

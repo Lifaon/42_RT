@@ -2,27 +2,46 @@
 	"cameras" :
 	[
 		{
-			"fov" : 35
+			"fov" : 20
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [500, 500, 1500]
+			"position" : [100, 500, 0],
+			"ambient" : 0.6
+		},
+		{
+			"position" : [-100, 500, 0],
+			"ambient" : 0.6
+		},
+		{
+			"position" : [-200, 500, 0],
+			"ambient" : 0.6
+		},
+		{
+			"position" : [200, 500, 0],
+			"ambient" : 0.6
 		}
 	],
 	"objects" :
 	{
 		"sphere" :
 		{
-			"position" : [0, 0, 1500],
-			"radius" : 200,
+			"position" : [-100, 200, 1000],
+			"radius" : 100,
+		},
+		"sphere" :
+		{
+			"position" : [200, 0, 1500],
+			"color" : [255, 160, 0],
+			"radius" : 200
 		},
 		"plane" :
 		{
-			"position" : [0, -100, 1600],
-			"normal" : [0, 1, 0],
-			"color" : [255, 160, 0]
+			"position" : [0, 0, 1750],
+			"normal" : [0, 0, -1],
+			"color" : [0, 180, 180]
 		}
 	}
 }

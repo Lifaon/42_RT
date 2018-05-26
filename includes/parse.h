@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/14 14:03:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:10:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ int		parse_objects(t_data *data, char *str, int *index);
 **	corresponding array in *data with what is written in the string.
 */
 
-void	init_cameras(t_data *data, int nb);
+void	init_cameras(t_data *data);
 void	get_vp_up_left(t_camera *cam);
 int		init_lights(t_data *data, int nb);
 int		init_objects(t_data *data, int nb);
-void	init_function_ptrs(t_obj *object, int value);
 /*
 **	Functions used to initialize the structures and all their variables
-**	init_lights() and init_objects() return an int because they use malloc().
+**	init_lights() and init_objects() return an int to check if malloc() failed.
 */
 
 int		get_nb_lights(char *str);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 03:04:14 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/04/24 13:52:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/25 19:40:23 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ double	get_length(t_vec u)
 double	dot_product(t_vec u, t_vec v)
 {
 	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
+}
+
+/*
+** avec rot_x, rot_y, rot_z en degre
+*/
+void	rotation_3d(t_vec *vec, double rot_x, double rot_y, double rot_z)
+{
+	vec->y = cos(rot_x) * vec->y - sin(rot_x) * vec->z;
+	vec->z = sin(rot_x) * vec->y + cos(rot_x) * vec->z;
+	vec->x = cos(rot_y) * vec->x + sin(rot_y) * vec->z;
+	vec->y = -sin(rot_y) * vec->x + cos(rot_y) * vec->z;
+	vec->x = cos(rot_z) * vec->x - sin(rot_z) * vec->y;
+	vec->y = sin(rot_z) * vec->x + cos(rot_z) * vec->y;
 }

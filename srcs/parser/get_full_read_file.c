@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 19:56:56 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 17:22:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:12:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*perror_and_return_null(void)
 	return (NULL);
 }
 
-static char *read_rest(char *str, int fd)
+static char	*read_rest(char *str, int fd)
 {
 	char	buf[BUFF_SIZE + 1];
 	char	*tmp;

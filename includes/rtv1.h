@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/26 22:59:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:26:04 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_data			*g_data;
 **	Drawing functions.
 */
 void			draw_image(t_data *data);
+int				get_px_color(t_data *data, t_inter inter, int index);
 
 /*
 **	Intersection functions.
@@ -45,16 +46,14 @@ int				intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
 int				intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
 int				intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
-int				shadow_ray(t_data *data, t_inter inter, int index);
 
 /*
 **	Functions to get the normal of the objects at the intersection point.
 */
 t_vec			get_sphere_normal(t_obj sphere, t_inter inter);
 t_vec			get_plane_normal(t_obj plane, t_inter inter);
-t_vec 			get_cylinder_normal(t_obj cyl, t_inter inter);
-t_vec	 		get_cone_normal(t_obj cone, t_inter inter);
-
+t_vec			get_cylinder_normal(t_obj cyl, t_inter inter);
+t_vec			get_cone_normal(t_obj cone, t_inter inter);
 
 /*
 **	Vector operations.
@@ -70,6 +69,7 @@ t_vec			vec_mult(t_vec u, t_vec v);
 t_vec			vec_normalize(t_vec u);
 double			get_length(t_vec u);
 double			dot_product(t_vec u, t_vec v);
+void			rotation_3d(t_vec *vec, double rot_x, double rot_y, double rot_z); // avec rot_x, rot_y et rot_z en degre
 
 /*
 **	Function used to parse the given file.
@@ -94,8 +94,10 @@ int				ft_keyboard(int key, t_data *data);
 /*
 **	Functions used for color management.
 */
-t_color	col_multiply(t_color color, double nb);
-t_color col_divide(t_color color, double nb);
+t_color			add_colors(t_color col1, t_color col2);
+t_color			blend_colors(t_color col1, t_color col2, t_color col3);
+t_color			col_multiply(t_color color, double nb);
+t_color			col_divide(t_color color, double nb);
 
 /*
 **	Frees everything that has to be freed.

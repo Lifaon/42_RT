@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 14:45:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:16:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,13 @@ t_vec	get_sphere_normal(t_obj sphere, t_inter inter)
 	return ((t_vec){norm.x / sphere.r, norm.y / sphere.r, norm.z / sphere.r});
 }
 
-/*
-**	Plane normal is constant.
-*/
 t_vec	get_plane_normal(t_obj plane, t_inter inter)
 {
 	(void)inter;
 	return (plane.normal);
 }
 
-t_vec 		get_cylinder_normal(t_obj cyl, t_inter inter)
+t_vec	get_cylinder_normal(t_obj cyl, t_inter inter)
 {
 	t_vec b;
 	t_vec a;
@@ -41,7 +38,7 @@ t_vec 		get_cylinder_normal(t_obj cyl, t_inter inter)
 	return ((t_vec){norm.x / cyl.r, norm.y / cyl.r, norm.z / cyl.r});
 }
 
-t_vec 		get_cone_normal(t_obj cone, t_inter inter)
+t_vec	get_cone_normal(t_obj cone, t_inter inter)
 {
 	t_vec b;
 	t_vec a;

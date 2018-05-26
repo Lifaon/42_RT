@@ -1,0 +1,81 @@
+{
+	"cameras" :
+	[
+		{
+			"fov" : 10
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [0, 1000, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [500, 500, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [-500, 500, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [1000, 0, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [-1000, 0, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [500, -500, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [-500, -500, 0],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [0, -1000, 0],
+			"ambient" : 0.2
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [0, 0, 3000],
+			"radius" : 200,
+		},
+		"sphere" :
+		{
+			"position" : [350, 0, 3000],
+			"color" : [255, 160, 0],
+			"radius" : 100
+		},
+		"sphere" :
+		{
+			"position" : [-350, 0, 3000],
+			"color" : [255, 160, 0],
+			"radius" : 100
+		},
+		"sphere" :
+		{
+			"position" : [0, 350, 3000],
+			"color" : [255, 160, 0],
+			"radius" : 100
+		},
+		"sphere" :
+		{
+			"position" : [0, -350, 3000],
+			"color" : [255, 160, 0],
+			"radius" : 100
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 3500],
+			"normal" : [0, 0, -1],
+			"color" : [0, 180, 180]
+		}
+	}
+}

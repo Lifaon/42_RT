@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/23 19:53:29 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/26 18:01:12 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,11 @@ SRCS  = color/colors.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
 		ui/modify_parallel_light.c\
-		\
+		ui/entry_change_scale.c \
+		ui/click_open.c \
+		ui/click_save.c \
+		ui/click_export.c \
+\
 		exit_all.c \
 		main.c
 

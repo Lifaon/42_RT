@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 20:05:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 18:00:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 void			switch_parallel_light(GtkWidget *widget, gpointer param);
 void			change_light_direction(GtkWidget *widget, gpointer param);
 void			change_light_distance(GtkWidget *widget, gpointer param);
-
+void			entry_change_scale(GtkWidget *widget, gpointer param);
+void			click_open(GtkWidget *widget, gpointer param);
+void			click_save(GtkWidget *widget, gpointer param);
+void			click_export(GtkWidget *widget, gpointer param);
 #endif

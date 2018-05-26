@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/25 15:14:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 17:29:04 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
 	if (!(l_new(wid_d, txt)))
 		return (0);
 	wid_d->pos.y = 1;
-	if (!(entry = entry_new(wid_d, "", NULL)))
+	if (!(entry = entry_new(wid_d, NULL, "")))
 		return (0);
 	param = (gpointer)entry;
 	if (group)
@@ -37,7 +37,8 @@ static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
 	if (group)
 		gtk_size_group_add_widget(group, scale);
 	gtk_range_set_value(GTK_RANGE(scale), value);
-	g_signal_connect(G_OBJECT(entry), "activate", G_CALLBACK(wid_d->f), param);
+	g_signal_connect(G_OBJECT(entry), "activate",
+			G_CALLBACK(entry_change_scale), (gpointer)scale);
 	wid_d->size = pt_set(1, 1);
 	return (1);
 }
@@ -55,15 +56,16 @@ static int		construct_phase_1(t_wid_data *wid_d)
 		return (0);
 	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (0);
-	wid_d->f = &change_light_distance;
-	make_ray_and_dir(wid_d, "distance", NULL, 4);
+	/*wid_d->f = &change_light_distance;
+	//make_ray_and_dir(wid_d, "distance", NULL, 4);*/ 
 	wid_d->f = &change_light_direction;
 	i = -1;
 	s = 'x';
 	while (++i < 3)
 	{
 		str = ft_strjoin(&s, " direction");
-		make_ray_and_dir(wid_d, str, group, 12);
+		if (make_ray_and_dir(wid_d, str, group, 12) < 1)
+			return (0);
 		ft_strdel(&str);
 		s++;
 	}

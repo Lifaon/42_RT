@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/26 18:01:12 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/26 22:51:42 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS  = color/colors.c \
 		ui/click_open.c \
 		ui/click_save.c \
 		ui/click_export.c \
+		ui/join_int.c \
 \
 		exit_all.c \
 		main.c

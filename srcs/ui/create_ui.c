@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/23 18:47:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 22:16:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		create_ui(void)
 	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_container_add(GTK_CONTAINER(win), v_box);
 	gtk_widget_show_all(win);
+	g_data->win_gtk = win;
 	return (1);
 }

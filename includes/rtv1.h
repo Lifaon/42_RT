@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/26 18:00:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 22:59:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void			parse(t_data *data, char *file_name);
 **	Functions used to initialize the different structures.
 */
 t_data			*data_init(int ac, char **av);
+void			choose_cam(t_data *data, int index);
 
 /*
 ** Functions use to handle event
@@ -123,4 +124,5 @@ void			entry_change_scale(GtkWidget *widget, gpointer param);
 void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
+char			*join_int(char const *s1, int n);
 #endif

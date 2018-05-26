@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 17:29:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:04:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
 	return (1);
 }
 
+static int		make_grid(t_wid_data *wid_d)
+{
+	if (!(wid_d->grid = gtk_grid_new()))
+		return (0);
+	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);
+	gtk_grid_set_column_spacing(GTK_GRID(wid_d->grid), 5);
+	gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	set_wid_data(wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
+	return (1);
+}
+
 static int		construct_phase_1(t_wid_data *wid_d)
 {
 	gpointer		f_data;
@@ -52,6 +64,8 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	char			s;
 
 	f_data = (gpointer)g_data;
+	if (!(make_grid(wid_d)))
+		return (0);
 	if (!(l_new(wid_d, "parrallele light")))
 		return (0);
 	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
@@ -80,17 +94,28 @@ int				create_light_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	t_wid_data		wid_d;
+	//GtkWidget		*tab_light;
+	int				i;
+	char			*str;
 
-	l_title = gtk_label_new("Light");
-	wid_d.grid = gtk_grid_new();
-	gtk_grid_set_row_spacing(GTK_GRID(wid_d.grid), 5);
-	gtk_grid_set_column_spacing(GTK_GRID(wid_d.grid), 5);
-	gtk_grid_set_row_homogeneous(GTK_GRID(wid_d.grid), TRUE);
-	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d.grid), TRUE);
-	set_wid_data(&wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
-	if (!(construct_phase_1(&wid_d)))
+	i = 0;
+	/*tab_light = gtk_notebook_new();
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);*/
+	if (!(l_title = gtk_label_new("Light")))
 		return (0);
-	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), wid_d.grid, l_title) < 0)
-		return (0);
+	while (i < g_data->nb_lights)
+	{
+		str = join_int("Light", i + 1);
+		gtk_label_set_label(GTK_LABEL(l_title), str);
+		if (!(construct_phase_1(&wid_d)))
+			return (0);
+		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab), wid_d.grid, l_title)) < 0)
+			return (0);
+		i++;
+		ft_strdel(&str);
+	}
+	/*gtk_label_set_label(GTK_LABEL(l_title), "Light");
+	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), tab_light, l_title) < 0)
+		return (0);*/
 	return (1);
 }

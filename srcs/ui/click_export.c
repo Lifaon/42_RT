@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:43:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 18:38:05 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:55:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ void	click_export(GtkWidget *widget, gpointer data)
 		pxl = (uint32_t*)gdk_pixbuf_get_pixels(pixbuf);
 	}
 	pxl = change_sdl_to_gtk(pxl, g_data->tex->tab_pxl, size);
-	ft_putstr("what");
 	gdk_pixbuf_save(pixbuf, "RT.png", "png", &error, NULL);
 	if (error && error->message)
 		ft_putstr(error->message);
-	ft_putstr("\nfinished\n");
 }

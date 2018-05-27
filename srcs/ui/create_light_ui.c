@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 23:04:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:48:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,28 +94,29 @@ int				create_light_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	t_wid_data		wid_d;
-	//GtkWidget		*tab_light;
+	GtkWidget		*tab_light;
 	int				i;
 	char			*str;
 
 	i = 0;
-	/*tab_light = gtk_notebook_new();
-	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);*/
-	if (!(l_title = gtk_label_new("Light")))
+	if (!(tab_light = gtk_notebook_new()))
 		return (0);
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);
 	while (i < g_data->nb_lights)
 	{
-		str = join_int("Light", i + 1);
-		gtk_label_set_label(GTK_LABEL(l_title), str);
+		str = join_int("Light ", i + 1);
+		if (!(l_title = gtk_label_new(str)))
+			return (0);
 		if (!(construct_phase_1(&wid_d)))
 			return (0);
-		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab), wid_d.grid, l_title)) < 0)
+		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_light), wid_d.grid, l_title)) < 0)
 			return (0);
 		i++;
 		ft_strdel(&str);
 	}
-	/*gtk_label_set_label(GTK_LABEL(l_title), "Light");
+	if (!(l_title = gtk_label_new("Light")))
+		return (0);
 	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), tab_light, l_title) < 0)
-		return (0);*/
+		return (0);
 	return (1);
 }

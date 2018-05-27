@@ -6,14 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 18:12:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:38:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip, 
- void (*f)(GtkWidget*, gpointer))
+static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 {
 	GtkToolItem		*item;
 	GtkWidget		*img;
@@ -25,12 +24,22 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip,
 	if (!(item = gtk_tool_button_new(img, b_text)))
 		return (NULL);
 	gtk_tool_item_set_tooltip_text(item, tooltip);
-	g_signal_connect(G_OBJECT(item), "clicked", G_CALLBACK(f), (gpointer)g_data);
 	ft_strdel(&str);
 	return (item);
 }
 
-int				create_toolbar(GtkWidget *v_box)
+static int		create_all_items(GtkToolItem *item[3])
+{
+	if (!(item[0] = create_item("exit.png", "open", "open a file")))
+		return (0);
+	if (!(item[1] = create_item("save.png", "save", "save work")))
+		return (0);
+	if (!(item[2] = create_item("squar.png", "export", "export work")))
+		return (0);
+	return (1);
+}
+
+int				create_toolbar(GtkWidget *v_box, t_ui *ui)
 {
 	GtkWidget		*bar;
 	GtkToolItem		*item[3];
@@ -43,15 +52,12 @@ int				create_toolbar(GtkWidget *v_box)
 	f[2] = &click_export;
 	if (!(bar = gtk_toolbar_new()))
 		return (0);
-	if (!(item[0] = create_item("exit.png", "open", "open a file", f[0])))
-		return (0);
-	if (!(item[1] = create_item("save.png", "save", "save work", f[1])))
-		return (0);
-	if (!(item[2] = create_item("squar.png", "export", "export work", f[2])))
+	if (!(create_all_items(item)))
 		return (0);
 	i = -1;
 	while (++i < 3)
 	{
+		g_signal_connect(G_OBJECT(item[i]), "clicked", G_CALLBACK(f[i]), ui);
 		gtk_tool_item_set_homogeneous(item[i], TRUE);
 		gtk_toolbar_insert(GTK_TOOLBAR(bar), item[i], -1);
 	}

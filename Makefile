@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/26 23:25:21 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/27 19:31:12 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS  = draw/colors.c \
 		vec/vec_operations2.c \
 		\
 		ui/create_ui.c \
+		ui/create_sub_notebook.c \
 		ui/toolbar.c \
 		ui/create_light_ui.c \
 		ui/create_camera_ui.c \

@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_wid_data.c                                     :+:      :+:    :+:   */
+/*   size_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 16:08:01 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/27 20:20:42 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/27 20:21:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include <string.h>
+#include "libft.h"
 
-void	set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
-	void (*f)(GtkWidget*, gpointer))
+size_t		size_int(int n)
 {
-	wid_d->pos = pos;
-	wid_d->size = size;
-	wid_d->f = f;
+	size_t			size;
+	unsigned int	nb;
+
+	size = 1;
+	if (n < 0)
+		size++;
+	nb = (n < 0) ? -n : n;
+	while (nb /= 10)
+		size++;
+	return (size);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/26 23:28:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:35:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_function_ptrs(t_data *data)
 	data->get_normal[3] = get_cone_normal;
 }
 
-void	data_init(t_data *data, int ac, char **av)
+t_data		*data_init(int ac, char **av)
 {
 	t_point		size;
 	t_data		*data;

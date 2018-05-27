@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/26 23:26:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/27 20:35:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int				ft_keyboard(int key, t_data *data);
 **	Functions used for color management.
 */
 t_color			add_colors(t_color col1, t_color col2);
-t_color			blend_colors(t_color col1, t_color col2, t_color col3);
+t_color			blend_colors(t_color col1, t_color col2);
 t_color			col_multiply(t_color color, double nb);
 t_color			col_divide(t_color color, double nb);
 
@@ -108,9 +108,10 @@ void			exit_all(t_data *data);
 **	Functions for create User Interface and event associated
 */
 int				create_ui(void);
-int				create_toolbar(GtkWidget *v_box);
+int				create_sub_notebook(t_ui *ui);
+int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
-				int (*f)(GtkWidget*, gpointer));
+				void (*f)(GtkWidget*, gpointer));
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
 int				create_camera_ui(GtkWidget *main_tab);
@@ -127,4 +128,6 @@ void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
 char			*join_int(char const *s1, int n);
+size_t			size_int(int n);
+size_t			size_double(double n);
 #endif

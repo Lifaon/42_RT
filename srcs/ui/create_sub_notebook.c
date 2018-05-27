@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_wid_data.c                                     :+:      :+:    :+:   */
+/*   create_sub_notebook.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 16:08:01 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/27 19:23:33 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/27 19:23:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
-	void (*f)(GtkWidget*, gpointer))
+int		create_sub_notebook(t_ui *ui)
 {
-	wid_d->pos = pos;
-	wid_d->size = size;
-	wid_d->f = f;
+	if (!(create_light_ui(ui->tab)))
+		return (0);
+	ft_putstr("light created \n");
+	if (!(create_camera_ui(ui->tab)))
+		return (0);
+	ft_putstr("camera created \n");
+	if (!(create_object_ui(ui->tab)))
+		return (0);
+	ft_putstr("object created \n");
+	return (1);
 }

@@ -9,11 +9,11 @@
 	[
 		{
 			"position" : [-1000, 500, 500],
-			"ambient" : 0.6
+			"ambient" : 0.4
 		},
 		{
 			"position" : [-900, 600, 500],
-			"ambient" : 0.6
+			"ambient" : 0.4
 		}
 	],
 	"objects" :

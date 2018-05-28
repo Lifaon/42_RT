@@ -23,25 +23,22 @@
 		{
 			"position" : [0, 0, 1800],
 			"normal" : [0, 0, -1],
-			"color" : [80, 120, 180]
-		},
-		"plan" :
-		{
-			"position" : [0, 0, 1800],
-			"normal" : [-0.5, 0, -1],
-			"color" : [80, 120, 180]
+			"color" : [80, 120, 180],
+			"specular" : 0
 		},
 		"plane" :
 		{
 			"position" : [0, 500, 1500],
 			"normal" : [0, -1, 0],
-			"color" : [0, 180, 180]
+			"color" : [0, 180, 180],
+			"specular" : 0
 		},
 		"plane" :
 		{
 			"position" : [0, -500, 1500],
 			"normal" : [0, 1, 0],
-			"color" : [0, 180, 180]
+			"color" : [0, 180, 180],
+			"specular" : 0
 		},
 		"sphere" :
 		{

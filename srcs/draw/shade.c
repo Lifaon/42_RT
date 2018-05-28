@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 18:59:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:31:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,20 @@ t_color	ambient_shading(t_data *data, int light_i, int index)
 	return (col_multiply(data->objs[index].color, data->lights[light_i].ambi));
 }
 
-t_color	specular_shading(t_data *data, t_inter inter, t_vec light)
+t_color	specular_shading(t_data *data, int index, t_inter inter, t_vec light)
 {
 	double	dot;
-	double	alpha;
 	t_vec	r;
 	t_vec	v;
 
-	alpha = 100;
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\
 			light));
 	v = vec_normalize(vec_substract(data->cams[data->i].pos, inter.ip));
 	dot = dot_product(v, r);
 	if (dot > 0)
-		return (col_multiply((t_color)(uint32_t)0xFFFFFF, pow(dot, alpha)));
+		return (col_multiply((t_color)(uint32_t)0xFFFFFF, \
+			data->objs[index].spec * pow(dot, data->objs[index].alpha)));
 	return ((t_color)(uint32_t)0);
 }
 
@@ -74,7 +73,8 @@ t_color	shade(t_data *data, t_inter inter, int light_i, int index)
 	if (dot <= 0)
 		return (ret);
 	ret = add_colors(ret, diffuse_shading(data, dot, index));
-	ret = add_colors(ret, specular_shading(data, inter, light));
+	ret = add_colors(ret, \
+		specular_shading(data, index, inter, light));
 	return (ret);
 }
 

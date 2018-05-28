@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 15:09:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:28:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		init_objects(t_data *data, int nb)
 	{
 		data->objs[i].r = 100;
 		data->objs[i].spec = 1;
+		data->objs[i].alpha = 100;
 		data->objs[i].color.c = 0xA600A6;
 		data->objs[i].pos = (t_vec){0, 0, 1500};
 		data->objs[i].dir = (t_vec){1, 1, 0};

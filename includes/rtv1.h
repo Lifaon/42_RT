@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/25 19:40:19 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/05/28 19:14:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				ft_keyboard(int key, t_data *data);
 **	Functions used for color management.
 */
 t_color			add_colors(t_color col1, t_color col2);
-t_color			blend_colors(t_color col1, t_color col2, t_color col3);
+t_color			blend_colors(t_color col1, t_color col2);
 t_color			col_multiply(t_color color, double nb);
 t_color			col_divide(t_color color, double nb);
 

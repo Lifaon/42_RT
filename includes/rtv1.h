@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/27 20:35:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/28 22:31:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,15 @@ void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
 char			*join_int(char const *s1, int n);
+char			*my_strcopy(char *dest, char const *src);
 size_t			size_int(int n);
 size_t			size_double(double n);
+size_t			size_vec(t_vec vec);
+size_t			size_color(t_color color);
+size_t			size_of_str_json(void);
+char			*strcpy_db(char *str, double n);
+char			*strcpy_vec(char *str, t_vec vec);
+char			*color_toa(char *str, t_color color);
+char			*fill_str_json(size_t size);
+size_t			size_of_str_json(void);
 #endif

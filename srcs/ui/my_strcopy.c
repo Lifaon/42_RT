@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size_int.c                                         :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 20:20:42 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 19:37:16 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/28 19:31:01 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/28 22:44:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-size_t		size_int(int n)
+char	*my_strcopy(char *dest, char const *src)
 {
-	size_t			size;
-	unsigned int	nb;
+	int		i;
 
-	size = 1;
-	if (n < 0)
-		size++;
-	nb = (n < 0) ? -n : n;
-	while (nb /= 10)
-		size++;
-	return (size);
+	i = 0;
+	while (src[i])
+	{
+		*dest = src[i];
+		dest++;
+		i++;
+	}
+	return (dest);
 }

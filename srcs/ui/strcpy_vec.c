@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size_int.c                                         :+:      :+:    :+:   */
+/*   size_vec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 20:20:42 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 19:37:16 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/28 14:31:12 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/28 22:47:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "rtv1.h"
 
-size_t		size_int(int n)
+char		*strcpy_vec(char *str, t_vec vec)
 {
-	size_t			size;
-	unsigned int	nb;
-
-	size = 1;
-	if (n < 0)
-		size++;
-	nb = (n < 0) ? -n : n;
-	while (nb /= 10)
-		size++;
-	return (size);
+	*str = '[';
+	str++;
+	str = strcpy_db(str, vec.x);
+	*str = ' ';
+	str++;
+	*str = ',';
+	str++;
+	str = strcpy_db(str, vec.y);
+	*str = ' ';
+	str++;
+	*str = ',';
+	str++;
+	str = strcpy_db(str, vec.z);
+	*str = ']';
+	str++;
+	return(str);
 }

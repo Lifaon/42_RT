@@ -6,12 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 20:35:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/28 22:33:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "rtv1.h"
 
 static size_t	get_size_integer(double n, long *integer)
 {

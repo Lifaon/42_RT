@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size_int.c                                         :+:      :+:    :+:   */
+/*   size_vec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 20:20:42 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 19:37:16 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/28 14:31:12 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/28 22:32:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "rtv1.h"
 
-size_t		size_int(int n)
+/*
+** min size is because the vector is put that way : [2.0, 1.5, 0.0]
+** so if we add '[' + ']' + 2' ' + 2 ',' = 6
+*/
+
+size_t		size_vec(t_vec vec)
 {
-	size_t			size;
-	unsigned int	nb;
-
-	size = 1;
-	if (n < 0)
-		size++;
-	nb = (n < 0) ? -n : n;
-	while (nb /= 10)
-		size++;
-	return (size);
+	return(6 + size_double(vec.x) + size_double(vec.y) + size_double(vec.z));
 }

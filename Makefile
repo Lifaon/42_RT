@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/27 19:31:12 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/28 21:36:56 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,17 @@ SRCS  = draw/colors.c \
 		ui/click_open.c \
 		ui/click_save.c \
 		ui/click_export.c \
+		ui/size_int.c \
+		ui/size_double.c \
+		ui/size_vec.c \
+		ui/size_color.c \
 		ui/join_int.c \
+		ui/size_of_str_json.c \
+		ui/fill_str_json.c \
+		ui/color_toa.c \
+		ui/my_strcopy.c \
+		ui/strcpy_db.c \
+		ui/strcpy_vec.c \
 \
 		data_init.c \
 		exit_all.c \

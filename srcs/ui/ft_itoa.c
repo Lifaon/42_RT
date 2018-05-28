@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size_int.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 20:20:42 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 19:37:16 by fchevrey         ###   ########.fr       */
+/*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
+/*   Updated: 2017/11/28 14:53:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-size_t		size_int(int n)
+char	*ft_itoa(int n)
 {
 	size_t			size;
 	unsigned int	nb;
+	char			*dst;
 
 	size = 1;
 	if (n < 0)
@@ -24,5 +25,17 @@ size_t		size_int(int n)
 	nb = (n < 0) ? -n : n;
 	while (nb /= 10)
 		size++;
-	return (size);
+	dst = ft_strnew(size);
+	if (dst == NULL)
+		return (NULL);
+	nb = (n < 0) ? -n : n;
+	while (--size > 0)
+	{
+		dst[size] = '0' + (nb % 10);
+		nb /= 10;
+	}
+	dst[0] = '0' + nb;
+	if (n < 0)
+		dst[0] = '-';
+	return (dst);
 }

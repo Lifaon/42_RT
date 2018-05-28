@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 15:09:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:08:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	parse(t_data *data, char *file_name)
 	if (!(str = get_full_read_file(file_name)))
 		exit_all(data);
 	remove_white_spaces(&str);
-	/*if (check_error(str))
+	if (check_error(str))
 	{
 		free(str);
 		exit_all(data);
-	}*/
+	}
 	i = -1;
 	while (str[++i])
 		if (str[i] == '\"')
@@ -40,4 +40,5 @@ void	parse(t_data *data, char *file_name)
 				parse_objects(data, str + i, &i);
 		}
 	free(str);
+	ft_putendl("parsing ended");
 }

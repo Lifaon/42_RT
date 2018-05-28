@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/22 14:31:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:38:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->dir = vec_normalize(parse_vec(str + *index, index));
 	else if (read_quotes(str + *index, "\"specular\"", index))
 		object->spec = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"alpha\"", index))
+		object->alpha = parse_nb(str + *index, index);
 }
 
 static void	parse_object(t_obj *object, char *str, int *index)

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/10 03:30:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/29 14:30:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	exit_all(t_data *data)
 		free(data->objs);
 	if (data->nb_lights)
 		free(data->lights);
-	exit(0);
+	while(1);
+	//exit(0);
 }

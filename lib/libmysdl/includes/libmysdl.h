@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:29:02 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/10 03:17:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/29 18:55:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct		s_texture
 {
 	uint32_t		*tab_pxl;
-	SDL_Texture		*sdl_tex;
+	void			*sdl_tex;
 	t_point			*size;
 }					t_texture;
 

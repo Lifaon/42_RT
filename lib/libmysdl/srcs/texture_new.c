@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 14:20:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/20 14:20:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 19:00:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_texture		*texture_new(t_point size, SDL_Renderer *ren)
 		return (NULL);
 	tex->size->x = size.x;
 	tex->size->y = size.y;
-	tex->sdl_tex = SDL_CreateTexture(ren, SDL_PIXELFORMAT_ARGB8888,
+	tex->sdl_tex = (void*)SDL_CreateTexture(ren, SDL_PIXELFORMAT_ARGB8888,
 			SDL_TEXTUREACCESS_STATIC, size.x, size.y);
 	return (tex);
 }

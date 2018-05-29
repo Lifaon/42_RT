@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 23:42:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 13:23:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,6 @@ void	print_parsed_data(t_data data)
 	}
 }
 
-char	*pouic(char *str, double n, char *dst)
-{
-	str = strcpy_db(str, n);
-	str[0] = '\0';
-	ft_putendl(dst);
-	str[0] = '&';
-	return (str);
-}
-
-void	tests_strcpy()
-{
-	char		*str;
-	char		*dst;
-
-	str = ft_strnew(100);
-	dst = str;
-	str = pouic(str, -440, dst);
-	str = pouic(str, 7300, dst);
-	str = pouic(str, 550.12, dst);
-	str = pouic(str, 337, dst);
-	str[0] = '\0';
-	ft_putendl(dst);
-}
-
 int		main(int ac, char **av)
 {
 	if (SDL_Init(SDL_INIT_VIDEO))
@@ -88,8 +64,7 @@ int		main(int ac, char **av)
 	if (create_ui() == 0)
 		return (0);
 	draw_image(g_data);
-	tests_strcpy();
 	//print_parsed_data(data);*/
-	//ft_event(g_data);
+	ft_event(g_data);
 	return (0);
 }

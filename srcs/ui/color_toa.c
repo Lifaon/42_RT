@@ -6,18 +6,20 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 22:32:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 22:43:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 13:14:26 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "rtv1.h"
 
-static char		*write_uint8(char *str, uint8_t nb, size_t index)
+static char		*write_uint8(char *str, uint8_t nb, size_t *index)
 {
+	if (nb == 0)
+		str[--*index] = '0';
 	while (nb)
 	{
-		str[--index] = '0' + (nb % 10);
+		str[--*index] = '0' + (nb % 10);
 		nb /= 10;
 	}
 	return (str);
@@ -33,16 +35,16 @@ char			*color_toa(char *str, t_color color)
 	size = size_color(color);
 	cpy_size = size;
 	str[--size] = ']';
-	str = write_uint8(str, color.argb.b, size);
+	str = write_uint8(str, color.argb.b, &size);
 	str[--size] = ' ';
 	str[--size] = ',';
-	str = write_uint8(str, color.argb.g, size);
+	str = write_uint8(str, color.argb.g, &size);
 	str[--size] = ' ';
 	str[--size] = ',';
-	str = write_uint8(str, color.argb.r, size);
+	str = write_uint8(str, color.argb.r, &size);
 	str[--size] = ' ';
 	str[--size] = ',';
-	str = write_uint8(str, color.argb.a, size);
+	str = write_uint8(str, color.argb.a, &size);
 	str[--size] = '[';
 	str += cpy_size;
 	return (str);

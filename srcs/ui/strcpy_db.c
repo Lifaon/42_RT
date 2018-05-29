@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:51:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 23:24:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 13:16:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	cpy = (n < 0) ? (n * -1) : n;
 	while (--i > size)
 		multiply *= 10;
-	printf("multiply = %ld\n", multiply);
 	if (((long)(cpy * 10 - *integer)) > 0)
 	{
 		*decimal = (long)((cpy - *integer) * multiply);
@@ -49,7 +48,6 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	}
 	else
 		*decimal = 0;
-	printf("decimal = %ld\n", *decimal);
 	cpy_decimal = *decimal;
 	while (cpy_decimal /= 10)
 		size++;
@@ -74,9 +72,9 @@ char			*strcpy_db(char *str, double n)
 	size_t		cpy_size;
 
 	size = get_size(n, &integer, &decimal);
-	cpy_size = size;
 	if (n < 0)
 		size++;
+	cpy_size = size;
 	if (decimal == 0)
 		str[--size] = '0';
 	size = write_long(&decimal, size, str);
@@ -87,7 +85,6 @@ char			*strcpy_db(char *str, double n)
 	str[0] = '0' + integer;
 	if (n < 0)
 		str[0] = '-';
-	printf("cpy_size = %lu\n", cpy_size);
-	str += cpy_size + 1;
+	str += cpy_size ;
 	return (str);
 }

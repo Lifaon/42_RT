@@ -29,7 +29,7 @@
 		"sphere" :
 		{
 			"position" : [-100, 200, 1000],
-			"radius" : 100,
+			"radius" : 100
 		},
 		"sphere" :
 		{

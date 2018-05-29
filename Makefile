@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/28 21:36:56 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/29 15:47:14 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRCS  = draw/colors.c \
 		events/ft_mouse.c \
 		events/ft_mouse_wheel.c \
 		\
+		parser/brackets.c \
+		parser/check_error.c \
 		parser/get_full_read_file.c \
 		parser/get_nb_of_structs.c \
 		parser/init_structures.c \

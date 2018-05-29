@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 20:08:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/20 14:43:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 14:45:04 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void		free_win(t_win **win)
 	if ((*win)->ren != NULL)
 		SDL_DestroyRenderer((*win)->ren);
 	SDL_DestroyWindow((*win)->ptr);
+	free((*win)->size);
+	(*win)->size = NULL;
 	free(*win);
 	*win = NULL;
 }

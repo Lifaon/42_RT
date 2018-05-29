@@ -10,38 +10,32 @@
 	"lights" :
 	[
 		{
-			"position" : [-800, 0, 400],
-			"ambient" : 0.3
-		}
+			"position" : [-1000, 1000, 1000],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [-2000, 0, 1000],
+			"ambient" : 0.2
+		},
+		{
+			"position" : [-1000, -1000, 1000],
+			"ambient" : 0.2
+		},
 	],
 	"objects" :
 	{
-		"sphere" :
+		"cone" :
 		{
-			"position" : [0, 0, 1000],
-			"radius" : 100,
-			"color" : [255, 0, 0]
+			"position" : [0, 0, 1500],
+			"radius" : 10,
+			"direction" : [0, 1, 0],
+			"color" : [0, 120, 180]
 		},
 		"plane" :
 		{
-			"position" : [0, -300, 1000],
-			"normal" : [0, 1, 0],
-			"color" : [0, 190, 255],
-			"specular" : 0.98
-		},
-		"plane" :
-		{
-			"position" : [0, 300, 1000],
-			"normal" : [0, -1, 0],
-			"color" : [0, 190, 255],
-			"specular" : 0.98
-		},
-		"plane" :
-		{
-			"position" : [0, 0, 1200],
-			"normal" : [0, 0, -1],
-			"color" : [0, 190, 255],
-			"specular" : 0.98
+			"position" : [0, 0, 1700],
+			"color" : [0, 120, 120],
+			"normal" : [0, 0, -1]
 		}
 	}
 }

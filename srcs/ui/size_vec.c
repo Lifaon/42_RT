@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 14:31:12 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 22:32:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:03:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@
 
 size_t		size_vec(t_vec vec)
 {
-	return(6 + size_double(vec.x) + size_double(vec.y) + size_double(vec.z));
+	return (6 + size_double(vec.x) + size_double(vec.y) + size_double(vec.z));
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size_vec.c                                         :+:      :+:    :+:   */
+/*   change_page.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 14:31:12 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:01:48 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/29 18:33:58 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/29 18:37:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-char		*strcpy_vec(char *str, t_vec vec)
+gboolean	change_page_light(GtkWidget *widget, gint arg1,  gpointer data)
 {
-	*str = '[';
-	str++;
-	str = strcpy_db(str, vec.x);
-	*str = ',';
-	str++;
-	*str = ' ';
-	str++;
-	str = strcpy_db(str, vec.y);
-	*str = ',';
-	str++;
-	*str = ' ';
-	str++;
-	str = strcpy_db(str, vec.z);
-	*str = ']';
-	str++;
-	return (str);
+	if (!data)
+		data = NULL;
+	ft_putnbr(arg1);
+	ft_putchar('\n');
+	g_data->ui.tab_light = arg1;
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 22:33:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:04:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	get_size_integer(double n, long *integer)
 
 static size_t	set_multiply(size_t size)
 {
-	long	multiply;
+	long		multiply;
 	size_t		i;
 
 	i = 17;
@@ -45,7 +45,7 @@ size_t			size_double(double n)
 	long		decimal;
 
 	size = get_size_integer(n, &integer);
-	multiply =  set_multiply(size);
+	multiply = set_multiply(size);
 	if (n < 0)
 		size++;
 	n = (n < 0) ? (n * -1) : n;

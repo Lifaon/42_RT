@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 19:48:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:58:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		destroy_tabs(GtkWidget *tab)
 	g_list_free(list);
 }
 
-void	click_open(GtkWidget *widget, gpointer data)
+void			click_open(GtkWidget *widget, gpointer data)
 {
 	GtkWidget	*select;
 	gint		response;

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:51:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 13:16:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:01:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	size_t		size;
 	long		cpy_decimal;
 	long		multiply;
-	size_t			i;
+	size_t		i;
 	double		cpy;
 
 	i = 17;
@@ -85,6 +85,6 @@ char			*strcpy_db(char *str, double n)
 	str[0] = '0' + integer;
 	if (n < 0)
 		str[0] = '-';
-	str += cpy_size ;
+	str += cpy_size;
 	return (str);
 }

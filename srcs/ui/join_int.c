@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 23:06:11 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:09:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		add_int(char *dst, int n, size_t size, size_t i)
 		dst[size] = '-';
 }
 
-char	*join_int(char const *s1, int n)
+char			*join_int(char const *s1, int n)
 {
 	char		*dst;
 	size_t		size;

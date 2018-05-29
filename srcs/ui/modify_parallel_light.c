@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 17:30:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:06:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	switch_parallel_light(GtkWidget *widget, gpointer param)
+void			switch_parallel_light(GtkWidget *widget, gpointer param)
 {
 	GSList		*lst;
 	gboolean	status;
@@ -36,6 +36,7 @@ void	switch_parallel_light(GtkWidget *widget, gpointer param)
 		lst = lst->next;
 	}
 }
+
 static void		fill_vec(t_vec *vec, double nb)
 {
 	static int i = 0;
@@ -52,7 +53,7 @@ static void		fill_vec(t_vec *vec, double nb)
 		vec->z = nb;
 }
 
-void	change_light_direction(GtkWidget *widget, gpointer param)
+void			change_light_direction(GtkWidget *widget, gpointer param)
 {
 	double		value;
 	GSList		*lst;
@@ -60,27 +61,23 @@ void	change_light_direction(GtkWidget *widget, gpointer param)
 	t_vec		dir;
 	char		*str;
 
-	if (!param)
+	if (!widget || !param)
 		return ;
 	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
-	if (!widget && !param)
-		return ;
-	//dir = gtk_range_get_value(GTK_RANGE(widget));
-	//printf("direction = %lf\n", dir);
 	while (lst)
 	{
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_SCALE(son))
-			{
-				value = gtk_range_get_value(GTK_RANGE(son));
-				fill_vec(&dir, value);
-			}
+		{
+			value = gtk_range_get_value(GTK_RANGE(son));
+			fill_vec(&dir, value);
+		}
 		if (GTK_IS_ENTRY(son))
-			{
-				str = ft_dbtoa(value);
-				gtk_entry_set_text(GTK_ENTRY(son), str);
-				ft_strdel(&str);
-			}
+		{
+			str = ft_dbtoa(value);
+			gtk_entry_set_text(GTK_ENTRY(son), str);
+			ft_strdel(&str);
+		}
 		lst = lst->next;
 	}
 }

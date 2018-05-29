@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 15:46:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 18:37:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,9 @@ typedef struct		s_funar_keyb
 typedef struct		s_ui
 {
 	GtkWidget	*tab;
+	int			tab_light;
+	int			tab_cams;
+	int			tab_objs;
 }					t_ui;
 
 typedef struct		s_wid_data

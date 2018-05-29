@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 13:13:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:04:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static char		*str_obj_type(char *str, t_obj_type type)
 	else if (type == CYLINDER)
 		str = my_strcopy(str, "cylinder");
 	else if (type == CONE)
-			str = my_strcopy(str, "cone");
+		str = my_strcopy(str, "cone");
 	str = my_strcopy(str, "\" :\n");
 	return (str);
 }
@@ -103,7 +103,7 @@ static char		*str_objects(char *str)
 		else
 			str = my_strcopy(str, "\n\t\t},\n");
 	}
-		str = my_strcopy(str, "\t}\n}");
+	str = my_strcopy(str, "\t}\n}");
 	return (str);
 }
 

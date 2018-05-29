@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/28 22:55:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:00:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ static size_t	get_size_str_obj_type(t_obj_type type)
 	size_t		size;
 
 	size = 7;
-		if (type == SPHERE)
-			return (size + 6);
-		else if (type == PLANE)
-			return (size + 5);
-		else if (type == CYLINDER)
-			return (size + 8);
-		else if (type == CONE)
-			return (size + 4);
-		return (0);
+	if (type == SPHERE)
+		return (size + 6);
+	else if (type == PLANE)
+		return (size + 5);
+	else if (type == CYLINDER)
+		return (size + 8);
+	else if (type == CONE)
+		return (size + 4);
+	return (0);
 }
 
 static size_t	size_of_objects(void)
@@ -101,7 +101,7 @@ static size_t	size_of_objects(void)
 		i++;
 	}
 	size--;
-		size += ft_strlen("\t},\n}");
+	size += ft_strlen("\t},\n}");
 	return (size);
 }
 

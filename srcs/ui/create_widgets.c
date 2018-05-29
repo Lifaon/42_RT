@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 17:28:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:11:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
 					min_max.x, min_max.y, step)))
 		return (NULL);
 	if (wid_d->f && param)
-		g_signal_connect(G_OBJECT(scale), "value-changed", G_CALLBACK(wid_d->f),
-				param);
+		g_signal_connect(G_OBJECT(scale), "value-changed",
+				G_CALLBACK(wid_d->f), param);
 	if (wid_d)
-		gtk_grid_attach(GTK_GRID(wid_d->grid), scale, wid_d->pos.y, wid_d->pos.x,
-			wid_d->size.x, wid_d->size.y);
+		gtk_grid_attach(GTK_GRID(wid_d->grid), scale, wid_d->pos.y,
+				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
 	return (scale);
 }
 
-GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt)
+GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param, const char *txt)
 {
 	GtkWidget	*entry;
 
@@ -56,8 +56,8 @@ GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt)
 	if (txt)
 		gtk_entry_set_text(GTK_ENTRY(entry), txt);
 	if (wid_d)
-		gtk_grid_attach(GTK_GRID(wid_d->grid), entry, wid_d->pos.y, wid_d->pos.x,
-			wid_d->size.x, wid_d->size.y);
+		gtk_grid_attach(GTK_GRID(wid_d->grid), entry, wid_d->pos.y,
+			wid_d->pos.x, wid_d->size.x, wid_d->size.y);
 	return (entry);
 }
 
@@ -68,7 +68,7 @@ GtkWidget	*l_new(t_wid_data *wid_d, const char *txt)
 	if (!(label = gtk_label_new(txt)))
 		return (NULL);
 	if (wid_d)
-		gtk_grid_attach(GTK_GRID(wid_d->grid), label, wid_d->pos.y, wid_d->pos.x,
-			wid_d->size.x, wid_d->size.y);
+		gtk_grid_attach(GTK_GRID(wid_d->grid), label, wid_d->pos.y,
+				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
 	return (label);
 }

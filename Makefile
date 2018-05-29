@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/29 15:47:14 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/29 18:47:27 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS  = draw/colors.c \
 		ui/my_strcopy.c \
 		ui/strcpy_db.c \
 		ui/strcpy_vec.c \
+		ui/change_page.c \
 \
 		data_init.c \
 		exit_all.c \

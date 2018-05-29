@@ -6,33 +6,37 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 13:21:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:12:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <fcntl.h>
 
-static int		create_file(GtkWidget *select)
+static int		create_file(char *path)
 {
-	char		*path;
 	int			fd;
-	size_t		size;
 	char		*str;
+	char		*name;
+	int			need_free;
 
-	if (!(path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select))))
-		return (-1);
-	ft_putstr(path);
-	//fd = open(path, O_WRONLY | O_CREAT | O_NOFOLLOW);
-	//if ((fd = open(path, O_WRONLY | O_NOFOLLOW)) < 0)
-	if ((fd = open(path, O_WRONLY | O_CREAT | O_NOFOLLOW,
+	need_free = 0;
+	if ((name = ft_strstr(path, ".json")) && ft_strlen(name) < 1)
+		name = path;
+	else
+	{
+		name = ft_strjoin(path, ".json");
+		need_free = 1;
+	}
+	if ((fd = open(name, O_WRONLY | O_CREAT | O_NOFOLLOW,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)) < 0)
-			return (-1);
-	ft_putnbr(fd);
-	size = size_of_str_json();
-	str = fill_str_json(size);
+		return (-1);
+	str = fill_str_json(size_of_str_json());
 	ft_putstr_fd(str, fd);
 	ft_strdel(&str);
+	if (need_free)
+		ft_strdel(&name);
+	ft_strdel(&path);
 	close(fd);
 	return (1);
 }
@@ -41,6 +45,7 @@ void			click_save(GtkWidget *widget, gpointer data)
 {
 	GtkWidget	*select;
 	gint		response;
+	char		*path;
 
 	if (!widget && !data)
 		return ;
@@ -50,7 +55,11 @@ void			click_save(GtkWidget *widget, gpointer data)
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
 	response = gtk_dialog_run(GTK_DIALOG(select));
 	if (response == GTK_RESPONSE_ACCEPT)
-		if ((create_file(select)) < 0)
+	{
+		if (!(path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select))))
 			ft_putstr("an error occured when writing file \n");
+		if ((create_file(path)) < 0)
+			ft_putstr("file not saved\n");
+	}
 	gtk_widget_destroy(select);
 }

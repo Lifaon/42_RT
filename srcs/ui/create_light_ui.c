@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 19:48:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 18:33:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,13 @@ static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
 	wid_d->pos.y = 1;
 	if (!(entry = entry_new(wid_d, NULL, "")))
 		return (0);
-	param = (gpointer)entry;
-	if (group)
-		param = (gpointer)group;
-	if (group)
-		gtk_size_group_add_widget(group, entry);
+	param = (gpointer)group;
+	gtk_size_group_add_widget(group, entry);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->size = pt_set(2, 1);
 	if (!(scale = scale_new(wid_d, param, ptdb_set(-2000000, 2000000), 10)))
 		return (0);
-	if (group)
-		gtk_size_group_add_widget(group, scale);
+	gtk_size_group_add_widget(group, scale);
 	gtk_range_set_value(GTK_RANGE(scale), value);
 	g_signal_connect(G_OBJECT(entry), "activate",
 			G_CALLBACK(entry_change_scale), (gpointer)scale);
@@ -57,31 +53,24 @@ static int		make_grid(t_wid_data *wid_d)
 
 static int		construct_phase_1(t_wid_data *wid_d)
 {
-	gpointer		f_data;
 	GtkSizeGroup	*group;
 	char			*str;
-	int				i;
-	char			s;
+	char			s[2];
 
-	f_data = (gpointer)g_data;
-	if (!(make_grid(wid_d)))
-		return (0);
-	if (!(l_new(wid_d, "parrallele light")))
+	if (!(make_grid(wid_d)) || !(l_new(wid_d, "parrallele light")))
 		return (0);
 	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (0);
-	/*wid_d->f = &change_light_distance;
-	//make_ray_and_dir(wid_d, "distance", NULL, 4);*/ 
 	wid_d->f = &change_light_direction;
-	i = -1;
-	s = 'x';
-	while (++i < 3)
+	s[0] = 'x';
+	s[1] = '\0';
+	while (s[0] <= 'z')
 	{
-		str = ft_strjoin(&s, " direction");
+		str = ft_strjoin(s, " direction");
 		if (make_ray_and_dir(wid_d, str, group, 12) < 1)
 			return (0);
 		ft_strdel(&str);
-		s++;
+		s[0] = s[0] + 1;
 	}
 	wid_d->pos = pt_set(0, 1);
 	wid_d->f = &switch_parallel_light;
@@ -101,17 +90,19 @@ int				create_light_ui(GtkWidget *tab)
 	i = 0;
 	if (!(tab_light = gtk_notebook_new()))
 		return (0);
+	g_signal_connect(G_OBJECT(tab_light), "change-current-page",
+			G_CALLBACK(change_page_light), NULL);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);
 	while (i < g_data->nb_lights)
 	{
-		str = join_int("Light ", i + 1);
-		if (!(l_title = gtk_label_new(str)))
+		i++;
+		if (!(str = join_int("Light ", i)) || !(l_title = gtk_label_new(str)))
 			return (0);
 		if (!(construct_phase_1(&wid_d)))
 			return (0);
-		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_light), wid_d.grid, l_title)) < 0)
+		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_light), wid_d.grid,
+						l_title)) < 0)
 			return (0);
-		i++;
 		ft_strdel(&str);
 	}
 	if (!(l_title = gtk_label_new("Light")))

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 19:38:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:00:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 	return (item);
 }
 
-static int		create_all_items(GtkToolItem *item[3])
+static int			create_all_items(GtkToolItem *item[3])
 {
 	if (!(item[0] = create_item("exit.png", "open", "open a file")))
 		return (0);
@@ -39,7 +39,7 @@ static int		create_all_items(GtkToolItem *item[3])
 	return (1);
 }
 
-int				create_toolbar(GtkWidget *v_box, t_ui *ui)
+int					create_toolbar(GtkWidget *v_box, t_ui *ui)
 {
 	GtkWidget		*bar;
 	GtkToolItem		*item[3];

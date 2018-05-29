@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 19:32:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:13:27 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		create_ui(void)
 	t_ui			*ui;
 
 	if (!(win = gtk_window_new(GTK_WINDOW_TOPLEVEL)))
-			return (0);
+		return (0);
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
@@ -30,7 +30,8 @@ int		create_ui(void)
 		return (0);
 	if (!(create_sub_notebook(ui)))
 		return (0);
-	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit),
+			NULL);
 	gtk_box_pack_start(GTK_BOX(v_box), ui->tab, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), v_box);
 	gtk_widget_show_all(win);

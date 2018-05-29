@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:00:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 20:07:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 	return (item);
 }
 
-static int			create_all_items(GtkToolItem *item[3])
+static int			create_all_items(GtkToolItem *item[4])
 {
 	if (!(item[0] = create_item("exit.png", "open", "open a file")))
 		return (0);
@@ -36,26 +36,28 @@ static int			create_all_items(GtkToolItem *item[3])
 		return (0);
 	if (!(item[2] = create_item("squar.png", "export", "export work")))
 		return (0);
+	if (!(item[3] = create_item("squar.png", "redrew", "redraw")))
+		return (0);
 	return (1);
 }
 
 int					create_toolbar(GtkWidget *v_box, t_ui *ui)
 {
 	GtkWidget		*bar;
-	GtkToolItem		*item[3];
-	GtkWidget		*img[3];
+	GtkToolItem		*item[4];
 	int				i;
 	void			(*f[3])(GtkWidget*, gpointer);
 
 	f[0] = &click_open;
 	f[1] = &click_save;
 	f[2] = &click_export;
+	f[2] = &click_redraw;
 	if (!(bar = gtk_toolbar_new()))
 		return (0);
 	if (!(create_all_items(item)))
 		return (0);
 	i = -1;
-	while (++i < 3)
+	while (++i < 4)
 	{
 		g_signal_connect(G_OBJECT(item[i]), "clicked", G_CALLBACK(f[i]), ui);
 		gtk_tool_item_set_homogeneous(item[i], TRUE);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 18:37:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 19:56:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,14 @@ typedef struct		s_obj
 **	normal = surface normal in case it's constant (e.g. plane)
 */
 
+typedef struct		s_ui
+{
+	GtkWidget	*tab;
+	int			tab_light;
+	int			tab_cams;
+	int			tab_objs;
+}					t_ui;
+
 typedef struct		s_data
 {
 	int				nb_objects;
@@ -132,6 +140,8 @@ typedef struct		s_data
 	t_win			*win;
 	GtkWidget		*win_gtk;
 	t_texture		*tex;
+	t_ui			*ui;
+	int				draw;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in
@@ -147,14 +157,6 @@ typedef struct		s_funar_keyb
 ** This structure is used to handle the keyboard event
 ** fill f with the function you want to use when the key is pushed
 */
-typedef struct		s_ui
-{
-	GtkWidget	*tab;
-	int			tab_light;
-	int			tab_cams;
-	int			tab_objs;
-}					t_ui;
-
 typedef struct		s_wid_data
 {
 	t_point			pos;

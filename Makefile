@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/29 18:47:27 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/05/29 20:06:38 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS  = draw/colors.c \
 		ui/click_open.c \
 		ui/click_save.c \
 		ui/click_export.c \
+		ui/click_redraw.c \
 		ui/size_int.c \
 		ui/size_double.c \
 		ui/size_vec.c \

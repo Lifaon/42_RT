@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/26 23:35:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 19:58:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_data		*data_init(int ac, char **av)
 		exit_all(data);
 	data->win->ren = SDL_CreateRenderer(data->win->ptr, 0, 0);
 	data->tex = texture_new(size, data->win->ren);
+	data->draw = 1;
 	return (data);
 }

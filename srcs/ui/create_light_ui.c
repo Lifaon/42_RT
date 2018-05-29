@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 18:33:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 19:42:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
 	gtk_size_group_add_widget(group, entry);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->size = pt_set(2, 1);
-	if (!(scale = scale_new(wid_d, param, ptdb_set(-2000000, 2000000), 10)))
+	if (!(scale = scale_new(wid_d, param, ptdb_set(-10000, 10000), 10)))
 		return (0);
 	gtk_size_group_add_widget(group, scale);
 	gtk_range_set_value(GTK_RANGE(scale), value);
@@ -90,7 +90,7 @@ int				create_light_ui(GtkWidget *tab)
 	i = 0;
 	if (!(tab_light = gtk_notebook_new()))
 		return (0);
-	g_signal_connect(G_OBJECT(tab_light), "change-current-page",
+	g_signal_connect(G_OBJECT(tab_light), "switch-page",
 			G_CALLBACK(change_page_light), NULL);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);
 	while (i < g_data->nb_lights)

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 18:37:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/29 20:06:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,7 @@ char			*strcpy_vec(char *str, t_vec vec);
 char			*color_toa(char *str, t_color color);
 char			*fill_str_json(size_t size);
 size_t			size_of_str_json(void);
-gboolean		change_page_light(GtkWidget *widget, gint arg1,  gpointer data);
+gboolean	change_page_light(GtkNotebook *notebook, GtkWidget *page,
+		gint arg1, gpointer data);
+void			click_redraw(GtkWidget *widget, gpointer param);
 #endif

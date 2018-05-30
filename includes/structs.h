@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 19:56:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/30 19:13:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,13 @@ typedef struct		s_wid_data
 	void			(*f)(GtkWidget*, gpointer);
 }					t_wid_data;
 /*
-** This tructure is used to make widget, position it to a grid
+** This structure is used to make widget, position it to a grid
 ** and link to function 
 */
+
+typedef struct		s_widget_vec
+{
+	GtkSizeGroup	*group;
+	t_vec			*vec;
+}					t_widget_vec;
 #endif

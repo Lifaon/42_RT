@@ -6,38 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 19:42:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/30 20:09:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-static int		make_ray_and_dir(t_wid_data *wid_d, const char *txt,
-		GtkSizeGroup *group, gdouble value)
-{
-	GtkWidget	*entry;
-	GtkWidget	*scale;
-	gpointer	param;
-
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	if (!(l_new(wid_d, txt)))
-		return (0);
-	wid_d->pos.y = 1;
-	if (!(entry = entry_new(wid_d, NULL, "")))
-		return (0);
-	param = (gpointer)group;
-	gtk_size_group_add_widget(group, entry);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	wid_d->size = pt_set(2, 1);
-	if (!(scale = scale_new(wid_d, param, ptdb_set(-10000, 10000), 10)))
-		return (0);
-	gtk_size_group_add_widget(group, scale);
-	gtk_range_set_value(GTK_RANGE(scale), value);
-	g_signal_connect(G_OBJECT(entry), "activate",
-			G_CALLBACK(entry_change_scale), (gpointer)scale);
-	wid_d->size = pt_set(1, 1);
-	return (1);
-}
 
 static int		make_grid(t_wid_data *wid_d)
 {
@@ -51,27 +24,62 @@ static int		make_grid(t_wid_data *wid_d)
 	return (1);
 }
 
-static int		construct_phase_1(t_wid_data *wid_d)
+static GtkSizeGroup		*add_vector_choose(t_wid_data *wid_d, char *label,
+		t_vec *vec)
 {
-	GtkSizeGroup	*group;
+	t_widget_vec	*wid_vec;
 	char			*str;
-	char			s[2];
+	char			s[3];
 
-	if (!(make_grid(wid_d)) || !(l_new(wid_d, "parrallele light")))
-		return (0);
-	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
-		return (0);
-	wid_d->f = &change_light_direction;
+	wid_vec = (t_widget_vec*)malloc(sizeof(t_widget_vec));
+	wid_vec->group = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
+	wid_vec->vec = vec;
+	/*if (!(fill_widget_vec(&wid_vec, NULL, vec)))
+		return (NULL);*/
+	//s = ft_strcpy(s, "x ");
 	s[0] = 'x';
-	s[1] = '\0';
+	s[1] = ' ';
+	s[2] = '\0';
 	while (s[0] <= 'z')
 	{
-		str = ft_strjoin(s, " direction");
-		if (make_ray_and_dir(wid_d, str, group, 12) < 1)
-			return (0);
+		str = ft_strjoin(s, label);
+		if (s[0] == 'x')
+			if (make_entry_and_scale(wid_d, str, wid_vec, vec->x) < 1)
+				return (NULL);
+		if (s[0] == 'y')
+			if (make_entry_and_scale(wid_d, str, wid_vec, vec->y) < 1)
+				return (NULL);
+		if (s[0] == 'z')
+			if (make_entry_and_scale(wid_d, str, wid_vec, vec->z) < 1)
+				return (NULL);
 		ft_strdel(&str);
 		s[0] = s[0] + 1;
 	}
+	return (wid_vec->group);
+}
+
+static int		construct_phase_1(t_wid_data *wid_d, int index)
+{
+	GtkSizeGroup	*group;
+	char			*str;
+	t_vec			*vec;
+
+	ft_putstr("index = ");
+	ft_putnbr(index);
+	ft_putchar('\n');
+	if (!(make_grid(wid_d)) || !(l_new(wid_d, "parrallele light")))
+		return (0);
+	//wid_d->f = &change_light_direction;
+	wid_d->f = &change_vec_from_scale;
+	vec = &g_data->lights[index].dir;
+	ft_putstr("bla\n");
+	if (!(group = add_vector_choose(wid_d, "direction", vec)))
+		return (0);
+	vec = &g_data->lights[index].pos;
+	//wid_d->f = &change_light_position;
+	ft_putstr("bli\n");
+	if (!(add_vector_choose(wid_d, "position", vec)))
+		return (0);
 	wid_d->pos = pt_set(0, 1);
 	wid_d->f = &switch_parallel_light;
 	if (!(tgb_new(wid_d, (gpointer)group, "ON")))
@@ -87,18 +95,18 @@ int				create_light_ui(GtkWidget *tab)
 	int				i;
 	char			*str;
 
-	i = 0;
 	if (!(tab_light = gtk_notebook_new()))
 		return (0);
 	g_signal_connect(G_OBJECT(tab_light), "switch-page",
 			G_CALLBACK(change_page_light), NULL);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(tab_light), TRUE);
+	i = 0;
 	while (i < g_data->nb_lights)
 	{
 		i++;
 		if (!(str = join_int("Light ", i)) || !(l_title = gtk_label_new(str)))
 			return (0);
-		if (!(construct_phase_1(&wid_d)))
+		if (!(construct_phase_1(&wid_d, i - 1)))
 			return (0);
 		if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_light), wid_d.grid,
 						l_title)) < 0)

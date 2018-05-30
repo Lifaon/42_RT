@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 20:06:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/30 19:41:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,10 @@ size_t			size_of_str_json(void);
 gboolean	change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 void			click_redraw(GtkWidget *widget, gpointer param);
+void			change_light_position(GtkWidget *widget, gpointer param);
+int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
+			t_widget_vec *wid_vec, gdouble value);
+int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
+		t_vec *vec);
+void			change_vec_from_scale(GtkWidget *widget, gpointer param);
 #endif

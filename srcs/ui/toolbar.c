@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 20:07:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/30 13:12:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int					create_toolbar(GtkWidget *v_box, t_ui *ui)
 	GtkWidget		*bar;
 	GtkToolItem		*item[4];
 	int				i;
-	void			(*f[3])(GtkWidget*, gpointer);
+	void			(*f[4])(GtkWidget*, gpointer);
 
 	f[0] = &click_open;
 	f[1] = &click_save;
 	f[2] = &click_export;
-	f[2] = &click_redraw;
+	f[3] = &click_redraw;
 	if (!(bar = gtk_toolbar_new()))
 		return (0);
 	if (!(create_all_items(item)))

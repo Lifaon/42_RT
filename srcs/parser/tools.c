@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 16:22:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 20:54:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,38 @@ t_vec	parse_vec(char *str, int *index)
 	while (str[i] != '[')
 		++i;
 	ret.x = my_atof(str + (++i));
-	while (str[i] != ',')
+	while (str[i] != ',' && str[i] != ']')
 		++i;
+	if (str[i] == ']')
+		return (ret);
 	ret.y = my_atof(str + (++i));
-	while (str[i] != ',')
+	while (str[i] != ',' && str[i] != ']')
 		++i;
+	if (str[i] == ']')
+		return (ret);
 	ret.z = my_atof(str + (++i));
+	while (str[i] != ']')
+		++i;
+	*index += i;
+	return (ret);
+}
+
+t_color	parse_color_2(char *str, int *index, t_color ret, int i)
+{
+	int nb;
+
+	while (str[i] != ',' && str[i] != ']')
+		++i;
+	if (str[i] == ']')
+		return (ret);
+	nb = abs(ft_atoi(str + (++i)));
+	ret.argb.b = nb <= 255 ? nb : 255;
+	while (str[i] != ',' && str[i] != ']')
+		++i;
+	if (str[i] == ']')
+		return (ret);
+	nb = abs(ft_atoi(str + (++i)));
+	ret.argb.a = nb <= 255 ? nb : 255;
 	while (str[i] != ']')
 		++i;
 	*index += i;
@@ -51,23 +77,22 @@ t_vec	parse_vec(char *str, int *index)
 t_color	parse_color(char *str, int *index)
 {
 	t_color	ret;
+	int		nb;
 	int		i;
 
 	ret.c = 0;
 	i = 0;
 	while (str[i] != '[')
 		++i;
-	ret.argb.r = ft_atoi(str + (++i));
-	while (str[i] != ',')
+	nb = abs(ft_atoi(str + (++i)));
+	ret.argb.r = nb <= 255 ? nb : 255;
+	while (str[i] != ',' && str[i] != ']')
 		++i;
-	ret.argb.g = ft_atoi(str + (++i));
-	while (str[i] != ',')
-		++i;
-	ret.argb.b = ft_atoi(str + (++i));
-	while (str[i] != ']')
-		++i;
-	*index += i;
-	return (ret);
+	if (str[i] == ']')
+		return (ret);
+	nb = abs(ft_atoi(str + (++i)));
+	ret.argb.g = nb <= 255 ? nb : 255;
+	return (parse_color_2(str, index, ret, i));
 }
 
 double	parse_nb(char *str, int *index)

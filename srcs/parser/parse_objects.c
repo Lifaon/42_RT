@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 19:38:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 18:49:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 	if (read_quotes(str + *index, "\"position\"", index))
 		object->pos = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"radius\"", index))
-		object->r = parse_nb(str + *index, index);
+		object->r = fabs(parse_nb(str + *index, index));
 	else if (read_quotes(str + *index, "\"normal\"", index))
 		object->normal = vec_normalize(parse_vec(str + *index, index));
 	else if (read_quotes(str + *index, "\"color\"", index))
 		object->color = parse_color(str + *index, index);
 	else if (read_quotes(str + *index, "\"direction\"", index))
-		object->dir = vec_normalize(parse_vec(str + *index, index));
+		object->dir = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))
 		object->spec = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"alpha\"", index))
@@ -45,6 +45,10 @@ static void	parse_object(t_obj *object, char *str, int *index)
 		if (str[i] == '{' || str[i] == '}')
 			in_braces += (str[i] == '{' ? 1 : -1);
 	}
+	if (object->spec > 1 || object->spec < 0)
+		object->spec = object->spec > 1 ? 1 : 0;
+	if (object->alpha < 1)
+		object->alpha = 1;
 	*index += i;
 }
 

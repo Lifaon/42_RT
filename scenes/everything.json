@@ -9,7 +9,11 @@
 	"lights" :
 	[
 		{
-			"position" : [0, 0, 400],
+			"position" : [200, 0, 400],
+			"ambient" : 0.3
+		},
+		{
+			"position" : [-200, 0, 400],
 			"ambient" : 0.3
 		}
 	],

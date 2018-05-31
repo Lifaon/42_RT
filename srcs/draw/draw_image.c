@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:26:54 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 19:56:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 	{
 		inter.t = t;
 		inter.ip = vec_add(data->cams[data->i].pos, vec_multiply(ray, inter.t));
-		inter.normal = data->objs[obj_i].get_normal(data->objs[obj_i], inter);
+		inter.normal = get_normal(ray, data->objs[obj_i], inter);
 	}
 	pt_to_tex(crd, data->tex, \
 		t < INFINITY ? get_px_color(data, inter, obj_i) : 0);

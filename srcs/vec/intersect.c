@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 17:15:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 15:29:02 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
 	if (dv == 0)
 		return (0);
 	inter->t = -xv / dv;
-	if (inter->t <= inter->min_dist || inter->t == INFINITY)
+	if (inter->t <= inter->min_dist)
 		return (0);
 	return (1);
 }

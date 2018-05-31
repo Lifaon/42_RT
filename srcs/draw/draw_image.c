@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 19:09:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/05/31 15:24:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,29 @@
 static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 {
 	t_inter	inter;
-	double	tmp;
+	double	t;
 	int		i;
-	int		object_index;
+	int		obj_i;
 
-	tmp = INFINITY;
+	t = INFINITY;
 	i = -1;
+	inter.min_dist = 0;
 	while (++i < data->nb_objects)
 	{
 		inter.oc = data->objs[i].oc;
-		if (data->objs[i].intersect(data->objs[i], ray, &inter) && \
-			inter.t < tmp)
+		if (data->objs[i].intersect(data->objs[i], ray, &inter) && inter.t < t)
 		{
-			tmp = inter.t;
-			object_index = i;
+			t = inter.t;
+			obj_i = i;
 		}
 	}
-	if (tmp < INFINITY)
+	if (t < INFINITY)
 	{
-		inter.t = tmp;
+		inter.t = t;
 		inter.ip = vec_add(data->cams[data->i].pos, vec_multiply(ray, inter.t));
-		pt_to_tex(crd, data->tex, get_px_color(data, inter, object_index));
+		inter.normal = data->objs[obj_i].get_normal(data->objs[obj_i], inter);
+		inter.ip = vec_add(inter.ip, vec_multiply(inter.normal, 0.0001));
+		pt_to_tex(crd, data->tex, get_px_color(data, inter, obj_i));
 	}
 	else
 		pt_to_tex(crd, data->tex, 0);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 19:31:28 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 16:04:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_color	shade(t_data *data, t_inter inter, int light_i, int index)
 	light = vec_normalize(light);
 	if (light_is_path_blocked(data, inter.ip, light, len))
 		return (ret);
-	inter.normal = data->objs[index].get_normal(data->objs[index], inter);
 	dot = dot_product(light, inter.normal);
 	if (dot <= 0)
 		return (ret);

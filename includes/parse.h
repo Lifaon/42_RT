@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/23 16:59:21 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 16:45:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		read_quotes(char *str, char *word, int *index);
 **	at the beginning of the string or not.
 */
 
-int		check_error(char *str);
+void	check_error(t_data *data, char *str);
 int		brackets(char *str);
 /*
 **	check_error() checks if the given scene file will crash the program.
@@ -81,6 +81,11 @@ void	remove_white_spaces(char **str);
 **	remove_white_spaces() takes a pointer to a malloced string, and removes all
 **	white spaces (' ', '\t', '\n') that are not in quotes. It is used to test
 **	if the parser works with a file without white spaces.
+*/
+
+void	exit_all(t_data *data);
+/*
+**	Frees everything that has to be freed.
 */
 
 t_vec	vec_normalize(t_vec u);

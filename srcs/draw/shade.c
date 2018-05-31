@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:04:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 16:34:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,6 @@ int		light_is_path_blocked(t_data *data, t_vec ip, t_vec light, double len)
 			return (1);
 	}
 	return (0);
-}
-
-t_color	diffuse_shading(t_data *data, double dot, int index)
-{
-	return (col_multiply(data->objs[index].color, dot));
-}
-
-t_color	ambient_shading(t_data *data, int light_i, int index)
-{
-	return (col_multiply(data->objs[index].color, data->lights[light_i].ambi));
-}
-
-t_color	specular_shading(t_data *data, int index, t_inter inter, t_vec light)
-{
-	double	dot;
-	t_vec	r;
-	t_vec	v;
-
-	r = vec_normalize(vec_substract(\
-			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\
-			light));
-	v = vec_normalize(vec_substract(data->cams[data->i].pos, inter.ip));
-	dot = dot_product(v, r);
-	if (dot > 0)
-		return (col_multiply((t_color)(uint32_t)0xFFFFFF, \
-			data->objs[index].spec * pow(dot, data->objs[index].alpha)));
-	return ((t_color)(uint32_t)0);
 }
 
 t_color	shade(t_data *data, t_inter inter, int light_i, int index)

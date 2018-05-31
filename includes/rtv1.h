@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 19:14:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 16:46:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,14 @@ t_funar_keyb	*fill_funar_key_event(int *size);
 int				ft_mouse_wheel(int y, t_data *data);
 int				ft_mouse(int x, int y, t_data *data);
 int				ft_keyboard(int key, t_data *data);
+
+/*
+**	Phong shading.
+*/
+t_color			diffuse_shading(t_data *data, double dot, int index);
+t_color			ambient_shading(t_data *data, int light_i, int index);
+t_color			specular_shading(t_data *data, int index, t_inter inter, \
+																t_vec light);
 
 /*
 **	Functions used for color management.

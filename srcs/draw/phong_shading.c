@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:43:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 17:12:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ t_color	specular_shading(t_data *data, int index, t_inter inter, t_vec light)
 	double	dot;
 
 	ret.c = 0xFFFFFF;
+	ret = col_multiply(ret, data->objs[index].spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\
 			light));
 	v = vec_normalize(vec_substract(data->cams[data->i].pos, inter.ip));
 	dot = dot_product(v, r);
 	if (dot > 0)
-		ret = col_multiply(ret, \
-			data->objs[index].spec * pow(dot, data->objs[index].alpha));
+		ret = col_multiply(ret, pow(dot, data->objs[index].alpha));
 	else
 		ret.c = 0;
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 19:27:20 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/05/31 17:00:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ typedef struct		s_inter
 	double			t1;
 	double			t2;
 	double			t;
-	double			min_dist;
 	double			delta;
+	double			min_dist;
+	t_color			spec;
 	t_vec			ip;
 	t_vec			normal;
 	t_vec			oc;
@@ -56,9 +57,10 @@ typedef struct		s_inter
 /*
 **	Intersection structure -> t1, t2 and delta are used for equations of degree
 **	two, and t is the smallest positive number between t1 and t2 ; min_dist =
-**	minimum distance before we consider there is an intersection ; ip =
-**	intersection point ; normal = the normal of the object at 'ip' ; oc = vector
-**	between origin of the current ray and center of the current object.
+**	minimum distance before we consider there is an intersection ; spec =
+**	specular shading at the intersection point ; ip = intersection point ;
+**	normal = the normal of the object at 'ip' ; oc = vector between origin of
+**	the current ray and center of the current object.
 */
 
 typedef struct		s_camera

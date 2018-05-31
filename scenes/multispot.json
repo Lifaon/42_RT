@@ -2,41 +2,26 @@
 	"cameras" :
 	[
 		{
+			"position" : [0, 0, 0],
 			"fov" : 10
 		}
 	],
 	"lights" :
 	[
 		{
+			"position" : [-1000, 2000, 0],
+			"ambient" : 0.2
+		},
+		{
 			"position" : [0, 1000, 0],
 			"ambient" : 0.2
 		},
 		{
-			"position" : [500, 500, 0],
+			"position" : [-2000, 1000, 0],
 			"ambient" : 0.2
-		},
-		{
-			"position" : [-500, 500, 0],
-			"ambient" : 0.2
-		},
-		{
-			"position" : [1000, 0, 0],
-			"ambient" : 0.2
-		},
+		}
 		{
 			"position" : [-1000, 0, 0],
-			"ambient" : 0.2
-		},
-		{
-			"position" : [500, -500, 0],
-			"ambient" : 0.2
-		},
-		{
-			"position" : [-500, -500, 0],
-			"ambient" : 0.2
-		},
-		{
-			"position" : [0, -1000, 0],
 			"ambient" : 0.2
 		}
 	],
@@ -46,36 +31,48 @@
 		{
 			"position" : [0, 0, 3000],
 			"radius" : 200,
+			"specular" : 1,
+			"alpha" : 75
 		},
 		"sphere" :
 		{
-			"position" : [350, 0, 3000],
+			"position" : [350, 0, 3100],
 			"color" : [255, 160, 0],
-			"radius" : 100
+			"radius" : 100,
+			"specular" : 1,
+			"alpha" : 75
 		},
 		"sphere" :
 		{
-			"position" : [-350, 0, 3000],
+			"position" : [-350, 0, 3100],
 			"color" : [255, 160, 0],
-			"radius" : 100
+			"radius" : 100,
+			"specular" : 1,
+			"alpha" : 75
 		},
 		"sphere" :
 		{
-			"position" : [0, 350, 3000],
+			"position" : [0, 350, 3100],
 			"color" : [255, 160, 0],
-			"radius" : 100
+			"radius" : 100,
+			"specular" : 1,
+			"alpha" : 75
 		},
 		"sphere" :
 		{
-			"position" : [0, -350, 3000],
+			"position" : [0, -350, 3100],
 			"color" : [255, 160, 0],
-			"radius" : 100
+			"radius" : 100,
+			"specular" : 1,
+			"alpha" : 75
 		},
 		"plane" :
 		{
-			"position" : [0, 0, 3500],
+			"position" : [0, 0, 3300],
 			"normal" : [0, 0, -1],
-			"color" : [0, 180, 180]
+			"color" : [115, 0, 0],
+			"specular" : 0,
+			"alpha" : 100
 		}
 	}
 }

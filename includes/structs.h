@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/30 19:13:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/01 18:45:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct		s_obj
 typedef struct		s_ui
 {
 	GtkWidget	*tab;
+	t_list		*to_free;
 	int			tab_light;
 	int			tab_cams;
 	int			tab_objs;

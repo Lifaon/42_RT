@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 22:32:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 13:14:26 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:30:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ char			*color_toa(char *str, t_color color)
 	size = size_color(color);
 	cpy_size = size;
 	str[--size] = ']';
+	str = write_uint8(str, color.argb.a, &size);
+	str[--size] = ' ';
+	str[--size] = ',';
 	str = write_uint8(str, color.argb.b, &size);
 	str[--size] = ' ';
 	str[--size] = ',';
@@ -42,9 +45,6 @@ char			*color_toa(char *str, t_color color)
 	str[--size] = ' ';
 	str[--size] = ',';
 	str = write_uint8(str, color.argb.r, &size);
-	str[--size] = ' ';
-	str[--size] = ',';
-	str = write_uint8(str, color.argb.a, &size);
 	str[--size] = '[';
 	str += cpy_size;
 	return (str);

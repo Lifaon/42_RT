@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/29 19:58:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:37:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_data		*data_init(int ac, char **av)
 	t_point		size;
 	t_data		*data;
 
-	if (ac != 2)
+	if (ac != 2 || ft_strlen(av[1]) < 1)
 	{
 		ft_putendl("Usage : ./rt \'file_name\'");
 		exit(-1);
@@ -52,6 +52,7 @@ t_data		*data_init(int ac, char **av)
 	data->nb_lights = 0;
 	data->tex = NULL;
 	data->win = NULL;
+	data->ui = NULL;
 	init_cameras(data);
 	init_function_ptrs(data);
 	parse(data, av[1]);

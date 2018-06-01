@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/30 20:01:05 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:43:52 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,9 @@ static t_vec	get_vector_from_group_widget(GSList *lst)
 	GtkWidget	*son;
 	t_vec		vec;
 	char		*str;
-	static int	h = 0;
 
-	h =0;
 	while (lst)
 	{
-		ft_putnbr(h++);
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_SCALE(son))
 		{
@@ -89,48 +86,16 @@ static t_vec	get_vector_from_group_widget(GSList *lst)
 
 void			change_vec_from_scale(GtkWidget *widget, gpointer param)
 {
-//	t_vec			dir;
 	t_widget_vec	*wid_vec;
 	char			*str;
 	GSList			*lst;
-	void*			test;
 
 	if (!widget || !param)
 		return ;
-	ft_putstr("inter\n");
 	wid_vec = (t_widget_vec*)param;
-	test = (void*)wid_vec->group;
-	ft_putstr("pouet\n");
 	if (GTK_IS_SIZE_GROUP(wid_vec->group))
 	{
 		lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(wid_vec->group));
 		*wid_vec->vec = get_vector_from_group_widget(lst);
 	}
-	ft_putstr("meh\n");
-}
-
-void			change_light_direction(GtkWidget *widget, gpointer param)
-{
-	t_vec		dir;
-	char		*str;
-	GSList		*lst;
-
-	if (!widget || !param)
-		return ;
-	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
-	dir = get_vector_from_group_widget(lst);
-	g_data->lights[g_data->ui->tab_light].dir = dir;
-}
-
-void			change_light_position(GtkWidget *widget, gpointer param)
-{
-	t_vec		pos;
-	char		*str;
-	GSList		*lst;
-
-	if (!widget || !param)
-		return ;
-	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
-	pos = get_vector_from_group_widget(lst);
-	g_data->lights[g_data->ui->tab_light].pos = pos;
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/30 19:41:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/01 19:48:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,4 +148,7 @@ int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
 void			change_vec_from_scale(GtkWidget *widget, gpointer param);
+t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
+void			free_to_free(void *content);
+GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec *vec);
 #endif

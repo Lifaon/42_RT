@@ -29,14 +29,13 @@
 			"position" : [0, 0, 1500],
 			"radius" : 10,
 			"direction" : [0, 1, 0],
-			"color" : [0, 120, 180, 0],
+			"color" : [0, 120, 180, 0]
 		},
 		"plane" :
 		{
 			"position" : [0, 0, 1700],
 			"color" : [0, 120, 120, 0],
-			"normal" : [0, 0, -1],
-			"specular" : -251
+			"normal" : [0, 0, -1]
 		}
 	}
 }

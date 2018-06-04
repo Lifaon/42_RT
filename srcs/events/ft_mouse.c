@@ -6,11 +6,11 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 20:15:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/09 14:27:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:13:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "events.h"
 
 int		ft_mouse(int x, int y, t_data *data)
 {

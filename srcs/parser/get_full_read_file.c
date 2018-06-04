@@ -6,38 +6,19 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 19:56:56 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:12:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 15:48:41 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static char	*perror_and_return_null(void)
+static char	*print_error(char *str, char *error)
 {
-	perror("Error ");
-	return (NULL);
-}
-
-static char	*read_rest(char *str, int fd)
-{
-	char	buf[BUFF_SIZE + 1];
-	char	*tmp;
-	int		ret;
-
-	while ((ret = read(fd, &buf, BUFF_SIZE)) > 0)
-	{
-		buf[ret] = '\0';
-		tmp = str;
-		if (!(str = ft_strjoin(tmp, buf)))
-			return (NULL);
-		free(tmp);
-	}
-	if (ret == -1)
-	{
+	if (str)
 		free(str);
-		return (NULL);
-	}
-	return (str);
+	ft_putstr("Error : ");
+	ft_putendl(error);
+	return (NULL);
 }
 
 char		*get_full_read_file(char *file_name)
@@ -46,19 +27,25 @@ char		*get_full_read_file(char *file_name)
 	char	*str;
 	int		fd;
 	int		ret;
+	int		current_size;
 
+	str = NULL;
 	if ((fd = open(file_name, O_RDONLY)) == -1)
-		return (perror_and_return_null());
-	if ((ret = read(fd, &buf, BUFF_SIZE)) >= 0)
+		return (print_error(str, strerror(errno)));
+	if (!(str = (char *)malloc(sizeof(char) * (FULL_STR_SIZE + 1))))
+		return (print_error(str, strerror(errno)));
+	current_size = 0;
+	while ((ret = read(fd, &buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		if (!(str = ft_strdup(buf)))
-			return (perror_and_return_null());
+		current_size += ret;
+		if (current_size <= FULL_STR_SIZE)
+			str = ft_strcat(str, buf);
+		else
+			return (print_error(str, "File too big."));
 	}
-	else
-		return (perror_and_return_null());
-	if (!(str = read_rest(str, fd)))
-		return (perror_and_return_null());
+	if (ret)
+		return (print_error(str, strerror(errno)));
 	close(fd);
 	return (str);
 }

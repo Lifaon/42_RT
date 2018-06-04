@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/31 16:34:42 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/01 15:54:45 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ EOC = \033[37m
 SRCS_DIR = ./srcs
 SRCS  = draw/colors.c \
 		draw/draw_image.c \
+		draw/get_px_color.c \
 		draw/phong_shading.c \
-		draw/shade.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \

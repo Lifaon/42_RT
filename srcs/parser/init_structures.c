@@ -6,12 +6,12 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 14:24:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:04:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "rtv1.h"
+#include "vec.h"
 
 void	get_vp_up_left(t_camera *cam)
 {

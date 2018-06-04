@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_tabf_key_event.c                              :+:      :+:    :+:   */
+/*   fill_funar_key_event.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:42:41 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/03 19:40:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:13:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-#include <stdlib.h>
+#include "events.h"
 
 static t_funar_keyb		add_one(int key, void (*f)(t_data*))
 {

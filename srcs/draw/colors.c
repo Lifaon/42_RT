@@ -6,11 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:13:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:19:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 15:58:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "draw.h"
 
 t_color	add_colors(t_color col1, t_color col2)
 {

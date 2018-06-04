@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:45:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 15:24:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include "libft.h"
 # include "structs.h"
 # include "defines.h"
+# include "errno.h"
 
 # define BUFF_SIZE 4096
+# define FULL_STR_SIZE 81920
 
 char	*get_full_read_file(char *file_name);
 /*

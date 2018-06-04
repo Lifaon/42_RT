@@ -6,12 +6,11 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:43:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/09 14:28:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:13:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-#include <stdlib.h>
+#include "events.h"
 
 static int		do_event(int key, t_data *data)
 {

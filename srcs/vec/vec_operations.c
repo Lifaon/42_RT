@@ -6,11 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:03:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/21 19:17:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:06:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "vec.h"
 
 t_vec	vec_add(t_vec u, t_vec v)
 {

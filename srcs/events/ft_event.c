@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_event.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 18:27:24 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/03 19:41:15 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:13:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "rtv1.h"
+#include "events.h"
 
 void	ft_event(t_data *data)
 {

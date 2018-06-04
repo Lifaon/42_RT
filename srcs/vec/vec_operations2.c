@@ -6,11 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 03:04:14 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/25 19:40:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/04 16:19:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "vec.h"
 
 t_vec	vec_normalize(t_vec u)
 {
@@ -37,6 +37,7 @@ double	dot_product(t_vec u, t_vec v)
 /*
 ** avec rot_x, rot_y, rot_z en degre
 */
+
 void	rotation_3d(t_vec *vec, double rot_x, double rot_y, double rot_z)
 {
 	vec->y = cos(rot_x) * vec->y - sin(rot_x) * vec->z;

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 17:00:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:31:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef union		u_color
 
 typedef struct		s_inter
 {
+	int				obj_i;
 	double			t1;
 	double			t2;
 	double			t;
@@ -55,7 +56,8 @@ typedef struct		s_inter
 	t_vec			oc;
 }					t_inter;
 /*
-**	Intersection structure -> t1, t2 and delta are used for equations of degree
+**	Intersection structure -> obj_i is the object index used to know which
+**	object was intersected ; t1, t2 and delta are used for equations of degree
 **	two, and t is the smallest positive number between t1 and t2 ; min_dist =
 **	minimum distance before we consider there is an intersection ; spec =
 **	specular shading at the intersection point ; ip = intersection point ;

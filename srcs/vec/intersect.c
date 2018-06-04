@@ -6,11 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 18:27:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:05:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "vec.h"
 
 int		solve_quadratic_equation(t_inter *inter, double a, double b, double c)
 {

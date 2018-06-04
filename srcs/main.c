@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/28 18:58:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:23:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 
 	if (SDL_Init(SDL_INIT_VIDEO))
 	{
-		ft_putstr("SDL_Init error :");
+		ft_putstr("SDL_Init error : ");
 		ft_putendl(SDL_GetError());
 		return (0);
 	}

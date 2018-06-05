@@ -3,22 +3,59 @@
 	[
 		{
 			"fov" : 20,
-			"position" : [0, 0, -2000],
+			"position" : [0, 0, 0],
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-1000, 0, 0],
+			"position" : [0, 3000, 0],
 			"ambient" : 0.4
 		}
 	],
 	"objects" :
 	{
+		"cylinder" :
+		{
+			"position" : [0, 0, 3000],
+			"radius" : 100,
+			"direction" : [1, 0, 0],
+			"color" : [255, 0, 255]
+		},
+		"cylinder" :
+		{
+			"position" : [-3000, 0, 0],
+			"radius" : 100,
+			"direction" : [0, 0, 1],
+			"color" : [255, 255, 0]
+		},
+		"cylinder" :
+		{
+			"position" : [3000, 0, 0],
+			"radius" : 100,
+			"direction" : [0, 0, 1],
+			"color" : [0, 255, 255]
+		},
+		"cylinder" :
+		{
+			"position" : [0, 0, -3000],
+			"radius" : 100,
+			"direction" : [1, 0, 0],
+			"color" : [125, 125, 125]
+		},
 		"sphere" :
 		{
-			"position" : [0, 0, 1000],
-			"radius" : 200,
+			"position" : [0, 4000, 0],
+			"radius" : 100,
+			"direction" : [1, 0, 0],
+			"color" : [255, 0, 0]
+		},
+		"sphere" :
+		{
+			"position" : [0, -4000, 0],
+			"radius" : 100,
+			"direction" : [1, 0, 0],
+			"color" : [0, 255, 0]
 		}
 	}
 }

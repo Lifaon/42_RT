@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/05 13:38:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/05 14:05:20 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void		draw_image(t_data *data)
 	crd = (t_point){0, 0};
 	vp = cam.vp_up_left;
 	dir = vec_substract(vec_normalize(cam.dir), (t_vec){0, 0, 1});
-	printf("%f / %f / %f\n", cam.dir.x, cam.dir.y, cam.dir.z);
 	while (crd.x < WIN_W)
 	{
 		vp.x = cam.vp_up_left.x + (double)crd.x;

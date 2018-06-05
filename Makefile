@@ -34,6 +34,7 @@ SRCS  = draw/colors.c \
 		events/fill_funar_key_event.c \
 		events/ft_mouse.c \
 		events/ft_mouse_wheel.c \
+		events/translations.c \
 		\
 		parser/brackets.c \
 		parser/check_error.c \

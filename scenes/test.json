@@ -23,13 +23,6 @@
 			"position" : [-100, 200, 1000],
 			"radius" : 100,
 		},
-		"cylinder" :
-		{
-			"position" : [200, 0, 1500],
-			"color" : [255, 160, 0],
-			"direction" : [0, 1, 0],
-			"radius" : 200
-		},
 		"plane" :
 		{
 			"position" : [0, 0, 1750],

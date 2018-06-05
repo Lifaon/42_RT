@@ -27,22 +27,16 @@ t_funar_keyb			*fill_funar_key_event(int *size)
 	int				nb_fct;
 	int				i;
 
-	*size = 0;
-	return (NULL);
-	/*i = 0;
-	nb_fct = 11;
+	i = 0;
+	nb_fct = 6;
+	*size = nb_fct;
 	tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * nb_fct);
 	*size = nb_fct;
-	tab[i++] = add_one(SDLK_UP, &move_up);
-	tab[i++] = add_one(SDLK_DOWN, &move_down);
-	tab[i++] = add_one(SDLK_LEFT, &move_left);
-	tab[i++] = add_one(SDLK_RIGHT, &move_right);
-	tab[i++] = add_one(SDLK_KP_MULTIPLY, &iteration_max_up);
-	tab[i++] = add_one(SDLK_KP_DIVIDE, &iteration_max_down);
-	tab[i++] = add_one(SDLK_KP_PLUS, &zoom_up);
-	tab[i++] = add_one(SDLK_KP_MINUS, &zoom_down);
-	tab[i++] = add_one(SDLK_f, &change_fractal);
-	tab[i++] = add_one(SDLK_c, &change_color);
-	tab[i++] = add_one(SDLK_l, &lock);*/
+	tab[i++] = add_one(SDLK_w, &translateW);
+	tab[i++] = add_one(SDLK_a, &translateA);
+	tab[i++] = add_one(SDLK_s, &translateS);
+	tab[i++] = add_one(SDLK_d, &translateD);
+	tab[i++] = add_one(SDLK_q, &translateQ);
+	tab[i++] = add_one(SDLK_e, &translateE);	
 	return (tab);
 }

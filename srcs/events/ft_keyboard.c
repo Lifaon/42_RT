@@ -54,8 +54,8 @@ int				ft_keyboard(int key, t_data *data)
 	ft_putnbr(key);
 	ft_putchar('\n');*/
 	if ((ret = do_event(key, data)) == 1) // if do_event retourn 1 il faut retracer l'iamge
-		ft_putstr("do_event = 1");
-		//draw_image(data, data->objs, data->light);
+		draw_image(data);
+	ft_putnbr(ret);
 	if (ret == -1)
 		exit_all(data);
 	return (0);

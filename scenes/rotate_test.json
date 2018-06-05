@@ -1,0 +1,24 @@
+{
+	"cameras" :
+	[
+		{
+			"fov" : 20,
+			"position" : [0, 0, -2000],
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [-1000, 0, 0],
+			"ambient" : 0.4
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [0, 0, 1000],
+			"radius" : 200,
+		}
+	}
+}

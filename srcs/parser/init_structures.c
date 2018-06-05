@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:04:46 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:36:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ void	get_vp_up_left(t_camera *cam)
 {
 	double vp_dist;
 
-	vp_dist = (WIN_H / 2) / fabs(tan(cam->fov * M_PI / 180));
-	cam->vp_up_left.x = -(double)WIN_W / 2;
-	cam->vp_up_left.y = (double)WIN_H / 2;
+	vp_dist = fabs(tan(cam->fov * M_PI / 360));
+	if (vp_dist > 0.000001)
+		vp_dist = (WIN_H / 2) / vp_dist;
+	else
+		vp_dist = 1000.0;
+	cam->vp_up_left.x = (-(double)WIN_W + cam->pos.x) / 2;
+	cam->vp_up_left.y = ((double)WIN_H + cam->pos.y) / 2;
 	cam->vp_up_left.z = vp_dist + cam->pos.z;
 }
 

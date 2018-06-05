@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:19:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/05 20:24:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec	vec_add(t_vec u, t_vec v);
 t_vec	vec_substract(t_vec u, t_vec v);
 t_vec	vec_multiply(t_vec u, double t);
 double	vec_cos(t_vec u, t_vec v);
-t_vec	vec_mult(t_vec u, t_vec v);
+t_vec	vec_cross_product(t_vec u, t_vec v);
 
 /*
 **	Vector operations 2.

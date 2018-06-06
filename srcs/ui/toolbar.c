@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/30 14:00:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/06 18:00:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 
 static int			create_all_items(GtkToolItem *item[4])
 {
-	if (!(item[0] = create_item("exit.png", "open", "open a file")))
+	if (!(item[0] = create_item("folder.png", "open", "open a file")))
 		return (0);
-	if (!(item[1] = create_item("save.png", "save", "save work")))
+	if (!(item[1] = create_item("save2.png", "save", "save work")))
 		return (0);
 	if (!(item[2] = create_item("squar.png", "export", "export work")))
 		return (0);
-	if (!(item[3] = create_item("squar.png", "redrew", "redraw")))
+	if (!(item[3] = create_item("draw.png", "redraw", "redraw")))
 		return (0);
 	return (1);
 }

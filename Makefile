@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/01 19:51:56 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/06 17:43:52 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRCS  = draw/colors.c \
 		ui/create_object_ui.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
-		ui/modify_parallel_light.c\
+		ui/modify_light.c\
 		ui/entry_change_scale.c \
 		ui/click_open.c \
 		ui/click_save.c \
@@ -82,6 +82,7 @@ SRCS  = draw/colors.c \
 		ui/wid_vec_new.c \
 		ui/free_to_free.c \
 		ui/add_vector_choose.c \
+		ui/change_vec_from_scale.c\
 \
 		data_init.c \
 		exit_all.c \

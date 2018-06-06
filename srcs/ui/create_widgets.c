@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:11:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:41:04 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)
 
 	if (!(tgb = gtk_toggle_button_new_with_label(txt)))
 		return (NULL);
-	if (wid_d->f && param)
+	if (wid_d->f)
 		g_signal_connect(G_OBJECT(tgb), "clicked", G_CALLBACK(wid_d->f),
 				param);
 	if (wid_d)
@@ -35,7 +35,7 @@ GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
 	if (!(scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,
 					min_max.x, min_max.y, step)))
 		return (NULL);
-	if (wid_d->f && param)
+	if (wid_d->f)
 		g_signal_connect(G_OBJECT(scale), "value-changed",
 				G_CALLBACK(wid_d->f), param);
 	if (wid_d)
@@ -50,7 +50,7 @@ GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param, const char *txt)
 
 	if (!(entry = gtk_entry_new()))
 		return (NULL);
-	if (wid_d->f && param != NULL)
+	if (wid_d->f)
 		g_signal_connect(G_OBJECT(entry), "activate", G_CALLBACK(wid_d->f),
 				param);
 	if (txt)

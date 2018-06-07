@@ -17,20 +17,21 @@ static void		fill_vec(t_vec *vec, double nb)
 	i++;
 }
 
-static t_vec	get_vector_from_group_widget(GSList *lst)
+void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec)
 {
 	double		value;
 	GtkWidget	*son;
-	t_vec		vec;
 	char		*str;
+	GSList		*lst;
 
+	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(group));
 	while (lst)
 	{
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_SCALE(son))
 		{
 			value = gtk_range_get_value(GTK_RANGE(son));
-			fill_vec(&vec, value);
+			fill_vec(vec, value);
 		}
 		if (GTK_IS_ENTRY(son))
 		{
@@ -39,22 +40,5 @@ static t_vec	get_vector_from_group_widget(GSList *lst)
 			ft_strdel(&str);
 		}
 		lst = lst->next;
-	}
-	return (vec);
-}
-
-void			change_vec_from_scale(GtkWidget *widget, gpointer param)
-{
-	t_widget_vec	*wid_vec;
-	char			*str;
-	GSList			*lst;
-
-	if (!widget || !param)
-		return ;
-	wid_vec = (t_widget_vec*)param;
-	if (GTK_IS_SIZE_GROUP(wid_vec->group))
-	{
-		lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(wid_vec->group));
-		*wid_vec->vec = get_vector_from_group_widget(lst);
 	}
 }

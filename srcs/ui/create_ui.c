@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/01 19:07:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 12:10:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static t_ui		*ui_new(void)
 	if (!(ui = (t_ui*)malloc(sizeof(t_ui))))
 		return (NULL);
 	ui->to_free = NULL;
+	ui->page_light = 0;
+	ui->page_objs = 0;
+	ui->page_cams = 0;
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);

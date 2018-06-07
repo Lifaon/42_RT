@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/06 16:41:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 11:33:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 void			switch_parallel_light(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gpointer param);
-void			change_light_direction(GtkWidget *widget, gpointer param);
-void			change_light_distance(GtkWidget *widget, gpointer param);
 void			entry_change_scale(GtkWidget *widget, gpointer param);
 void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
@@ -143,13 +141,16 @@ size_t			size_of_str_json(void);
 gboolean	change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 void			click_redraw(GtkWidget *widget, gpointer param);
-void			change_light_position(GtkWidget *widget, gpointer param);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
-			t_widget_vec *wid_vec, gdouble value);
+			GtkSizeGroup *group, gdouble value);
 int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
-void			change_vec_from_scale(GtkWidget *widget, gpointer param);
+void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
+void			change_light_pos(GtkWidget *widget, gpointer param);
+void			change_light_dir(GtkWidget *widget, gpointer param);
 t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
 void			free_to_free(void *content);
-GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec *vec);
+GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
+int				add_one_light_tab(GtkWidget *tab_light, int index);
+void			add_one_light(GtkWidget *widget, gpointer param);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/01 18:45:38 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:32:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct		s_camera
 typedef struct		s_light
 {
 	int				is_para;
+	int				enabled;
 	double			r;
 	double			ambi;
 	t_vec			pos;
@@ -123,9 +124,12 @@ typedef struct		s_ui
 {
 	GtkWidget	*tab;
 	t_list		*to_free;
-	int			tab_light;
-	int			tab_cams;
-	int			tab_objs;
+	GtkWidget	*tab_light;
+	GtkWidget	*tab_cams;
+	GtkWidget	*tab_objs;
+	int			page_light;
+	int			page_cams;
+	int			page_objs;
 }					t_ui;
 
 typedef struct		s_data

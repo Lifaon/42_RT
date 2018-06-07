@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/07 03:39:37 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/07 04:16:24 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS  = draw/colors.c \
 		events/ft_mouse.c \
 		events/ft_mouse_wheel.c \
 		events/rotate.c \
+		events/translations.c \
 		\
 		parser/brackets.c \
 		parser/check_error.c \

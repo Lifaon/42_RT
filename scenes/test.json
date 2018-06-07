@@ -2,8 +2,8 @@
 	"cameras" :
 	[
 		{
-			"fov" : 35,
-			"position" : [0, 0, -1750],
+			"fov" : 20,
+			"position" : [0, 0, -3000],
 		}
 	],
 	"lights" :

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/05 13:36:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 03:36:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	init_cameras(t_data *data)
 	while (++i < CAM_NB)
 	{
 		data->cams[i].pos = (t_vec){0, 0, 0};
-		data->cams[i].dir = (t_vec){0, 0, 1};
-		data->cams[i].fov = 20;
+		data->cams[i].angle = (t_vec){0, 0, 0};
+		data->cams[i].fov = 70;
 		get_vp_up_left(&data->cams[i]);
 	}
 }

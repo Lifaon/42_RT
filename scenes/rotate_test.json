@@ -3,7 +3,7 @@
 	[
 		{
 			"fov" : 20,
-			"position" : [0, 0, 0],
+			"position" : [0, 0, 0]
 		}
 	],
 	"lights" :
@@ -45,15 +45,15 @@
 		},
 		"sphere" :
 		{
-			"position" : [0, 4000, 0],
-			"radius" : 100,
+			"position" : [-400, 4000, 0],
+			"radius" : 200,
 			"direction" : [1, 0, 0],
 			"color" : [255, 0, 0]
 		},
 		"sphere" :
 		{
-			"position" : [0, -4000, 0],
-			"radius" : 100,
+			"position" : [400, 4000, 0],
+			"radius" : 200,
 			"direction" : [1, 0, 0],
 			"color" : [0, 255, 0]
 		}

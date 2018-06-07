@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/01 15:31:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 03:35:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ typedef struct		s_inter
 typedef struct		s_camera
 {
 	t_vec			pos;
-	t_vec			dir;
+	t_vec			angle;
 	t_vec			vp_up_left;
 	double			vp_dist;
 	double			fov;
 }					t_camera;
 /*
-**	Cam struct -> pos = position ; dir = direction ; vp_up_left = the point at
+**	Cam struct -> pos = position ; angle = angle of vue ; vp_up_left = point at
 **	the top left of the view_place ; vp_dist = distance between the camera and
 **	the view plane ; fov = field of view.
 */

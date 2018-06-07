@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:52:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/05 18:26:25 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 04:03:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,56 +16,28 @@
 
 void	rotate_i(t_data *data)
 {
-	t_vec	axe;
-	t_vec	dir;
-	double	theta;
-
-	dir = vec_normalize(data->cams[data->i].dir);
-	axe = (t_vec) {dir.x, 0, 0};
-	theta = (-ANGLE / 180.0) * M_PI;
-	axe.y = (dir.y * cos(theta) - dir.z * sin(theta));
-	axe.z = (dir.y * sin(theta) + dir.z * cos(theta));
-	data->cams[data->i].dir = axe;
+	data->cams[data->i].angle.x -= ANGLE;
+	if (data->cams[data->i].angle.x <= -360.0)
+		data->cams[data->i].angle.x += 360.0;
 }
 
 void	rotate_k(t_data *data)
 {
-	t_vec	axe;
-	t_vec	dir;
-	double	theta;
-
-	dir = vec_normalize(data->cams[data->i].dir);
-	axe = (t_vec) {dir.x, 0, 0};
-	theta = (ANGLE / 180.0) * M_PI;
-	axe.y = dir.y * cos(theta) - dir.z * sin(theta);
-	axe.z = dir.y * sin(theta) + dir.z * cos(theta);
-	data->cams[data->i].dir = axe;
+	data->cams[data->i].angle.x += ANGLE;
+	if (data->cams[data->i].angle.x >= 360.0)
+		data->cams[data->i].angle.x -= 360.0;
 }
 
 void	rotate_j(t_data *data)
 {
-	t_vec	axe;
-	t_vec	dir;
-	double	theta;
-
-	dir = vec_normalize(data->cams[data->i].dir);
-	axe = (t_vec) { 0, dir.y, 0};
-	theta = (ANGLE / 180.0) * M_PI;
-	axe.x = dir.x * cos(theta) - dir.z * sin(theta);
-	axe.z = dir.x * sin(theta) + dir.z * cos(theta);
-	data->cams[data->i].dir = axe;
+	data->cams[data->i].angle.y += ANGLE;
+	if (data->cams[data->i].angle.y >= 360.0)
+		data->cams[data->i].angle.y -= 360.0;
 }
 
 void	rotate_l(t_data *data)
 {
-	t_vec	axe;
-	t_vec	dir;
-	double	theta;
-
-	dir = vec_normalize(data->cams[data->i].dir);
-	axe = (t_vec) {0, dir.y, 0};
-	theta = (-ANGLE / 180.0) * M_PI;
-	axe.x = dir.x * cos(theta) - dir.z * sin(theta);
-	axe.z = dir.x * sin(theta) + dir.z * cos(theta);
-	data->cams[data->i].dir = axe;
+	data->cams[data->i].angle.y -= ANGLE;
+	if (data->cams[data->i].angle.y <= -360.0)
+		data->cams[data->i].angle.y += 360.0;
 }

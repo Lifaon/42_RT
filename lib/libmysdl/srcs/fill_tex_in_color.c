@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 16:35:44 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 19:42:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:16:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fill_tex_in_color(t_texture *tex, uint32_t color)
 		max = tex->size->y;
 	else if (tex->size->y == 0)
 		max = tex->size->x;
-	else 
+	else
 		max = tex->size->x * tex->size->y;
 	i = 0;
 	while (i < max)

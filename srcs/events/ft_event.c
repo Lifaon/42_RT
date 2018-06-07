@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 18:27:24 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/04 16:13:40 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:02:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	ft_event(t_data *data)
 			quit = 1;
 		else if (event.type == SDL_KEYDOWN)
 			ft_keyboard(event.key.keysym.sym, data);
-		else if (event.type == SDL_MOUSEMOTION)
-			ft_mouse(event.motion.x, event.motion.y, data);
-		else if (event.type == SDL_MOUSEWHEEL)
-			ft_mouse_wheel(event.wheel.y, data);
 	}
 	exit_all(data);
 }

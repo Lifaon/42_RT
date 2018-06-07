@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/07 04:16:24 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/07 15:22:17 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,9 @@ SRCS  = draw/colors.c \
 		events/ft_event.c \
 		events/ft_keyboard.c \
 		events/fill_funar_key_event.c \
-		events/ft_mouse.c \
-		events/ft_mouse_wheel.c \
 		events/rotate.c \
 		events/translations.c \
+		events/translations2.c \
 		\
 		parser/brackets.c \
 		parser/check_error.c \
@@ -96,7 +95,7 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			$(SDL2_LFLAGS) \
 			-lm
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\

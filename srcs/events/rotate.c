@@ -6,13 +6,12 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:52:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 04:03:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 14:53:21 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events.h"
 #include "vec.h"
-#define ANGLE 5.0
 
 void	rotate_i(t_data *data)
 {

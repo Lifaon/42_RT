@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:00:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:23:07 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 {
 	t_color	ret;
 	t_vec	light_vec;
-	double	len;
 	double	dot;
 
 	ret = ambient_shading(data->objs[inter->obj_i], light);

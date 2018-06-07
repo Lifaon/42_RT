@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 03:13:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 03:41:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:23:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_vec	yaw(t_vec ray, t_camera cam)
 	return (axe);
 }
 
-t_vec			compute_ray(t_data *data, t_vec vp, t_camera cam)
+t_vec			compute_ray(t_vec vp, t_camera cam)
 {
 	t_vec	ray;
 

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 04:00:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:23:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		draw_image(t_data *data)
 	{
 		vp.x = cam.vp_up_left.x + (double)crd.x;
 		vp.y = cam.vp_up_left.y - (double)crd.y;
-		ray = compute_ray(data, vp, cam);
+		ray = compute_ray(vp, cam);
 		draw_pixel(data, ray, crd);
 		crd = pt_ypluseg(crd, 0, WIN_H);
 	}

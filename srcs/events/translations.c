@@ -1,38 +1,37 @@
-#include "events.h"
-#define TRANSLATION 150
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   translations.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/05 14:41:36 by vtudes            #+#    #+#             */
+/*   Updated: 2018/06/07 14:48:17 by mlantonn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void		translateW(t_data *data)
+#include "events.h"
+
+void		translate_w(t_data *data)
 {
 	data->cams[data->i].pos.y -= TRANSLATION;
 	choose_cam(data, data->i);
 }
 
-void		translateA(t_data *data)
+void		translate_a(t_data *data)
 {
 	data->cams[data->i].pos.x += TRANSLATION;
 	choose_cam(data, data->i);
 }
 
-void		translateS(t_data *data)
+void		translate_s(t_data *data)
 {
 	data->cams[data->i].pos.y += TRANSLATION;
 	choose_cam(data, data->i);
 }
 
-void			translateD(t_data *data)
+void		translate_d(t_data *data)
 {
 	data->cams[data->i].pos.x -= TRANSLATION;
-	choose_cam(data, data->i);
-}
-
-void			translateQ(t_data *data)
-{
-	data->cams[data->i].pos.z -= TRANSLATION;
-	choose_cam(data, data->i);
-}
-
-void			translateE(t_data *data)
-{
-	data->cams[data->i].pos.z += TRANSLATION;
 	choose_cam(data, data->i);
 }

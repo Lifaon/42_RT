@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 15:59:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 04:00:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ static void	draw_pixel(t_data *data, t_vec ray, t_point crd)
 
 void		draw_image(t_data *data)
 {
-	t_point	crd;
-	t_vec	ray;
+	t_camera	cam;
+	t_point		crd;
+	t_vec		vp;
+	t_vec		ray;
 
+	cam = data->cams[data->i];
 	crd = (t_point){0, 0};
-	ray.z = data->cams[data->i].vp_up_left.z;
+	vp = cam.vp_up_left;
 	while (crd.x < WIN_W)
 	{
-		ray.y = data->cams[data->i].vp_up_left.y - (double)crd.y;
-		ray.x = data->cams[data->i].vp_up_left.x + (double)crd.x;
-		draw_pixel(data, vec_normalize(ray), crd);
+		vp.x = cam.vp_up_left.x + (double)crd.x;
+		vp.y = cam.vp_up_left.y - (double)crd.y;
+		ray = compute_ray(data, vp, cam);
+		draw_pixel(data, ray, crd);
 		crd = pt_ypluseg(crd, 0, WIN_H);
 	}
 	put_tex_to_win(data->tex, data->win->ren);

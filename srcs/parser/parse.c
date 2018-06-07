@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 16:31:30 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 18:39:14 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ void	parse(t_data *data, char *file_name)
 				parse_objects(data, str + i, &i);
 		}
 	free(str);
-	ft_putendl("parsing ended");
 }

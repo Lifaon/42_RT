@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/01 15:54:45 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/07 03:39:37 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS  = draw/colors.c \
 		events/fill_funar_key_event.c \
 		events/ft_mouse.c \
 		events/ft_mouse_wheel.c \
+		events/rotate.c \
 		\
 		parser/brackets.c \
 		parser/check_error.c \
@@ -48,6 +49,7 @@ SRCS  = draw/colors.c \
 		parser/remove_white_spaces.c \
 		parser/tools.c \
 		\
+		vec/compute_ray.c \
 		vec/get_normal.c \
 		vec/intersect.c \
 		vec/vec_operations.c \

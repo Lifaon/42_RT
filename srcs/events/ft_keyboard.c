@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:43:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/04 16:13:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:52:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int				ft_keyboard(int key, t_data *data)
 	ft_putnbr(key);
 	ft_putchar('\n');*/
 	if ((ret = do_event(key, data)) == 1) // if do_event retourn 1 il faut retracer l'iamge
-		ft_putstr("do_event = 1");
-		//draw_image(data, data->objs, data->light);
+		draw_image(data);
+	//ft_putnbr(ret);
 	if (ret == -1)
 		exit_all(data);
 	return (0);

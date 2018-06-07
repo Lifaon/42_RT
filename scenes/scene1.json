@@ -2,9 +2,8 @@
 	"cameras" :
 	[
 		{
-			"position" : [0, 0, 0],
-			"direction" : [0, 0, 1],
-			"fov" : 35
+			"position" : [0, 0, -2000],
+			"fov" : 20
 		}
 	],
 	"lights" :
@@ -35,7 +34,8 @@
 		{
 			"position" : [0, 0, 1700],
 			"color" : [0, 120, 120, 0],
-			"normal" : [0, 0, -1]
+			"normal" : [0, 0, 1],
+			"specular" : 0
 		}
 	}
 }

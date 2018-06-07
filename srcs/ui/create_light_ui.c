@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 14:32:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 16:15:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 
 	if (!(l_new(wid_d, "light")))
 		return (0);
-	wid_d->f = &switch_light;
 	wid_d->pos = pt_set(0, 1);
-	if (!(tgb_new(wid_d, NULL, "ON")))
+	if (!(switch_new(wid_d, NULL, TRUE, &switch_light)))
 		return (0);
 	wid_d->pos = pt_set(1, 0);
 	if (!(l_new(wid_d, "parrallele light")))
@@ -50,8 +49,7 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	wid_d->pos = pt_set(1, 1);
-	wid_d->f = &switch_parallel_light;
-	if (!(tgb_new(wid_d, (gpointer)group, "ON")))
+	if (!(switch_new(wid_d, (gpointer)group, TRUE, &switch_parallel_light)))
 		return (0);
 	return (1);
 }

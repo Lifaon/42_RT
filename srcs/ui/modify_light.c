@@ -6,46 +6,43 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 14:32:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 16:11:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parse.h"
 
-void			switch_light(GtkWidget *widget, gpointer param)
+void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 {
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) == TRUE)
-	{
-		gtk_button_set_label(GTK_BUTTON(widget), "OFF");
+	if (!widget && !param)
+		param = NULL;
+	if (state == TRUE)
 		g_data->lights[g_data->ui->page_light].enabled = 0;
-	}
 	else
-	{
-		gtk_button_set_label(GTK_BUTTON(widget), "ON");
 		g_data->lights[g_data->ui->page_light].enabled = 1;
-	}
 }
 
-void			switch_parallel_light(GtkWidget *widget, gpointer param)
+void			switch_parallel_light(GtkWidget *widget, gboolean state,
+		gpointer param)
 {
 	GSList		*lst;
 	gboolean	status;
 	int			i;
 
-	if (!param)
-		return ;
+	if (!widget && !param)
+		param = NULL;
 	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
 	i = g_data->ui->page_light;
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) == TRUE)
+	ft_putnbr(i);
+	ft_putchar('\n');
+	if (gtk_switch_get_active(GTK_SWITCH(widget)) == TRUE)
 	{
-		gtk_button_set_label(GTK_BUTTON(widget), "OFF");
 		status = FALSE;
 		g_data->lights[i].is_para = 0;
 	}
 	else
 	{
-		gtk_button_set_label(GTK_BUTTON(widget), "ON");
 		status = TRUE;
 		g_data->lights[i].is_para = 1;
 	}

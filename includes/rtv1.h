@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 11:33:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 16:20:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
 				gdouble step);
 GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
-void			switch_parallel_light(GtkWidget *widget, gpointer param);
-void			switch_light(GtkWidget *widget, gpointer param);
+void			switch_parallel_light(GtkWidget *widget, gboolean state,
+		gpointer param);
 void			entry_change_scale(GtkWidget *widget, gpointer param);
 void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
@@ -153,4 +153,7 @@ void			free_to_free(void *content);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 int				add_one_light_tab(GtkWidget *tab_light, int index);
 void			add_one_light(GtkWidget *widget, gpointer param);
+void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
+GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
+		void (*f)(GtkWidget*, gboolean, gpointer));
 #endif

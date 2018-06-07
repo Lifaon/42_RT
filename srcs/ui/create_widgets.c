@@ -6,11 +6,28 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/06 17:41:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/07 16:17:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
+		void (*f)(GtkWidget*, gboolean, gpointer))
+{
+	GtkWidget	*sw;
+
+	if (!(sw = gtk_switch_new()))
+		return (NULL);
+	gtk_switch_set_state(GTK_SWITCH(sw), state);
+	if (f)
+		g_signal_connect(G_OBJECT(sw), "state-set", G_CALLBACK(f),
+				param);
+	if (wid_d)
+		gtk_grid_attach(GTK_GRID(wid_d->grid), sw, wid_d->pos.y, wid_d->pos.x,
+			wid_d->size.x, wid_d->size.y);
+	return (sw);
+}
 
 GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)
 {

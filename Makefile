@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/07 15:22:17 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/07 17:57:27 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ EOC = \033[37m
 
 ## Sources ##
 SRCS_DIR = ./srcs
-SRCS  = draw/colors.c \
+SRCS  = draw/anti_aliasing.c \
+		draw/colors.c \
 		draw/draw_image.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
@@ -51,6 +52,7 @@ SRCS  = draw/colors.c \
 		\
 		vec/compute_ray.c \
 		vec/get_normal.c \
+		vec/hit.c \
 		vec/intersect.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \

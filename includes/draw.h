@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:17:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:56:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 **	Function called in draw_image.c.
 */
 int		get_px_color(t_data *data, t_inter inter);
+int		anti_aliasing(t_data *data, t_vec vp);
+
 
 /*
 **	Phong shading.

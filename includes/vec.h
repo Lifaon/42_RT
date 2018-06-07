@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 15:23:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:24:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include "structs.h"
 
 /*
-**	Function to call for each ray.
+**	Functions to call for each ray.
 */
 t_vec	compute_ray(t_vec vp, t_camera cam);
+int		hit(t_data *data, t_vec ray, t_inter *inter);
 
 /*
 **	Intersection functions.

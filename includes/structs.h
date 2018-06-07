@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 15:06:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:34:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct		s_data
 	t_light			*lights;
 	int				i;
 	t_camera		cams[CAM_NB];
+	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	t_win			*win;

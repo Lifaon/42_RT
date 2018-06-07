@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 17:58:20 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:46:41 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	draw_pixel(t_data *data, t_vec vp, t_point crd)
 	t_inter	inter;
 	t_vec	ray;
 
-	if (data->aa == 1)
+	if (data->aa <= 1)
 	{
 		ray = compute_ray(vp, data->cams[data->i]);
 		if (hit(data, ray, &inter))

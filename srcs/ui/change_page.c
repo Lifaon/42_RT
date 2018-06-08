@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_all.c                                         :+:      :+:    :+:   */
+/*   change_page.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:55:37 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/29 18:33:58 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/06 19:32:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_all(t_data *data)
+gboolean	change_page_light(GtkNotebook *notebook, GtkWidget *page,
+		gint arg1, gpointer data)
 {
-	if (data->tex)
-		free_tex(&data->tex);
-	if (data->win)
-		free_win(&data->win);
-	SDL_Quit();
-	if (data->nb_objects)
-		free(data->objs);
-	if (data->nb_lights)
-		free(data->lights);
-	free(data->ui);
-	exit(EXIT_SUCCESS);
+	if (!data)
+		data = NULL;
+	g_data->ui->page_light = arg1;
+	return (TRUE);
 }

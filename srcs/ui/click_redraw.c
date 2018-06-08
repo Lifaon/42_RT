@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_all.c                                         :+:      :+:    :+:   */
+/*   click_redraw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:55:37 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/29 20:04:02 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/30 13:11:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_all(t_data *data)
+void	click_redraw(GtkWidget *widget, gpointer param)
 {
-	if (data->tex)
-		free_tex(&data->tex);
-	if (data->win)
-		free_win(&data->win);
-	SDL_Quit();
-	if (data->nb_objects)
-		free(data->objs);
-	if (data->nb_lights)
-		free(data->lights);
-	free(data->ui);
-	exit(EXIT_SUCCESS);
+	if (!widget && !param)
+		param = NULL;
+	ft_putstr("click_redraw\n");
+	draw_image(g_data);
 }

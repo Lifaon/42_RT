@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   fill_pixelbuf_in_color.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/12 18:57:03 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/12 19:40:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "mygtk.h"
 
-void	ft_event(t_data *data)
+void	fill_pixelbuf_in_color(t_pixelbuf *pxlbuf, uint32_t color)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
+	int				i;
+	int				max;
+
+	if (pxlbuf->size.x == 0)
+		max = pxlbuf->size.y;
+	else if (pxlbuf->size.y == 0)
+		max = pxlbuf->size.x;
+	else 
+		max = pxlbuf->size.x * pxlbuf->size.y;
+	i = 0;
+	while (i < max)
 	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
+		pxlbuf->pxl[i] = color;
+		i++;
 	}
-	exit_all(data);*/
 }

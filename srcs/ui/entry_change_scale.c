@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_all.c                                         :+:      :+:    :+:   */
+/*   entry_change_scale.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:55:37 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/26 17:15:17 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/07 14:32:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_all(t_data *data)
+void	entry_change_scale(GtkWidget *widget, gpointer param)
 {
-	if (data->tex)
-		free_tex(&data->tex);
-	if (data->win)
-		free_win(&data->win);
-	SDL_Quit();
-	if (data->nb_objects)
-		free(data->objs);
-	if (data->nb_lights)
-		free(data->lights);
-	free(data->ui);
-	exit(EXIT_SUCCESS);
+	GtkWidget	*scale;
+	double		value;
+
+	if (!param)
+		return ;
+	scale = (GtkWidget*)param;
+	value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
+	gtk_range_set_value(GTK_RANGE(scale), value);
 }

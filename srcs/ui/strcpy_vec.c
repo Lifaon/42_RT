@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   size_vec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/28 14:31:12 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/29 17:01:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "rtv1.h"
 
-void	ft_event(t_data *data)
+char		*strcpy_vec(char *str, t_vec vec)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
-	}
-	exit_all(data);*/
+	*str = '[';
+	str++;
+	str = strcpy_db(str, vec.x);
+	*str = ',';
+	str++;
+	*str = ' ';
+	str++;
+	str = strcpy_db(str, vec.y);
+	*str = ',';
+	str++;
+	*str = ' ';
+	str++;
+	str = strcpy_db(str, vec.z);
+	*str = ']';
+	str++;
+	return (str);
 }

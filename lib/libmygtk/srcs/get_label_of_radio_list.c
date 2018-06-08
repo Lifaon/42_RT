@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   get_label_of_radio_list.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/10 17:11:55 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/12 19:40:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "mygtk.h"
 
-void	ft_event(t_data *data)
+const gchar		*get_label_of_radio_list(GList *radio)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
+	GList		*lst;
+	GtkWidget	*button;
+
+	lst = radio;
+	while (lst)
 	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
+		button = (GtkWidget*)lst->data;
+			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == TRUE)
+				return (gtk_button_get_label(GTK_BUTTON(button)));
+		lst = lst->next;
 	}
-	exit_all(data);*/
+	return (NULL);
 }

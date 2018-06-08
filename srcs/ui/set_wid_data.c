@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_all.c                                         :+:      :+:    :+:   */
+/*   set_wid_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:55:37 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/27 16:08:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_all(t_data *data)
+void	set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
+	void (*f)(GtkWidget*, gpointer))
 {
-	if (data->tex)
-		free_tex(&data->tex);
-	if (data->win)
-		free_win(&data->win);
-	SDL_Quit();
-	if (data->nb_objects)
-		free(data->objs);
-	if (data->nb_lights)
-		free(data->lights);
-	free(data->ui);
-	exit(EXIT_SUCCESS);
+	wid_d->pos = pos;
+	wid_d->size = size;
+	wid_d->f = f;
 }

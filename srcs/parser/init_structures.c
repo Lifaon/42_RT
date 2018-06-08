@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 03:36:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:55:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ void	init_cameras(t_data *data)
 	}
 }
 
+void	init_one_light(t_data *data, int index)
+{
+	data->lights[index].is_para = 0;
+	data->lights[index].enabled = 0;
+	data->lights[index].r = 1;
+	data->lights[index].ambi = 0.3;
+	data->lights[index].pos = (t_vec){0.0, 0.0, 0.0};
+	data->lights[index].dir = (t_vec){0.0, 0.0, 0.0};
+	data->lights[index].color.c = 0xFFFFFF;
+}
+
 int		init_lights(t_data *data, int nb)
 {
 	int i;
@@ -49,14 +60,7 @@ int		init_lights(t_data *data, int nb)
 	if (!(data->lights = (t_light *)malloc(sizeof(t_light) * nb)))
 		return (-1);
 	while (++i < nb)
-	{
-		data->lights[i].is_para = 0;
-		data->lights[i].r = 1;
-		data->lights[i].ambi = 0.3;
-		data->lights[i].pos = (t_vec){0.0, 0.0, 0.0};
-		data->lights[i].dir = (t_vec){0.0, 0.0, 0.0};
-		data->lights[i].color.c = 0xFFFFFF;
-	}
+		init_one_light(data, i);
 	return (0);
 }
 

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   pt_to_pixelbuf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/12 19:05:02 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/12 19:40:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "mygtk.h"
 
-void	ft_event(t_data *data)
+void		pt_to_pixelbuf(t_point pt, t_pixelbuf *pxbuf, uint32_t color)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
-	}
-	exit_all(data);*/
+	int				to_color;
+
+	if (!pxbuf)
+		return ;
+	if (pt.x >= pxbuf->size.x || pt.y >= pxbuf->size.y || pt.x < 0 || pt.y < 0)
+		return ;
+	to_color = (pt.x + (pt.y * pxbuf->size.x));
+	pxbuf->pxl[to_color] = color;
 }

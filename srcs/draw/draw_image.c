@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 18:50:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:57:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void		draw_image(t_data *data)
 	t_vec		vp;
 
 	cam = data->cams[data->i];
+	if (data->draw == 0)
+		return ;
 	crd = (t_point){0, 0};
 	vp = cam.vp_up_left;
 	while (crd.x < WIN_W)

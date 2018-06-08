@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:50 by pmiceli           #+#    #+#              #
-#    Updated: 2018/04/27 17:07:39 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/05/26 16:46:53 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS_NAME = exit_cause.c\
 			ft_isdigit.c\
 			ft_isprint.c\
 			ft_itoa.c\
+			ft_dbtoa.c\
 			ft_itoa_base.c\
 			ft_lstadd.c\
 			ft_lstdel.c\

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   create_object_ui.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/23 18:42:14 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "rtv1.h"
 
-void	ft_event(t_data *data)
+int				create_object_ui(GtkWidget *tab)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
-	}
-	exit_all(data);*/
+	GtkWidget		*l_title;
+	GtkWidget		*en_1;
+	GtkWidget		*box;
+
+	l_title = gtk_label_new("Object");
+	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+	en_1 = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(box), en_1, FALSE, FALSE, 0);
+	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab), box, l_title) < 0))
+		return (0);
+	return (1);
 }

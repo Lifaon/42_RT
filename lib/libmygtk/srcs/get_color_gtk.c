@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/03/06 20:35:49 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/16 19:16:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include <stdint.h>
 
-void	ft_event(t_data *data)
+uint32_t	get_color_gtk(uint8_t alpha, uint8_t red, uint8_t green, uint8_t blue)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
-	}
-	exit_all(data);*/
+	uint32_t color;
+
+	color = alpha;
+	color = (color * 256) + blue;
+	color = (color * 256) + green;
+	color = (color * 256) + red;
+	return (color);
 }

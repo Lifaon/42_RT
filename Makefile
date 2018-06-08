@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/07 17:57:27 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/08 16:01:11 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,38 @@ SRCS  = draw/anti_aliasing.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
+		ui/create_ui.c \
+		ui/create_sub_notebook.c \
+		ui/toolbar.c \
+		ui/create_light_ui.c \
+		ui/create_camera_ui.c \
+		ui/create_object_ui.c \
+		ui/set_wid_data.c \
+		ui/create_widgets.c \
+		ui/modify_light.c\
+		ui/entry_change_scale.c \
+		ui/click_open.c \
+		ui/click_save.c \
+		ui/click_export.c \
+		ui/click_redraw.c \
+		ui/size_int.c \
+		ui/size_double.c \
+		ui/size_vec.c \
+		ui/size_color.c \
+		ui/join_int.c \
+		ui/size_of_str_json.c \
+		ui/fill_str_json.c \
+		ui/color_toa.c \
+		ui/my_strcopy.c \
+		ui/strcpy_db.c \
+		ui/strcpy_vec.c \
+		ui/change_page.c \
+		ui/make_entry_and_scale.c \
+		ui/wid_vec_new.c \
+		ui/free_to_free.c \
+		ui/add_vector_choose.c \
+		ui/change_vec_from_scale.c\
+\
 		data_init.c \
 		exit_all.c \
 		main.c
@@ -64,13 +96,14 @@ SRCS  = draw/anti_aliasing.c \
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = draw events parser vec
+OBJS_SUB_DIRS = color draw events init parser vec ui
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
 LIB_DIR = ./lib
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
+LIBMYGTK_DIR = $(LIB_DIR)/libmygtk
 LIBPT_DIR = $(LIB_DIR)/libpt
 SDL2_DIR = $(LIB_DIR)/sdl2
 
@@ -85,6 +118,8 @@ SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
+			-I $(LIBMYGTK_DIR)/includes/ \
+			`pkg-config --cflags gtk+-3.0`\
 			$(SDL2_INC)
 
 INCS = $(INC) $(LIB_INCS)
@@ -95,9 +130,11 @@ SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
+			-L $(LIBMYGTK_DIR) -lmygtk \
 			$(SDL2_LFLAGS) \
-			-lm
-CFLAGS = -Wall -Wextra -Werror
+			`pkg-config --libs gtk+-3.0`
+
+CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
@@ -105,7 +142,7 @@ DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 
 ## RULES ##
 
-all: SDL2 LIBFT LIBPT MYSDL print_name $(NAME) print_end
+all: SDL2 LIBFT LIBPT MYSDL MYGTK print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -188,6 +225,10 @@ LIBPT:
 MYSDL:
 	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
 	@make -C $(LIBMYSDL_DIR)
+
+MYGTK:
+	@echo "\033[033m➼\t\033[033mCompiling Libmygtk ...\033[0m"
+	@make -C $(LIBMYGTK_DIR)
 
 print_name:
 	@echo "\033[033m➼\t\033[033mCompiling $(DIR_NAME) ...\033[0m"

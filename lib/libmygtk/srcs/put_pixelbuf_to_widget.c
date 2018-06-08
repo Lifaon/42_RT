@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   put_pixelbuf_to_widget.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/12 19:04:25 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/14 16:13:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "mygtk.h"
 
-void	ft_event(t_data *data)
+void	put_pixelbuf_to_widget(t_pixelbuf *pxlbuf, GtkWidget *img)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
+	if (img)
 	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(img), pxlbuf->buf);
+		gtk_widget_show(img);
 	}
-	exit_all(data);*/
+	else if (pxlbuf->widget)
+	{
+		gtk_image_set_from_pixbuf(GTK_IMAGE(pxlbuf->widget), pxlbuf->buf);
+		gtk_widget_show(pxlbuf->widget);
+	}
 }

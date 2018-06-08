@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/04/25 19:48:31 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/05/26 16:46:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char				*ft_strrchr(char const*s, int c);
 char				*ft_strchr_rev(char const *s, int c);
 char				*ft_strncat(char *dest, char const *src, size_t nb);
 char				*ft_itoa(int nb);
+char				*ft_dbtoa(double n);
 char				*ft_strnew(size_t size);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char(*f)(unsigned int, char));

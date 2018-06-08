@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 17:34:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:59:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include "defines.h"
 # include "libmysdl.h"
+# include "mygtk.h"
 
 typedef struct		s_vec
 {
@@ -82,6 +83,7 @@ typedef struct		s_camera
 typedef struct		s_light
 {
 	int				is_para;
+	int				enabled;
 	double			r;
 	double			ambi;
 	t_vec			pos;
@@ -122,6 +124,18 @@ typedef struct		s_obj
 **	normal = surface normal in case it's constant (e.g. plane)
 */
 
+typedef struct		s_ui
+{
+	GtkWidget	*tab;
+	t_list		*to_free;
+	GtkWidget	*tab_light;
+	GtkWidget	*tab_cams;
+	GtkWidget	*tab_objs;
+	int			page_light;
+	int			page_cams;
+	int			page_objs;
+}					t_ui;
+
 typedef struct		s_data
 {
 	int				nb_objects;
@@ -134,7 +148,10 @@ typedef struct		s_data
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	t_win			*win;
+	GtkWidget		*win_gtk;
 	t_texture		*tex;
+	t_ui			*ui;
+	int				draw;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in
@@ -148,7 +165,23 @@ typedef struct		s_funar_keyb
 }					t_funar_keyb;
 /*
 ** This structure is used to handle the keyboard event
-** fill f with the function you want to use when the key is push
+** fill f with the function you want to use when the key is pushed
+*/
+typedef struct		s_wid_data
+{
+	t_point			pos;
+	t_point			size;
+	GtkWidget		*grid;
+	void			(*f)(GtkWidget*, gpointer);
+}					t_wid_data;
+/*
+** This structure is used to make widget, position it to a grid
+** and link to function 
 */
 
+typedef struct		s_widget_vec
+{
+	GtkSizeGroup	*group;
+	t_vec			*vec;
+}					t_widget_vec;
 #endif

@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   create_sub_notebook.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/05/27 19:23:33 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/05/27 19:23:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include "rtv1.h"
 
-void	ft_event(t_data *data)
+int		create_sub_notebook(t_ui *ui)
 {
-//	SDL_Event	event;
-	int			quit;
-/*
-	quit = 0;
-	while (!quit)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			quit = 1;
-		else if (event.type == SDL_KEYDOWN)
-			ft_keyboard(event.key.keysym.sym, data);
-	}
-	exit_all(data);*/
+	if (!(create_light_ui(ui->tab)))
+		return (0);
+	ft_putstr("light created \n");
+	if (!(create_camera_ui(ui->tab)))
+		return (0);
+	ft_putstr("camera created \n");
+	if (!(create_object_ui(ui->tab)))
+		return (0);
+	ft_putstr("object created \n");
+	return (1);
 }

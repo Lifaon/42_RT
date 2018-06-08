@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 15:24:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:59:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		parse_objects(t_data *data, char *str, int *index);
 void	init_cameras(t_data *data);
 void	get_vp_up_left(t_camera *cam);
 int		init_lights(t_data *data, int nb);
+void	init_one_light(t_data *data, int index);
 int		init_objects(t_data *data, int nb);
 /*
 **	Functions used to initialize the structures and all their variables

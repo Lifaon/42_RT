@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:59:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/08 16:04:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,10 @@
 
 t_data			*g_data;
 
-/*
-**	Function used to initialize everything.
-*/
-void	data_init(t_data *data, int ac, char **av);
 
 /*
 **	Function used to parse the given file.
 */
-<<<<<<< HEAD
-void	parse(t_data *data, char *file_name);
-=======
 void			parse(t_data *data, char *file_name);
 
 /*
@@ -45,22 +38,21 @@ void			parse(t_data *data, char *file_name);
 */
 t_data			*data_init(int ac, char **av);
 void			choose_cam(t_data *data, int index);
->>>>>>> gtk
 
 /*
 **	Drawing function.
 */
-void	draw_image(t_data *data);
+void			draw_image(t_data *data);
 
 /*
 **	Function used to handle events.
 */
-void	ft_event(t_data *data);
+void			ft_event(t_data *data);
 
 /*
 **	Frees everything that has to be freed.
 */
-void	exit_all(t_data *data);
+void			exit_all(t_data *data);
 
 /*
 **	Functions for create User Interface and event associated

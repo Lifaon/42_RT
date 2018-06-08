@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/08 15:57:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/08 16:13:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_event(t_data *data)
 {
+	gtk_main();
+	exit_all(data);
+}
 //	SDL_Event	event;
-	int			quit;
+//	int			quit;
 /*
 	quit = 0;
 	while (!quit)
@@ -26,5 +29,4 @@ void	ft_event(t_data *data)
 		else if (event.type == SDL_KEYDOWN)
 			ft_keyboard(event.key.keysym.sym, data);
 	}
-	exit_all(data);*/
-}
+}*/

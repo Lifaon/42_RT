@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:58:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/08 16:11:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_data		*data_init(int ac, char **av)
 	t_point		size;
 	t_data		*data;
 
-	data->aa = 1;
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
+	data->aa = 1;
 	data->nb_objects = 0;
 	data->nb_lights = 0;
 	data->tex = NULL;

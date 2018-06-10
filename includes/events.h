@@ -35,6 +35,7 @@ void			translate_s(t_data *data);
 void			translate_d(t_data *data);
 void			translate_e(t_data *data);
 void			translate_q(t_data *data);
+void			get_vp_up_left(t_camera *cam);
 void			choose_cam(t_data *data, int index);
 
 /*
@@ -44,6 +45,5 @@ void			rotate_i(t_data *data);
 void			rotate_k(t_data *data);
 void			rotate_j(t_data *data);
 void			rotate_l(t_data *data);
-void			get_vp_up_left(t_camera *cam);
 
 #endif

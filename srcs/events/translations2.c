@@ -15,11 +15,13 @@
 void	translate_q(t_data *data)
 {
 	data->cams[data->i].pos.z -= TRANSLATION;
+	get_vp_up_left(&data->cams[data->i]);
 	choose_cam(data, data->i);
 }
 
 void	translate_e(t_data *data)
 {
 	data->cams[data->i].pos.z += TRANSLATION;
+	get_vp_up_left(&data->cams[data->i]);
 	choose_cam(data, data->i);
 }

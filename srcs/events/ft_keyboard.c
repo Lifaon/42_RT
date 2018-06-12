@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:43:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 15:01:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:02:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				ft_keyboard(int key, t_data *data)
 		exit_all(data);
 	ret = 0;
 	if ((ret = do_event(key, data)) == 1)
-		draw_image(data);
+		!data->px ? draw_image(data) : draw_pixelated_image(data);
 	if (ret == -1)
 		exit_all(data);
 	return (0);

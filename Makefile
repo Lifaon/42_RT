@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/07 17:57:27 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/12 16:03:30 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,13 @@ SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/colors.c \
 		draw/draw_image.c \
+		draw/draw_pixelated_image.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
+		events/px_aa.c \
 		events/fill_funar_key_event.c \
 		events/rotate.c \
 		events/translations.c \

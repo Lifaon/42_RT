@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:16:22 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:02:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void	data_init(t_data *data, int ac, char **av);
 void	parse(t_data *data, char *file_name);
 
 /*
-**	Drawing function.
+**	Drawing functions.
 */
 void	draw_image(t_data *data);
+void	draw_pixelated_image(t_data *data);
 
 /*
 **	Function used to handle events.

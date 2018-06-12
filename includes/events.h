@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:10:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 15:04:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:00:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@ void			rotate_k(t_data *data);
 void			rotate_j(t_data *data);
 void			rotate_l(t_data *data);
 void			get_vp_up_left(t_camera *cam);
+
+/*
+**	Enabling pixelation and anti-aliasing.
+*/
+void			pixelate(t_data *data);
+void			anti_alias(t_data *data);
 
 #endif

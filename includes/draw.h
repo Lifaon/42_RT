@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 17:56:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:03:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "structs.h"
 # include "vec.h"
-
+# define PIXEL 8.
 /*
 **	Function called in draw_image.c.
 */

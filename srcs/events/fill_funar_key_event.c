@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:42:41 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 14:41:26 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:06:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_funar_keyb			*fill_funar_key_event(int *size)
 	int				i;
 
 	i = 0;
-	*size = 10;
+	*size = 12;
 	tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * *size);
 	tab[i++] = add_one(SDLK_i, &rotate_i);
 	tab[i++] = add_one(SDLK_j, &rotate_j);
@@ -39,5 +39,7 @@ t_funar_keyb			*fill_funar_key_event(int *size)
 	tab[i++] = add_one(SDLK_d, &translate_d);
 	tab[i++] = add_one(SDLK_q, &translate_q);
 	tab[i++] = add_one(SDLK_e, &translate_e);
+	tab[i++] = add_one(SDLK_p, &pixelate);
+	tab[i++] = add_one(SDLK_o, &anti_alias);
 	return (tab);
 }

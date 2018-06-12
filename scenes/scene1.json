@@ -2,37 +2,51 @@
 	"cameras" :
 	[
 		{
-			"position" : [0, 0, -2000],
+			"position" : [0, 0, 2000],
 			"fov" : 20
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-1000, 1000, 1000],
+			"position" : [-1000, 1000, 5000],
 			"ambient" : 0.2
 		},
 		{
-			"position" : [-2000, 0, 1000],
+			"position" : [-2000, 0, 5000],
 			"ambient" : 0.2
 		},
 		{
-			"position" : [-1000, -1000, 1000],
+			"position" : [-1000, -1000, 5000],
 			"ambient" : 0.2
 		},
 	],
 	"objects" :
 	{
-		"cone" :
+		"sphere" :
 		{
-			"position" : [0, 0, 1500],
-			"radius" : 10,
+			"position" : [0, 0, 5500],
+			"radius" : 200,
+			"direction" : [0, 1, 0],
+			"color" : [0, 120, 180, 0]
+		},
+		"sphere" :
+		{
+			"position" : [1000, 0, 5500],
+			"radius" : 200,
+			"direction" : [0, 1, 0],
+			"color" : [0, 120, 180, 0]
+		},
+		"sphere" :
+		{
+			"position" : [-1000, 0, 5500],
+			"radius" : 200,
 			"direction" : [0, 1, 0],
 			"color" : [0, 120, 180, 0]
 		},
 		"plane" :
 		{
-			"position" : [0, 0, 1700],
+			"position" : [0, 0, 5700],
 			"color" : [0, 120, 120, 0],
 			"normal" : [0, 0, 1],
 			"specular" : 0

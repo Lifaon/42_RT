@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/12 16:04:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:22:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ static void	draw_pixels(t_data *data, t_point crd, int color)
 
 	crd.x *= PIXEL;
 	crd.y *= PIXEL;
-	px = (t_point){0, 0};
-	while (px.x < PIXEL)
+	px.y = -1;
+	while (++px.y < PIXEL)
 	{
-		pt_to_tex((t_point){crd.x + px.x, crd.y + px.y}, data->tex, color);
-		px = pt_ypluseg(px, 0, PIXEL);
+		px.x = -1;
+		while (++px.x < PIXEL)
+			pt_to_tex((t_point){crd.x + px.x, crd.y + px.y}, data->tex, color);
 	}
 }
 

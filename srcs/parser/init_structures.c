@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 03:36:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:50:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	get_vp_up_left(t_camera *cam)
 		vp_dist = (WIN_H / 2) / vp_dist;
 	else
 		vp_dist = 1000.0;
-	cam->vp_up_left.x = (-(double)WIN_W + cam->pos.x) / 2;
-	cam->vp_up_left.y = ((double)WIN_H + cam->pos.y) / 2;
+	cam->vp_up_left.x = cam->pos.x - (WIN_W * 0.5);
+	cam->vp_up_left.y = cam->pos.y + (WIN_H * 0.5);
 	cam->vp_up_left.z = vp_dist + cam->pos.z;
 }
 

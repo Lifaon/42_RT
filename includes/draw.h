@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/12 16:03:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/13 00:51:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include "structs.h"
 # include "vec.h"
-# define PIXEL 8.
+# define PIXEL 12.
+
 /*
 **	Function called in draw_image.c.
 */
 int		get_px_color(t_data *data, t_inter inter);
 int		anti_aliasing(t_data *data, t_vec vp);
-
 
 /*
 **	Phong shading.
@@ -29,6 +29,12 @@ int		anti_aliasing(t_data *data, t_vec vp);
 t_color	ambient_shading(t_obj obj, t_light light);
 t_color	diffuse_shading(t_obj obj, double dot);
 t_color	specular_shading(t_camera cam, t_obj obj, t_vec light, t_inter inter);
+
+/*
+**	Color filters.
+*/
+void	sepia(t_data *data);
+void	black_and_white(t_data *data);
 
 /*
 **	Functions used for color management.

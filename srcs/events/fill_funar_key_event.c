@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:42:41 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/12 16:06:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/13 00:07:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_funar_keyb			*fill_funar_key_event(int *size)
 	i = 0;
 	*size = 12;
 	tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * *size);
-	tab[i++] = add_one(SDLK_i, &rotate_i);
-	tab[i++] = add_one(SDLK_j, &rotate_j);
-	tab[i++] = add_one(SDLK_k, &rotate_k);
-	tab[i++] = add_one(SDLK_l, &rotate_l);
+	tab[i++] = add_one(SDLK_UP, &rotate_up);
+	tab[i++] = add_one(SDLK_LEFT, &rotate_left);
+	tab[i++] = add_one(SDLK_DOWN, &rotate_down);
+	tab[i++] = add_one(SDLK_RIGHT, &rotate_right);
 	tab[i++] = add_one(SDLK_w, &translate_w);
 	tab[i++] = add_one(SDLK_a, &translate_a);
 	tab[i++] = add_one(SDLK_s, &translate_s);

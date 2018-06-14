@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 16:41:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:47:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdint.h>
 # include "defines.h"
-# include "libmysdl.h"
 # include "mygtk.h"
 
 typedef struct		s_vec
@@ -147,9 +146,7 @@ typedef struct		s_data
 	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
-	t_win			*win;
-	GtkWidget		*win_gtk;
-	t_texture		*tex;
+	GtkWidget		*win;
 	t_pixelbuf		*img;
 	t_ui			*ui;
 	int				draw;

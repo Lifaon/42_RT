@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 16:29:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:44:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				create_ui(void)
 	gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
 	gtk_widget_show_all(win);
-	g_data->win_gtk = win;
+	g_data->win = win;
 	g_data->draw = 1;
 	return (1);
 }

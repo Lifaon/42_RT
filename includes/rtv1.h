@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 16:04:46 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:47:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include "libft.h"
 # include "libpt.h"
-# include "libmysdl.h"
 # include "mygtk.h"
 
 # include "structs.h"

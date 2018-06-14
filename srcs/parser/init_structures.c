@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:55:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:46:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_one_light(t_data *data, int index)
 	data->lights[index].ambi = 0.3;
 	data->lights[index].pos = (t_vec){0.0, 0.0, 0.0};
 	data->lights[index].dir = (t_vec){0.0, 0.0, 0.0};
-	data->lights[index].color.c = 0xFFFFFF;
+	data->lights[index].color.c = 0xFFFFFFFF;
 }
 
 int		init_lights(t_data *data, int nb)
@@ -76,7 +76,7 @@ int		init_objects(t_data *data, int nb)
 		data->objs[i].r = 100;
 		data->objs[i].spec = 1;
 		data->objs[i].alpha = 100;
-		data->objs[i].color.c = 0xA600A6;
+		data->objs[i].color.c = get_color_gtk(255, 0xA6, 0, 0xA6);
 		data->objs[i].pos = (t_vec){0, 0, 1500};
 		data->objs[i].dir = (t_vec){1, 1, 0};
 		data->objs[i].normal = (t_vec){1, 1, 0.001};

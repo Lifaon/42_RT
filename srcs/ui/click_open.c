@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/01 20:30:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:43:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		open_json(gchar *path)
 	draw_image(g_data);
 	if (!(create_sub_notebook(g_data->ui)))
 		return (-1);
-	gtk_widget_show_all(g_data->win_gtk);
+	gtk_widget_show_all(g_data->win);
 	return (1);
 }
 
@@ -79,7 +79,7 @@ void			click_open(GtkWidget *widget, gpointer data)
 		return ;
 	ui = (t_ui*)data;
 	select = gtk_file_chooser_dialog_new("chose a file",
-			GTK_WINDOW(g_data->win_gtk),
+			GTK_WINDOW(g_data->win),
 			GTK_FILE_CHOOSER_ACTION_OPEN, "load", GTK_RESPONSE_ACCEPT, NULL);
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
 	response = gtk_dialog_run(GTK_DIALOG(select));

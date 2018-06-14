@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 16:11:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:44:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	g_data->lights = lights_new;
 	init_one_light(g_data, i);
 	add_one_light_tab(g_data->ui->tab_light, i);
-	gtk_widget_show_all(g_data->win_gtk);
+	gtk_widget_show_all(g_data->win);
 }
 
 void			change_light_pos(GtkWidget *widget, gpointer param)

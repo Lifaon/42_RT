@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 18:06:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:48:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				anti_aliasing(t_data *data, t_vec vp)
 			if (hit(data, ray, &inter))
 				colors[px.x + (px.y * data->aa)].c = get_px_color(data, inter);
 			else
-				colors[px.x + (px.y * data->aa)].c = 0;
+				colors[px.x + (px.y * data->aa)].c = get_color_gtk(255, 0, 0, 0);
 		}
 	}
 	return (blend(colors, data->aa * data->aa).c);

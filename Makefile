@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/14 15:53:16 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/14 19:57:12 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/colors.c \
 		draw/draw_image.c \
-		draw/draw_image_sdl.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		\
@@ -103,25 +102,18 @@ OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 ## Lib dirs ##
 LIB_DIR = ./lib
 LIBFT_DIR = $(LIB_DIR)/libft
-LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
 LIBMYGTK_DIR = $(LIB_DIR)/libmygtk
 LIBPT_DIR = $(LIB_DIR)/libpt
-SDL2_DIR = $(LIB_DIR)/sdl2
 
 ## Macros for sdl2 installation ##
 MAIN_DIR_PATH = $(shell pwd)
-SDL_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/sdl2)
-SDL_VER = 2.0.8
 
 ## Includes ##
 INC = -I ./includes/
-SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
-			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
 			-I $(LIBMYGTK_DIR)/includes/ \
 			`pkg-config --cflags gtk+-3.0`\
-			$(SDL2_INC)
 
 INCS = $(INC) $(LIB_INCS)
 
@@ -130,9 +122,7 @@ CC = gcc
 SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
-			-L $(LIBMYSDL_DIR) -lmysdl \
 			-L $(LIBMYGTK_DIR) -lmygtk \
-			$(SDL2_LFLAGS) \
 			`pkg-config --libs gtk+-3.0`
 
 CFLAGS = #-Wall -Wextra -Werror
@@ -143,7 +133,7 @@ DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\
 
 ## RULES ##
 
-all: SDL2 LIBFT LIBPT MYSDL MYGTK print_name $(NAME) print_end
+all: LIBFT LIBPT MYGTK print_name $(NAME) print_end
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
@@ -167,24 +157,16 @@ rm_obj:
 clean: rm_obj
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(LIBPT_DIR) clean
-	@make -C $(LIBMYSDL_DIR) clean
 
 fclean: rm_obj
 	@rm -rf $(NAME)
 	@echo "❌\t\033[031m$(DIR_NAME)'s executable removed\033[0m"
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(LIBPT_DIR) fclean
-	@make -C $(LIBMYSDL_DIR) fclean
 
 re: fclean all
 
 exe: rm_obj all
-
-rm_SDL2:
-	@rm -rf $(SDL2_DIR)
-	@echo "❌\t\033[031mSDL2-$(SDL_VER) removed\033[0m"
-
-re_SDL2: fclean rm_SDL2 all
 
 MODE_DEBUG: change_cflag all
 
@@ -193,28 +175,6 @@ re_MODE_DEBUG: rm_obj MODE_DEBUG
 change_cflag:
 	@$(eval CFLAGS = -fsanitize=address)
 
-SDL2 :
-	@if [ ! -d "./lib/sdl2" ]; then \
-		echo "\033[033m⚠\tSDL2 is not installed ! ...\033[0m"; \
-		echo "\033[033m➼\tCompiling SDL2-$(SDL_VER) ...\033[0m"; \
-		printf "\033[033m\tIn 3 ...\033[0m"; sleep 1; \
-		printf "\r\033[033m\tIn 2 ...\033[0m"; sleep 1; \
-		printf "\r\033[033m\tIn 1 ...\033[0m"; sleep 1; printf "\n"; \
-		curl -OL http://www.libsdl.org/release/SDL2-$(SDL_VER).tar.gz && \
-		tar -zxvf SDL2-$(SDL_VER).tar.gz && \
-		rm SDL2-$(SDL_VER).tar.gz && \
-		mkdir -p $(SDL_PATH) && \
-		cd SDL2-$(SDL_VER) && \
-			sh configure --prefix=$(SDL_PATH) && \
-			make && \
-			make install && \
-		cd .. && \
-		rm -rf SDL2-$(SDL_VER); \
-		echo "\033[32m✓\tSDl2-$(SDL_VER) installed !\033[0m"; \
-	else \
-		echo "\033[032m✓\tSDl2-$(SDL_VER) already installed\033[0m"; \
-	fi
-
 LIBFT:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
 	@make -C $(LIBFT_DIR)
@@ -222,10 +182,6 @@ LIBFT:
 LIBPT:
 	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
 	@make -C$(LIBPT_DIR)
-
-MYSDL:
-	@echo "\033[033m➼\t\033[033mCompiling Libmysdl ...\033[0m"
-	@make -C $(LIBMYSDL_DIR)
 
 MYGTK:
 	@echo "\033[033m➼\t\033[033mCompiling Libmygtk ...\033[0m"
@@ -237,5 +193,5 @@ print_name:
 print_end:
 	@echo $(MESSAGE)
 
-.PHONY: all clean fclean re rm_obj exe SDL2 LIBFT LIBPT MYSDL rm_SDL2 re_SDL2 \
+.PHONY: all clean fclean re rm_obj exe LIBFT LIBPT \
 		MODE_DEBUG re_MODE_DEBUG change_cflag print_name print_end

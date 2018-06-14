@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 17:14:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:49:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,12 @@ int		main(int ac, char **av)
 {
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
-	if (SDL_Init(SDL_INIT_VIDEO))
-	{
-		ft_putstr("SDL_Init error : ");
-		ft_putendl(SDL_GetError());
-		return (0);
-	}
 	g_data = data_init(ac, av);
 	gtk_init(&ac, &av);
 	if (create_ui() == 0)
 		return (0);
-	ft_putstr("gtk = \n");
-	get_time();
+	//g_data->aa = 2;
 	draw_image(g_data);
-	get_time();
-	ft_putstr("sdl = \n");
-	draw_image_sdl(g_data);
-	get_time();
 	//print_parsed_data(data);*/
 	ft_event(g_data);
 	return (0);

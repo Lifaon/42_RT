@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:12:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:43:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			click_save(GtkWidget *widget, gpointer data)
 	if (!widget && !data)
 		return ;
 	select = gtk_file_chooser_dialog_new("save work",
-			GTK_WINDOW(g_data->win_gtk),
+			GTK_WINDOW(g_data->win),
 			GTK_FILE_CHOOSER_ACTION_SAVE, "save", GTK_RESPONSE_ACCEPT, NULL);
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
 	response = gtk_dialog_run(GTK_DIALOG(select));

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 20:54:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:36:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_color	parse_color(char *str, int *index)
 	int		i;
 
 	ret.c = 0;
+	ret.argb.a = 255;
 	i = 0;
 	while (str[i] != '[')
 		++i;

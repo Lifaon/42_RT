@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/13 15:32:17 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/14 19:21:33 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS  = draw/anti_aliasing.c \
 		vec/get_normal.c \
 		vec/hit.c \
 		vec/intersect.c \
+		vec/rotate_around_object.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
@@ -101,7 +102,7 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			$(SDL2_LFLAGS) \
 			-lm
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\

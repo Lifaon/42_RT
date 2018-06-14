@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 15:23:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:38:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int		light_path_is_blocked(t_data *data, t_inter inter, t_vec *light)
 	return (0);
 }
 
-static t_color	shade(t_data *data, t_inter *inter, t_light light)
+static t_color	shade(t_data *data, t_camera cam, t_inter *inter, t_light light)
 {
 	t_color	ret;
 	t_vec	light_vec;
@@ -54,11 +54,11 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 		return (ret);
 	ret = add_colors(ret, diffuse_shading(data->objs[inter->obj_i], dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
-		data->cams[data->i], data->objs[inter->obj_i], light_vec, *inter));
+		cam, data->objs[inter->obj_i], light_vec, *inter));
 	return (ret);
 }
 
-int				get_px_color(t_data *data, t_inter inter)
+int				get_px_color(t_data *data, t_camera cam, t_inter inter)
 {
 	t_color		ret;
 	t_vector	added;
@@ -71,7 +71,7 @@ int				get_px_color(t_data *data, t_inter inter)
 	inter.spec.c = 0;
 	while (++i < data->nb_lights)
 	{
-		ret = shade(data, &inter, data->lights[i]);
+		ret = shade(data, cam, &inter, data->lights[i]);
 		added.x += ret.argb.r;
 		added.y += ret.argb.g;
 		added.z += ret.argb.b;

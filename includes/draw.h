@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/13 15:31:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:38:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*
 **	Function called in draw_image.c.
 */
-int		get_px_color(t_data *data, t_inter inter);
+int		get_px_color(t_data *data, t_camera cam, t_inter inter);
 int		anti_aliasing(t_data *data, t_vec vp);
 
 /*

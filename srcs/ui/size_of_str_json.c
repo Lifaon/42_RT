@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:00:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:53:22 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static size_t	size_of_lights(void)
 	return (size);
 }
 
-static size_t	get_size_str_obj_type(t_obj_type type)
+static size_t	get_size_str_obj_type(int type)
 {
 	size_t		size;
 

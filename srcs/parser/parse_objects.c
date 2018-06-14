@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 18:49:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:52:26 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	parse_object(t_obj *object, char *str, int *index)
 
 static void	which_object(t_data *data, char *str, int *index, int *object_index)
 {
-	t_obj_type	obj_type;
+	int			obj_type;
 	int			i;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 19:47:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:59:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,6 @@ typedef struct		s_light
 **	r = radius of the light source ; pos = position ; dir = direction.
 */
 
-typedef enum		e_obj_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CONE
-}					t_obj_type;
-
 typedef struct		s_obj
 {
 	double			r;
@@ -112,7 +104,7 @@ typedef struct		s_obj
 	t_vec			dir;
 	t_vec			oc;
 	t_vec			normal;
-	t_obj_type		obj_type;
+	int				obj_type;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
 }					t_obj;

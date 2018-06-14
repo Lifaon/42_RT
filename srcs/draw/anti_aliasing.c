@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 19:48:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 20:00:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static t_color	blend(t_color colors[256], int size)
 	added = (t_vec){0, 0, 0};
 	while (++i < size)
 	{
-		//ft_putnbr(i);
 		added.x += colors[i].argb.r;
 		added.y += colors[i].argb.g;
 		added.z += colors[i].argb.b;

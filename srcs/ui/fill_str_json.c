@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:04:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:53:53 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char		*str_lights(char *str)
 	return (str);
 }
 
-static char		*str_obj_type(char *str, t_obj_type type)
+static char		*str_obj_type(char *str, int type)
 {
 	str = my_strcopy(str, "\t\t\"");
 	if (type == SPHERE)

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/08 16:01:11 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/14 15:53:16 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/colors.c \
 		draw/draw_image.c \
+		draw/draw_image_sdl.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		\

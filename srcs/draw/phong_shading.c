@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:00:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:34:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_color	specular_shading(t_camera cam, t_obj obj, t_vec light, t_inter inter)
 	t_vec	v;
 	double	dot;
 
-	ret.c = 0xFFFFFF;
+	ret.c = get_color_gtk(255, 255, 255, 255);
 	ret = col_multiply(ret, obj.spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/13 18:19:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:59:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,15 @@ static void	draw_pixel(t_data *data, t_vec vp, t_point crd)
 		ray = compute_ray(vp, data->cams[data->i]);
 		inter.min_dist = 0;
 		if (hit(data, ray, &inter))
-			pt_to_pixelbuf(crd, data->img, get_px_color(data, inter));
-			//pt_to_tex(crd, data->tex, get_px_color(data, inter));
+			pt_to_tex(crd, data->tex, get_px_color(data, inter));
 		else
-			pt_to_pixelbuf(crd, data->img, 0);
-			//pt_to_tex(crd, data->tex, 0);
+			pt_to_tex(crd, data->tex, 0);
 	}
 	else if (data->aa > 1)
-		pt_to_pixelbuf(crd, data->img, anti_aliasing(data, vp));
-		//pt_to_tex(crd, data->tex, anti_aliasing(data, vp));
+		pt_to_tex(crd, data->tex, anti_aliasing(data, vp));
 }
 
-void		draw_image(t_data *data)
+void		draw_image_sdl(t_data *data)
 {
 	t_camera	cam;
 	t_point		crd;
@@ -52,6 +49,6 @@ void		draw_image(t_data *data)
 		draw_pixel(data, vp, crd);
 		crd = pt_ypluseg(crd, 0, WIN_H);
 	}
-	put_pixelbuf_to_widget(g_data->img, NULL);
-	//put_tex_to_win(data->tex, data->win->ren);
+	put_tex_to_win(data->tex, data->win->ren);
+	gtk_widget_show_all(g_data->win_gtk);
 }

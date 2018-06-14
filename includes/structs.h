@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:59:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:41:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef union		u_color
 	uint32_t		c;
 	struct			s_argb
 	{
-		uint8_t		b;
-		uint8_t		g;
 		uint8_t		r;
+		uint8_t		g;
+		uint8_t		b;
 		uint8_t		a;
 	}				argb;
 }					t_color;
@@ -150,6 +150,7 @@ typedef struct		s_data
 	t_win			*win;
 	GtkWidget		*win_gtk;
 	t_texture		*tex;
+	t_pixelbuf		*img;
 	t_ui			*ui;
 	int				draw;
 }					t_data;

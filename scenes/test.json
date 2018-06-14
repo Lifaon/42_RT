@@ -2,14 +2,18 @@
 	"cameras" :
 	[
 		{
-			"fov" : 40,
-			"position" : [0, 0, 0],
+			"fov" : 20,
+			"position" : [0, 0, -3000],
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [0, 0, 0],
+			"position" : [-1000, 500, 500],
+			"ambient" : 0.4
+		},
+		{
+			"position" : [-900, 600, 500],
 			"ambient" : 0.4
 		}
 	],
@@ -17,22 +21,22 @@
 	{
 		"sphere" :
 		{
-			"position" : [100, 0, 1000],
+			"position" : [-100, 200, 1000],
 			"radius" : 100,
 		},
 		"cylinder" :
 		{
-			"position" : [0, 400, 2000],
-			"direction" : [1, 0, 0],
-			"color" : [255, 0, 0, 0],
-			"radius" : 100,
+			"position" : [200, 0, 1500],
+			"color" : [255, 160, 0],
+			"direction" : [0, 1, 0],
+			"radius" : 200
 		},
-		"cylinder" :
+		"plane" :
 		{
-			"position" : [0, -400, 2000],
-			"direction" : [1, 0, 0],
-			"color" : [255, 0, 0, 0],
-			"radius" : 100,
+			"position" : [0, 0, 1750],
+			"normal" : [0, 0, -1],
+			"color" : [0, 180, 180],
+			"specular" : 0
 		}
 	}
 }

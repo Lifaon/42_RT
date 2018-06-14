@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 01:49:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 22:49:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 22:56:07 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ static void	copy_colors(t_color *copy, uint32_t *src, int size)
 		copy[i].c = src[i];
 		++i;
 	}
-	return (copy);
 }
 
 void		blur(t_data *data)

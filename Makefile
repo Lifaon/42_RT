@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/14 19:21:33 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/14 22:55:08 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ EOC = \033[37m
 ## Sources ##
 SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
-		draw/background_blur.c \
+		draw/blur.c \
 		draw/colors.c \
 		draw/draw_image.c \
 		draw/draw_pixelated_image.c \

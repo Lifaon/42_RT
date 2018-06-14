@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 19:38:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 22:55:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ t_color	add_colors(t_color col1, t_color col2);
 t_color	blend_colors(t_color col1, t_color col2);
 t_color	col_multiply(t_color color, double nb);
 t_color	col_divide(t_color color, double nb);
+
+void	exit_all(t_data *data);
 
 #endif

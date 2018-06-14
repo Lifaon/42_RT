@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 01:49:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/13 16:27:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:34:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	fill_kernel(t_color *copy, t_point crd, t_vec kernel[9])
 	t_color	current;
 
 	i = -1;
-	new.y = -2;
-	while (++new.y < 2)
+	new.y = -3;
+	while (++new.y <= 2)
 	{
-		new.x = -2;
-		while (++new.x < 2)
+		new.x = -3;
+		while (++new.x <= 2)
 		{
 			++i;
-			if ((new.x == -1 && crd.x == 0) ||
-				(new.x == 1 && crd.x == WIN_W - 1) ||
-				(new.y == -1 && crd.y == 0) ||
-				(new.y == 1 && crd.y == WIN_H - 1))
+			if ((new.x < 0 && crd.x < 2) ||
+				(new.x > 0 && crd.x > WIN_W - 3) ||
+				(new.y < 0 && crd.y < 2) ||
+				(new.y > 0 && crd.y > WIN_H - 3))
 				current = copy[crd.x + crd.y * WIN_W];
 			else
 				current = copy[(crd.x + new.x) + ((crd.y + new.y) * WIN_W)];
@@ -44,7 +44,7 @@ static void	fill_kernel(t_color *copy, t_point crd, t_vec kernel[9])
 
 static int	gaussian_blur(t_color *copy, t_point crd)
 {
-	t_vec	kernel[9];
+	t_vec	kernel[25];
 	t_vec	added;
 	t_color	ret;
 	float	coeff;
@@ -52,14 +52,14 @@ static int	gaussian_blur(t_color *copy, t_point crd)
 
 	fill_kernel(copy, crd, kernel);
 	added = (t_vec){0, 0, 0};
-	coeff = 1. / 16.;
+	coeff = 1. / 25.;
 	i = -1;
-	while (++i < 9)
+	while (++i < 25)
 	{
 		if (i == 5)
-			added = vec_add(added, vec_multiply(kernel[i], coeff * 4));
+			added = vec_add(added, vec_multiply(kernel[i], coeff));
 		else if (i % 2)
-			added = vec_add(added, vec_multiply(kernel[i], coeff * 2));
+			added = vec_add(added, vec_multiply(kernel[i], coeff));
 		else if (!(i % 2))
 			added = vec_add(added, vec_multiply(kernel[i], coeff));
 	}

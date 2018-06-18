@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 19:42:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 19:43:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/18 17:07:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static void			export_png(char *name)
 {
 	GError				*error;
 
-	gdk_pixbuf_save(g_data->img->buf, name, "png", &error, NULL);
+	error = NULL;
+	gdk_pixbuf_save((GdkPixbuf*)g_data->img->buf, name, "png", &error, NULL);
+	ft_putstr("pouet\n");
 	if (error && error->message)
 		ft_putstr(error->message);
 }

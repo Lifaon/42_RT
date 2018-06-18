@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/21 21:26:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/18 16:42:32 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 typedef struct	s_pixelbuf
 {
-	GdkPixbuf		*buf;
+	void		*buf;
 	uint32_t	*pxl;
 	int			sizeline;
 	t_point		size;
-	GtkWidget	*widget;
+	void		*widget;
 }				t_pixelbuf;
 
 void			put_widgets_in_new_win(GtkWidget *wid, gint x, gint y);

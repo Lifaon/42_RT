@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 18:53:53 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/18 20:19:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static char		*str_lights(char *str)
 		str = my_strcopy(str, "\t\t{\n");
 		str = my_strcopy(str, "\t\t\t\"position\" : ");
 		str = strcpy_vec(str, g_data->lights[i].pos);
+		t_vec vec;
+		vec = g_data->lights[i].pos;
+		printf("vec = [%lf, %lf, %lf]\n", vec.x, vec.y, vec.z);
 		str = my_strcopy(str, ",\n\t\t\t\"ambiant\" : ");
 		str = strcpy_db(str, g_data->lights[i].ambi);
 		i++;
@@ -91,12 +94,11 @@ static char		*str_objects(char *str)
 		str = my_strcopy(str, "\t\t{\n");
 		str = my_strcopy(str, "\t\t\t\"position\" : ");
 		str = strcpy_vec(str, g_data->objs[i].pos);
-		str = my_strcopy(str, ",\n\t\t\t\"direction\" : ");
-		str = strcpy_vec(str, g_data->objs[i].dir);
-		str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
-		str = strcpy_db(str, g_data->objs[i].r);
 		str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
 		str = color_toa(str, g_data->objs[i].color);
+		str = my_strcopy(str, ",\n\t\t\t\"alpha\" : ");
+		str = strcpy_db(str, g_data->objs[i].alpha);
+		str = fill_object_json(str, g_data->objs[i].obj_type, i);
 		i++;
 		if (i == g_data->nb_objects)
 			str = my_strcopy(str, "\n\t\t}\n");

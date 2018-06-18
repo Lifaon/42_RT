@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 19:47:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/18 20:26:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,6 @@ void			add_one_light(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
 GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
+char		*fill_object_json(char *str, int type, int i);
+int			size_of_object_json(int size, int type, int i);
 #endif

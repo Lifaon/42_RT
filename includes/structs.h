@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/18 17:35:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/18 18:42:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct		s_ui
 	GtkWidget	*tab_light;
 	GtkWidget	*tab_cams;
 	GtkWidget	*tab_objs;
+	int			is_active;
 	int			page_light;
 	int			page_cams;
 	int			page_objs;

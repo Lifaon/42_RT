@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 18:53:22 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/18 20:27:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static size_t	get_size_str_obj_type(int type)
 	return (0);
 }
 
-static size_t	size_of_objects(void)
+static size_t	size_all_objects(void)
 {
 	size_t		size;
 	int			i;
@@ -91,12 +91,11 @@ static size_t	size_of_objects(void)
 		size += ft_strlen("\t\t{\n");
 		size += ft_strlen("\t\t\t\"position\" : ");
 		size += size_vec(g_data->objs[i].pos) + 2;
-		size += ft_strlen("\t\t\t\"direction\" : ");
-		size += size_vec(g_data->objs[i].dir) + 2;
-		size += ft_strlen("\t\t\t\"radius\" : ");
-		size += size_double(g_data->objs[i].r) + 1;
 		size += ft_strlen("\t\t\t\"color\" : ");
 		size += size_color(g_data->objs[i].color) + 2;
+		size += ft_strlen("\t\t\t\"alpha\" : ");
+		size += size_double(g_data->objs[i].alpha) + 1;
+		size += size_of_object_json(size, g_data->objs[i].obj_type, i);
 		size += ft_strlen("\t\t},\n");
 		i++;
 	}
@@ -107,5 +106,5 @@ static size_t	size_of_objects(void)
 
 size_t			size_of_str_json(void)
 {
-	return (size_of_cams() + size_of_lights() + size_of_objects());
+	return (size_of_cams() + size_of_lights() + size_all_objects());
 }

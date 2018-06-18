@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/14 22:55:08 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/18 17:48:51 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/blur.c \
 		draw/colors.c \
+		draw/depth_of_field.c \
 		draw/draw_image.c \
 		draw/draw_pixelated_image.c \
 		draw/filters.c \
@@ -58,7 +59,7 @@ SRCS  = draw/anti_aliasing.c \
 		vec/get_normal.c \
 		vec/hit.c \
 		vec/intersect.c \
-		vec/rotate_around_object.c \
+		vec/rotate_around_point.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\

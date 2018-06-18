@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 22:55:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/15 00:11:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ t_color	specular_shading(t_camera cam, t_obj obj, t_vec light, t_inter inter);
 /*
 **	Filters.
 */
+void	depth_of_field(t_data *data, t_vec point);
+void	blur(t_data *data);
 void	sepia(t_data *data);
 void	black_and_white(t_data *data);
-void	background_blur(t_data *data);
 
 /*
 **	Functions used for color management.

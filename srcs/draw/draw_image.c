@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 20:16:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/18 16:31:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void		draw_image(t_data *data)
 	t_point		crd;
 	t_vec		vp;
 
+	depth_of_field(data, (t_vec){2500, 400, 8000});
+	return ;
 	cam = data->cams[data->i];
-	rotate_around_object(data, &cam, data->objs[0].pos);
 	crd = (t_point){0, 0};
 	vp = cam.vp_up_left;
 	while (crd.x < WIN_W)

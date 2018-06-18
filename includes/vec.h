@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 20:14:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/14 23:48:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ double	dot_product(t_vec u, t_vec v);
 /*
 ** Rotations
 */
-void	rotate_around_object(t_data *data, t_camera *cam, t_vec point);
+void	rotate_around_point(t_data *data, t_camera *cam, t_vec pt, t_vec angle);
 t_vec	pitch(t_vec ray, t_vec angle);
 t_vec	yaw(t_vec ray, t_vec angle);
 

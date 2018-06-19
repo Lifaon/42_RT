@@ -6,19 +6,20 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:15:42 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 20:20:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:10:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	get_oc(t_data *data, t_camera cam)
+void	get_oc(void)
 {
 	int i;
 
 	i = -1;
-	while (++i < data->nb_objects)
-		data->objs[i].oc = vec_substract(cam.pos, data->objs[i].pos);
+	while (++i < g_data->nb_objects)
+		g_data->objs[i].oc = vec_substract(\
+			g_data->cam.pos, g_data->objs[i].pos);
 }
 
 void	get_vp_up_left(t_camera *cam)

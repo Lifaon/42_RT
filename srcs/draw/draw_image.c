@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 21:43:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:49:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "rtv1.h"
 #include "draw.h"
 
-static void	draw_pixel(t_data *data, t_camera cam, t_vec vp, t_point crd)
+static void	draw_pixel(t_data *data, t_vec vp, t_point crd)
 {
 	t_inter	inter;
 	t_vec	ray;
 
 	if (data->aa <= 1)
 	{
-		ray = compute_ray(vp, cam);
+		ray = compute_ray(vp);
 		inter.min_dist = 0;
-		if (hit(data, cam, ray, &inter))
-			pt_to_pixelbuf(crd, data->img, get_px_color(data, cam, inter));
+		if (hit(data, ray, &inter))
+			pt_to_pixelbuf(crd, data->img, get_px_color(data, inter));
 		else
 			pt_to_pixelbuf(crd, data->img, 0xFF000000);
 	}
@@ -34,14 +34,12 @@ static void	draw_pixel(t_data *data, t_camera cam, t_vec vp, t_point crd)
 
 static void	*draw_thread(void *thr)
 {
-	t_camera	cam;
 	t_point		crd;
 	t_vec		vp;
 	int			i;
 	int			ymax;
 
-	cam = g_data->cams[g_data->i];
-	vp = cam.vp_up_left;
+	vp = g_data->cam.vp_up_left;
 	i = *((int *) thr);
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
@@ -50,22 +48,22 @@ static void	*draw_thread(void *thr)
 		crd.x = 0;
 		while (++crd.x < WIN_W)
 		{
-			vp.x = cam.vp_up_left.x + (double)crd.x;
-			vp.y = cam.vp_up_left.y - (double)crd.y;
-			draw_pixel(g_data, cam, vp, crd);
+			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
+			vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
+			draw_pixel(g_data, vp, crd);
 		}
 	}
 	pthread_exit(NULL);
 }
 
-void		draw_image(t_data *data)
+void		draw_image(void)
 {
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];
 	int			i;
 	int			j;
 
-	if (data->draw == 0)
+	if (g_data->draw == 0)
 		return ;
 	i = -1;
 	while (++i < NB_THR)
@@ -82,6 +80,4 @@ void		draw_image(t_data *data)
 	i = -1;
 	while (++i < NB_THR)
 		pthread_join(thread[i], NULL);
-	put_pixelbuf_to_widget(g_data->img, NULL);
-	gtk_widget_show_all(g_data->win);
 }

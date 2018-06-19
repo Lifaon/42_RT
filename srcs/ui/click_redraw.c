@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   click_redraw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:04:02 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/30 13:11:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 22:47:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	click_redraw(GtkWidget *widget, gpointer param)
 	if (!widget && !param)
 		param = NULL;
 	ft_putstr("click_redraw\n");
-	draw_image(g_data);
+	put_gdk_image();
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 17:48:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:50:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ typedef union		u_color
 }					t_color;
 /*
 **	Usage of an union for easy color management.
+*/
+
+typedef struct		s_added
+{
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+}					t_added;
+/*
+**	To add colors.
 */
 
 typedef struct		s_inter
@@ -136,6 +147,7 @@ typedef struct		s_data
 	t_light			*lights;
 	int				i;
 	t_camera		cams[CAM_NB];
+	t_camera		cam;
 	int				px;
 	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
@@ -148,6 +160,11 @@ typedef struct		s_data
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in
 **	addition with the mlx struct;
+*/
+
+t_data				*g_data;
+/*
+**	Global variable of the data structure.
 */
 
 typedef struct		s_funar_keyb

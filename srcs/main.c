@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/18 20:35:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:10:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ int		main(int ac, char **av)
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
 	g_data = data_init(ac, av);
+	get_oc();
 	gtk_init(&ac, &av);
 	if (create_ui() == 0)
 		return (0);
 	//g_data->aa = 2;
-	draw_image(g_data);
+	put_gdk_image();
 	//print_parsed_data(data);*/
 	ft_event(g_data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 20:20:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:10:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_data		*data_init(int ac, char **av)
 	init_cameras(data);
 	init_function_ptrs(data);
 	parse(data, av[1]);
-	get_oc(data, data->cams[0]);
+	data->cam = data->cams[0];
 	data->img = NULL;
 	data->draw = 1;
 	return (data);

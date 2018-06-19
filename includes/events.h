@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:10:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 17:48:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:59:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			translate_s(t_data *data);
 void			translate_d(t_data *data);
 void			translate_e(t_data *data);
 void			translate_q(t_data *data);
-void			get_oc(t_data *data, t_camera cam);
+void			get_oc(void);
 void			get_vp_up_left(t_camera *cam);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 18:37:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:00:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include "structs.h"
 # include "vec.h"
-# define PIXEL 12.
+# define PX 12.
 
 /*
-**	Function called in draw_image.c.
+**	Drawing functions.
 */
-int		get_px_color(t_data *data, t_camera cam, t_inter inter);
+void	draw_image(void);
+void	draw_pixelated_image(t_data *data);
+int		get_px_color(t_data *data, t_inter inter);
 int		anti_aliasing(t_data *data, t_vec vp);
 
 /*
@@ -28,7 +30,7 @@ int		anti_aliasing(t_data *data, t_vec vp);
 */
 t_color	ambient_shading(t_obj obj, t_light light);
 t_color	diffuse_shading(t_obj obj, double dot);
-t_color	specular_shading(t_camera cam, t_obj obj, t_vec light, t_inter inter);
+t_color	specular_shading(t_obj obj, t_vec light, t_inter inter);
 
 /*
 **	Depth_of_field function. This function takes 3D coordinates which represent

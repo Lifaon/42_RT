@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 03:13:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 18:15:46 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:02:03 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ t_vec	yaw(t_vec ray, t_vec angle)
 	return (axe);
 }
 
-t_vec	compute_ray(t_vec vp, t_camera cam)
+t_vec	compute_ray(t_vec vp)
 {
 	t_vec	ray;
 
-	ray = vec_normalize(vec_substract(vp, cam.pos));
-	ray = pitch(ray, cam.angle);
-	ray = yaw(ray, cam.angle);
+	ray = vec_normalize(vec_substract(vp, g_data->cam.pos));
+	ray = pitch(ray, g_data->cam.angle);
+	ray = yaw(ray, g_data->cam.angle);
 	return (ray);
 }

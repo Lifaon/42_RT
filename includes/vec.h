@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 23:48:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:56:02 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 /*
 **	Functions to call for each ray.
 */
-t_vec	compute_ray(t_vec vp, t_camera cam);
-int		hit(t_data *data, t_camera cam, t_vec ray, t_inter *inter);
+t_vec	compute_ray(t_vec vp);
+int		hit(t_data *data, t_vec ray, t_inter *inter);
 
 /*
 **	Intersection functions.
@@ -58,11 +58,11 @@ double	dot_product(t_vec u, t_vec v);
 /*
 ** Rotations
 */
-void	rotate_around_point(t_data *data, t_camera *cam, t_vec pt, t_vec angle);
+void	rotate_around_point(t_data *data, t_vec pt, t_vec angle);
 t_vec	pitch(t_vec ray, t_vec angle);
 t_vec	yaw(t_vec ray, t_vec angle);
 
 void	get_vp_up_left(t_camera *cam);
-void	get_oc(t_data *data, t_camera cam);
+void	get_oc(void);
 
 #endif

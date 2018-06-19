@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 22:57:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 18:05:54 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:53:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,86 +32,67 @@ static void	malloc_tabs(t_data *data, t_color *color_tabs[TAB_NB])
 		}
 }
 
-static void	fill_color_tab(t_data *data, t_camera cam, t_color *color_tab)
+static void	fill_color_tabs(t_data *data, t_vec pt, t_color *color_tabs[TAB_NB])
 {
-	t_inter	inter;
-	t_vec	ray;
-	t_point	crd;
-	t_vec	vp;
-
-	vp = cam.vp_up_left;
-	crd.y = -1;
-	while (++crd.y < WIN_H)
-	{
-		vp.y = cam.vp_up_left.y - (double)crd.y;
-		crd.x = -1;
-		while (++crd.x < WIN_W)
-		{
-			vp.x = cam.vp_up_left.x + (double)crd.x;
-			ray = compute_ray(vp, cam);
-			inter.min_dist = 0;
-			if (hit(data, cam, ray, &inter))
-				color_tab[crd.x + crd.y * WIN_W].c = get_px_color(data, cam, inter);
-			else
-				color_tab[crd.x + crd.y * WIN_W].c = 0;
-		}
-	}
-}
-
-static void	blend(t_pixelbuf *img, t_color *color_tabs[TAB_NB], int size)
-{
-	t_color ret;
-	t_vec	added;
-	float	coeff;
-	int		i;
-	int		j;
-
-	ret.c = 0;
-	coeff = 1. / TAB_NB;
-	i = -1;
-	while (++i < size)
-	{
-		j = -1;
-		added = (t_vec){0, 0, 0};
-		while (++j < TAB_NB)
-		{
-			added.x += color_tabs[j][i].argb.r;
-			added.y += color_tabs[j][i].argb.g;
-			added.z += color_tabs[j][i].argb.b;
-		}
-		ret.argb.r = added.x * coeff;
-		ret.argb.g = added.y * coeff;
-		ret.argb.b = added.z * coeff;
-		img->pxl[i] = ret.c;
-	}
-}
-
-void		depth_of_field(t_data *data, t_vec point)
-{
-	t_color		*color_tabs[TAB_NB];
-	t_camera	cam;
 	t_vec		angle;
 	int			i;
+	uint32_t	*ptr;
 
-	malloc_tabs(data, color_tabs);
 	angle = (t_vec){0, -ANGLE_COEFF, 0};
 	i = -1;
+	ptr = data->img->pxl;
 	while (angle.y <= ANGLE_COEFF)
 	{
 		angle.x = -ANGLE_COEFF;
 		while (angle.x <= ANGLE_COEFF)
 		{
-			cam = data->cams[data->i];
-			rotate_around_point(data, &cam, point, angle);
-			fill_color_tab(data, cam, color_tabs[++i]);
+			data->cam = data->cams[data->i];
+			rotate_around_point(data, pt, angle);
+			data->img->pxl = (uint32_t *)color_tabs[++i];
+			draw_image();
 			angle.x += ANGLE_INC;
+			ft_putendl(ft_itoa(i));
 		}
 		angle.y += ANGLE_INC;
 	}
+	data->img->pxl = ptr;
+}
+
+static void	blend(t_pixelbuf *img, t_color *color_tabs[TAB_NB], int size)
+{
+	t_added	added;
+	float	coeff;
+	int		i;
+	int		j;
+
+	coeff = TAB_NB;
+	i = -1;
+	while (++i < size)
+	{
+		j = -1;
+		added = (t_added){0, 0, 0, 0};
+		while (++j < TAB_NB)
+		{
+			added.r += color_tabs[j][i].argb.r;
+			added.g += color_tabs[j][i].argb.g;
+			added.b += color_tabs[j][i].argb.b;
+			added.a += color_tabs[j][i].argb.a;
+		}
+		img->pxl[i] = (t_color){.argb.r = added.r / coeff, \
+			.argb.g = added.g / coeff, .argb.b = added.b / coeff, \
+			.argb.a = added.a / coeff}.c;
+	}
+}
+
+void		depth_of_field(t_data *data, t_vec point)
+{
+	t_color	*color_tabs[TAB_NB];
+	int		i;
+
+	malloc_tabs(data, color_tabs);
+	fill_color_tabs(data, point, color_tabs);
 	blend(data->img, color_tabs, WIN_W * WIN_H);
 	i = -1;
 	while (++i < TAB_NB)
 		free(color_tabs[i]);
-	put_pixelbuf_to_widget(data->img, NULL);
-	gtk_widget_show_all(data->win);
 }

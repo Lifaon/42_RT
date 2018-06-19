@@ -6,22 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 17:51:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 20:20:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parse.h"
 #include "vec.h"
-
-void	get_oc(t_data *data, t_camera cam)
-{
-	int i;
-
-	i = -1;
-	while (++i < data->nb_objects)
-		data->objs[i].oc = vec_substract(cam.pos, data->objs[i].pos);
-}
 
 void	init_function_ptrs(t_data *data)
 {

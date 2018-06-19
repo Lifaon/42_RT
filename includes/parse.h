@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:59:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 20:20:09 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	exit_all(t_data *data);
 */
 
 t_vec	vec_normalize(t_vec u);
+t_vec	vec_substract(t_vec u, t_vec v);
 
 #endif

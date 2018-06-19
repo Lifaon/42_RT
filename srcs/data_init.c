@@ -6,14 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 17:19:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 17:19:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parse.h"
 #include "vec.h"
-#include "struct.h"
 
 void		choose_cam(t_data *data, int index)
 {

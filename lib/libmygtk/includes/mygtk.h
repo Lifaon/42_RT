@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mygtk.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 16:42:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 17:18:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MYGTK_H
 //# include "gtk.h"
 # include <gtk/gtk.h>
+# include <stdint.h>
 # include "libft.h"
 # include "libpt.h"
 

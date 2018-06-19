@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/18 20:27:10 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/19 17:22:46 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/change_vec_from_scale.c\
 		ui/size_of_object_json.c \
 		ui/fill_object_json.c \
-\
+		\
 		data_init.c \
 		exit_all.c \
 		main.c
@@ -125,7 +125,8 @@ SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYGTK_DIR) -lmygtk \
-			`pkg-config --libs gtk+-3.0`
+			`pkg-config --libs gtk+-3.0` \
+			-lm
 
 CFLAGS = #-Wall -Wextra -Werror
 

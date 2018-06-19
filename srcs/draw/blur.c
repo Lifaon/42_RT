@@ -6,15 +6,14 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 01:49:50 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 18:03:25 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:52:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#define FOCAL_DIST 3000.
-#define FOCAL_COEFF .005
+#define KERN_SIZE 25
 
-static void	fill_kernel(t_color *copy, t_point crd, t_vec kernel[9])
+static void	fill_kernel(t_color *copy, t_point crd, t_color kernel[KERN_SIZE])
 {
 	int		i;
 	t_point	new;
@@ -27,7 +26,6 @@ static void	fill_kernel(t_color *copy, t_point crd, t_vec kernel[9])
 		new.x = -3;
 		while (++new.x < 3)
 		{
-			++i;
 			if ((new.x < 0 && crd.x < 2) ||
 				(new.x > 0 && crd.x > WIN_W - 3) ||
 				(new.y < 0 && crd.y < 2) ||
@@ -35,31 +33,34 @@ static void	fill_kernel(t_color *copy, t_point crd, t_vec kernel[9])
 				current = copy[crd.x + crd.y * WIN_W];
 			else
 				current = copy[(crd.x + new.x) + ((crd.y + new.y) * WIN_W)];
-			kernel[i].x = current.argb.r;
-			kernel[i].y = current.argb.g;
-			kernel[i].z = current.argb.b;
+			kernel[++i] = current;
 		}
 	}
 }
 
-static int	gaussian_blur(t_color *copy, t_point crd)
+static int	gaussian_blur(t_color *copy, t_point crd, t_color kernel[KERN_SIZE])
 {
-	t_vec	kernel[25];
-	t_vec	added;
-	t_color	ret;
-	float	coeff;
-	int		i;
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+	int	i;
 
 	fill_kernel(copy, crd, kernel);
-	added = (t_vec){0, 0, 0};
-	coeff = 1. / 25.;
+	r = 0;
+	g = 0;
+	b = 0;
+	a = 0;
 	i = -1;
-	while (++i < 25)
-		added = vec_add(added, vec_multiply(kernel[i], coeff));
-	ret.argb.r = added.x;
-	ret.argb.g = added.y;
-	ret.argb.b = added.z;
-	return (ret.c);
+	while (++i < KERN_SIZE)
+	{
+		r += kernel[i].argb.r;
+		g += kernel[i].argb.g;
+		b += kernel[i].argb.b;
+		a += kernel[i].argb.a;
+	}
+	return ((t_color){.argb.r = r / 25, .argb.g = g / 25, \
+		.argb.b = b / 25, .argb.a = a / 25}.c);
 }
 
 static void	copy_colors(t_color *copy, uint32_t *src, int size)
@@ -92,6 +93,7 @@ void		blur(t_data *data)
 {
 	t_color		*copy;
 	t_point		crd;
+	t_color		kernel[KERN_SIZE];
 
 	if (!(copy = (t_color *)malloc(32 * WIN_H * WIN_W)))
 	{
@@ -104,7 +106,7 @@ void		blur(t_data *data)
 	{
 		crd.x = -1;
 		while (++crd.x < WIN_W)
-			pt_to_pixelbuf(crd, data->img, gaussian_blur(copy, crd));
+			pt_to_pixelbuf(crd, data->img, gaussian_blur(copy, crd, kernel));
 	}
 	free(copy);
 }

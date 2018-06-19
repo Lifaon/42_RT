@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 18:06:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:51:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		draw_image(t_data *data)
 		draw_pixel(data, cam, vp, crd);
 		crd = pt_ypluseg(crd, 0, WIN_H);
 	}
+	blur(data);
 	put_pixelbuf_to_widget(g_data->img, NULL);
 	gtk_widget_show_all(g_data->win);
 }

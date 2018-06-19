@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 18:21:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:42:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static t_color	blend(t_color colors[256], int size)
 	int	a;
 	int	i;
 
-	i = -1;
 	r = 0;
 	g = 0;
 	b = 0;
 	a = 0;
+	i = -1;
 	while (++i < size)
 	{
 		r += colors[i].argb.r;

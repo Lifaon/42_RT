@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/15 00:11:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:37:14 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ t_color	diffuse_shading(t_obj obj, double dot);
 t_color	specular_shading(t_camera cam, t_obj obj, t_vec light, t_inter inter);
 
 /*
-**	Filters.
+**	Depth_of_field function. This function takes 3D coordinates which represent
+**	the focal point of the image.
 */
 void	depth_of_field(t_data *data, t_vec point);
+
+/*
+**	Filters.
+*/
 void	blur(t_data *data);
 void	sepia(t_data *data);
 void	black_and_white(t_data *data);

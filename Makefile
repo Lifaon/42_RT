@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/19 17:59:01 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/19 21:47:35 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,8 +120,7 @@ MAIN_DIR_PATH = $(shell pwd)
 INC = -I ./includes/
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
-			-I $(LIBMYGTK_DIR)/includes/ \
-			`pkg-config --cflags gtk+-3.0`\
+			-I $(LIBMYGTK_DIR)/includes/ `pkg-config --cflags gtk+-3.0`
 
 INCS = $(INC) $(LIB_INCS)
 
@@ -130,9 +129,9 @@ CC = gcc
 SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
-			-L $(LIBMYGTK_DIR) -lmygtk \
-			`pkg-config --libs gtk+-3.0` \
-			-lm
+			-L $(LIBMYGTK_DIR) -lmygtk `pkg-config --libs gtk+-3.0` \
+			-lm \
+			-lpthread \
 
 CFLAGS = #-Wall -Wextra -Werror
 

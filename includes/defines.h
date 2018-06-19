@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 17:47:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/19 21:40:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@
 **	Number of cameras used.
 */
 
+# define NB_THR 8
+/*
+**	Number of threads used.
+*/
+
 # define SPHERE 0
 # define PLANE 1
 # define CYLINDER 2
 # define CONE 3
+/*
+**	Alternative to enums for OpenCL compatibility.
+*/
 
 #endif

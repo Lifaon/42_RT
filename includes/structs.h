@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/18 18:42:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 17:48:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct		s_data
 	t_light			*lights;
 	int				i;
 	t_camera		cams[CAM_NB];
+	int				px;
 	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
@@ -167,7 +168,7 @@ typedef struct		s_wid_data
 }					t_wid_data;
 /*
 ** This structure is used to make widget, position it to a grid
-** and link to function 
+** and link to function
 */
 
 typedef struct		s_widget_vec

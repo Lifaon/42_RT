@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_keyboard.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 17:53:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/13 17:59:38 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:09:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ gboolean		ft_keyboard(GtkWidget *widget, GdkEventKey *event, gpointer param)
 	par = (t_data*)param;
 	ret = 0;
 	if ((ret = do_event(event->keyval, par)) == 1)
-		draw_image(par);
+		!par->px ? draw_image(par) : draw_pixelated_image(par);
 	if (ret == -1)
 		exit_all(par);
 	/*if (event->keyval == 0)//SDLK_h)

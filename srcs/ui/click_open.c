@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   click_open.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 19:43:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 18:11:25 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		open_json(gchar *path)
 	g_data->nb_lights = 0;
 	g_data->nb_objects = 0;
 	parse(g_data, path);
-	choose_cam(g_data, 0);
+	get_oc(g_data, g_data->cams[g_data->i]);
 	draw_image(g_data);
 	if (!(create_sub_notebook(g_data->ui)))
 		return (-1);

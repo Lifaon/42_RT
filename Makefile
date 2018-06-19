@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/19 17:22:46 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/19 17:59:01 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,18 @@ EOC = \033[37m
 ## Sources ##
 SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
+		draw/blur.c \
 		draw/colors.c \
+		draw/depth_of_field.c \
 		draw/draw_image.c \
+		draw/draw_pixelated_image.c \
+		draw/filters.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
+		events/px_aa.c \
 		events/fill_funar_key_event.c \
 		events/rotate.c \
 		events/translations.c \
@@ -54,6 +59,7 @@ SRCS  = draw/anti_aliasing.c \
 		vec/get_normal.c \
 		vec/hit.c \
 		vec/intersect.c \
+		vec/rotate_around_point.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\

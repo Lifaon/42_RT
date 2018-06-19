@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   rotate_around_object.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 17:47:48 by mlantonn         ###   ########.fr       */
+/*   Created: 2018/06/14 18:07:38 by mlantonn          #+#    #+#             */
+/*   Updated: 2018/06/18 17:48:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "vec.h"
 
-# define WIN_W 1400
-# define WIN_H 1000
-/*
-**	Size of the window created.
-*/
+void	rotate_around_point(t_data *data, t_camera *cam, t_vec pt, t_vec angle)
+{
+	t_vec vec;
 
-# define CAM_NB 4
-/*
-**	Number of cameras used.
-*/
-
-# define SPHERE 0
-# define PLANE 1
-# define CYLINDER 2
-# define CONE 3
-
-#endif
+	vec = vec_substract(cam->pos, pt);
+	vec = yaw(vec, angle);
+	vec = pitch(vec, angle);
+	cam->pos = vec_add(pt, vec);
+	cam->angle.x += angle.x;
+	cam->angle.y += angle.y;
+	get_vp_up_left(cam);
+	get_oc(data, *cam);
+}

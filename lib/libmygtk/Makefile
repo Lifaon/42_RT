@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/06/20 23:02:40 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/20 23:06:51 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed"
+	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed\033[0m"
 
 re: fclean all
 

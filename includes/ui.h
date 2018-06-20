@@ -6,16 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/19 19:10:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:17:22 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UI_H
 # define UI_H
 
-# include "libft.h"
-# include "libpt.h"
-# include "mygtk.h"
+# include "rtv1.h"
 # include "structs.h"
 # include "defines.h"
 
@@ -34,8 +32,8 @@ int				create_camera_ui(GtkWidget *main_tab);
 */
 
 void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
-t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
 				void (*f)(GtkWidget*, gpointer));
+t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);

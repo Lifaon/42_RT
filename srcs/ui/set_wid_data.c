@@ -6,11 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/27 16:08:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ui.h"
 
 void	set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 	void (*f)(GtkWidget*, gpointer))

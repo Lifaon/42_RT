@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 16:17:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer))

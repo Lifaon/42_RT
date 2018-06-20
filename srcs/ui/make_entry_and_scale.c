@@ -6,11 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 13:47:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:52 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ui.h"
 
 int		make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value)

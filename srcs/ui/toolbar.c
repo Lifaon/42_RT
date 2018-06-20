@@ -6,11 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/06 18:00:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ui.h"
 
 static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 {

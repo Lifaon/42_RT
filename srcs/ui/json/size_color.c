@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 17:04:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:04:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:11:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
 /*
-** the color is put that way : [a, r, g, b]
+** the color is put that way : [r, g, b, a]
 ** minus color = [0, 0, 0, 0] = 12 char
 */
 

@@ -6,12 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 19:43:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
 #include <fcntl.h>
+#include "ui.h"
 
 static int		create_file(char *path)
 {

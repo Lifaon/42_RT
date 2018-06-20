@@ -6,21 +6,22 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 20:34:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parse.h"
+#include "ui.h"
 
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 {
 	if (!widget && !param)
 		param = NULL;
 	if (state == TRUE)
-		g_data->lights[g_data->ui->page_light].enabled = 0;
-	else
 		g_data->lights[g_data->ui->page_light].enabled = 1;
+	else
+		g_data->lights[g_data->ui->page_light].enabled = 0;
 }
 
 void			switch_parallel_light(GtkWidget *widget, gboolean state,
@@ -34,9 +35,7 @@ void			switch_parallel_light(GtkWidget *widget, gboolean state,
 		param = NULL;
 	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
 	i = g_data->ui->page_light;
-	ft_putnbr(i);
-	ft_putchar('\n');
-	if (gtk_switch_get_active(GTK_SWITCH(widget)) == TRUE)
+	if (gtk_switch_get_active(GTK_SWITCH(widget)) == FALSE)
 	{
 		status = FALSE;
 		g_data->lights[i].is_para = 0;

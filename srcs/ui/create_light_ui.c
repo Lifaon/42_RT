@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 16:15:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 static int		make_grid(t_wid_data *wid_d)
 {

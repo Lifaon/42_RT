@@ -6,13 +6,14 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 19:27:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:18:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include <time.h>
-#include "libft.h"
+#include "ui.h"
+#include <time.h>//
+#include "libft.h"//
 
 void			get_time(void)
 {

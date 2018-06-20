@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/19 22:47:56 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/20 20:14:10 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,18 @@ SRCS  = draw/anti_aliasing.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
+		ui/json/size_int.c \
+		ui/json/size_double.c \
+		ui/json/size_vec.c \
+		ui/json/size_color.c \
+		ui/json/size_of_str_json.c \
+		ui/json/fill_str_json.c \
+		ui/json/color_toa.c \
+		ui/json/my_strcopy.c \
+		ui/json/strcpy_db.c \
+		ui/json/strcpy_vec.c \
+		ui/json/size_of_object_json.c \
+		ui/json/fill_object_json.c \
 		ui/create_ui.c \
 		ui/create_sub_notebook.c \
 		ui/toolbar.c \
@@ -78,25 +90,13 @@ SRCS  = draw/anti_aliasing.c \
 		ui/click_save.c \
 		ui/click_export.c \
 		ui/click_redraw.c \
-		ui/size_int.c \
-		ui/size_double.c \
-		ui/size_vec.c \
-		ui/size_color.c \
 		ui/join_int.c \
-		ui/size_of_str_json.c \
-		ui/fill_str_json.c \
-		ui/color_toa.c \
-		ui/my_strcopy.c \
-		ui/strcpy_db.c \
-		ui/strcpy_vec.c \
 		ui/change_page.c \
 		ui/make_entry_and_scale.c \
 		ui/wid_vec_new.c \
 		ui/free_to_free.c \
 		ui/add_vector_choose.c \
 		ui/change_vec_from_scale.c\
-		ui/size_of_object_json.c \
-		ui/fill_object_json.c \
 		\
 		data_init.c \
 		exit_all.c \
@@ -105,7 +105,7 @@ SRCS  = draw/anti_aliasing.c \
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = color draw events init parser vec ui
+OBJS_SUB_DIRS = color draw events init parser vec ui ui/json
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##

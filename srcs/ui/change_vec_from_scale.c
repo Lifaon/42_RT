@@ -1,4 +1,5 @@
 #include "rtv1.h"
+#include "ui.h"
 
 static void		fill_vec(t_vec *vec, double nb)
 {

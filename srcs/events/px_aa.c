@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translations2.c                                    :+:      :+:    :+:   */
+/*   px_aa.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 14:41:36 by vtudes            #+#    #+#             */
-/*   Updated: 2018/06/20 00:13:55 by mlantonn         ###   ########.fr       */
+/*   Created: 2018/06/12 15:58:07 by mlantonn          #+#    #+#             */
+/*   Updated: 2018/06/12 15:59:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events.h"
 
-void	translate_q(t_data *data)
+void	pixelate(t_data *data)
 {
-	data->cam.pos.z -= TRANSLATION;
-	get_vp_up_left(&data->cam);
-	get_oc();
+	data->px = data->px ? 0 : 1;
 }
 
-void	translate_e(t_data *data)
+void	anti_alias(t_data *data)
 {
-	data->cam.pos.z += TRANSLATION;
-	get_vp_up_left(&data->cam);
-	get_oc();
+	data->aa = data->aa > 1 ? 1 : 3;
 }

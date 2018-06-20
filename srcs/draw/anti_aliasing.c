@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 20:00:12 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:04:43 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 static t_color	blend(t_color colors[256], int size)
 {
-	t_color ret;
-	t_vec	added;
-	int		i;
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+	int	i;
 
+	r = 0;
+	g = 0;
+	b = 0;
+	a = 0;
 	i = -1;
-	added = (t_vec){0, 0, 0};
 	while (++i < size)
 	{
-		added.x += colors[i].argb.r;
-		added.y += colors[i].argb.g;
-		added.z += colors[i].argb.b;
+		r += colors[i].argb.r;
+		g += colors[i].argb.g;
+		b += colors[i].argb.b;
+		a += colors[i].argb.a;
 	}
-	ret.argb.r = added.x / size;
-	ret.argb.g = added.y / size;
-	ret.argb.b = added.z / size;
-	return (ret);
+	return ((t_color){.argb.r = r / size, .argb.g = g / size,\
+		.argb.b = b / size, .argb.a = a / size});
 }
 
 int				anti_aliasing(t_data *data, t_vec vp)
@@ -50,11 +54,12 @@ int				anti_aliasing(t_data *data, t_vec vp)
 		while (++px.x < data->aa)
 		{
 			vp2.x = vp.x + (double)px.x / (double)data->aa;
-			ray = compute_ray(vp2, data->cams[data->i]);
+			ray = compute_ray(vp2);
 			if (hit(data, ray, &inter))
-				colors[px.x + (px.y * data->aa)].c = get_px_color(data, inter);
+				colors[px.x + (px.y * data->aa)].c = \
+					get_px_color(data, inter);
 			else
-				colors[px.x + (px.y * data->aa)].c = get_color_gtk(255, 0, 0, 0);
+				colors[px.x + (px.y * data->aa)].c = 0xFF000000;
 		}
 	}
 	return (blend(colors, data->aa * data->aa).c);

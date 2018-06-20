@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/08 15:59:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:10:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int		brackets(char *str);
 */
 
 void	parse_cameras(t_data *data, char *str, int *index);
-int		parse_lights(t_data *data, char *str, int *index);
-int		parse_objects(t_data *data, char *str, int *index);
+void	parse_lights(t_data *data, char *str, int *index);
+void	parse_objects(t_data *data, char *str, int *index);
 /*
 **	parse_cameras(), parse_lights() and parse_objects() initialize the
 **	corresponding array in *data with what is written in the string.
@@ -92,5 +92,6 @@ void	exit_all(t_data *data);
 */
 
 t_vec	vec_normalize(t_vec u);
+t_vec	vec_substract(t_vec u, t_vec v);
 
 #endif

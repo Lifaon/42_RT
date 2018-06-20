@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/18 20:26:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:58:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # include "structs.h"
 # include "defines.h"
 
-t_data			*g_data;
-
-
 /*
 **	Function used to parse the given file.
 */
@@ -36,12 +33,12 @@ void			parse(t_data *data, char *file_name);
 **	Functions used to initialize the different structures.
 */
 t_data			*data_init(int ac, char **av);
-void			choose_cam(t_data *data, int index);
+void			get_oc(void);
 
 /*
-**	Drawing function.
+**	Drawing functions.
 */
-void			draw_image(t_data *data);
+void			put_gdk_image(void);
 
 /*
 **	Function used to handle events.

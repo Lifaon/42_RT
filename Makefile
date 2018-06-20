@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/18 20:27:10 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/19 22:47:56 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,19 @@ EOC = \033[37m
 ## Sources ##
 SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
+		draw/blur.c \
 		draw/colors.c \
+		draw/depth_of_field.c \
 		draw/draw_image.c \
+		draw/draw_pixelated_image.c \
+		draw/filters.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
+		draw/put_gdk_image.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
+		events/px_aa.c \
 		events/fill_funar_key_event.c \
 		events/rotate.c \
 		events/translations.c \
@@ -54,6 +60,7 @@ SRCS  = draw/anti_aliasing.c \
 		vec/get_normal.c \
 		vec/hit.c \
 		vec/intersect.c \
+		vec/rotate_around_point.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \
 		\
@@ -90,7 +97,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/change_vec_from_scale.c\
 		ui/size_of_object_json.c \
 		ui/fill_object_json.c \
-\
+		\
 		data_init.c \
 		exit_all.c \
 		main.c
@@ -114,8 +121,7 @@ MAIN_DIR_PATH = $(shell pwd)
 INC = -I ./includes/
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
-			-I $(LIBMYGTK_DIR)/includes/ \
-			`pkg-config --cflags gtk+-3.0`\
+			-I $(LIBMYGTK_DIR)/includes/ `pkg-config --cflags gtk+-3.0`
 
 INCS = $(INC) $(LIB_INCS)
 
@@ -124,8 +130,9 @@ CC = gcc
 SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
-			-L $(LIBMYGTK_DIR) -lmygtk \
-			`pkg-config --libs gtk+-3.0`
+			-L $(LIBMYGTK_DIR) -lmygtk `pkg-config --libs gtk+-3.0` \
+			-lm \
+			-lpthread \
 
 CFLAGS = #-Wall -Wextra -Werror
 

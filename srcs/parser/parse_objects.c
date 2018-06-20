@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 18:52:26 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/20 15:08:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	which_object(t_data *data, char *str, int *index, int *object_index)
 	*index += i;
 }
 
-int			parse_objects(t_data *data, char *str, int *index)
+void		parse_objects(t_data *data, char *str, int *index)
 {
 	int object_index;
 	int in_braces;
@@ -86,20 +86,22 @@ int			parse_objects(t_data *data, char *str, int *index)
 	i = 0;
 	while (str[i] != '{')
 		++i;
-	in_braces = 1;
 	if (!(data->nb_objects = get_nb_objects(str + i + 1)))
-		return (1);
+		return ;
 	if (init_objects(data, data->nb_objects))
-		return (-1);
+	{
+		data->nb_objects = 0;
+		free(str);
+		exit_all(data);
+	}
+	in_braces = 1;
 	object_index = 0;
 	while (in_braces)
 	{
-		++i;
-		if (str[i] == '\"' && object_index < data->nb_objects)
+		if (str[++i] == '\"' && object_index < data->nb_objects)
 			which_object(data, str + i, &i, &object_index);
 		else if (str[i] == '{' || str[i] == '}')
 			in_braces += (str[i] == '{' ? 1 : -1);
 	}
 	*index += i;
-	return (0);
 }

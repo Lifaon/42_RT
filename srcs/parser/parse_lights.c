@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/31 18:14:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:10:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	parse_light(t_light *light, char *str, int *index)
 	*index += i;
 }
 
-int			parse_lights(t_data *data, char *str, int *index)
+void		parse_lights(t_data *data, char *str, int *index)
 {
 	int light_index;
 	int in_braces;
@@ -61,18 +61,20 @@ int			parse_lights(t_data *data, char *str, int *index)
 		++i;
 	in_braces = 1;
 	if (!(data->nb_lights = get_nb_lights(str + i)))
-		return (1);
+		return ;
 	if (init_lights(data, data->nb_lights))
-		return (-1);
+	{
+		data->nb_lights = 0;
+		free(str);
+		exit_all(data);
+	}
 	light_index = 0;
 	while (in_braces)
 	{
-		++i;
-		if (str[i] == '{' && light_index < data->nb_lights)
+		if (str[++i] == '{' && light_index < data->nb_lights)
 			parse_light(&data->lights[light_index++], str + i, &i);
 		else if (str[i] == '[' || str[i] == ']')
 			in_braces += (str[i] == '[' ? 1 : -1);
 	}
 	*index += i;
-	return (0);
 }

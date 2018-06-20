@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/14 19:48:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/19 23:46:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 		return (ret);
 	ret = add_colors(ret, diffuse_shading(data->objs[inter->obj_i], dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
-		data->cams[data->i], data->objs[inter->obj_i], light_vec, *inter));
+		data->objs[inter->obj_i], light_vec, *inter));
 	return (ret);
 }
 

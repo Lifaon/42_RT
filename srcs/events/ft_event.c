@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:56:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/14 19:42:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 19:31:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_event(t_data *data)
 	int			ret;
 
 	quit = 0;
-	gtk_widget_set_events(g_data->win, GDK_KEY_PRESS);
+	gtk_widget_add_events(g_data->win, GDK_KEY_PRESS);
 	g_signal_connect(G_OBJECT(g_data->win), "key_press_event",
 				G_CALLBACK(ft_keyboard), data);
 	gtk_main();

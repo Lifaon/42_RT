@@ -6,11 +6,35 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:15:42 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 03:36:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 00:10:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+void	get_oc(void)
+{
+	int i;
+
+	i = -1;
+	while (++i < g_data->nb_objects)
+		g_data->objs[i].oc = vec_substract(\
+			g_data->cam.pos, g_data->objs[i].pos);
+}
+
+void	get_vp_up_left(t_camera *cam)
+{
+	double vp_dist;
+
+	vp_dist = fabs(tan(cam->fov * M_PI / 360));
+	if (vp_dist > 0.000001)
+		vp_dist = (WIN_H / 2) / vp_dist;
+	else
+		vp_dist = 1000.0;
+	cam->vp_up_left.x = cam->pos.x - (WIN_W * 0.5);
+	cam->vp_up_left.y = cam->pos.y + (WIN_H * 0.5);
+	cam->vp_up_left.z = vp_dist + cam->pos.z;
+}
 
 static void	parse_camera(t_camera *cam, char *str, int *index)
 {
@@ -27,7 +51,7 @@ static void	parse_camera(t_camera *cam, char *str, int *index)
 			if (read_quotes(str + i, "\"position\"", &i))
 				cam->pos = parse_vec(str + i, &i);
 			else if (read_quotes(str + i, "\"angle\"", &i))
-				cam->angle = vec_normalize(parse_vec(str + i, &i));
+				cam->angle = parse_vec(str + i, &i);
 			else if (read_quotes(str + i, "\"fov\"", &i))
 				cam->fov = parse_nb(str + i, &i);
 		}

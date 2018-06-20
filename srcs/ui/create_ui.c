@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 20:34:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 19:32:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ int				create_ui(void)
 	gtk_widget_show_all(win);
 	g_data->win = win;
 	g_data->draw = 1;
-	g_data->ui->is_active = 1;
 	return (1);
 }

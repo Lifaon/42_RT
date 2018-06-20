@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 23:48:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:24:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		draw_pixelated_image(t_data *data)
 			if (hit(data, ray, &inter))
 				draw_pixels(data, crd, get_px_color(data, inter));
 			else
-				draw_pixels(data, crd, 0);
+				draw_pixels(data, crd, 0xFF000000);
 		}
 	}
 	put_pixelbuf_to_widget(data->img, NULL);

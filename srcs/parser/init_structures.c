@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 20:18:28 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:15:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,26 @@ int		init_lights(t_data *data, int nb)
 
 	i = -1;
 	if (!(data->lights = (t_light *)malloc(sizeof(t_light) * nb)))
+	{
+		perror("Error : ");
 		return (-1);
+	}
 	while (++i < nb)
 		init_one_light(data, i);
 	return (0);
+}
+
+void	init_one_object(t_data *data, int index)
+{
+	data->objs[index].r = 100;
+	data->objs[index].spec = 1;
+	data->objs[index].alpha = 100;
+	data->objs[index].color.c = get_color_gtk(255, 0xA6, 0, 0xA6);
+	data->objs[index].pos = (t_vec){0, 0, 1500};
+	data->objs[index].dir = (t_vec){1, 1, 0};
+	data->objs[index].normal = (t_vec){1, 1, 0.001};
+	data->objs[index].intersect = intersect_sphere;
+	data->objs[index].get_normal = get_sphere_normal;
 }
 
 int		init_objects(t_data *data, int nb)
@@ -56,18 +72,11 @@ int		init_objects(t_data *data, int nb)
 
 	i = -1;
 	if (!(data->objs = (t_obj *)malloc(sizeof(t_obj) * nb)))
-		return (-1);
-	while (++i < nb)
 	{
-		data->objs[i].r = 100;
-		data->objs[i].spec = 1;
-		data->objs[i].alpha = 100;
-		data->objs[i].color.c = get_color_gtk(255, 0xA6, 0, 0xA6);
-		data->objs[i].pos = (t_vec){0, 0, 1500};
-		data->objs[i].dir = (t_vec){1, 1, 0};
-		data->objs[i].normal = (t_vec){1, 1, 0.001};
-		data->objs[i].intersect = intersect_sphere;
-		data->objs[i].get_normal = get_sphere_normal;
+		perror("Error : ");
+		return (-1);
 	}
+	while (++i < nb)
+		init_one_object(data, i);
 	return (0);
 }

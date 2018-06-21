@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 02:38:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 03:25:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,33 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 
 	b = 2 * dot_product(ray, inter->oc);
 	c = dot_product(inter->oc, inter->oc) - (sphere.r * sphere.r);
-	if (!solve_quadratic_equation(inter, 1, b, c))
-		return (0);
+	return (solve_quadratic_equation(inter, 1, b, c));
 /*
 	Limits algorithm
 
+	t_vec	ip;
+	t_vec	max = {INFINITY, INFINITY, INFINITY};
+	t_vec	min = {-INFINITY, -INFINITY, -INFINITY};
+
+	if (!solve_quadratic_equation(inter, a, b, c))
+		return (0);
 	ip = vec_add(inter->origin, vec_multiply(ray, inter->t));
-	ip = vec_substract(ip, sphere.pos);
-	if (ip.x <= sphere.r * 0.75 && ip.x >= -sphere.r * 0.75 && \
-		ip.y <= sphere.r * 0.75 && ip.y >= -sphere.r * 0.75 && \
-		ip.z <= sphere.r * 0.75 && ip.z >= -sphere.r * 0.75)
+	ip = vec_substract(ip, cyl.pos);
+	if (ip.x <= max.x && ip.x >= min.x && \
+		ip.y <= max.y && ip.y >= min.y && \
+		ip.z <= max.z && ip.z >= min.z)
 		return (1);
 	inter->t = inter->t != inter->t1 ? inter->t1 : inter->t2;
 	if (inter->t < inter->min_dist)
 		return (0);
 	ip = vec_add(inter->origin, vec_multiply(ray, inter->t));
-	ip = vec_substract(ip, sphere.pos);
-	if (ip.x <= sphere.r * 0.75 && ip.x >= -sphere.r * 0.75 && \
-		ip.y <= sphere.r * 0.75 && ip.y >= -sphere.r * 0.75 && \
-		ip.z <= sphere.r * 0.75 && ip.z >= -sphere.r * 0.75)
+	ip = vec_substract(ip, cyl.pos);
+	if (ip.x <= max.x && ip.x >= min.x && \
+		ip.y <= max.y && ip.y >= min.y && \
+		ip.z <= max.z && ip.z >= min.z)
 		return (1);
 	return (0);
 */
-	return (1);
 }
 
 int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)

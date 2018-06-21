@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 04:13:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 18:28:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ t_vec	get_normal(t_vec ray, t_obj obj, t_inter inter)
 
 	inter.normal = obj.get_normal(obj, inter);
 	dot = dot_product(ray, inter.normal);
-	normal = dot < 0.01 ? inter.normal : vec_multiply(inter.normal, -1);
+	normal = dot <= 0 ? inter.normal : vec_multiply(inter.normal, -1);
 	return (normal);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 00:10:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 16:58:39 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_data		*data_init(int ac, char **av)
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
 	data->aa = 1;
+	data->px = 0;
+	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;
 	data->ui = NULL;

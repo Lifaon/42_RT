@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:02:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 23:57:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_inter
 	t_vec			ip;
 	t_vec			normal;
 	t_vec			oc;
+	t_vec			origin;
 }					t_inter;
 /*
 **	Intersection structure -> obj_i is the object index used to know which

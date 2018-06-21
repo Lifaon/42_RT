@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:05:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 02:25:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,32 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 {
 	double	b;
 	double	c;
+	t_vec	ip;
 
 	b = 2 * dot_product(ray, inter->oc);
 	c = dot_product(inter->oc, inter->oc) - (sphere.r * sphere.r);
-	return (solve_quadratic_equation(inter, 1, b, c));
+	if (!solve_quadratic_equation(inter, 1, b, c))
+		return (0);
+/*
+	Limits algorithm
+
+	ip = vec_add(inter->origin, vec_multiply(ray, inter->t));
+	ip = vec_substract(ip, sphere.pos);
+	if (ip.x <= sphere.r * 0.75 && ip.x >= -sphere.r * 0.75 && \
+		ip.y <= sphere.r * 0.75 && ip.y >= -sphere.r * 0.75 && \
+		ip.z <= sphere.r * 0.75 && ip.z >= -sphere.r * 0.75)
+		return (1);
+	inter->t = inter->t != inter->t1 ? inter->t1 : inter->t2;
+	if (inter->t < inter->min_dist)
+		return (0);
+	ip = vec_add(inter->origin, vec_multiply(ray, inter->t));
+	ip = vec_substract(ip, sphere.pos);
+	if (ip.x <= sphere.r * 0.75 && ip.x >= -sphere.r * 0.75 && \
+		ip.y <= sphere.r * 0.75 && ip.y >= -sphere.r * 0.75 && \
+		ip.z <= sphere.r * 0.75 && ip.z >= -sphere.r * 0.75)
+		return (1);
+*/
+	return (0);
 }
 
 int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)

@@ -6,17 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:05:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 00:07:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-
-/*
-**	light_path_is_blocked() currently ignores the intersected object, so it
-**	can't intersect with itself. But if we create objects which can put shadows
-**	on themselves, this method won't work anymore.
-*/
 
 static int		light_path_is_blocked(t_data *data, t_inter inter, t_vec *light)
 {
@@ -26,11 +20,9 @@ static int		light_path_is_blocked(t_data *data, t_inter inter, t_vec *light)
 	i = -1;
 	len = get_length(*light);
 	*light = vec_normalize(*light);
-	inter.min_dist = 0;
+	inter.min_dist = 0.01;
 	while (++i < data->nb_objects)
 	{
-		if (i == inter.obj_i)
-			continue ;
 		inter.oc = vec_substract(inter.ip, data->objs[i].pos);
 		if (data->objs[i].intersect(data->objs[i], *light, &inter) && \
 			inter.t < len)
@@ -45,6 +37,7 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	t_vec	light_vec;
 	double	dot;
 
+	inter->origin = inter->ip;
 	ret = ambient_shading(data->objs[inter->obj_i], light);
 	light_vec = vec_substract(light.pos, inter->ip);
 	if (light_path_is_blocked(data, *inter, &light_vec))

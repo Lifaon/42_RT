@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 14:55:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:26:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 /*
 **	Functions for create User Interface and event associated
 */
+
+/*
+** Parent functions
+ */
 int				create_ui(void);
 int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
@@ -33,6 +37,9 @@ int				create_camera_ui(GtkWidget *main_tab);
 void			check_ui_active(int start);
 void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 				void (*f)(GtkWidget*, gpointer));
+void			set_wid_data_scale(t_wid_data *wid_d, double step,
+		t_ptdb min_max);
+int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max)
 t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
@@ -41,11 +48,10 @@ GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
 				gdouble step);
 GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
-void			switch_parallel_light(GtkWidget *widget, gboolean state,
-		gpointer param);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
-int				add_one_light_tab(GtkWidget *tab_light, int index);
-void			add_one_light(GtkWidget *widget, gpointer param);
+int				create_light_tab(GtkWidget *tab_light, int index);
+int				create_object_tab(GtkWidget *tab_light, int index);
+int				make_grid(t_wid_data *wid_d);
 
 /*
 ** Simple function to handle number and string for specific matters 
@@ -78,15 +84,34 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
 
 /*
+** => light event
+*/
+void			add_one_light(GtkWidget *widget, gpointer param);
+void			change_light_pos(GtkWidget *widget, gpointer param);
+void			change_light_dir(GtkWidget *widget, gpointer param);
+void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
+void			switch_parallel_light(GtkWidget *widget, gboolean state,
+		gpointer param);
+
+/*
+** => Object event
+*/
+void			add_one_obj(GtkWidget *widget, gpointer param);
+void			change_obj_pos(GtkWidget *widget, gpointer param);
+void			change_obj_dir(GtkWidget *widget, gpointer param);
+void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
+
+/*
 ** => Other UI event
 */
-gboolean	change_page_light(GtkNotebook *notebook, GtkWidget *page,
+gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
+		gint arg1, gpointer data);
+gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
+		gint arg1, gpointer data);
+gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
-void			change_light_pos(GtkWidget *widget, gpointer param);
-void			change_light_dir(GtkWidget *widget, gpointer param);
 void			free_to_free(void *content);
-void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
 #endif

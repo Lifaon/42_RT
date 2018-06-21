@@ -6,26 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 14:53:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/21 19:14:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
-
-static int		make_grid(t_wid_data *wid_d)
-{
-	if (!(wid_d->grid = gtk_grid_new()))
-		return (0);
-	wid_d->pos = pt_set(0, 1);
-	wid_d->size = pt_set(1, 1);
-	wid_d->f = NULL;
-	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);
-	gtk_grid_set_column_spacing(GTK_GRID(wid_d->grid), 5);
-	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
-	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), TRUE);
-	set_wid_data(wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
-	return (1);
-}
 
 static int		construct_phase_1(t_wid_data *wid_d, int index)
 {
@@ -66,7 +51,7 @@ static int		create_light_button(GtkWidget *box)
 	return (1);
 }
 
-int				add_one_light_tab(GtkWidget *tab_light, int index)
+int				create_light_tab(GtkWidget *tab_light, int index)
 {
 	GtkWidget		*l_title;
 	t_wid_data		wid_d;
@@ -103,7 +88,7 @@ int				create_light_ui(GtkWidget *tab)
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_light), TRUE);
 	i = -1;
 	while (++i < g_data->nb_lights)
-		if (!(add_one_light_tab(g_data->ui->tab_light, i)))
+		if (!(create_light_tab(g_data->ui->tab_light, i)))
 			return (0);
 	if (!(l_title = gtk_label_new("Light")))
 		return (0);

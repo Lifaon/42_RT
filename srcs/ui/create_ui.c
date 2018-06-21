@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:13:46 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:26:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,27 @@ static t_ui		*ui_new(void)
 		return (NULL);
 	ui->to_free = NULL;
 	ui->page_light = 0;
-	ui->page_objs = 0;
-	ui->page_cams = 0;
+	ui->page_obj = 0;
+	ui->page_cam = 0;
 	ui->is_active = 0;
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);
+}
+
+int				make_grid(t_wid_data *wid_d)
+{
+	if (!(wid_d->grid = gtk_grid_new()))
+		return (0);
+	wid_d->pos = pt_set(0, 1);
+	wid_d->size = pt_set(1, 1);
+	wid_d->f = NULL;
+	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);
+	gtk_grid_set_column_spacing(GTK_GRID(wid_d->grid), 5);
+	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	set_wid_data(wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
+	return (1);
 }
 
 int				create_ui(void)

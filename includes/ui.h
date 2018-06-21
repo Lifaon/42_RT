@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:17:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/21 14:55:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				create_camera_ui(GtkWidget *main_tab);
 /*
 ** tool used to create widget or group of widget
 */
-
+void			check_ui_active(int start);
 void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 				void (*f)(GtkWidget*, gpointer));
 t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);

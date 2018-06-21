@@ -9,12 +9,13 @@ static void		fill_vec(t_vec *vec, double nb)
 		return ;
 	if (i > 2)
 		i = 0;
+	printf("i = %d, nb = %lf \n", i, nb);
 	if (i == 0)
-		vec->x = nb;
+		vec->z = nb;
 	else if (i == 1)
 		vec->y = nb;
 	else if (i == 2)
-		vec->z = nb;
+		vec->x = nb;
 	i++;
 }
 

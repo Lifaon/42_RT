@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/20 20:14:10 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/21 14:54:56 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,8 @@ SRCS  = draw/anti_aliasing.c \
 		ui/wid_vec_new.c \
 		ui/free_to_free.c \
 		ui/add_vector_choose.c \
-		ui/change_vec_from_scale.c\
+		ui/change_vec_from_scale.c \
+		ui/check_ui_active.c \
 		\
 		data_init.c \
 		exit_all.c \

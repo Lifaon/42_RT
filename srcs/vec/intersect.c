@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 02:25:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 02:38:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 		ip.y <= sphere.r * 0.75 && ip.y >= -sphere.r * 0.75 && \
 		ip.z <= sphere.r * 0.75 && ip.z >= -sphere.r * 0.75)
 		return (1);
-*/
 	return (0);
+*/
+	return (1);
 }
 
 int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)

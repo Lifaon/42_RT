@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 23:56:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:37:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
 int		intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
 int		intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
+
+int		limit_axe(t_obj obj, t_vec ray, t_inter *inter);
+int		limit_sphere(t_obj sphere, t_vec ray, t_inter *inter);
+int		limit_cyl(t_obj cyl, t_vec ray, t_inter *inter);
+int		limit_cone(t_obj cone, t_vec ray, t_inter *inter);
 
 /*
 **	Functions to get the normal of the objects at the intersection point.

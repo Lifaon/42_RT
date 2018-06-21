@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/20 23:04:21 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/21 20:40:26 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS  = draw/anti_aliasing.c \
 		vec/compute_ray.c \
 		vec/get_normal.c \
 		vec/hit.c \
+		vec/intersect_limits.c \
 		vec/intersect.c \
 		vec/rotate_around_point.c \
 		vec/vec_operations.c \

@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:15:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 18:51:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 void	entry_change_scale(GtkWidget *widget, gpointer param)
 {

@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 19:23:33 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 18:52:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 int		create_sub_notebook(t_ui *ui)
 {

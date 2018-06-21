@@ -6,11 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 18:38:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/01 19:37:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ui.h"
 
 t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec)
 {

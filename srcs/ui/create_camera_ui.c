@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/23 18:42:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:13:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 int				create_camera_ui(GtkWidget *tab)
 {

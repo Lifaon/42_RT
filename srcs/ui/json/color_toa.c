@@ -6,12 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 22:32:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/01 20:30:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:12:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "rtv1.h"
+#include "ui.h"
 
 static char		*write_uint8(char *str, uint8_t nb, size_t *index)
 {

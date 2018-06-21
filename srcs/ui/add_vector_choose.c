@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 14:25:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:12:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec)
 {

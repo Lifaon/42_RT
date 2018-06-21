@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 19:20:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 20:32:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:12:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 static char		*fill_sphere_json(char *str, int i)
 {

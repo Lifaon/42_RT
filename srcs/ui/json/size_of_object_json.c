@@ -6,11 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 20:06:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 20:24:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:14:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 
 static int		size_sphere_json(int size, int i)
 {

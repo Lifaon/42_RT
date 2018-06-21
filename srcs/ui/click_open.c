@@ -6,13 +6,13 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 16:00:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:08:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "ui.h"
 #include "parse.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 static int		check_file(char *file_name)
 {

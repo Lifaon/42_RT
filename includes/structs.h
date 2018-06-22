@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 23:57:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/22 20:27:05 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,25 @@ typedef struct		s_light
 **	r = radius of the light source ; pos = position ; dir = direction.
 */
 
-typedef struct		s_obj
+typedef struct s_obj	t_obj;
+typedef struct		s_limit
+{
+	int				is_limited;
+	double			min;
+	double			max;
+	t_vec			axe_min;
+	t_vec			axe_max;
+	t_vec			x;
+	t_vec			y;
+	int				(*limit)(struct s_obj, t_vec, t_inter *);
+}					t_limit;
+/*
+**	Limit structure, with min and max lengths either on the direction axe or
+**	the primary axe (x, y, z). x and y are vectors stored to avoid having to
+**	calculate them for each plane intersection.
+*/
+
+struct				s_obj
 {
 	double			r;
 	double			spec;
@@ -116,10 +134,11 @@ typedef struct		s_obj
 	t_vec			dir;
 	t_vec			oc;
 	t_vec			normal;
+	t_limit			limit;
 	int				obj_type;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-}					t_obj;
+};
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
 **	shading ; pos = position which defines the object ; dir = direction in

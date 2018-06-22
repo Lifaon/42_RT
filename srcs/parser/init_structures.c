@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:08:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/22 20:01:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,16 @@ void	init_one_object(t_data *data, int index)
 	data->objs[index].alpha = 100;
 	data->objs[index].color.c = get_color_gtk(255, 0xA6, 0, 0xA6);
 	data->objs[index].pos = (t_vec){0, 0, 1500};
-	data->objs[index].dir = (t_vec){1, 1, 0};
-	data->objs[index].normal = (t_vec){1, 1, 0.001};
+	data->objs[index].dir = (t_vec){0, 1, 0};
+	data->objs[index].normal = (t_vec){0, 0, 1};
+	data->objs[index].limit.is_limited = 0;
+	data->objs[index].limit.min = -INFINITY;
+	data->objs[index].limit.max = INFINITY;
+	data->objs[index].limit.axe_min = (t_vec){-INFINITY, -INFINITY, -INFINITY};
+	data->objs[index].limit.axe_max = (t_vec){INFINITY, INFINITY, INFINITY};
+	data->objs[index].limit.x_plane = (t_vec){1, 0, 0};
+	data->objs[index].limit.y_plane = (t_vec){0, 1, 0};
+	data->objs[index].limit.limit = limit_sphere;
 	data->objs[index].intersect = intersect_sphere;
 	data->objs[index].get_normal = get_sphere_normal;
 }

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 20:25:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/22 21:12:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,49 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
+	ft_putnbr(index);
 	if (!(l_new(wid_d, "Object")))
 		return (0);
 	wid_d->pos = pt_set(0, 1);
 	if (!(switch_new(wid_d, NULL, TRUE, &switch_obj)))
 		return (0);
 	wid_d->pos = pt_set(1, 0);
+	wid_d->f = &modify_obj_type;
+	if (!(new_cb_type(wid_d, group, index)))
+		return (0);
+	wid_d->pos = pt_set(2, 0);
 	wid_d->f = &change_obj_dir;
 	vec = g_data->objs[index].dir;
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
 	vec = g_data->objs[index].pos;
 	wid_d->f = &change_obj_pos;
+	set_wid_data_scale(wid_d, 10, ptdb_set(-10000, 10000));
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	return (1);
 }
+
+/*int				cb_type(t_wid_data *wid_d, int index)
+{
+	GtkWidget		*cb;
+	char			*str;
+
+	if (!(cb = gtk_combo_box_text_new()))
+		return (-1);
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "sphere");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "plane");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "cone");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "cylinder");
+	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 0);
+	str = get_str_obj_type(g_data->objs[index].obj_type);
+	gtk_combo_box_set_active_id(GTK_COMBO_BOX(cb), str);
+	ft_strdel(&str);
+	g_signal_connect(G_OBJECT(cb), "changed", &modify_obj_type, cb);
+	//gtk_box_pack_start(GTK_BOX(h_box), cb, TRUE, TRUE, 5);
+	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
+	return (1);
+}*/
 
 static int		create_new_obj_button(GtkWidget *box)
 {

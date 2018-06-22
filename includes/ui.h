@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 20:26:15 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/22 20:31:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,25 @@ void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 				void (*f)(GtkWidget*, gpointer));
 void			set_wid_data_scale(t_wid_data *wid_d, double step,
 		t_ptdb min_max);
-int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max)
+int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max);
 t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
-GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
-				gdouble step);
+GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, gdouble value);
 GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
+GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, int index);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
 int				make_grid(t_wid_data *wid_d);
+
+/*
+** basic tool
+*/
+int				get_int_obj_type(const char *type);
+char			*get_str_obj_type(int type);
 
 /*
 ** Simple function to handle number and string for specific matters 
@@ -100,6 +106,7 @@ void			add_one_obj(GtkWidget *widget, gpointer param);
 void			change_obj_pos(GtkWidget *widget, gpointer param);
 void			change_obj_dir(GtkWidget *widget, gpointer param);
 void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
+void	modify_obj_type(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event

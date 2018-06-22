@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 19:13:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/22 21:08:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 {
 	if (!widget && !param)
 		param = NULL;
+	ft_putstr("alooooo\n");
 	if (state == TRUE)
 		g_data->lights[g_data->ui->page_light].enabled = 1;
 	else

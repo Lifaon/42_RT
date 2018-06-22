@@ -10,11 +10,11 @@
 	"lights" :
 	[
 		{
-			"position" : [-1000, 500, 500],
+			"position" : [-800, 500, 500],
 			"ambient" : 0.4
 		},
 		{
-			"position" : [-900, 600, 500],
+			"position" : [-700, 600, 500],
 			"ambient" : 0.4
 		}
 	],
@@ -22,12 +22,12 @@
 	{
 		"sphere" :
 		{
-			"position" : [-100, 200, 1000],
+			"position" : [-300, 200, 1000],
 			"radius" : 100
 		},
 		"cylinder" :
 		{
-			"position" : [200, 0, 1500],
+			"position" : [0, 0, 1500],
 			"color" : [255, 160, 0],
 			"direction" : [0, 1, 0],
 			"radius" : 200

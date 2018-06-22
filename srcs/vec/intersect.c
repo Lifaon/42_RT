@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 20:24:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/22 17:34:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
 	inter->t = -xv / dv;
 	if (inter->t <= inter->min_dist)
 		return (0);
-	return (1);
+	return (limit_circle(plane, ray, inter));
 }
 
 int		intersect_cylinder(t_obj cyl, t_vec ray, t_inter *inter)

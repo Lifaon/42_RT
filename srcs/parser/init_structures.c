@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 15:15:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:08:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_cameras(t_data *data)
 void	init_one_light(t_data *data, int index)
 {
 	data->lights[index].is_para = 0;
-	data->lights[index].enabled = 0;
+	data->lights[index].disabled = 0;
 	data->lights[index].r = 1;
 	data->lights[index].ambi = 0.3;
 	data->lights[index].pos = (t_vec){0.0, 0.0, 0.0};

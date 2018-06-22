@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modify_parallel_light.c                            :+:      :+:    :+:   */
+/*   modify_light.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 21:08:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/22 21:27:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 {
 	if (!widget && !param)
 		param = NULL;
-	ft_putstr("alooooo\n");
 	if (state == TRUE)
-		g_data->lights[g_data->ui->page_light].enabled = 1;
+	{
+		g_data->lights[g_data->ui->page_light].disabled = 0;
+		++g_data->nb_lights_on;
+	}
 	else
-		g_data->lights[g_data->ui->page_light].enabled = 0;
+	{
+		g_data->lights[g_data->ui->page_light].disabled = 1;
+		--g_data->nb_lights_on;
+	}
 }
 
 void			switch_parallel_light(GtkWidget *widget, gboolean state,

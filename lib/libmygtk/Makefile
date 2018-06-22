@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/05/21 20:11:41 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/20 23:06:51 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libmygtk.a
 
-DIR_NAME = libmygtk
+DIR_NAME = Libmygtk
 
 SRCS_DIR = ./srcs/
 
@@ -37,9 +37,9 @@ GTK_INC = `pkg-config --cflags gtk+-3.0`
 INC =	$(GTK_INC)\
 		-I ./includes/ \
 		-I ../libft/includes/ \
-		-I ../libpt/includes/ \
+		-I ../libpt/includes/
 
-CFLAGS = -Wall -Werror -Wextra $(INC)
+CFLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
@@ -65,8 +65,8 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed"
+	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed\033[0m"
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, $(NAME)
+.PHONY: all, clean, fclean, re

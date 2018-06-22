@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 20:13:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/22 21:27:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct		s_camera
 typedef struct		s_light
 {
 	int				is_para;
-	int				enabled;
+	int				disabled;
 	double			r;
 	double			ambi;
 	t_vec			pos;
@@ -145,6 +145,7 @@ typedef struct		s_data
 	int				nb_objects;
 	t_obj			*objs;
 	int				nb_lights;
+	int				nb_lights_on;
 	t_light			*lights;
 	int				i;
 	t_camera		cams[CAM_NB];

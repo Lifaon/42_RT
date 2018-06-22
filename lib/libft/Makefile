@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:50 by pmiceli           #+#    #+#              #
-#    Updated: 2018/05/26 16:46:53 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/20 23:06:41 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,7 +144,7 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed"
+	@echo "\033[036m❌	\033[0m\033[31m$(NAME) removed\033[0m"
 
 re : fclean all
 

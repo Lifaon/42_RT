@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/22 20:24:49 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/22 21:27:35 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,12 +170,14 @@ rm_obj:
 clean: rm_obj
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(LIBPT_DIR) clean
+	@make -C $(LIBMYGTK_DIR) clean
 
 fclean: rm_obj
 	@rm -rf $(NAME)
 	@echo "❌\t\033[031m$(DIR_NAME)'s executable removed\033[0m"
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(LIBPT_DIR) fclean
+	@make -C $(LIBMYGTK_DIR) fclean
 
 re: fclean all
 
@@ -194,7 +196,7 @@ LIBFT:
 
 LIBPT:
 	@echo "\033[033m➼\t\033[033mCompiling Libpt ...\033[0m"
-	@make -C$(LIBPT_DIR)
+	@make -C $(LIBPT_DIR)
 
 MYGTK:
 	@echo "\033[033m➼\t\033[033mCompiling Libmygtk ...\033[0m"

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 21:23:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/23 17:34:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,16 @@ char	*get_str_obj_type(int type)
 void	modify_obj_type(GtkWidget *widget, gpointer param)
 {
 	const char	*str;
-	int			dst;
+	int			type;
+	t_obj		*obj;
 
 	if (!param && !widget)
 		param = NULL;
 	str = gtk_combo_box_get_active_id(GTK_COMBO_BOX(widget));
-	if ((dst = get_int_obj_type(str)) < 0)
+	obj = &g_data->objs[g_data->ui->page_obj];
+	if ((type = get_int_obj_type(str)) < 0)
 		return ;
-	printf("%s dst = %d",str, dst);
-	g_data->objs[g_data->ui->page_obj].obj_type = dst;
-	printf("  => g_data[%d].obj_type = %d\n",g_data->ui->page_obj, g_data->objs[g_data->ui->page_obj].obj_type);
+	obj->obj_type = type;
+	obj->intersect = g_data->intersect[type];
+	obj->get_normal = g_data->get_normal[type];
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 00:00:40 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:41:00 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 */
 void	draw_image(void);
 void	draw_pixelated_image(t_data *data);
-int		get_px_color(t_data *data, t_inter inter);
+t_color	get_px_color(t_data *data, t_inter inter);
+//int		get_px_color(t_data *data, t_inter inter);
 int		anti_aliasing(t_data *data, t_vec vp);
 
 /*

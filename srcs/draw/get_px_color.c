@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:05:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:40:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	return (ret);
 }
 
-int				get_px_color(t_data *data, t_inter inter)
+t_color			get_px_color(t_data *data, t_inter inter)
 {
 	t_color		ret;
 	t_added		added;
 	int			i;
 
 	if (!data->nb_lights || !data->nb_lights_on)
-		return (col_multiply(data->objs[inter.obj_i].color, 0.3).c);
+		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
 	added = (t_added){0, 0, 0, 0};
 	i = -1;
 	inter.spec.c = 0;
@@ -83,5 +83,6 @@ int				get_px_color(t_data *data, t_inter inter)
 	ret.argb.g = added.g / data->nb_lights_on;
 	ret.argb.b = added.b / data->nb_lights_on;
 	ret.argb.a = added.a / data->nb_lights_on;
-	return (add_colors(ret, inter.spec).c);
+	ret = add_colors(ret, inter.spec);
+	return (ret);
 }

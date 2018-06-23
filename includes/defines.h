@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 21:40:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 17:36:10 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 # define NB_THR 8
 /*
 **	Number of threads used.
+*/
+
+# define MAX_RECURSION 3
+/*
+**	int value for the max recursion for reflection
 */
 
 # define SPHERE 0

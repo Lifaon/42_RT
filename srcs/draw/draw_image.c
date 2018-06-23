@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 00:49:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 19:53:45 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,37 @@
 #include "rtv1.h"
 #include "draw.h"
 
-static void	draw_pixel(t_data *data, t_vec vp, t_point crd)
+static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 {
-	t_inter	inter;
-	t_vec	ray;
+	t_inter		inter;
+	t_vec		ray;
+	t_vec		r;
+	t_color		ret;
+	int			i;
 
-	if (data->aa <= 1)
-	{
+	i = -1;
+//	if (data->aa <= 1)
+//	{
+		ret.c = 0xFF000000;
 		ray = compute_ray(vp);
 		inter.min_dist = 0;
 		if (hit(data, ray, &inter))
-			pt_to_pixelbuf(crd, data->img, get_px_color(data, inter));
-		else
-			pt_to_pixelbuf(crd, data->img, 0xFF000000);
-	}
-	else if (data->aa > 1)
-		pt_to_pixelbuf(crd, data->img, anti_aliasing(data, vp));
+		{
+			ret = get_px_color(data, inter);
+			if (rec < 3)
+			{
+				if (data->objs[inter.obj_i].shiny == 1)
+				{
+					t_vec normal = get_normal(vp, data->objs[inter.obj_i], inter);
+					r = vec_substract(vp, vec_multiply(normal, 2.0f * dot_product(vp, normal)));
+					ret = add_colors(ret, col_multiply(draw_pixel(data, r, rec + 1), 0.8));
+				}
+			}
+		}
+		return (ret);
+//	}
+//	else
+//		return (anti_aliasing(data, vp));
 }
 
 static void	*draw_thread(void *thr)
@@ -50,7 +65,7 @@ static void	*draw_thread(void *thr)
 		{
 			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
 			vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
-			draw_pixel(g_data, vp, crd);
+			pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp, 0).c);
 		}
 	}
 	pthread_exit(NULL);

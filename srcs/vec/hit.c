@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 23:53:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 19:35:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int		hit(t_data *data, t_vec ray, t_inter *inter)
 {
-	double	t;
-	int		i;
+	static int		depth = 0;
+	double			t;
+	int				i;
 
 	t = INFINITY;
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 15:24:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:55:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		draw_pixelated_image(t_data *data)
 			vp.x = g_data->cam.vp_up_left.x + ((PX * 0.5) + (double)crd.x * PX);
 			ray = compute_ray(vp);
 			if (hit(data, ray, &inter))
-				draw_pixels(data, crd, get_px_color(data, inter));
+				draw_pixels(data, crd, get_px_color(data, inter).c);
 			else
 				draw_pixels(data, crd, 0xFF000000);
 		}

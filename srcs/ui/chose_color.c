@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:34:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:44:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			chose_color(GtkWidget *widget, gpointer param)
 	add_color_choose(&wid_d, color);
 	g_pxb = pixelbuf_new(pt_set(50, 50), NULL);
 	fill_pixelbuf_in_color(g_pxb, color.c);
-	wid_d.pos = pt_set(6, 1);
+	wid_d.pos = pt_set(6, 0);
 	wid_d.size = pt_set(2, 1);
 	gtk_grid_attach(GTK_GRID(wid_d.grid), g_pxb->widget, wid_d.pos.y,
 			wid_d.pos.x, wid_d.size.x, wid_d.size.y);

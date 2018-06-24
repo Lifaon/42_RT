@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 14:13:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:14:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,36 @@ GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		gtk_grid_attach(GTK_GRID(wid_d->grid), sw, wid_d->pos.y, wid_d->pos.x,
 			wid_d->size.x, wid_d->size.y);
 	return (sw);
+}
+
+GtkWidget	*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
+		GtkWidget *img)
+{
+	GtkWidget	*b;
+	GtkWidget	*label;
+	GtkWidget	*box;
+
+	if (!(b = gtk_button_new()))
+		return (NULL);
+	if (txt || img)
+		if (!(box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5)))
+			return (NULL);
+	if (img)
+		gtk_box_pack_start(GTK_BOX(box), img, TRUE, TRUE, 2);
+	if (txt)
+	{
+		if (!(label= gtk_label_new(txt)))
+			return (NULL);
+		gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 2);
+	}
+	if (txt || img)
+		gtk_container_add(GTK_CONTAINER(b), box);
+	if (wid_d->f)
+		g_signal_connect(G_OBJECT(b), "clicked", G_CALLBACK(wid_d->f), param);
+	if (wid_d)
+		gtk_grid_attach(GTK_GRID(wid_d->grid), b, wid_d->pos.y,
+				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
+	return (b);
 }
 
 GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)

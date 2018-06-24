@@ -6,96 +6,74 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/23 18:56:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 18:07:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-t_pixel_buf		*g_pxb;
+t_pixelbuf		*g_pxb;
+t_color			g_color;
 GtkWidget		*g_win_color;
 
-static void				scale_change(GtkWidget *bar, gpointer data)
+static void		ev_color_cancel(GtkWidget *widget, gpointer param)
 {
-	t_test_color	*color_data;
-	int				value[3];
-	int				i;
-	uint32_t		color;
-
-	color_data = (t_test_color*)data;
-	i = 0;
-	if (!bar)
-		bar = NULL;
-	while (i < 3)
-	{
-		value[i] = (int)gtk_range_get_value(GTK_RANGE(color_data->widget[i]));
-		gtk_entry_set_text(GTK_ENTRY(color_data->entry[i]), ft_itoa(value[i]));
-		i++;
-	}
-	color = get_color_gtk(255, (uint8_t)value[0], (uint8_t)value[1],
-			(uint8_t)value[2]);
-	fill_pixelbuf_in_color(color_data->pixelbuf, color);
-	put_pixelbuf_to_widget(color_data->pixelbuf, NULL);
+	if (!widget && !param)
+		return ;
+	gtk_widget_destroy(g_win_color);
+	pixelbuf_free(&g_pxb);
 }
 
-static void				contain(GtkWidget *h_scale[3], GtkWidget *entry[3],
-		t_test_color *data)
+static void		ev_color_apply(GtkWidget *widget, gpointer param)
 {
-	int				i;
-	GtkWidget		*box[4];
-	GtkWidget		*frame[3];
+	t_color		*color;
 
-	i = -1;
-	frame[0] = gtk_frame_new("Red");
-	frame[1] = gtk_frame_new("Green");
-	frame[2] = gtk_frame_new("Blue");
-	box[3] = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-	while (++i < 3)
-	{
-		box[i] = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-		gtk_box_pack_start(GTK_BOX(box[i]), h_scale[i], FALSE, FALSE, 2);
-		gtk_box_pack_start(GTK_BOX(box[i]), entry[i], TRUE, FALSE, 2);
-		gtk_container_add(GTK_CONTAINER(frame[i]), box[i]);
-		gtk_container_add(GTK_CONTAINER(box[3]), frame[i]);
-	}
-	put_pixelbuf_to_widget(data->pixelbuf, NULL);
-	gtk_box_pack_start(GTK_BOX(box[3]), data->pixelbuf->widget, TRUE, FALSE, 2);
-	put_widgets_in_new_win(box[3], 200, 300);
+	color = &g_data->objs[g_data->ui->page_obj].color;
+	*color = g_color;
+	put_pixelbuf_to_widget(g_pxb, (GtkWidget*)param);
+	gtk_widget_destroy(g_win_color);
+	//pixelbuf_free(&g_pxb);
 }
 
-static t_test_color		*set_data(GtkWidget *h_scale[3], GtkWidget *entry[3])
+static void		scale_change_color(GtkWidget *widget, gpointer param)
 {
-		g_signal_connect(G_OBJECT(h_scale[i]), "value-changed",
-				G_CALLBACK(scale_change), (gpointer)data);
-	}
-	g_pxb = pixelbuf_new(pt_set(50, 50), NULL);
-	fill_pixelbuf_in_color(data->pixelbuf, get_color_gtk(0, 0, 0, 0));
-	gtk_image_set_from_pixbuf(GTK_IMAGE(data->pixelbuf->widget),
-			data->pixelbuf->buf);
-	return (data);
+	GtkSizeGroup	*group;
+
+	if (!widget && !param)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+	group = (GtkSizeGroup*)param;
+	g_color.argb.a = 255;
+	change_color_from_group(group, &g_color);
+	fill_pixelbuf_in_color(g_pxb, g_color.c);
+	put_pixelbuf_to_widget(g_pxb, NULL);
 }
 
-void					chose_color(GtkWidget *widget, gpointer useless)
+void					chose_color(GtkWidget *widget, gpointer param)
 {
-	GtkAdjustment	*adj[3];
-	GtkWidget		*h_scale[3];
-	GtkWidget		*entry[3];
-	t_test_color	*data;
-	int				i;
+	t_wid_data		wid_d;
+	t_color			color;
 
-	if (!widget && !useless)
-		useless = NULL;
-	i = -1;
-	while (++i < 3)
-	{
-		adj[i] = gtk_adjustment_new(0, 0, 265, 1, 2, 10);
-		h_scale[i] = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, adj[i]);
-		gtk_scale_set_digits(GTK_SCALE(h_scale[i]), 0);
-		entry[i] = gtk_entry_new();
-		g_signal_connect(G_OBJECT(entry[i]), "activate",
-				G_CALLBACK(entry_change), (gpointer)h_scale[i]);
-		gtk_entry_set_text(GTK_ENTRY(entry[i]), "0");
-	}
-	data = set_data(h_scale, entry);
-	contain(h_scale, entry, data);
+	init_wid_data(&wid_d, 1, ptdb_set(0, 255));
+	wid_d.f = &scale_change_color;
+	color = g_data->objs[g_data->ui->page_obj].color;
+	add_color_choose(&wid_d, color);
+	g_pxb = pixelbuf_new(pt_set(80, 80), NULL);
+	fill_pixelbuf_in_color(g_pxb, color.c);
+	wid_d.pos = pt_set(6, 1);
+	wid_d.size = pt_set(2, 1);
+	gtk_grid_attach(GTK_GRID(wid_d.grid), g_pxb->widget, wid_d.pos.y, wid_d.pos.x, wid_d.size.x, wid_d.size.y);
+	wid_d.pos = pt_set(8, 0);
+	wid_d.size = pt_set(1, 1);
+	wid_d.f = &ev_color_apply;
+	b_new(&wid_d, param, "apply", NULL);
+	wid_d.pos = pt_set(8, 1);
+	wid_d.f = &ev_color_cancel;
+	b_new(&wid_d, (gpointer)widget, "cancel", NULL);
+	g_win_color = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_position(GTK_WINDOW(g_win_color), GTK_WIN_POS_CENTER);
+	gtk_window_set_default_size(GTK_WINDOW(g_win_color), 200, 400);
+	gtk_container_add(GTK_CONTAINER(g_win_color), wid_d.grid);
+	gtk_widget_show_all(g_win_color);
 }

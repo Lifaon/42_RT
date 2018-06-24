@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 13:24:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:31:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	GtkWidget	*scale;
 
 	check_ui_active(0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	//wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	if (!(l_new(wid_d, txt)))
 		return (0);
 	if (!(entry = make_entry(wid_d, group, value)))

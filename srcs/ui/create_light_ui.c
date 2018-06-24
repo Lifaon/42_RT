@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 13:27:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:33:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 		return (0);
 	wid_d->f = &change_light_dir;
 	vec = g_data->lights[index].dir;
+	wid_d->pos = pt_set(2, 0);
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
 	vec = g_data->lights[index].pos;

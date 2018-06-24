@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/06/20 23:06:51 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/24 17:15:44 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS_NAME = put_widgets_in_new_win.c \
 		get_color_gtk.c \
 		put_pixelbuf_to_widget.c \
 		pixelbuf_new.c \
+		pixelbuf_free.c \
 		pt_to_pixelbuf.c \
 		fill_pixelbuf_in_color.c
 

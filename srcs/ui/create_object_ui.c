@@ -6,34 +6,18 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/23 18:56:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 18:06:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
-
-static int		construct_phase_1(t_wid_data *wid_d, int index)
-{
-	if (!(l_new(wid_d, "Object")))
-		return (0);
-	wid_d->pos = pt_set(0, 1);
-	if (!(switch_new(wid_d, NULL, TRUE, &switch_obj)))
-		return (0);
-	wid_d->pos = pt_set(1, 0);
-	wid_d->f = &modify_obj_type;
-	if (!(new_cb_type(wid_d, group, index)))
-		return (0);
-	wid_d->pos = pt_set(2, 0);
-	
-	return (construct_phase_2(wid_d, index));
-}
 
 static int		construct_phase_2(t_wid_data *wid_d, int index)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
-	wid_d->pos = pt_set(2, 0);
+	wid_d->pos = pt_set(3, 0);
 	wid_d->f = &change_obj_dir;
 	vec = g_data->objs[index].dir;
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
@@ -44,6 +28,29 @@ static int		construct_phase_2(t_wid_data *wid_d, int index)
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	return (1);
+}
+
+static int		construct_phase_1(t_wid_data *wid_d, int index)
+{
+	t_pixelbuf		*pxb;
+
+	if (!(l_new(wid_d, "Object")))
+		return (0);
+	wid_d->pos = pt_set(0, 1);
+	if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
+		return (0);
+	wid_d->pos = pt_set(1, 0);
+	wid_d->f = &modify_obj_type;
+	if (!(new_cb_type(wid_d, wid_d, index)))
+		return (0);
+	wid_d->pos = pt_set(2, 0);
+	pxb = pixelbuf_new(pt_set(20, 20), NULL);
+	fill_pixelbuf_in_color(pxb, g_data->objs[index].color.c);
+	wid_d->f = &chose_color;
+	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
+		return (0);
+	//pixelbuf_free(&pxb);
+	return (construct_phase_2(wid_d, index));
 }
 
 static int		create_new_obj_button(GtkWidget *box)

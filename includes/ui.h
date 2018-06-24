@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/22 20:31:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:53:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
 GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, gdouble value);
 GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
+GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
+		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, int index);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
+GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
 int				make_grid(t_wid_data *wid_d);
+void			chose_color(GtkWidget *widget, gpointer useless);
 
 /*
 ** basic tool
@@ -120,5 +124,6 @@ gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
+void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);
 #endif

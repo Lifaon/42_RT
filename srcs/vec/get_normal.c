@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 23:10:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 06:08:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,24 @@ t_vec	get_plane_normal(t_obj plane, t_inter inter)
 
 t_vec	get_cylinder_normal(t_obj cyl, t_inter inter)
 {
-	t_vec b;
-	t_vec a;
+	t_vec hyp;
+	t_vec adj;
 	t_vec norm;
-	t_vec dir;
 
-	dir = vec_normalize(cyl.dir);
-	b = vec_substract(inter.ip, cyl.pos);
-	a = vec_multiply(dir, dot_product(b, dir));
-	norm = vec_substract(b, a);
+	hyp = vec_substract(inter.ip, cyl.pos);
+	adj = vec_multiply(cyl.dir, dot_product(hyp, cyl.dir));
+	norm = vec_substract(hyp, adj);
 	return ((t_vec){norm.x / cyl.r, norm.y / cyl.r, norm.z / cyl.r});
 }
 
 t_vec	get_cone_normal(t_obj cone, t_inter inter)
 {
-	t_vec b;
-	t_vec a;
-	t_vec scaled;
+	t_vec hyp;
 	t_vec norm;
-	t_vec dir;
 
-	dir = vec_normalize(cone.dir);
-	b = vec_normalize(vec_substract(cone.pos, inter.ip));
-	a = vec_multiply(dir, vec_cos(b, dir));
-	norm = vec_substract(b, a);
-	scaled = vec_cross_product(b, norm);
-	norm = vec_cross_product(b, scaled);
+	hyp = (vec_substract(inter.ip, cone.pos));
+	norm = vec_cross_product(hyp, cone.dir);
+	norm = vec_cross_product(hyp, norm);
 	return (vec_normalize(norm));
 }
 

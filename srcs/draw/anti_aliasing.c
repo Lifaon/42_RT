@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 00:04:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 06:23:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,20 @@
 
 static t_color	blend(t_color colors[256], int size)
 {
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-	int	i;
+	t_added	added;
+	int		i;
 
-	r = 0;
-	g = 0;
-	b = 0;
-	a = 0;
+	added = (t_added){0, 0, 0, 0};
 	i = -1;
 	while (++i < size)
 	{
-		r += colors[i].argb.r;
-		g += colors[i].argb.g;
-		b += colors[i].argb.b;
-		a += colors[i].argb.a;
+		added.r += colors[i].argb.r;
+		added.g += colors[i].argb.g;
+		added.b += colors[i].argb.b;
+		added.a += colors[i].argb.a;
 	}
-	return ((t_color){.argb.r = r / size, .argb.g = g / size,\
-		.argb.b = b / size, .argb.a = a / size});
+	return ((t_color){.argb.r = added.r / size, .argb.g = added.g / size,\
+		.argb.b = added.b / size, .argb.a = added.a / size});
 }
 
 int				anti_aliasing(t_data *data, t_vec vp)

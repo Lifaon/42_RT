@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 02:44:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:40:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	free(g_data->lights);
 	g_data->lights = lights_new;
 	init_one_light(g_data, i);
-	add_one_light_tab(g_data->ui->tab_light, i);
+	create_light_tab(g_data->ui->tab_light, i);
 	gtk_widget_show_all(g_data->win);
 	check_ui_active(1);
 }

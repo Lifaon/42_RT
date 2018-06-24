@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 01:15:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:41:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	get_dir(t_obj *obj);
 void	init_cameras(t_data *data);
 int		init_lights(t_data *data, int nb);
 void	init_one_light(t_data *data, int index);
+void	init_one_object(t_data *data, int index);
 int		init_objects(t_data *data, int nb);
 /*
 **	Functions used to initialize the structures and all their variables

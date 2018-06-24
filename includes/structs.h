@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 23:14:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:41:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct		s_obj
 {
 	int				obj_type;
 	int				limited;
+	int				enabled;
 	double			r;
 	double			spec;
 	double			alpha;
@@ -145,8 +146,8 @@ typedef struct		s_ui
 	GtkWidget	*tab_objs;
 	int			is_active;
 	int			page_light;
-	int			page_cams;
-	int			page_objs;
+	int			page_cam;
+	int			page_obj;
 }					t_ui;
 
 typedef struct		s_data
@@ -192,6 +193,8 @@ typedef struct		s_wid_data
 {
 	t_point			pos;
 	t_point			size;
+	t_ptdb			min_max;
+	double			step;
 	GtkWidget		*grid;
 	void			(*f)(GtkWidget*, gpointer);
 }					t_wid_data;

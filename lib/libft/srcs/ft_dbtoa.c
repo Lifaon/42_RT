@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/26 16:48:52 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:15:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	size_t		size;
 	long		cpy_decimal;
 	long		multiply;
-	size_t			i;
+	size_t		i;
 	double		cpy;
 
 	i = 17;

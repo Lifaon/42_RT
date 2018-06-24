@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:13:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:23:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,36 @@ GtkWidget	*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 	return (sw);
 }
 
+GtkWidget	*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
+		GtkWidget *img)
+{
+	GtkWidget	*b;
+	GtkWidget	*label;
+	GtkWidget	*box;
+
+	if (!(b = gtk_button_new()))
+		return (NULL);
+	if (txt || img)
+		if (!(box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5)))
+			return (NULL);
+	if (img)
+		gtk_box_pack_start(GTK_BOX(box), img, TRUE, TRUE, 2);
+	if (txt)
+	{
+		if (!(label = gtk_label_new(txt)))
+			return (NULL);
+		gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 2);
+	}
+	if (txt || img)
+		gtk_container_add(GTK_CONTAINER(b), box);
+	if (wid_d->f)
+		g_signal_connect(G_OBJECT(b), "clicked", G_CALLBACK(wid_d->f), param);
+	if (wid_d)
+		gtk_grid_attach(GTK_GRID(wid_d->grid), b, wid_d->pos.y,
+				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
+	return (b);
+}
+
 GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)
 {
 	GtkWidget	*tgb;
@@ -44,14 +74,14 @@ GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)
 	return (tgb);
 }
 
-GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, t_ptdb min_max,
-		gdouble step)
+GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, gdouble value)
 {
 	GtkWidget		*scale;
 
 	if (!(scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,
-					min_max.x, min_max.y, step)))
+					wid_d->min_max.x, wid_d->min_max.y, wid_d->step)))
 		return (NULL);
+	gtk_range_set_value(GTK_RANGE(scale), value);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(scale), "value-changed",
 				G_CALLBACK(wid_d->f), param);

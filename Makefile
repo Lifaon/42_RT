@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/21 16:22:09 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/24 02:43:03 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS  = draw/anti_aliasing.c \
 		events/ft_event.c \
 		events/ft_keyboard.c \
 		events/px_aa.c \
+		events/get_things.c \
 		events/fill_funar_key_event.c \
 		events/rotate.c \
 		events/translations.c \
@@ -60,6 +61,8 @@ SRCS  = draw/anti_aliasing.c \
 		vec/get_normal.c \
 		vec/hit.c \
 		vec/intersect.c \
+		vec/limits.c \
+		vec/limits2.c \
 		vec/rotate_around_point.c \
 		vec/vec_operations.c \
 		vec/vec_operations2.c \

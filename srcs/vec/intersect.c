@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 16:34:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/04 16:05:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 23:20:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ int		intersect_sphere(t_obj sphere, t_vec ray, t_inter *inter)
 
 	b = 2 * dot_product(ray, inter->oc);
 	c = dot_product(inter->oc, inter->oc) - (sphere.r * sphere.r);
-	return (solve_quadratic_equation(inter, 1, b, c));
+	if (!solve_quadratic_equation(inter, 1, b, c))
+		return (0);
+	if (sphere.limited != LIMIT_NONE)
+		return (obj_limit(sphere, ray, inter));
+	return (1);
 }
 
 int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
@@ -46,13 +50,15 @@ int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter)
 	double xv;
 	double dv;
 
-	xv = dot_product(inter->oc, plane.normal);
-	dv = dot_product(ray, plane.normal);
+	xv = dot_product(inter->oc, plane.dir);
+	dv = dot_product(ray, plane.dir);
 	if (dv == 0)
 		return (0);
 	inter->t = -xv / dv;
 	if (inter->t <= inter->min_dist)
 		return (0);
+	if (plane.limited != LIMIT_NONE)
+		return (obj_limit(plane, ray, inter));
 	return (1);
 }
 
@@ -70,7 +76,12 @@ int		intersect_cylinder(t_obj cyl, t_vec ray, t_inter *inter)
 		dot_product(ray, dir) * dot_product(inter->oc, dir));
 	c = dot_product(inter->oc, inter->oc) - ((dot_product(inter->oc, dir) *\
 		dot_product(inter->oc, dir)) + (cyl.r * cyl.r));
-	return (solve_quadratic_equation(inter, a, b, c));
+	if (!solve_quadratic_equation(inter, a, b, c))
+		return (0);
+	if (cyl.limited != LIMIT_NONE)
+		return (obj_limit(cyl, ray, inter));
+	return (1);
+
 }
 
 int		intersect_cone(t_obj cone, t_vec ray, t_inter *inter)
@@ -89,5 +100,9 @@ int		intersect_cone(t_obj cone, t_vec ray, t_inter *inter)
 		dot_product(ray, dir) * dot_product(inter->oc, dir));
 	c = dot_product(inter->oc, inter->oc) - radius * \
 		(dot_product(inter->oc, dir) * dot_product(inter->oc, dir));
-	return (solve_quadratic_equation(inter, a, b, c));
+	if (!solve_quadratic_equation(inter, a, b, c))
+		return (0);
+	if (cone.limited != LIMIT_NONE)
+		return (obj_limit(cone, ray, inter));
+	return (1);
 }

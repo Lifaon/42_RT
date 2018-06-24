@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_object_json.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 19:20:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:12:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 02:43:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static char		*fill_sphere_json(char *str, int i)
 
 static char		*fill_plane_json(char *str, int i)
 {
-	str = my_strcopy(str, ",\n\t\t\t\"normal\" : ");
-	str = strcpy_vec(str, g_data->objs[i].normal);
+	str = my_strcopy(str, ",\n\t\t\t\"direction\" : ");
+	str = strcpy_vec(str, g_data->objs[i].dir);
 	str = my_strcopy(str, ",\n\t\t\t\"specular\" : ");
 	str = strcpy_db(str, g_data->objs[i].spec);
 	return (str);

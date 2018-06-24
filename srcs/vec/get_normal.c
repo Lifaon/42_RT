@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/07 04:13:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 23:10:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_vec	get_sphere_normal(t_obj sphere, t_inter inter)
 t_vec	get_plane_normal(t_obj plane, t_inter inter)
 {
 	(void)inter;
-	return (plane.normal);
+	return (plane.dir);
 }
 
 t_vec	get_cylinder_normal(t_obj cyl, t_inter inter)
@@ -64,6 +64,6 @@ t_vec	get_normal(t_vec ray, t_obj obj, t_inter inter)
 
 	inter.normal = obj.get_normal(obj, inter);
 	dot = dot_product(ray, inter.normal);
-	normal = dot < 0.01 ? inter.normal : vec_multiply(inter.normal, -1);
+	normal = dot <= 0 ? inter.normal : vec_multiply(inter.normal, -1);
 	return (normal);
 }

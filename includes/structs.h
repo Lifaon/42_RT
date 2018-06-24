@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:02:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 23:14:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_inter
 	t_vec			ip;
 	t_vec			normal;
 	t_vec			oc;
+	t_vec			origin;
 }					t_inter;
 /*
 **	Intersection structure -> obj_i is the object index used to know which
@@ -107,23 +108,32 @@ typedef struct		s_light
 
 typedef struct		s_obj
 {
+	int				obj_type;
+	int				limited;
 	double			r;
 	double			spec;
 	double			alpha;
 	t_color			color;
 	t_vec			pos;
 	t_vec			dir;
+	t_vec			y_dir;
+	t_vec			z_dir;
+	t_vec			angle;
+	t_vec			min;
+	t_vec			max;
 	t_vec			oc;
-	t_vec			normal;
-	int				obj_type;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
+	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
 **	shading ; pos = position which defines the object ; dir = direction in
 **	case it has one ; oc = vector between the current camera and 'pos' ;
-**	normal = surface normal in case it's constant (e.g. plane)
+**	normal = surface normal in case it's constant (e.g. plane) ; limits, with
+**	min and max lengths either on the directional axis or the primary axis
+**	y_dir and z_dir are vectors stored to avoid having to calculate them
+**	for each intersection.
 */
 
 typedef struct		s_ui
@@ -152,6 +162,7 @@ typedef struct		s_data
 	int				px;
 	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
+	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	void			*win;
 	t_pixelbuf		*img;

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 15:10:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 01:15:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ int		brackets(char *str);
 void	parse_cameras(t_data *data, char *str, int *index);
 void	parse_lights(t_data *data, char *str, int *index);
 void	parse_objects(t_data *data, char *str, int *index);
+void	get_vp_up_left(t_camera *cam);
+void	get_dir(t_obj *obj);
 /*
 **	parse_cameras(), parse_lights() and parse_objects() initialize the
 **	corresponding array in *data with what is written in the string.
+**	get_vp_up_left() and get_dir() are to call after parsing a cam and an obj.
 */
 
 void	init_cameras(t_data *data);
-void	get_vp_up_left(t_camera *cam);
 int		init_lights(t_data *data, int nb);
 void	init_one_light(t_data *data, int index);
 int		init_objects(t_data *data, int nb);

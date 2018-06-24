@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 16:21:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 02:44:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	check_ui_active(0);
 	i = -1;
 	g_data->nb_lights += 1;
+	g_data->nb_lights_on += 1;
 	lights_new = (t_light*)malloc(sizeof(t_light) * g_data->nb_lights);
 	while (++i < (g_data->nb_lights - 1))
 		lights_new[i] = g_data->lights[i];

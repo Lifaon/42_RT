@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 21:40:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 20:00:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@
 # define PLANE 1
 # define CYLINDER 2
 # define CONE 3
+# define LIMIT_NONE -1
+# define LIMIT_AXE 0
+# define LIMIT_SPHERE 1
+# define LIMIT_RECTANGLE 2
+# define LIMIT_CIRCLE 3
+# define LIMIT_CYLINDER 4
+# define LIMIT_CONE 5
 /*
 **	Alternative to enums for OpenCL compatibility.
 */

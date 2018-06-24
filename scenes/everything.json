@@ -23,18 +23,24 @@
 		"plane" :
 		{
 			"position" : [0, 0, 25000],
-			"normal" : [0, 0, 1],
+			"angle" : [90, 0, 0],
 			"color" : [60, 90, 130],
 			"specular" : 0,
-			"alpha" : 75
+			"alpha" : 75,
+			"limit" : "circle",
+			"min" : [1000],
+			"max" : [8000],
 		},
 		"plane" :
 		{
 			"position" : [0, -600, 1500],
-			"normal" : [0, 1, 0],
+			"angle" : [0, 0, 0],
 			"color" : [80, 120, 180],
 			"specular" : 0,
-			"alpha" : 75
+			"alpha" : 75,
+			"limit" : "rectangle",
+			"min" : [-8000, -8000],
+			"max" : [10000, 5000],
 		},
 		"sphere" :
 		{
@@ -42,7 +48,11 @@
 			"radius" : 250,
 			"color" : [255, 0, 40],
 			"specular" : 0.4,
-			"alpha" : 100
+			"alpha" : 100,
+			"limit" : "sphere",
+			"angle" : [45, 0, 45],
+			"min" : [-200, -200, -200],
+			"max" : [200, 200, 200],
 		},
 		"sphere" :
 		{
@@ -50,7 +60,10 @@
 			"radius" : 250,
 			"color" : [51, 200, 214],
 			"specular" : 0.4,
-			"alpha" : 50
+			"alpha" : 50,
+			"limit" : "axe",
+			"min" : [-200, -200, -200],
+			"max" : [200, 200, 200],
 		},
 		"sphere" :
 		{
@@ -58,7 +71,8 @@
 			"radius" : 250,
 			"color" : [30, 140, 40],
 			"specular" : 0.1,
-			"alpha" : 30
+			"alpha" : 30,
+			"limit" : "none"
 		},
 		"sphere" :
 		{
@@ -66,7 +80,8 @@
 			"radius" : 250,
 			"color" : [128, 26, 175],
 			"specular" : 0.3,
-			"alpha" : 75
+			"alpha" : 75,
+			"limit" : "none"
 		},
 		"sphere" :
 		{
@@ -74,7 +89,8 @@
 			"radius" : 250,
 			"color" : [255, 0, 255],
 			"specular" : 0.4,
-			"alpha" : 150
+			"alpha" : 150,
+			"limit" : "none"
 		},
 		"sphere" :
 		{
@@ -82,7 +98,8 @@
 			"radius" : 250,
 			"color" : [120, 0, 255],
 			"specular" : 0.8,
-			"alpha" : 100
+			"alpha" : 100,
+			"limit" : "none"
 		},
 		"sphere" :
 		{
@@ -90,7 +107,8 @@
 			"radius" : 250,
 			"color" : [255, 160, 45],
 			"specular" : 1,
-			"alpha" : 150
+			"alpha" : 150,
+			"limit" : "none"
 		},
 		"sphere" :
 		{
@@ -98,34 +116,44 @@
 			"radius" : 250,
 			"color" : [30, 140, 40],
 			"specular" : 0.1,
-			"alpha" : 30
+			"alpha" : 30,
+			"limit" : "none"
 		},
 		"cylinder" :
 		{
 			"position" : [2500, 400, 8000],
 			"radius" : 200,
-			"direction" : [-1, 3, 0],
+			"angle" : [-50, -30, -20],
 			"color" : [8, 215, 209],
 			"specular" : 0.4,
-			"alpha" : 10
+			"alpha" : 10,
+			"limit" : "cylinder",
+			"min" : [600, -5000, -170],
+			"max" : [2000, 200, 170],
 		},
 		"cylinder" :
 		{
 			"position" : [2500, 400, 8000],
 			"radius" : 200,
-			"direction" : [1, 1, 3],
+			"angle" : [70, -20, 0],
 			"color" : [0, 231, 174],
 			"specular" : 0.4,
-			"alpha" : 10
+			"alpha" : 10,
+			"limit" : "cylinder",
+			"min" : [-500, -200, -170],
+			"max" : [1000, 10000, 200],
 		},
 		"cone" :
 		{
 			"position" : [-3200, 1000, 10000],
 			"radius" : 15,
-			"direction" : [-1.5, 4, 2],
+			"angle" : [45, 20, 10],
 			"color" : [255, 160, 45],
 			"specular" : 0.6,
-			"alpha" : 10
+			"alpha" : 10,
+			"limit" : "cone",
+			"min" : [-0, -5000, -5000],
+			"max" : [5000, 10000, 10000],
 		}
 	}
 }

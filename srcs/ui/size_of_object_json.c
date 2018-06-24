@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   size_of_object_json.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 20:06:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 20:24:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/23 23:16:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int		size_sphere_json(int size, int i)
 
 static int		size_plane_json(int size, int i)
 {
-	size += ft_strlen("\t\t\t\"normal\" : ");
-	size += size_vec(g_data->objs[i].normal) + 2;
+	size += ft_strlen("\t\t\t\"direction\" : ");
+	size += size_vec(g_data->objs[i].dir) + 2;
 	size += ft_strlen("\t\t\t\"specular\" : ");
 	size += size_double(g_data->objs[i].r) + 1;
 	return (size);

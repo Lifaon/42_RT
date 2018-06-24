@@ -6,11 +6,36 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 15:08:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 02:14:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+static void	parse_limit(t_obj *object, char *str, int *index)
+{
+	int i;
+
+	i = *index - 1;
+	while (str[++i] && str[i] != ':');
+	if (str[i] != ':')
+		return ;
+	*index = i + 1;
+	if (read_quotes(str + *index, "\"axe\"", index))
+		object->limited = LIMIT_AXE;
+	else if (read_quotes(str + *index, "\"sphere\"", index))
+		object->limited = LIMIT_SPHERE;
+	else if (read_quotes(str + *index, "\"rectangle\"", index))
+		object->limited = LIMIT_RECTANGLE;
+	else if (read_quotes(str + *index, "\"circle\"", index))
+		object->limited = LIMIT_CIRCLE;
+	else if (read_quotes(str + *index, "\"cylinder\"", index))
+		object->limited = LIMIT_CYLINDER;
+	else if (read_quotes(str + *index, "\"cone\"", index))
+		object->limited = LIMIT_CONE;
+	else if (read_quotes(str + *index, "\"none\"", index))
+		object->limited = LIMIT_NONE;
+}
 
 static void	which_object_variable(t_obj *object, char *str, int *index)
 {
@@ -18,16 +43,20 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->pos = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"radius\"", index))
 		object->r = fabs(parse_nb(str + *index, index));
-	else if (read_quotes(str + *index, "\"normal\"", index))
-		object->normal = vec_normalize(parse_vec(str + *index, index));
 	else if (read_quotes(str + *index, "\"color\"", index))
 		object->color = parse_color(str + *index, index);
-	else if (read_quotes(str + *index, "\"direction\"", index))
-		object->dir = parse_vec(str + *index, index);
+	else if (read_quotes(str + *index, "\"angle\"", index))
+		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))
 		object->spec = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"alpha\"", index))
 		object->alpha = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"min\"", index))
+		object->min = parse_vec(str + *index, index);
+	else if (read_quotes(str + *index, "\"max\"", index))
+		object->max = parse_vec(str + *index, index);
+	else if (read_quotes(str + *index, "\"limit\"", index))
+		parse_limit(object, str, index);
 }
 
 static void	parse_object(t_obj *object, char *str, int *index)
@@ -49,6 +78,7 @@ static void	parse_object(t_obj *object, char *str, int *index)
 		object->spec = object->spec > 1 ? 1 : 0;
 	if (object->alpha < 1)
 		object->alpha = 1;
+	get_dir(object);
 	*index += i;
 }
 
@@ -73,7 +103,11 @@ static void	which_object(t_data *data, char *str, int *index, int *object_index)
 	data->objs[*object_index].obj_type = obj_type;
 	data->objs[*object_index].intersect = data->intersect[obj_type];
 	data->objs[*object_index].get_normal = data->get_normal[obj_type];
-	parse_object(&data->objs[(*object_index)++], str + i, &i);
+	parse_object(&data->objs[(*object_index)], str + i, &i);
+	if (data->objs[*object_index].limited != LIMIT_NONE)
+		data->objs[*object_index].limit = data->limit[\
+			data->objs[*object_index].limited];
+	++*object_index;
 	*index += i;
 }
 

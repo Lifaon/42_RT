@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/22 20:27:05 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 23:14:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,44 +106,34 @@ typedef struct		s_light
 **	r = radius of the light source ; pos = position ; dir = direction.
 */
 
-typedef struct s_obj	t_obj;
-typedef struct		s_limit
+typedef struct		s_obj
 {
-	int				is_limited;
-	double			min;
-	double			max;
-	t_vec			axe_min;
-	t_vec			axe_max;
-	t_vec			x;
-	t_vec			y;
-	int				(*limit)(struct s_obj, t_vec, t_inter *);
-}					t_limit;
-/*
-**	Limit structure, with min and max lengths either on the direction axe or
-**	the primary axe (x, y, z). x and y are vectors stored to avoid having to
-**	calculate them for each plane intersection.
-*/
-
-struct				s_obj
-{
+	int				obj_type;
+	int				limited;
 	double			r;
 	double			spec;
 	double			alpha;
 	t_color			color;
 	t_vec			pos;
 	t_vec			dir;
+	t_vec			y_dir;
+	t_vec			z_dir;
+	t_vec			angle;
+	t_vec			min;
+	t_vec			max;
 	t_vec			oc;
-	t_vec			normal;
-	t_limit			limit;
-	int				obj_type;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
+	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-};
+}					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
 **	shading ; pos = position which defines the object ; dir = direction in
 **	case it has one ; oc = vector between the current camera and 'pos' ;
-**	normal = surface normal in case it's constant (e.g. plane)
+**	normal = surface normal in case it's constant (e.g. plane) ; limits, with
+**	min and max lengths either on the directional axis or the primary axis
+**	y_dir and z_dir are vectors stored to avoid having to calculate them
+**	for each intersection.
 */
 
 typedef struct		s_ui
@@ -172,6 +162,7 @@ typedef struct		s_data
 	int				px;
 	int				aa;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
+	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	void			*win;
 	t_pixelbuf		*img;

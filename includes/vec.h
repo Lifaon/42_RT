@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/22 17:34:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 01:02:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ int		intersect_plane(t_obj plane, t_vec ray, t_inter *inter);
 int		intersect_cylinder(t_obj sphere, t_vec ray, t_inter *inter);
 int		intersect_cone(t_obj plane, t_vec ray, t_inter *inter);
 
+/*
+** Limits functions.
+*/
+int		obj_limit(t_obj obj, t_vec ray, t_inter *inter);
 int		limit_axe(t_obj obj, t_vec ray, t_inter *inter);
 int		limit_sphere(t_obj sphere, t_vec ray, t_inter *inter);
 int		limit_rectangle(t_obj plane, t_vec ray, t_inter *inter);
 int		limit_circle(t_obj plane, t_vec ray, t_inter *inter);
 int		limit_cyl(t_obj cyl, t_vec ray, t_inter *inter);
 int		limit_cone(t_obj cone, t_vec ray, t_inter *inter);
+
 
 /*
 **	Functions to get the normal of the objects at the intersection point.
@@ -68,6 +73,8 @@ double	dot_product(t_vec u, t_vec v);
 void	rotate_around_point(t_data *data, t_vec pt, t_vec angle);
 t_vec	pitch(t_vec ray, t_vec angle);
 t_vec	yaw(t_vec ray, t_vec angle);
+t_vec	roll(t_vec ray, t_vec angle);
+t_vec	all_rotations(t_vec ray, t_vec angle);
 
 void	get_vp_up_left(t_camera *cam);
 void	get_oc(void);

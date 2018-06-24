@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 20:06:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 02:44:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:10:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int		size_sphere_json(int size, int i)
 
 static int		size_plane_json(int size, int i)
 {
-	size += ft_strlen("\t\t\t\"direction\" : ");
-	size += size_vec(g_data->objs[i].dir) + 2;
+	size += ft_strlen("\t\t\t\"angle\" : ");
+	size += size_vec(g_data->objs[i].angle) + 2;
 	size += ft_strlen("\t\t\t\"specular\" : ");
 	size += size_double(g_data->objs[i].r) + 1;
 	return (size);
@@ -30,8 +30,8 @@ static int		size_plane_json(int size, int i)
 
 static int		size_cylinder_json(int size, int i)
 {
-	size += ft_strlen("\t\t\t\"direction\" : ");
-	size += size_vec(g_data->objs[i].dir) + 2;
+	size += ft_strlen("\t\t\t\"angle\" : ");
+	size += size_vec(g_data->objs[i].angle) + 2;
 	size += ft_strlen("\t\t\t\"radius\" : ");
 	size += size_double(g_data->objs[i].r) + 1;
 	return (size);
@@ -39,8 +39,8 @@ static int		size_cylinder_json(int size, int i)
 
 static int		size_cone_json(int size, int i)
 {
-	size += ft_strlen("\t\t\t\"direction\" : ");
-	size += size_vec(g_data->objs[i].dir) + 2;
+	size += ft_strlen("\t\t\t\"angle\" : ");
+	size += size_vec(g_data->objs[i].angle) + 2;
 	size += ft_strlen("\t\t\t\"radius\" : ");
 	size += size_double(g_data->objs[i].r) + 1;
 	return (size);

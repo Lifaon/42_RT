@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 17:53:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:58:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 ** Parent functions
  */
 int				create_ui(void);
-int				create_sub_notebook(t_ui *ui);
+int				create_sub_notebook(t_ui *ui, int do_param);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
 int				create_camera_ui(GtkWidget *main_tab);
+int				create_options_ui(GtkWidget *main_tab);
 
 /*
 ** tool used to create widget or group of widget

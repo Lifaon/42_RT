@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/24 19:42:11 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/24 19:58:50 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/create_light_ui.c \
 		ui/create_camera_ui.c \
 		ui/create_object_ui.c \
+		ui/create_options_ui.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
 		ui/modify_light.c\

@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 19:20:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:41:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:09:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static char		*fill_sphere_json(char *str, int i)
 
 static char		*fill_plane_json(char *str, int i)
 {
-	str = my_strcopy(str, ",\n\t\t\t\"direction\" : ");
-	str = strcpy_vec(str, g_data->objs[i].dir);
+	str = my_strcopy(str, ",\n\t\t\t\"angle\" : ");
+	str = strcpy_vec(str, g_data->objs[i].angle);
 	str = my_strcopy(str, ",\n\t\t\t\"specular\" : ");
 	str = strcpy_db(str, g_data->objs[i].spec);
 	return (str);
@@ -30,8 +30,8 @@ static char		*fill_plane_json(char *str, int i)
 
 static char		*fill_cylinder_json(char *str, int i)
 {
-	str = my_strcopy(str, ",\n\t\t\t\"direction\" : ");
-	str = strcpy_vec(str, g_data->objs[i].dir);
+	str = my_strcopy(str, ",\n\t\t\t\"angle\" : ");
+	str = strcpy_vec(str, g_data->objs[i].angle);
 	str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
 	str = strcpy_db(str, g_data->objs[i].r);
 	return (str);
@@ -39,8 +39,8 @@ static char		*fill_cylinder_json(char *str, int i)
 
 static char		*fill_cone_json(char *str, int i)
 {
-	str = my_strcopy(str, ",\n\t\t\t\"direction\" : ");
-	str = strcpy_vec(str, g_data->objs[i].dir);
+	str = my_strcopy(str, ",\n\t\t\t\"angle\" : ");
+	str = strcpy_vec(str, g_data->objs[i].angle);
 	str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
 	str = strcpy_db(str, g_data->objs[i].r);
 	return (str);

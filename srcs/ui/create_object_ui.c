@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:36:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:03:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		construct_phase_2(t_wid_data *wid_d, int index)
 
 	wid_d->pos = pt_set(3, 0);
 	wid_d->f = &change_obj_dir;
-	vec = g_data->objs[index].dir;
+	vec = g_data->objs[index].angle;
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
 	vec = g_data->objs[index].pos;

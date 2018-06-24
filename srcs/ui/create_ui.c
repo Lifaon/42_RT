@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:25:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:55:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				create_ui(void)
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab), TRUE);
 	if (!(create_toolbar(v_box, g_data->ui)))
 		return (0);
-	if (!(create_sub_notebook(g_data->ui)))
+	if (!(create_sub_notebook(g_data->ui, 1)))
 		return (0);
 	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit),
 			NULL);

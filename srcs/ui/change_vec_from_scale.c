@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:36:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:36:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:02:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		fill_vec(t_vec *vec, double nb)
 		return ;
 	if (i > 2)
 		i = 0;
-	printf("i = %d, nb = %lf \n", i, nb);
 	if (i == 0)
 		vec->z = nb;
 	else if (i == 1)

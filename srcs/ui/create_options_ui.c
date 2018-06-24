@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_sub_notebook.c                              :+:      :+:    :+:   */
+/*   create_options_ui.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 19:23:33 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:58:15 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/24 19:57:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-int		create_sub_notebook(t_ui *ui, int do_options)
+int				create_options_ui(GtkWidget *tab)
 {
-	g_data->ui->is_active = 0;
-	if (!(create_light_ui(ui->tab)))
+	GtkWidget		*l_title;
+	GtkWidget		*en_1;
+	GtkWidget		*box;
+
+	l_title = gtk_label_new("Options");
+	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+	en_1 = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(box), en_1, FALSE, FALSE, 0);
+	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab), box, l_title) < 0))
 		return (0);
-	if (!(create_camera_ui(ui->tab)))
-		return (0);
-	if (!(create_object_ui(ui->tab)))
-		return (0);
-	if (do_options == 1)
-		if (!(create_options_ui(ui->tab)))
-			return (0);
-	g_data->ui->is_active = 1;
 	return (1);
 }

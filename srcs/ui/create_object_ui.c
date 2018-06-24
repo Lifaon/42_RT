@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 18:06:51 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:36:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	if (!(new_cb_type(wid_d, wid_d, index)))
 		return (0);
 	wid_d->pos = pt_set(2, 0);
-	pxb = pixelbuf_new(pt_set(20, 20), NULL);
+	pxb = pixelbuf_new(pt_set(50, 50), NULL);
 	fill_pixelbuf_in_color(pxb, g_data->objs[index].color.c);
 	wid_d->f = &chose_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
-	//pixelbuf_free(&pxb);
+	pixelbuf_free(&pxb);
 	return (construct_phase_2(wid_d, index));
 }
 
@@ -73,7 +73,9 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(-180, 180))))
 		return (0);
-	if (!(str = join_int("Object ", index + 1)) || !(l_title = gtk_label_new(str)))
+	if (!(str = join_int("Object ", index + 1)))
+		return (0);
+	if (!(l_title = gtk_label_new(str)))
 		return (0);
 	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_obj), wid_d.grid,
 			l_title)) < 0)

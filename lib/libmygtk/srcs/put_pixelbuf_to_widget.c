@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:04:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 16:47:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:17:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	put_pixelbuf_to_widget(t_pixelbuf *pxlbuf, GtkWidget *img)
 	}
 	else if (pxlbuf->widget)
 	{
-		gtk_image_set_from_pixbuf(GTK_IMAGE(pxlbuf->widget), (GdkPixbuf*)pxlbuf->buf);
+		gtk_image_set_from_pixbuf(GTK_IMAGE(pxlbuf->widget),
+				(GdkPixbuf*)pxlbuf->buf);
 		gtk_widget_show((GtkWidget*)pxlbuf->widget);
 	}
 }

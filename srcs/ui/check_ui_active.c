@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 14:29:48 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 16:17:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:34:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
 /*
-** This function is used to assure that the function of the user interface is 
+** This function is used to assure that the function of the user interface is
 ** inactivate when we want to add new widget or modifying exinsting widget.
 ** When is is called with star = 1, the function reset the ui at it's previous
 ** status.

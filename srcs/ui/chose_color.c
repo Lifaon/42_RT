@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 18:07:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:34:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ev_color_apply(GtkWidget *widget, gpointer param)
 	*color = g_color;
 	put_pixelbuf_to_widget(g_pxb, (GtkWidget*)param);
 	gtk_widget_destroy(g_win_color);
-	//pixelbuf_free(&g_pxb);
+	pixelbuf_free(&g_pxb);
 }
 
 static void		scale_change_color(GtkWidget *widget, gpointer param)
@@ -50,7 +50,7 @@ static void		scale_change_color(GtkWidget *widget, gpointer param)
 	put_pixelbuf_to_widget(g_pxb, NULL);
 }
 
-void					chose_color(GtkWidget *widget, gpointer param)
+void			chose_color(GtkWidget *widget, gpointer param)
 {
 	t_wid_data		wid_d;
 	t_color			color;
@@ -59,11 +59,12 @@ void					chose_color(GtkWidget *widget, gpointer param)
 	wid_d.f = &scale_change_color;
 	color = g_data->objs[g_data->ui->page_obj].color;
 	add_color_choose(&wid_d, color);
-	g_pxb = pixelbuf_new(pt_set(80, 80), NULL);
+	g_pxb = pixelbuf_new(pt_set(50, 50), NULL);
 	fill_pixelbuf_in_color(g_pxb, color.c);
 	wid_d.pos = pt_set(6, 1);
 	wid_d.size = pt_set(2, 1);
-	gtk_grid_attach(GTK_GRID(wid_d.grid), g_pxb->widget, wid_d.pos.y, wid_d.pos.x, wid_d.size.x, wid_d.size.y);
+	gtk_grid_attach(GTK_GRID(wid_d.grid), g_pxb->widget, wid_d.pos.y,
+			wid_d.pos.x, wid_d.size.x, wid_d.size.y);
 	wid_d.pos = pt_set(8, 0);
 	wid_d.size = pt_set(1, 1);
 	wid_d.f = &ev_color_apply;

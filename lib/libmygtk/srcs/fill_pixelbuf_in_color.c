@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 18:57:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/18 16:48:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:16:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fill_pixelbuf_in_color(t_pixelbuf *pxlbuf, uint32_t color)
 		max = pxlbuf->size.y;
 	else if (pxlbuf->size.y == 0)
 		max = pxlbuf->size.x;
-	else 
+	else
 		max = pxlbuf->size.x * pxlbuf->size.y;
 	i = 0;
 	while (i < max)

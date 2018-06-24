@@ -6,13 +6,12 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 17:09:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:15:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MYGTK_H
 # define MYGTK_H
-//# include "gtk.h"
 # include <gtk/gtk.h>
 # include <stdint.h>
 # include "libft.h"

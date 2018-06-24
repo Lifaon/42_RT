@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 17:33:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:25:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int				create_light_tab(GtkWidget *tab_light, int index)
 	t_wid_data		wid_d;
 	char			*str;
 
-	if (!(init_wid_data(&wid_d, 10, ptdb_set(-10000, 10000))))
+	if (!(init_wid_data(&wid_d, 10, ptdb_set(-75000, 75000))))
 		return (0);
-	if (!(str = join_int("Light ", index + 1)) || !(l_title = gtk_label_new(str)))
+	if (!(str = join_int("Light ", index + 1)))
+		return (0);
+	if (!(l_title = gtk_label_new(str)))
 		return (0);
 	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_light), wid_d.grid,
 			l_title)) < 0)

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 17:14:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:23:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ GtkWidget	*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		gtk_box_pack_start(GTK_BOX(box), img, TRUE, TRUE, 2);
 	if (txt)
 	{
-		if (!(label= gtk_label_new(txt)))
+		if (!(label = gtk_label_new(txt)))
 			return (NULL);
 		gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 2);
 	}

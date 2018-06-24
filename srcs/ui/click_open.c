@@ -6,13 +6,12 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:08:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:30:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "parse.h"
-//#include <stdio.h>
 
 static int		check_file(char *file_name)
 {
@@ -26,6 +25,7 @@ static int		check_file(char *file_name)
 	ft_strdel(&str);
 	return (1);
 }
+
 static int		open_json(gchar *path)
 {
 	free(g_data->lights);

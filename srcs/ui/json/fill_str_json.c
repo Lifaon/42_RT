@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:12:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:21:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ static char		*str_lights(char *str)
 		str = my_strcopy(str, "\t\t{\n");
 		str = my_strcopy(str, "\t\t\t\"position\" : ");
 		str = strcpy_vec(str, g_data->lights[i].pos);
-		t_vec vec;
-		vec = g_data->lights[i].pos;
-		printf("vec = [%lf, %lf, %lf]\n", vec.x, vec.y, vec.z);
 		str = my_strcopy(str, ",\n\t\t\t\"ambiant\" : ");
 		str = strcpy_db(str, g_data->lights[i].ambi);
 		i++;

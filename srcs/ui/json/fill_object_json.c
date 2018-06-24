@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 19:20:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:12:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:19:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char		*fill_cone_json(char *str, int i)
 	return (str);
 }
 
-char		*fill_object_json(char *str, int type, int i)
+char			*fill_object_json(char *str, int type, int i)
 {
 	if (type == SPHERE)
 		str = fill_sphere_json(str, i);

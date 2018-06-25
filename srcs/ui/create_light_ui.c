@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:25:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 15:53:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,20 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	wid_d->pos = pt_set(0, 1);
 	if (!(switch_new(wid_d, NULL, TRUE, &switch_light)))
 		return (0);
-	wid_d->pos = pt_set(1, 0);
+	wid_d->pos.y = 2;
 	if (!(l_new(wid_d, "parrallele light")))
 		return (0);
-	wid_d->f = &change_light_dir;
-	vec = g_data->lights[index].dir;
-	wid_d->pos = pt_set(2, 0);
-	if (!(group = add_vector_choose(wid_d, "direction", vec)))
-		return (0);
+	wid_d->pos = pt_set(1, 0);
 	vec = g_data->lights[index].pos;
 	wid_d->f = &change_light_pos;
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
-	wid_d->pos = pt_set(1, 1);
+	wid_d->pos = pt_set(1, 2);
+	wid_d->f = &change_light_dir;
+	vec = g_data->lights[index].dir;
+	if (!(group = add_vector_choose(wid_d, "direction", vec)))
+		return (0);
+	wid_d->pos = pt_set(0, 3);
 	if (!(switch_new(wid_d, (gpointer)group, TRUE, &switch_parallel_light)))
 		return (0);
 	return (1);

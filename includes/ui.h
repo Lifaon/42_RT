@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:58:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 20:53:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
 int				make_grid(t_wid_data *wid_d);
-void			chose_color(GtkWidget *widget, gpointer useless);
+int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
+			GtkSizeGroup *group, gdouble value);
+int				make_label_and_entry(t_wid_data *wid_d, const char *txt,
+			gdouble value);
+int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
+			gdouble value);
 
 /*
 ** basic tool
@@ -100,6 +105,8 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 void			add_one_light(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
 void			change_light_dir(GtkWidget *widget, gpointer param);
+void			change_light_r(GtkWidget *widget, gpointer param);
+void			change_light_ambi(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
 void			switch_parallel_light(GtkWidget *widget, gboolean state,
 		gpointer param);
@@ -109,21 +116,21 @@ void			switch_parallel_light(GtkWidget *widget, gboolean state,
 */
 void			add_one_obj(GtkWidget *widget, gpointer param);
 void			change_obj_pos(GtkWidget *widget, gpointer param);
-void			change_obj_dir(GtkWidget *widget, gpointer param);
+void			change_obj_angle(GtkWidget *widget, gpointer param);
 void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
-void	modify_obj_type(GtkWidget *widget, gpointer param);
+void			modify_obj_type(GtkWidget *widget, gpointer param);
+void			change_obj_spec(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event
 */
+void			chose_color(GtkWidget *widget, gpointer useless);
 gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
-int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
-			GtkSizeGroup *group, gdouble value);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);

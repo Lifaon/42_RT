@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 19:41:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 20:48:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct		s_light
 	t_color			color;
 }					t_light;
 /*
-**	Cam struct -> is_para = 0 or 1 wether the light source is parallel or not ;
+**	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
 **	r = radius of the light source ; pos = position ; dir = direction.
 */
 
@@ -140,7 +140,7 @@ typedef struct		s_obj
 typedef struct		s_ui
 {
 	GtkWidget	*tab;
-	t_list		*to_free;
+	t_list		*to_free;//
 	GtkWidget	*tab_light;
 	GtkWidget	*tab_cams;
 	GtkWidget	*tab_objs;
@@ -168,7 +168,7 @@ typedef struct		s_data
 	void			*win;
 	t_pixelbuf		*img;
 	t_ui			*ui;
-	int				draw;
+	int				draw;//
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in

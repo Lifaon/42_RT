@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:44:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 21:43:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void		scale_change_color(GtkWidget *widget, gpointer param)
 
 	if (!widget && !param)
 		return ;
-	if (g_data->ui->is_active == 0)
-		return ;
 	group = (GtkSizeGroup*)param;
 	g_color.argb.a = 255;
 	change_color_from_group(group, &g_color);
@@ -50,17 +48,28 @@ static void		scale_change_color(GtkWidget *widget, gpointer param)
 	put_pixelbuf_to_widget(g_pxb, NULL);
 }
 
+static t_color	get_color_of_img(GtkWidget *img)
+{
+	t_color			color;
+	GdkPixbuf		*pxb;
+	uint32_t		*pxl;
+
+	pxb = gtk_image_get_pixbuf(GTK_IMAGE(img));
+	pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxb);
+	color.c = pxl[0];
+	return (color);
+}
+
 void			chose_color(GtkWidget *widget, gpointer param)
 {
 	t_wid_data		wid_d;
-	t_color			color;
 
 	init_wid_data(&wid_d, 1, ptdb_set(0, 255));
 	wid_d.f = &scale_change_color;
-	color = g_data->objs[g_data->ui->page_obj].color;
-	add_color_choose(&wid_d, color);
-	g_pxb = pixelbuf_new(pt_set(50, 50), NULL);
-	fill_pixelbuf_in_color(g_pxb, color.c);
+	g_color = get_color_of_img(param);
+	add_color_choose(&wid_d, g_color);
+	g_pxb = pixelbuf_new(pt_set(30, 30), NULL);
+	fill_pixelbuf_in_color(g_pxb, g_color.c);
 	wid_d.pos = pt_set(6, 0);
 	wid_d.size = pt_set(2, 1);
 	gtk_grid_attach(GTK_GRID(wid_d.grid), g_pxb->widget, wid_d.pos.y,

@@ -6,11 +6,40 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 15:53:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 21:12:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+
+static int		construct_phase_2(t_wid_data *wid_d, int index,
+		GtkSizeGroup *group)
+{
+	t_pixelbuf		*pxb;
+
+	wid_d->pos.y = 0;
+	wid_d->f = &change_light_r;
+	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
+	if (!(make_label_and_entry(wid_d, "radius", g_data->lights[index].r)))
+		return (0);
+	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
+	wid_d->f = &change_light_ambi;
+	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
+	if (!(make_label_and_scale(wid_d, "ambiante", g_data->lights[index].r)))
+		return (0);
+	pxb = pixelbuf_new(pt_set(30, 30), NULL);
+	fill_pixelbuf_in_color(pxb, g_data->lights[index].color.c);
+	wid_d->f = &chose_color;
+	wid_d->size = pt_set(2, 1);
+	if (!(b_new(wid_d, (gpointer)pxb->widget, "light color", pxb->widget)))
+		return (0);
+	wid_d->size = pt_set(1, 1);
+	pixelbuf_free(&pxb);
+	wid_d->pos = pt_set(0, 3);
+	if (!(switch_new(wid_d, (gpointer)group, TRUE, &switch_parallel_light)))
+		return (0);
+	return (1);
+}
 
 static int		construct_phase_1(t_wid_data *wid_d, int index)
 {
@@ -35,10 +64,7 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	vec = g_data->lights[index].dir;
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
-	wid_d->pos = pt_set(0, 3);
-	if (!(switch_new(wid_d, (gpointer)group, TRUE, &switch_parallel_light)))
-		return (0);
-	return (1);
+	return (construct_phase_2(wid_d, index, group));
 }
 
 static int		create_light_button(GtkWidget *box)

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/21 20:25:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 12:20:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max)
 	wid_d->min_max = min_max;
 	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);
 	gtk_grid_set_column_spacing(GTK_GRID(wid_d->grid), 5);
-	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
-	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), FALSE);
+	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), FALSE);
 	return (1);
 }
 

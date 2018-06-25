@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 20:03:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 12:38:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int		construct_phase_2(t_wid_data *wid_d, int index)
 	vec = g_data->objs[index].angle;
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
+	wid_d->pos = pt_set(3, 2);
 	vec = g_data->objs[index].pos;
 	wid_d->f = &change_obj_pos;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-10000, 10000));
@@ -37,14 +38,14 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	if (!(l_new(wid_d, "Object")))
 		return (0);
 	wid_d->pos = pt_set(0, 1);
-	if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
-		return (0);
-	wid_d->pos = pt_set(1, 0);
+	//if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
+	//	return (0);
+	wid_d->pos = pt_set(0, 2);
 	wid_d->f = &modify_obj_type;
 	if (!(new_cb_type(wid_d, wid_d, index)))
 		return (0);
-	wid_d->pos = pt_set(2, 0);
-	pxb = pixelbuf_new(pt_set(50, 50), NULL);
+	wid_d->pos = pt_set(0, 3);
+	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, g_data->objs[index].color.c);
 	wid_d->f = &chose_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))

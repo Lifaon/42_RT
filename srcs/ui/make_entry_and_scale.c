@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:23:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/25 12:46:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static GtkWidget	*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 	GtkWidget	*entry;
 
 	f_swap = wid_d->f;
-	wid_d->pos.y = 1;
+	wid_d->pos.y += 1;
 	wid_d->f = NULL;
 	str = ft_dbtoa(value);
 	if (!(entry = entry_new(wid_d, NULL, str)))
@@ -37,13 +37,17 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 {
 	GtkWidget	*entry;
 	GtkWidget	*scale;
+	int			y;
 
 	check_ui_active(0);
 	if (!(l_new(wid_d, txt)))
 		return (0);
+	y = wid_d->pos.y;
 	if (!(entry = make_entry(wid_d, group, value)))
 		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	gtk_entry_set_max_length(GTK_ENTRY(entry), 10);
+	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, y);
 	wid_d->size = pt_set(2, 1);
 	if (!(scale = scale_new(wid_d, (void*)group, value)))
 		return (0);
@@ -52,6 +56,6 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			G_CALLBACK(entry_change_scale), (gpointer)scale);
 	wid_d->size = pt_set(1, 1);
 	check_ui_active(1);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, y);
 	return (1);
 }

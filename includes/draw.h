@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 00:52:21 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 01:14:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "structs.h"
 # include "vec.h"
-# define PX 6.
 
 /*
 **	Drawing functions.

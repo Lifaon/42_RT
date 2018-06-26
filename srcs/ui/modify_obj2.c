@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 20:55:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:31:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			change_obj_spec(GtkWidget *widget, gpointer param)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-	value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
+	value = gtk_range_get_value(GTK_RANGE(widget)) / 100;
 	g_data->objs[g_data->ui->page_obj].spec = value;
 }
 
@@ -62,18 +62,19 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-	value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
+	value = gtk_range_get_value(GTK_RANGE(widget)) / 100;
 	g_data->objs[g_data->ui->page_obj].alpha = value;
 }
 
 void			change_obj_r(GtkWidget *widget, gpointer param)
 {
-	double			value;
+	double		value;
 
 	if (!param && !widget)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-	value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
+	value = get_double_from_entry(widget);
+	printf("value = %lf\n", value);
 	g_data->objs[g_data->ui->page_obj].r = value;
 }

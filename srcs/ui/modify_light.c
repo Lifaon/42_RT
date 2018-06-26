@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 20:18:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:37:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,7 @@ void			change_light_dir(GtkWidget *widget, gpointer param)
 
 	if (g_data->ui->is_active == 0)
 		return ;
-	check_ui_active(0);
 	vec = &g_data->lights[g_data->ui->page_light].dir;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
-	check_ui_active(1);
 }

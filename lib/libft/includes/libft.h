@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/05/26 16:46:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 12:20:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,7 @@ char				**ft_strsplit(char const *s, char c);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstsrch(t_list *lst, int id);
 t_list				*ft_lstnew(void *content, int id);
+char				*ft_strupper(char *src);
+char				*ft_strlower(char *src);
 
 #endif

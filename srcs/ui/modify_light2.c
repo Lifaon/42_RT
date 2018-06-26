@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:18:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 21:07:12 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:30:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void			change_light_r(GtkWidget *widget, gpointer param)
 {
-	double			value;
+	double		value;
 
 	if (!param && !widget)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-	value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
+	value = get_double_from_entry(widget);
+	printf("value = %lf\n", value);
 	g_data->lights[g_data->ui->page_light].r = value;
 }
 

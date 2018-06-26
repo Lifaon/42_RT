@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 21:44:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:34:09 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec)
 		return (NULL);
 	//gtk_widget_set_margin_start(frame, 20);
 	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
+	frame_d.f = wid_d->f;
 	gtk_container_set_border_width(GTK_CONTAINER(frame_d.grid), 10);
 //	gtk_grid_set_column_spacing(GTK_GRID(frame_d.grid), 10);
 //	gtk_grid_set_row_spacing(GTK_GRID(frame_d.grid), 10);

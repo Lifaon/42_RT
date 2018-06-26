@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 20:55:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:07:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	y = wid_d->pos.y;
 	if (!(entry = make_entry(wid_d, group, value)))
 		return (0);
-	//gtk_entry_set_max_length(GTK_ENTRY(entry), 10);
+	gtk_entry_set_max_length(GTK_ENTRY(entry), 11);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, y);
 	wid_d->size = pt_set(2, 1);

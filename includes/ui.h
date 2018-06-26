@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 20:53:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:13:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void			change_obj_angle(GtkWidget *widget, gpointer param);
 void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
+void			change_obj_alpha(GtkWidget *widget, gpointer param);
+void			change_obj_r(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event
@@ -133,5 +135,6 @@ gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
-void			free_to_free(void *content);
+void			free_to_free(void *content);//
+double			get_double_from_entry(GtkWidget *wid);
 #endif

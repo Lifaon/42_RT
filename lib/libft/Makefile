@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:50 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/20 23:06:41 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/26 12:21:15 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,8 @@ SRCS_NAME = exit_cause.c\
 			ft_strstr.c\
 			ft_strsub.c\
 			ft_strtrim.c\
+			ft_strupper.c\
+			ft_strlower.c\
 			ft_swap_char.c\
 			ft_swap_nbr.c\
 			ft_tolower.c\

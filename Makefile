@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/25 20:54:19 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/26 13:08:39 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/check_ui_active.c \
 		ui/combobox.c \
 		ui/chose_color.c \
+		ui/widget_event_tools.c \
 		\
 		data_init.c \
 		exit_all.c \

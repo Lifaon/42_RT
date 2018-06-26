@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/26 19:08:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/26 21:41:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_co
 	t_vec		normal;
 	t_vec		ip;
 	double		t;
+	int			i;
+	int			obj_i_tmp;
 
+
+	obj_i_tmp = inter.obj_i;
+	i = 0;
 	t = INFINITY;
 	ip = inter.ip;
 	inter.normal = data->objs[inter.obj_i].get_normal(data->objs[inter.obj_i], inter);
@@ -29,7 +34,7 @@ static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_co
 			vec_multiply(inter.normal, dot_product(inter.normal, ray) * -2.0),\
 			ray));
 	ip = vec_add(ip, vec_multiply(r, 0.3));
-	for (int i = 0; i < data->nb_objects; i++)
+	while (i < data->nb_objects)
 	{
 		inter.oc = vec_substract(ip, data->objs[i].pos);
 		if (data->objs[i].intersect(data->objs[i], r, &inter) && inter.t < t)
@@ -37,17 +42,20 @@ static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_co
 			t = inter.t;
 			inter.obj_i = i;
 		}
+		i++;
 	}
 	if (t < INFINITY)
 	{
 		inter.t = t;
 		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
-		ret = blend_colors(ret, get_px_color(data, inter));
+		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].shin_pourcentage));
 		if (data->objs[inter.obj_i].shiny && rec < 3)
 			draw_reflec(data, inter, r, ++rec, ret);
+		// je pense que c'est inutile puisque la valeur de retour n'est pas utlisee //
 	}
 	else
+		//ret.c = 0xFF000000;
 		ret = blend_colors(ret, (t_color){.c = 0xFF000000});
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 19:48:50 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/26 21:20:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int		main(int ac, char **av)
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
 	g_data = data_init(ac, av);
-	g_data->objs[0].shiny = 1;
+//	g_data->objs[0].shiny = 1;
+//	g_data->objs[0].shin_pourcentage = 1;
 	get_oc();
 	gtk_init(&ac, &av);
 	if (create_ui() == 0)

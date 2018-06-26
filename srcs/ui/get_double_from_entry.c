@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   widget_envent_tools.c                              :+:      :+:    :+:   */
+/*   get_double_from_entry.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/26 12:47:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:03:41 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/26 15:48:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static double	my_ft_atof(char const *str)
 	return (n / signe);
 }
 
-char		*str_end_digit(char *str)
+static char		*str_end_digit(char *str)
 {
 	int		i;
 	int		separator;
@@ -100,17 +100,3 @@ double		get_double_from_entry(GtkWidget *wid)
 	ft_strdel(&str);
 	return (dst);
 }
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 22:59:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/04/22 19:24:43 by pmiceli          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
-

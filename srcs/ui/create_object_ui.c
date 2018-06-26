@@ -6,41 +6,37 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:40:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 19:01:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int		construct_phase_2(t_wid_data *wid_d, int index)
+static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
-	wid_d->pos = pt_set(3, 0);
-	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
-	wid_d->f = &change_obj_spec;
-	make_label_and_scale(wid_d, "specular", g_data->objs[index].spec * 100);
-	wid_d->pos = pt_set(3, 2);
-	wid_d->f = change_obj_alpha;
-	make_label_and_scale(wid_d, "Alpha", g_data->objs[index].r * 100);
 	wid_d->pos = pt_set(5, 0);
 	wid_d->f = &change_obj_angle;
-	vec = g_data->objs[index].angle;
+	vec = obj->angle;
 	if (!(group = add_vector_choose(wid_d, "angle rotation", vec)))
 		return (0);
 	wid_d->pos = pt_set(5, 2);
-	vec = g_data->objs[index].pos;
+	vec = obj->pos;
 	wid_d->f = &change_obj_pos;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	wid_d->f = change_obj_r;
-	make_label_and_entry(wid_d, "Radius", g_data->objs[index].r);
+	if (!(make_label_and_entry(wid_d, "Radius", obj->r)))
+		return (0);
+	wid_d->pos = pt_set(wid_d->pos.x -1, 0);
 	return (1);
+	//return (create_limited_object_ui(wid_d, obj))
 }
 
-static int		construct_phase_1(t_wid_data *wid_d, int index)
+static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 {
 	t_pixelbuf		*pxb;
 
@@ -48,16 +44,25 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 		return (0);
 	wid_d->pos = pt_set(0, 1);
 	wid_d->f = &modify_obj_type;
-	if (!(new_cb_type(wid_d, wid_d, index)))
+	if (!(new_cb_type(wid_d, wid_d, obj)))
 		return (0);
 	wid_d->pos = pt_set(0, 3);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
-	fill_pixelbuf_in_color(pxb, g_data->objs[index].color.c);
+	fill_pixelbuf_in_color(pxb, obj->color.c);
 	wid_d->f = &chose_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
 	pixelbuf_free(&pxb);
-	return (construct_phase_2(wid_d, index));
+	wid_d->pos = pt_set(3, 0);
+	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
+	wid_d->f = &change_obj_spec;
+	if (!(make_label_and_scale(wid_d, "specular", obj->spec * 100)))
+		return (0);
+	wid_d->pos = pt_set(3, 2);
+	wid_d->f = change_obj_alpha;
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->r * 100)))
+		return (0);
+	return (construct_phase_2(wid_d, obj));
 }
 
 static int		create_new_obj_button(GtkWidget *box)
@@ -90,7 +95,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	gtk_widget_show_all(tab_obj);
 	while (g_data->ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
-	if (!(construct_phase_1(&wid_d, index)))
+	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
 		return (0);
 	ft_strdel(&str);
 	return (1);

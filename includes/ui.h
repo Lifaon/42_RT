@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 13:13:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 19:00:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
-GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, int index);
+GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 int				create_light_tab(GtkWidget *tab_light, int index);
@@ -62,6 +62,8 @@ int				make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value);
 int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value);
+int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
+			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));
 
 /*
 ** basic tool
@@ -122,6 +124,8 @@ void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, gpointer param);
+void			switch_obj_limited(GtkWidget *widget, gboolean state,
+		gpointer param);
 
 /*
 ** => Other UI event

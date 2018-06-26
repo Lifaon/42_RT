@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/26 13:08:39 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/26 18:42:28 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/click_redraw.c \
 		ui/join_int.c \
 		ui/change_page.c \
-		ui/make_entry_and_scale.c \
+		ui/make_two_widget.c \
 		ui/wid_vec_new.c \
 		ui/free_to_free.c \
 		ui/add_vector_choose.c \
@@ -108,7 +108,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/check_ui_active.c \
 		ui/combobox.c \
 		ui/chose_color.c \
-		ui/widget_event_tools.c \
+		ui/get_double_from_entry.c \
 		\
 		data_init.c \
 		exit_all.c \

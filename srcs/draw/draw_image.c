@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/26 21:59:33 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/26 22:17:44 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "rtv1.h"
 #include "draw.h"
 
-static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret)
+t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret)
 {
 	t_vec		r;
 	t_vec		normal;
@@ -52,10 +52,8 @@ static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_co
 		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].shin_pourcentage));
 		if (data->objs[inter.obj_i].shiny && rec < 3)
 			ret = draw_reflec(data, inter, r, ++rec, ret);
-		// je pense que c'est inutile puisque la valeur de retour n'est pas utlisee //
 	}
 	else
-		//ret.c = 0xFF000000;
 		ret = blend_colors(ret, (t_color){.c = 0xFF000000});
 	return (ret);
 }
@@ -69,8 +67,8 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 	int			i;
 
 	i = -1;
-//	if (data->aa <= 1)
-//	{
+	if (data->aa <= 1)
+	{
 		ret.c = 0xFF000000;
 		if (rec == 0)
 			ray = compute_ray(vp);
@@ -82,9 +80,9 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 				ret = draw_reflec(data, inter, ray, 0, ret);
 		}
 		return (ret);
-//	}
-//	else
-//		return (anti_aliasing(data, vp));
+	}
+	else
+		return (anti_aliasing(data, vp));
 }
 
 static void	*draw_thread(void *thr)

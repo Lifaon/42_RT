@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/26 21:41:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/26 21:59:33 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_co
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
 		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].shin_pourcentage));
 		if (data->objs[inter.obj_i].shiny && rec < 3)
-			draw_reflec(data, inter, r, ++rec, ret);
+			ret = draw_reflec(data, inter, r, ++rec, ret);
 		// je pense que c'est inutile puisque la valeur de retour n'est pas utlisee //
 	}
 	else

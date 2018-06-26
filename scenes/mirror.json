@@ -36,6 +36,15 @@
 			"specular" : 1.0,
 			"reflection's pourcentage" : 0.8
 		},
+		"plane" :
+		{
+			"position" : [100.0, 0.0, 0],
+			"color" : [0, 0.0, 0.0, 0.0],
+			"alpha" : 100.0,
+			"normal" : [1.0, 0.0, 0],
+			"specular" : 1.0,
+			"reflection's pourcentage" : 0.8
+		},
 		"sphere" :
 		{
 			"position" : [-200.0, -100.0, 0],

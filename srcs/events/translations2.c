@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 14:41:36 by vtudes            #+#    #+#             */
-/*   Updated: 2018/06/20 20:17:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 01:45:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	translate_q(t_data *data)
 {
-	data->cam.pos.z -= TRANSLATION;
+	t_vec	mvm;
+
+	mvm = (t_vec){0, 0, -TRANSLATION};
+	mvm = yaw(mvm, data->cam.angle);
+	mvm = pitch(mvm, data->cam.angle);
+	data->cam.pos = vec_add(data->cam.pos, mvm);
 	get_vp_up_left(&data->cam);
 	get_oc();
 	data->cams[data->i] = data->cam;
@@ -22,7 +27,12 @@ void	translate_q(t_data *data)
 
 void	translate_e(t_data *data)
 {
-	data->cam.pos.z += TRANSLATION;
+	t_vec	mvm;
+
+	mvm = (t_vec){0, 0, TRANSLATION};
+	mvm = yaw(mvm, data->cam.angle);
+	mvm = pitch(mvm, data->cam.angle);
+	data->cam.pos = vec_add(data->cam.pos, mvm);
 	get_vp_up_left(&data->cam);
 	get_oc();
 	data->cams[data->i] = data->cam;

@@ -30,14 +30,16 @@ t_color	add_colors(t_color col1, t_color col2)
 t_color	blend_colors(t_color col1, t_color col2)
 {
 	t_color		ret;
-	t_vector	added;
+	t_added		added;
 
-	added.x = col1.argb.r + col2.argb.r;
-	added.y = col1.argb.g + col2.argb.g;
-	added.z = col1.argb.b + col2.argb.b;
-	ret.argb.r = added.x / 2;
-	ret.argb.g = added.y / 2;
-	ret.argb.b = added.z / 2;
+	added.r = col1.argb.r + col2.argb.r;
+	added.g = col1.argb.g + col2.argb.g;
+	added.b = col1.argb.b + col2.argb.b;
+	added.a = col1.argb.a + col2.argb.a;
+	ret.argb.r = added.r / 2;
+	ret.argb.g = added.g / 2;
+	ret.argb.b = added.b / 2;
+	ret.argb.a = added.a / 2;
 	return (ret);
 }
 

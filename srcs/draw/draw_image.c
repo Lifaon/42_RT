@@ -6,13 +6,51 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 19:53:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/26 19:08:45 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "rtv1.h"
 #include "draw.h"
+
+static t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret)
+{
+	t_vec		r;
+	t_vec		normal;
+	t_vec		ip;
+	double		t;
+
+	t = INFINITY;
+	ip = inter.ip;
+	inter.normal = data->objs[inter.obj_i].get_normal(data->objs[inter.obj_i], inter);
+	normal = inter.normal;
+	r = vec_normalize(vec_add(\
+			vec_multiply(inter.normal, dot_product(inter.normal, ray) * -2.0),\
+			ray));
+	ip = vec_add(ip, vec_multiply(r, 0.3));
+	for (int i = 0; i < data->nb_objects; i++)
+	{
+		inter.oc = vec_substract(ip, data->objs[i].pos);
+		if (data->objs[i].intersect(data->objs[i], r, &inter) && inter.t < t)
+		{
+			t = inter.t;
+			inter.obj_i = i;
+		}
+	}
+	if (t < INFINITY)
+	{
+		inter.t = t;
+		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
+		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
+		ret = blend_colors(ret, get_px_color(data, inter));
+		if (data->objs[inter.obj_i].shiny && rec < 3)
+			draw_reflec(data, inter, r, ++rec, ret);
+	}
+	else
+		ret = blend_colors(ret, (t_color){.c = 0xFF000000});
+	return (ret);
+}
 
 static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 {
@@ -26,20 +64,14 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 //	if (data->aa <= 1)
 //	{
 		ret.c = 0xFF000000;
-		ray = compute_ray(vp);
-		inter.min_dist = 0;
+		if (rec == 0)
+			ray = compute_ray(vp);
+		inter.min_dist = 0.01;
 		if (hit(data, ray, &inter))
 		{
 			ret = get_px_color(data, inter);
-			if (rec < 3)
-			{
-				if (data->objs[inter.obj_i].shiny == 1)
-				{
-					t_vec normal = get_normal(vp, data->objs[inter.obj_i], inter);
-					r = vec_substract(vp, vec_multiply(normal, 2.0f * dot_product(vp, normal)));
-					ret = add_colors(ret, col_multiply(draw_pixel(data, r, rec + 1), 0.8));
-				}
-			}
+			if (data->objs[inter.obj_i].shiny == 1)
+				ret = draw_reflec(data, inter, ray, 0, ret);
 		}
 		return (ret);
 //	}

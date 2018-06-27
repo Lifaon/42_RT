@@ -6,15 +6,16 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:55:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 20:06:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static t_ui		*ui_new(void)
+static t_ui		*ui_new(char *path)
 {
 	t_ui	*ui;
+	char	*chr;
 
 	if (!(ui = (t_ui*)malloc(sizeof(t_ui))))
 		return (NULL);
@@ -23,6 +24,10 @@ static t_ui		*ui_new(void)
 	ui->page_obj = 0;
 	ui->page_cam = 0;
 	ui->is_active = 0;
+	ft_putendl(path);
+	chr = ft_strstr(path, "/rt");
+	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
+	//ui->path = ft_strdup(path);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);
@@ -43,7 +48,7 @@ int				make_grid(t_wid_data *wid_d)
 	return (1);
 }
 
-int				create_ui(void)
+int				create_ui(char *path)
 {
 	GtkWidget		*win;
 	GtkWidget		*v_box;
@@ -57,7 +62,7 @@ int				create_ui(void)
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-	if (!(g_data->ui = ui_new()))
+	if (!(g_data->ui = ui_new(path)))
 		return (0);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab), TRUE);
 	if (!(create_toolbar(v_box, g_data->ui)))

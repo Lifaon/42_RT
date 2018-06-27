@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 14:57:12 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 18:57:46 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 19:34:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,37 @@ t_pixelbuf		*pixelbuf_new(t_point size, GtkWidget *image)
 	return (pxbuf);
 }
 
-t_pixelbuf		*pixelbuf_new_from_img(GtkWidget *image)
+t_pixelbuf		*pixelbuf_new_from_img(GtkWidget *img)
 {
 	t_pixelbuf	*pxbuf;
 
-	if (!image)
+	if (!img)
 		return (NULL);
 	if (!(pxbuf = (t_pixelbuf*)malloc(sizeof(t_pixelbuf))))
 		return (NULL);
-	pxbuf->buf = gtk_image_get_pixbuf(GTK_IMAGE(image));
+	pxbuf->buf = gtk_image_get_pixbuf(GTK_IMAGE(img));
 	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
 	pxbuf->size.y = gdk_pixbuf_get_height(pxbuf->buf);
 	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
 	pxbuf->pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxbuf->buf);
-	pxbuf->widget = (void*)image;
+	pxbuf->widget = (void*)img;
+	return (pxbuf);
+}
+
+t_pixelbuf		*pixelbuf_new_from_file(char *filename)
+{
+	t_pixelbuf	*pxbuf;
+	GtkWidget	*img;
+
+	if (!(img = gtk_image_new_from_file(filename)))
+		return (NULL);
+	if (!(pxbuf = (t_pixelbuf*)malloc(sizeof(t_pixelbuf))))
+		return (NULL);
+	pxbuf->buf = gtk_image_get_pixbuf(GTK_IMAGE(img));
+	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
+	pxbuf->size.y = gdk_pixbuf_get_height(pxbuf->buf);
+	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
+	pxbuf->pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxbuf->buf);
+	pxbuf->widget = (void*)img;
 	return (pxbuf);
 }

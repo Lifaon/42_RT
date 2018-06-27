@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:13:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 20:06:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 	GtkWidget		*img;
 	char			*str;
 
-	str = ft_strjoin("./srcs/ui/assets/", img_name);
+	if (!(str = ft_strjoin(g_data->ui->path, "/srcs/ui/assets/")))
+		return (NULL);
+//	if (!(str = ft_strjoin(".", "/srcs/ui/assets/")))
+	str = ft_strjoin_free(str, img_name);
+	ft_putendl(str);
 	if (!(img = gtk_image_new_from_file(str)))
 		return (NULL);
 	if (!(item = gtk_tool_button_new(img, b_text)))

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:52:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:16:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 01:59:57 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 
 void	rotate_up(t_data *data)
 {
+	if (data->cam.angle.x <= -90.0)
+		return ;
 	data->cam.angle.x -= ANGLE;
-	if (data->cam.angle.x <= -360.0)
-		data->cam.angle.x += 360.0;
+	if (data->cam.angle.x <= -90.0)
+		data->cam.angle.x = -90.0;
 	data->cams[data->i] = data->cam;
 }
 
 void	rotate_down(t_data *data)
 {
+	if (data->cam.angle.x >= 90.0)
+		return ;
 	data->cam.angle.x += ANGLE;
-	if (data->cam.angle.x >= 360.0)
-		data->cam.angle.x -= 360.0;
+	if (data->cam.angle.x >= 90.0)
+		data->cam.angle.x = 90.0;
 	data->cams[data->i] = data->cam;
 }
 

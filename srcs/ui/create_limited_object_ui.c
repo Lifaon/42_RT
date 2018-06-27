@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 19:00:38 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 19:20:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(l_new(wid_d, "limited object")))
 		return (0);
 	crd = pt_set(wid_d->pos.x, 1);
+	wid_d->pos.y = 2;
+	new_cb_limited(wid_d, group, obj);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	wid_d->f = &change_obj_min;
+	if (!(group = add_vector_choose(wid_d, "min", obj->min, NULL)))
+		return (0);
+	wid_d->pos = pt_set(crd.x + 1, 2);
+	wid_d->f = &change_obj_max;
+	if (!(group = add_vector_choose(wid_d, "max", obj->min, group)))
+		return (0);
+	wid_d->f = NULL;
 	/*is_limited = g_data->objs[index].limited == 1 ? TRUE : FALSE
 	if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
 		return (0);
@@ -44,7 +55,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	wid_d->f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", g_data->objs[index].r)))
 		return (create_limited_object_ui(wid_d, index))*/
-	wid_d = crd;
+	wid_d->pos = crd;
 	if (!(switch_new(wid_d, group, is_limited, &switch_obj_limited)))
 		return (0);
 	return (1);

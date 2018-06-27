@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:15:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:22:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ const gchar		*get_label_of_radio_list(GList *radio);
 uint32_t		get_color_gtk(uint8_t alpha, uint8_t red, uint8_t green,
 		uint8_t blue);
 t_pixelbuf		*pixelbuf_new(t_point size, GtkWidget *image);
+t_pixelbuf		*pixelbuf_new_from_img(GtkWidget *image);
 void			pixelbuf_free(t_pixelbuf **pxlbuf);
 void			fill_pixelbuf_in_color(t_pixelbuf *pxlbuf, uint32_t color);
 void			put_pixelbuf_to_widget(t_pixelbuf *pxlbuf, GtkWidget *img);

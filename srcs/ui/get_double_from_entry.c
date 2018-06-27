@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:48:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 17:41:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,22 @@ double		get_double_from_entry(GtkWidget *wid)
 		dst = INFINITY;
 		gtk_entry_set_text(GTK_ENTRY(wid), "INFINITY");
 	}
-	else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
+	/*else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
 	{
 		dst = -INFINITY;
 		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
-	}
+	}*/
 	else
 	{
 		str2 = str_end_digit(str);
 		ft_putstr("finale = ");
 		ft_putendl(str2);
 		gtk_entry_set_text(GTK_ENTRY(wid), str2);
-		if ((dst = my_ft_atof(str)) == 0)
+		if ((dst = my_ft_atof(str)) <= 0)
+		{
 			gtk_entry_set_text(GTK_ENTRY(wid), "0");
+			dst = 0.0;
+		}
 	}
 	ft_strdel(&str);
 	return (dst);

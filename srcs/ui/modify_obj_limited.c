@@ -1,57 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modify_obj.c                                       :+:      :+:    :+:   */
+/*   modify_obj_limited.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/21 19:26:36 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:49:57 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/27 17:48:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
 #include "ui.h"
-#include "parse.h"
 
-void			change_obj_pos(GtkWidget *widget, gpointer param)
+void	switch_obj_limited(GtkWidget *widget, gboolean state,  gpointer param)
+{
+	if (!widget)
+		return ;
+	if (state == FALSE)
+		g_data->objs[g_data->ui->page_obj].limited = -1;
+	set_group_widget_active(GTK_SIZE_GROUP(param), state);
+}
+
+void			change_obj_min(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
 	if (g_data->ui->is_active == 0)
 		return ;
-	vec = &g_data->objs[g_data->ui->page_obj].pos;
+	vec = &g_data->objs[g_data->ui->page_obj].min;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
 }
 
-void			change_obj_angle(GtkWidget *widget, gpointer param)
+void			change_obj_max(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
 	if (g_data->ui->is_active == 0)
 		return ;
-	vec = &g_data->objs[g_data->ui->page_obj].angle;
+	vec = &g_data->objs[g_data->ui->page_obj].max;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
-	get_dir(&g_data->objs[g_data->ui->page_obj]);
-}
-
-void	modify_obj_limited_type(GtkWidget *widget, gpointer param)
-{
-	const char	*str;
-	int			type;
-	t_obj		*obj;
-
-	if (!param && !widget)
-		param = NULL;
-	str = gtk_combo_box_get_active_id(GTK_COMBO_BOX(widget));
-	obj = &g_data->objs[g_data->ui->page_obj];
-	if ((type = get_int_obj_type(str)) < 0)
-		return ;
-	obj->obj_type = type;
-	obj->intersect = g_data->intersect[type];
-	obj->get_normal = g_data->get_normal[type];
 }

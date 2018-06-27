@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 13:18:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 19:16:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int				create_sub_notebook(t_ui *ui, int do_param);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
+int				create_limited_object_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_camera_ui(GtkWidget *main_tab);
 int				create_options_ui(GtkWidget *main_tab);
 
@@ -51,7 +52,9 @@ GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
+GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
+GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec,
+		GtkSizeGroup *group);
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
@@ -59,9 +62,9 @@ int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 int				make_label_and_entry(t_wid_data *wid_d, const char *txt,
-			gdouble value);
+			gdouble value, gpointer param);
 int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
-			gdouble value);
+			gdouble value, gpointer param);
 int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));
 
@@ -126,11 +129,15 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
+void			change_obj_min(GtkWidget *widget, gpointer param);
+void			change_obj_max(GtkWidget *widget, gpointer param);
 
 /*
 ** => options event
 */
+void	get_int_from_scale(GtkWidget *widget, gpointer param);
 void	change_aa(GtkWidget *widget, gpointer param);
+void	change_px(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event
@@ -146,4 +153,5 @@ void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);//
 double			get_double_from_entry(GtkWidget *wid);
+void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 #endif

@@ -6,18 +6,57 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 19:31:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 13:32:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 15:14:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+/*
+void	get_int_from_scale(GtkWidget *widget, gpointer param)
+{
+	int			value;
+	int			*dst;
+
+	if (!param && !widget)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+	value = gtk_range_get_value(GTK_RANGE(widget));
+	dst = (int*)param;
+	*dst = (int)value;
+	ft_putnbr(*dst);
+	ft_putchar('\n');
+}*/
 
 void	change_aa(GtkWidget *widget, gpointer param)
 {
-	const char	*str;
 	int			value;
-	t_obj		*obj;
 
+	if (!param && !widget)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+	value = gtk_range_get_value(GTK_RANGE(widget));
+	if (value == 1)
+		g_data->aa = 0;
+	else
+		g_data->aa = value;
+}
+
+void	change_px(GtkWidget *widget, gpointer param)
+{
+	int			value;
+
+	if (!param && !widget)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+	value = gtk_range_get_value(GTK_RANGE(widget));
+	if (value == 1)
+		g_data->px = 0;
+	else
+		g_data->px = value;
+}
 /*	if (!param && !widget)
 		param = NULL;
 	str = gtk_combo_box_get_active_id(GTK_COMBO_BOX(widget));
@@ -28,20 +67,4 @@ void	change_aa(GtkWidget *widget, gpointer param)
 		value = 8;
 	else
 		value *= value;
-	g_data->aa = value;
-	ft_putnbr(value);*/
-	/*obj = &g_data->objs[g_data->ui->page_obj];
-	if (ft_strcmp(type, "icone") == 0)
-		value = 1;
-	if (ft_strcmp(type, "sphere") == 0)
-		return (SPHERE);
-	if (ft_strcmp(type, "plane") == 0)
-		return (PLANE);
-	if (ft_strcmp(type, "cylinder") == 0)
-		return (CYLINDER);
-	if ((type = get_int_obj_type(str)) < 0)
-		return ;
-	obj->obj_type = type;
-	obj->intersect = g_data->intersect[type];
-	obj->get_normal = g_data->get_normal[type];*/
-}
+	g_data->aa = value;*/

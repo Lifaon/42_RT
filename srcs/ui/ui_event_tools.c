@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixelbuf_free.c                                    :+:      :+:    :+:   */
+/*   ui_event_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/12 18:49:41 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:07:41 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/27 17:49:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mygtk.h"
+#include "ui.h"
 
-void	pixelbuf_free(t_pixelbuf **pxlbuf)
+void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
 {
-	if (pxlbuf && *pxlbuf)
+	GSList		*lst;
+
+	lst = gtk_size_group_get_widgets(group);
+	while (lst)
 	{
-		g_object_unref((*pxlbuf)->buf);
-		free(*pxlbuf);
-		*pxlbuf = NULL;
+		gtk_widget_set_sensitive(GTK_WIDGET((GtkWidget*)lst->data), status);
+		lst = lst->next;
 	}
 }

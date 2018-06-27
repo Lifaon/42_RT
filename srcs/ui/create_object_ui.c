@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 19:01:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:01:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(5, 0);
 	wid_d->f = &change_obj_angle;
 	vec = obj->angle;
-	if (!(group = add_vector_choose(wid_d, "angle rotation", vec)))
+	if (!(group = add_vector_choose(wid_d, "angle rotation", vec, NULL)))
 		return (0);
 	wid_d->pos = pt_set(5, 2);
 	vec = obj->pos;
 	wid_d->f = &change_obj_pos;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
-	if (!(add_vector_choose(wid_d, "position", vec)))
+	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
 		return (0);
 	wid_d->f = change_obj_r;
-	if (!(make_label_and_entry(wid_d, "Radius", obj->r)))
+	wid_d->pos.y = 0;
+	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x -1, 0);
-	return (1);
-	//return (create_limited_object_ui(wid_d, obj))
+	wid_d->pos.x += 1;
+	return (create_limited_object_ui(wid_d, obj));
 }
 
 static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
@@ -56,11 +56,11 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 0);
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	wid_d->f = &change_obj_spec;
-	if (!(make_label_and_scale(wid_d, "specular", obj->spec * 100)))
+	if (!(make_label_and_scale(wid_d, "specular", obj->spec * 100i, obj)))
 		return (0);
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
-	if (!(make_label_and_scale(wid_d, "Alpha", obj->r * 100)))
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->r * 100, obj)))
 		return (0);
 	return (construct_phase_2(wid_d, obj));
 }

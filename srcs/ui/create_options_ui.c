@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 13:31:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 15:15:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ static int		construct_phase_1(t_wid_data *wid_d)
 {
 	t_pixelbuf		*pxb;
 
-	if (!(make_label_and_scale(wid_d, "Pixelisation", (double)g_data->px)))
+	wid_d->f = &change_px;
+	if (!(make_label_and_scale(wid_d, "Pixelisation", (double)g_data->px,
+					&g_data->px)))
 		return (0);
 	wid_d->pos = pt_set(0, 2);
 	wid_d->f = &change_aa;
 	wid_d->min_max = ptdb_set(1, 16);
-	if (!(make_label_and_scale(wid_d, "Anti-aliasing", (double)g_data->aa)))
+	if (!(make_label_and_scale(wid_d, "Anti-aliasing", (double)g_data->aa,
+					&g_data->aa)))
 		return (0);
-	cb_quality_draw(wid_d);
 	wid_d->pos = pt_set(1, 0);
 	/*if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
 		return (0);
@@ -88,7 +90,7 @@ int				create_options_ui(GtkWidget *tab)
 
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(0, 5))))
 		return (0);
-	set_wid_data_scale(wid_d, 1, ptdb_set(0, 5));
+	set_wid_data_scale(&wid_d, 1, ptdb_set(0, 5));
 	if (!(construct_phase_1(&wid_d)))
 		return (0);
 	l_title = gtk_label_new("Options");

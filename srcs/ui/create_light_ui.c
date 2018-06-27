@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 18:30:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 15:55:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	wid_d->pos.y = 0;
 	wid_d->f = &change_light_r;
 	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
-	if (!(make_label_and_entry(wid_d, "radius", light->r)))
+	if (!(make_label_and_entry(wid_d, "radius", light->r, light)))
 		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
-	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi)))
+	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi, light)))
 		return (0);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, light->color.c);
@@ -57,12 +57,12 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	wid_d->pos = pt_set(1, 0);
 	vec = light->pos;
 	wid_d->f = &change_light_pos;
-	if (!(add_vector_choose(wid_d, "position", vec)))
+	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
 		return (0);
 	wid_d->pos = pt_set(1, 2);
 	wid_d->f = &change_light_dir;
 	vec = light->dir;
-	if (!(group = add_vector_choose(wid_d, "direction", vec)))
+	if (!(group = add_vector_choose(wid_d, "direction", vec, NULL)))
 		return (0);
 	return (construct_phase_2(wid_d, light, group));
 }

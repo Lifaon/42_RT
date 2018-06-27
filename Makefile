@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/27 13:15:01 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/27 17:54:23 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/create_light_ui.c \
 		ui/create_camera_ui.c \
 		ui/create_object_ui.c \
+		ui/create_limited_object_ui.c \
 		ui/create_options_ui.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
@@ -92,6 +93,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_light2.c\
 		ui/modify_obj.c\
 		ui/modify_obj2.c\
+		ui/modify_obj_limited.c\
 		ui/modify_obj_type.c \
 		ui/modify_options.c\
 		ui/entry_change_scale.c \
@@ -109,6 +111,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/check_ui_active.c \
 		ui/combobox.c \
 		ui/chose_color.c \
+		ui/ui_event_tools.c \
 		ui/get_double_from_entry.c \
 		\
 		data_init.c \

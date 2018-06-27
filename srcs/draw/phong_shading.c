@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/19 23:46:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 05:25:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 t_color	ambient_shading(t_obj obj, t_light light)
 {
-	return (col_multiply(obj.color, light.ambi));
+	return (substract_colors(col_multiply(obj.color, light.ambi), \
+		light.color_neg));
 }
 
-t_color	diffuse_shading(t_obj obj, double dot)
+t_color	diffuse_shading(t_obj obj, t_light light, double dot)
 {
-	return (col_multiply(obj.color, dot));
+	return (substract_colors(col_multiply(obj.color, dot), light.color_neg));
 }
 
-t_color	specular_shading(t_obj obj, t_vec light, t_inter inter)
+t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter)
 {
 	t_color	ret;
 	t_vec	r;
 	t_vec	v;
 	double	dot;
 
-	ret.c = get_color_gtk(255, 255, 255, 255);
+	ret.c = color.c;
 	ret = col_multiply(ret, obj.spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\

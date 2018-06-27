@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/25 20:48:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 05:23:39 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct		s_light
 	t_vec			pos;
 	t_vec			dir;
 	t_color			color;
+	t_color			color_neg;
 }					t_light;
 /*
 **	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;

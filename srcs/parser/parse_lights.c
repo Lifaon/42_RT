@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 19:51:21 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 05:24:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	parse_light(t_light *light, char *str, int *index)
 	}
 	if (light->ambi > 1 || light->ambi < 0)
 		light->ambi = light->ambi > 1 ? 1 : 0;
+	light->color_neg = substract_colors((t_color){.c = 0xFFFFFF}, light->color);
 	*index += i;
 }
 

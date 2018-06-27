@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 18:39:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 03:25:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	light_vec = vec_substract(light.pos, inter->ip);
 	if (blocked(data, *inter, &light_vec, &dot))
 		return (ret);
-	ret = add_colors(ret, diffuse_shading(data->objs[inter->obj_i], dot));
+	ret = add_colors(ret, diffuse_shading(data->objs[inter->obj_i], \
+		light, dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
-		data->objs[inter->obj_i], light_vec, *inter));
+		data->objs[inter->obj_i], light.color, light_vec, *inter));
 	return (ret);
 }
 

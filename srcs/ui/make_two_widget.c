@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:07:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 14:59:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	GtkWidget	*scale;
 	int			y;
 
-	check_ui_active(0);
 	if (!(l_new(wid_d, txt)))
 		return (0);
 	y = wid_d->pos.y;
@@ -55,13 +54,12 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	g_signal_connect(G_OBJECT(entry), "activate",
 			G_CALLBACK(entry_change_scale), (gpointer)scale);
 	wid_d->size = pt_set(1, 1);
-	check_ui_active(1);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, y);
 	return (1);
 }
 
 int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
-			gdouble value)
+			gdouble value, gpointer param)
 {
 	GtkWidget	*entry;
 	char		*str;
@@ -71,7 +69,7 @@ int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
 		return (0);
 	wid_d->pos.y += 1;
 	str = ft_dbtoa(value);
-	if (!(entry = entry_new(wid_d, g_data, str)))
+	if (!(entry = entry_new(wid_d, param, str)))
 		return (0);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);
 	ft_strdel(&str);
@@ -80,15 +78,27 @@ int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
 }
 
 int					make_label_and_scale(t_wid_data *wid_d, const char *txt,
-			gdouble value)
+			gdouble value, gpointer param)
 {
-	check_ui_active(0);
+//	check_ui_active(0);
 	if (!(l_new(wid_d, txt)))
 		return (0);
 	wid_d->pos.y += 1;
-	if (!(scale_new(wid_d, wid_d, value)))
+	if (!(scale_new(wid_d, param, value)))
 		return (0);
-	check_ui_active(1);
+//	check_ui_active(1);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
+	return (1);
+}
+
+int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
+			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer))
+{
+	if (!(l_new(wid_d, txt)))
+		return (0);
+	wid_d->pos.y += 1;
+	if (!(switch_new(wid_d, wid_d, value, f)))
+		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
 	return (1);
 }

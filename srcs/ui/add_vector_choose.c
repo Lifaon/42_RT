@@ -6,40 +6,40 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 13:34:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 16:02:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec)
+GtkSizeGroup	*add_vector_choose(t_wid_data *w_d, char *label, t_vec vec,
+		GtkSizeGroup *group)
 {
-	GtkSizeGroup	*group;
+	GtkSizeGroup	*new_group;
 	t_wid_data		frame_d;
 	GtkWidget		*frame;
 
-	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
-		return (NULL);
+	if (group)
+		new_group = group;
+	else
+		if (!(new_group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+			return (NULL);
 	if (!(frame = gtk_frame_new(label)))
 		return (NULL);
-	//gtk_widget_set_margin_start(frame, 20);
-	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
-	frame_d.f = wid_d->f;
+	init_wid_data(&frame_d, w_d->step, w_d->min_max);
+	frame_d.f = w_d->f;
 	gtk_container_set_border_width(GTK_CONTAINER(frame_d.grid), 10);
-//	gtk_grid_set_column_spacing(GTK_GRID(frame_d.grid), 10);
-//	gtk_grid_set_row_spacing(GTK_GRID(frame_d.grid), 10);
-	frame_d.pos.y = wid_d->pos.y;
-	if (make_entry_and_scale(&frame_d, "x", group, vec.x) < 1)
+	frame_d.pos.y = w_d->pos.y;
+	if (make_entry_and_scale(&frame_d, "x", new_group, vec.x) < 1)
 		return (NULL);
-	if (make_entry_and_scale(&frame_d, "y", group, vec.y) < 1)
+	if (make_entry_and_scale(&frame_d, "y", new_group, vec.y) < 1)
 		return (NULL);
-	if (make_entry_and_scale(&frame_d, "z", group, vec.z) < 1)
+	if (make_entry_and_scale(&frame_d, "z", new_group, vec.z) < 1)
 		return (NULL);
 	gtk_container_add(GTK_CONTAINER(frame), frame_d.grid);
-	gtk_grid_attach(GTK_GRID(wid_d->grid), frame, wid_d->pos.y, wid_d->pos.x,
-			2, 7);
-	wid_d->pos.x += 7;
-	return (group);
+	gtk_grid_attach(GTK_GRID(w_d->grid), frame, w_d->pos.y, w_d->pos.x, 2, 7);
+	w_d->pos.x += 7;
+	return (new_group);
 }
 
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color)

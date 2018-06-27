@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 21:12:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 15:55:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int		construct_phase_2(t_wid_data *wid_d, int index,
+static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 		GtkSizeGroup *group)
 {
 	t_pixelbuf		*pxb;
@@ -20,15 +20,15 @@ static int		construct_phase_2(t_wid_data *wid_d, int index,
 	wid_d->pos.y = 0;
 	wid_d->f = &change_light_r;
 	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
-	if (!(make_label_and_entry(wid_d, "radius", g_data->lights[index].r)))
+	if (!(make_label_and_entry(wid_d, "radius", light->r, light)))
 		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
-	if (!(make_label_and_scale(wid_d, "ambiante", g_data->lights[index].r)))
+	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi, light)))
 		return (0);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
-	fill_pixelbuf_in_color(pxb, g_data->lights[index].color.c);
+	fill_pixelbuf_in_color(pxb, light->color.c);
 	wid_d->f = &chose_color;
 	wid_d->size = pt_set(2, 1);
 	if (!(b_new(wid_d, (gpointer)pxb->widget, "light color", pxb->widget)))
@@ -41,7 +41,7 @@ static int		construct_phase_2(t_wid_data *wid_d, int index,
 	return (1);
 }
 
-static int		construct_phase_1(t_wid_data *wid_d, int index)
+static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
@@ -55,16 +55,16 @@ static int		construct_phase_1(t_wid_data *wid_d, int index)
 	if (!(l_new(wid_d, "parrallele light")))
 		return (0);
 	wid_d->pos = pt_set(1, 0);
-	vec = g_data->lights[index].pos;
+	vec = light->pos;
 	wid_d->f = &change_light_pos;
-	if (!(add_vector_choose(wid_d, "position", vec)))
+	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
 		return (0);
 	wid_d->pos = pt_set(1, 2);
 	wid_d->f = &change_light_dir;
-	vec = g_data->lights[index].dir;
-	if (!(group = add_vector_choose(wid_d, "direction", vec)))
+	vec = light->dir;
+	if (!(group = add_vector_choose(wid_d, "direction", vec, NULL)))
 		return (0);
-	return (construct_phase_2(wid_d, index, group));
+	return (construct_phase_2(wid_d, light, group));
 }
 
 static int		create_light_button(GtkWidget *box)
@@ -97,7 +97,7 @@ int				create_light_tab(GtkWidget *tab_light, int index)
 	gtk_widget_show_all(tab_light);
 	while (g_data->ui->page_light < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_light));
-	if (!(construct_phase_1(&wid_d, index)))
+	if (!(construct_phase_1(&wid_d, &g_data->lights[index])))
 		return (0);
 	ft_strdel(&str);
 	return (1);

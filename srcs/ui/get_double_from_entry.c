@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   widget_envent_tools.c                              :+:      :+:    :+:   */
+/*   get_double_from_entry.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/26 12:47:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:03:41 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/06/27 17:41:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static double	my_ft_atof(char const *str)
 	return (n / signe);
 }
 
-char		*str_end_digit(char *str)
+static char		*str_end_digit(char *str)
 {
 	int		i;
 	int		separator;
@@ -83,34 +83,23 @@ double		get_double_from_entry(GtkWidget *wid)
 		dst = INFINITY;
 		gtk_entry_set_text(GTK_ENTRY(wid), "INFINITY");
 	}
-	else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
+	/*else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
 	{
 		dst = -INFINITY;
 		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
-	}
+	}*/
 	else
 	{
 		str2 = str_end_digit(str);
 		ft_putstr("finale = ");
 		ft_putendl(str2);
 		gtk_entry_set_text(GTK_ENTRY(wid), str2);
-		if ((dst = my_ft_atof(str)) == 0)
+		if ((dst = my_ft_atof(str)) <= 0)
+		{
 			gtk_entry_set_text(GTK_ENTRY(wid), "0");
+			dst = 0.0;
+		}
 	}
 	ft_strdel(&str);
 	return (dst);
 }
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 22:59:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/04/22 19:24:43 by pmiceli          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
-

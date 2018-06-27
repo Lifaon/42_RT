@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 13:37:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 17:47:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,16 @@ void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 void			switch_parallel_light(GtkWidget *widget, gboolean state,
 		gpointer param)
 {
-	GSList		*lst;
-	gboolean	status;
 	int			i;
 
 	if (!widget && !param)
 		param = NULL;
-	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(param));
 	i = g_data->ui->page_light;
 	if (gtk_switch_get_active(GTK_SWITCH(widget)) == FALSE)
-	{
-		status = FALSE;
 		g_data->lights[i].is_para = 0;
-	}
 	else
-	{
-		status = TRUE;
 		g_data->lights[i].is_para = 1;
-	}
-	while (lst)
-	{
-		gtk_widget_set_sensitive(GTK_WIDGET((GtkWidget*)lst->data), status);
-		lst = lst->next;
-	}
+	set_group_widget_active(GTK_SIZE_GROUP(param), state);
 }
 
 void			add_one_light(GtkWidget *widget, gpointer param)

@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 19:29:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 13:31:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-GtkWidget		*cb_quality_draw(t_wid_data *wid_d)
+/*GtkWidget		*cb_quality_draw(t_wid_data *wid_d)
 {
 	GtkWidget		*cb;
 	char			*str;
@@ -39,7 +39,7 @@ GtkWidget		*cb_quality_draw(t_wid_data *wid_d)
 	gtk_grid_attach(GTK_GRID(wid_d->grid), cb, wid_d->pos.y, wid_d->pos.x,
 			wid_d->size.x, wid_d->size.y);
 	return (cb);
-}
+}*/
 
 
 static int		construct_phase_1(t_wid_data *wid_d)
@@ -48,7 +48,11 @@ static int		construct_phase_1(t_wid_data *wid_d)
 
 	if (!(make_label_and_scale(wid_d, "Pixelisation", (double)g_data->px)))
 		return (0);
-	wid_d->pos.y = 2;
+	wid_d->pos = pt_set(0, 2);
+	wid_d->f = &change_aa;
+	wid_d->min_max = ptdb_set(1, 16);
+	if (!(make_label_and_scale(wid_d, "Anti-aliasing", (double)g_data->aa)))
+		return (0);
 	cb_quality_draw(wid_d);
 	wid_d->pos = pt_set(1, 0);
 	/*if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
@@ -84,6 +88,7 @@ int				create_options_ui(GtkWidget *tab)
 
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(0, 5))))
 		return (0);
+	set_wid_data_scale(wid_d, 1, ptdb_set(0, 5));
 	if (!(construct_phase_1(&wid_d)))
 		return (0);
 	l_title = gtk_label_new("Options");

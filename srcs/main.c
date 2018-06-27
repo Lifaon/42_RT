@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/21 15:00:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/26 19:10:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		main(int ac, char **av)
 	if (create_ui() == 0)
 		return (0);
 	//g_data->aa = 4;
-	g_data->px = 0;
+	g_data->px = 2;
 	put_gdk_image();
 	//print_parsed_data(data);*/
 	ft_event(g_data);

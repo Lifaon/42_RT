@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 19:00:11 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/27 13:18:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
+
+/*
+** => options event
+*/
+void	change_aa(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event

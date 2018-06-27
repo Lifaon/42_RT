@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/26 18:42:28 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/06/27 13:15:01 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_obj.c\
 		ui/modify_obj2.c\
 		ui/modify_obj_type.c \
+		ui/modify_options.c\
 		ui/entry_change_scale.c \
 		ui/click_open.c \
 		ui/click_save.c \

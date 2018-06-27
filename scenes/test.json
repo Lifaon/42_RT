@@ -35,7 +35,7 @@
 		"plane" :
 		{
 			"position" : [0, 0, 1750],
-			"normal" : [0, 0, -1],
+			"angle" : [90, 0, 0],
 			"color" : [0, 180, 180],
 			"specular" : 0
 		}

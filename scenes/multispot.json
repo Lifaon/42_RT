@@ -70,7 +70,7 @@
 		"plane" :
 		{
 			"position" : [0, 0, 3300],
-			"normal" : [0, 0, -1],
+			"angle" : [90, 0, 0],
 			"color" : [115, 0, 0],
 			"specular" : 0,
 			"alpha" : 100

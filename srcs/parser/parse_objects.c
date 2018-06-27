@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 02:14:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/26 21:23:18 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->max = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"limit\"", index))
 		parse_limit(object, str, index);
+	else if (read_quotes(str + *index, "\"reflection's pourcentage\"", index))
+	{
+		object->shiny = 1;
+		object->shin_pourcentage = parse_nb(str + *index, index);
+	}
 }
 
 static void	parse_object(t_obj *object, char *str, int *index)

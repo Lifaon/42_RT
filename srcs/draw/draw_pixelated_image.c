@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 01:14:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:55:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
 {
-	t_inter	inter;
-	t_vec	ray;
-	t_point px;
-	int		color;
+	t_inter		inter;
+	t_vec			ray;
+	t_point 	px;
+	t_color		color;
 
 	ray = compute_ray(vp);
 	if (hit(data, ray, &inter))
 		color = get_px_color(data, inter);
 	else
-		color = 0xFF000000;
+		color.c = 0xFF000000;
 	px.y = -1;
 	while (++px.y < g_data->px)
 	{
 		px.x = -1;
 		while (++px.x < g_data->px)
 			pt_to_pixelbuf(\
-				(t_point){crd.x + px.x, crd.y + px.y}, data->img, color);
+				(t_point){crd.x + px.x, crd.y + px.y}, data->img, color.c);
 	}
 }
 

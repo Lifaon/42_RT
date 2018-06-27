@@ -29,6 +29,11 @@
 **	Number of threads used.
 */
 
+# define MAX_RECURSION 3
+/*
+**	int value for the max recursion for reflection
+*/
+
 # define SPHERE 0
 # define PLANE 1
 # define CYLINDER 2

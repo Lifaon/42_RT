@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 05:23:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 18:56:37 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,10 @@ typedef struct		s_obj
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
+	int				shiny;
+	double			shin_pourcentage;
+	int				trans;
+	double			refrac_index;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong

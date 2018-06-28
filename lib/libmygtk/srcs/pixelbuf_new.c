@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 14:57:12 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:34:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 19:59:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ t_pixelbuf		*pixelbuf_new_from_file(char *filename)
 		return (NULL);
 	if (!(pxbuf = (t_pixelbuf*)malloc(sizeof(t_pixelbuf))))
 		return (NULL);
-	pxbuf->buf = gtk_image_get_pixbuf(GTK_IMAGE(img));
+	if (!(pxbuf->buf = gtk_image_get_pixbuf(GTK_IMAGE(img))))
+		return (NULL);
 	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
 	pxbuf->size.y = gdk_pixbuf_get_height(pxbuf->buf);
-	pxbuf->size.x = gdk_pixbuf_get_width(pxbuf->buf);
-	pxbuf->pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxbuf->buf);
+	if (!(pxbuf->pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxbuf->buf)))
+		return (NULL);
 	pxbuf->widget = (void*)img;
 	return (pxbuf);
 }

@@ -1,0 +1,43 @@
+{
+	"cameras" :
+	[
+		{
+			"fov" : 20,
+			"position" : [0, 0, -3000],
+			"angle" : [0, 0, 0]
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [-800, 500, 500],
+			"ambient" : 0.4
+		},
+		{
+			"position" : [-700, 600, 500],
+			"ambient" : 0.4
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [0, 0, 1500],
+			"radius" : 100
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 1000],
+			"angle" : [90, 0, 0],
+			"color" : [0, 180, 180],
+			"specular" : 0
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 2000],
+			"angle" : [90, 0, 0],
+			"color" : [229, 244, 66],
+			"specular" : 0
+		}
+	}
+}

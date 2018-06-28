@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 20:00:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 20:19:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 /*
 **	int value for the max recursion for reflection
 */
-
 # define SPHERE 0
 # define PLANE 1
 # define CYLINDER 2
@@ -48,5 +47,9 @@
 /*
 **	Alternative to enums for OpenCL compatibility.
 */
+
+# define I_AIR 1.0f
+# define I_GLASS 1.52f
+# define I_WATER 1.33f
 
 #endif

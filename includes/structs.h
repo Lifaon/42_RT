@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 19:01:58 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/28 17:55:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct		s_obj
 	int				shiny;
 	double			shin_pourcentage;
 	int				trans;
+	double			trans_pourcentage;
 	double			refrac_index;
 }					t_obj;
 /*

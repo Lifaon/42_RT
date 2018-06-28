@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 14:59:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:42:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ static GtkWidget	*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 	f_swap = wid_d->f;
 	wid_d->pos.y += 1;
 	wid_d->f = NULL;
-	str = ft_dbtoa(value);
+	if (value == INFINITY)
+		str = ft_strdup("inf");
+	else if (value == -INFINITY)
+		str = ft_strdup("-inf");
+	else
+		str = ft_dbtoa(value);
 	if (!(entry = entry_new(wid_d, NULL, str)))
 		return (NULL);
 	ft_strdel(&str);

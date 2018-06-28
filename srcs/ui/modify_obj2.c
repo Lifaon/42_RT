@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:31:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:54:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void			add_one_obj(GtkWidget *widget, gpointer param)
 	t_obj		*objs_new;
 	int			i;
 
-	check_ui_active(0);
 	i = -1;
 	g_data->nb_objects += 1;
 	objs_new = (t_obj*)malloc(sizeof(t_obj) * g_data->nb_objects);
@@ -39,7 +38,7 @@ void			add_one_obj(GtkWidget *widget, gpointer param)
 	init_one_object(g_data, i);
 	create_object_tab(g_data->ui->tab_objs, i);
 	gtk_widget_show_all(g_data->win);
-	check_ui_active(1);
+	g_data->ui->is_active = 1;
 }
 
 void			change_obj_spec(GtkWidget *widget, gpointer param)

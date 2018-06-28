@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:20:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:39:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	GtkSizeGroup	*group;
 	t_point			crd;
 	GtkWidget		*wid;
+	GtkWidget		*sw;
 
 	is_limited = obj->limited == -1 ? FALSE : TRUE;
 	if (!(l_new(wid_d, "limited object")))
@@ -56,7 +57,11 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(make_label_and_entry(wid_d, "Radius", g_data->objs[index].r)))
 		return (create_limited_object_ui(wid_d, index))*/
 	wid_d->pos = crd;
-	if (!(switch_new(wid_d, group, is_limited, &switch_obj_limited)))
+	g_data->ui->is_active = 1;
+	if (!(sw = switch_new(wid_d, group, is_limited, &switch_obj_limited)))
 		return (0);
+	if (is_limited == FALSE)
+		switch_obj_limited(sw, FALSE, group);
+	g_data->ui->is_active = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 18:01:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:53:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
 		return (0);
 	ft_strdel(&str);
+	ft_putstr("here\n");//
 	return (1);
 }
 

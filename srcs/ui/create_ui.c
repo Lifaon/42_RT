@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 20:06:15 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:48:05 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int				create_ui(char *path)
 
 	if (!(win = (void*)gtk_window_new(GTK_WINDOW_TOPLEVEL)))
 		return (0);
-	g_data->draw = 0;
 	g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL);
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
@@ -77,6 +76,5 @@ int				create_ui(char *path)
 	gtk_container_add(GTK_CONTAINER(win), h_box);
 	gtk_widget_show_all(win);
 	g_data->win = win;
-	g_data->draw = 1;
 	return (1);
 }

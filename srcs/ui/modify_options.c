@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 19:31:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 15:14:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:21:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	change_px(GtkWidget *widget, gpointer param)
 	if (g_data->ui->is_active == 0)
 		return ;
 	value = gtk_range_get_value(GTK_RANGE(widget));
-	if (value == 1)
+	/*if (value == 1)
 		g_data->px = 0;
-	else
+	else*/
 		g_data->px = value;
 }
 /*	if (!param && !widget)

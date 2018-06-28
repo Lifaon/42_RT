@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:41:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/28 20:44:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ double		get_double_from_entry(GtkWidget *wid)
 			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF")))
 	{
 		dst = INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "INFINITY");
+		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
 	}
 	/*else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
 	{

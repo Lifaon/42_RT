@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/26 21:30:04 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/06/29 01:34:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,21 @@ static int		blocked(t_data *data, t_inter inter, t_vec *light, double *dot)
 
 static t_color	shade(t_data *data, t_inter *inter, t_light light)
 {
+	t_color	color;
 	t_color	ret;
 	t_vec	light_vec;
 	double	dot;
 
+	if (data->objs[inter->obj_i].tex)
+		color.c = uv_mapping(data->objs[inter->obj_i], inter);
+	else
+		color = data->objs[inter->obj_i].color;
 	inter->origin = inter->ip;
-	ret = ambient_shading(data->objs[inter->obj_i], light);
+	ret = ambient_shading(color, light);
 	light_vec = vec_substract(light.pos, inter->ip);
 	if (blocked(data, *inter, &light_vec, &dot))
 		return (ret);
-	ret = add_colors(ret, diffuse_shading(data->objs[inter->obj_i], \
-		light, dot));
+	ret = add_colors(ret, diffuse_shading(color, light, dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
 		data->objs[inter->obj_i], light.color, light_vec, *inter));
 	return (ret);

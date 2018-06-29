@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/28 19:35:11 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/29 04:47:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		main(int ac, char **av)
 	if (create_ui(av[0]) == 0)
 		return (0);
 	//g_data->aa = 4;
+	//g_data->objs[0].tex = pixelbuf_new_from_file("./textures/bricks.png");
 	put_gdk_image();
 	//print_parsed_data(data);*/
 	ft_event(g_data);

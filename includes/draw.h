@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 03:25:15 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/29 01:32:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color r);
 /*
 **	Phong shading.
 */
-t_color	ambient_shading(t_obj obj, t_light light);
-t_color	diffuse_shading(t_obj obj, t_light light, double dot);
+t_color	ambient_shading(t_color color, t_light light);
+t_color	diffuse_shading(t_color color, t_light light, double dot);
 t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter);
 
 /*

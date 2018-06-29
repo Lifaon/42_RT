@@ -12,6 +12,10 @@
 
 /*
 **	RTv1 is a school project designed to learn the basics of raytracing.
+**
+** This project use GTK3+. Before make you should install gtk+3
+** on mac OS use "brew install gtk+3"
+** on ubuntu use "apt-get install libgtk-3-dev"
 */
 
 #ifndef RTV1_H

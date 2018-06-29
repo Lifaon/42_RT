@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 01:02:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/29 01:28:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_vec	vec_cross_product(t_vec u, t_vec v);
 t_vec	vec_normalize(t_vec u);
 double	get_length(t_vec u);
 double	dot_product(t_vec u, t_vec v);
+
+int		uv_mapping(t_obj obj, t_inter *inter);
 
 /*
 ** Rotations

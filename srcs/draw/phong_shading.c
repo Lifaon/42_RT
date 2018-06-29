@@ -6,21 +6,21 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 05:25:38 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/29 01:31:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-t_color	ambient_shading(t_obj obj, t_light light)
+t_color	ambient_shading(t_color color, t_light light)
 {
-	return (substract_colors(col_multiply(obj.color, light.ambi), \
+	return (substract_colors(col_multiply(color, light.ambi), \
 		light.color_neg));
 }
 
-t_color	diffuse_shading(t_obj obj, t_light light, double dot)
+t_color	diffuse_shading(t_color color, t_light light, double dot)
 {
-	return (substract_colors(col_multiply(obj.color, dot), light.color_neg));
+	return (substract_colors(col_multiply(color, dot), light.color_neg));
 }
 
 t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter)

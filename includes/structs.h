@@ -150,6 +150,7 @@ typedef struct		s_ui
 	GtkWidget	*tab_light;
 	GtkWidget	*tab_cams;
 	GtkWidget	*tab_objs;
+	GtkWidget	*ev_box;
 	char		*path;
 	int			is_active;
 	int			page_light;

@@ -20,4 +20,9 @@ void	click_redraw(GtkWidget *widget, gpointer param)
 	ft_putstr("click_redraw\n");
 	g_data->draw = 1;
 	put_gdk_image();
+	//gtk_widget_grab_focus(g_data->img->widget);
+	gtk_widget_grab_focus(g_data->ui->ev_box);
+	gtk_widget_grab_default(g_data->ui->ev_box);
+	//gtk_widget_set_focus_on_click(g_data->img->widget, TRUE);
+	//gtk_widget_set_focus_on_click(g_data->img->widget, TRUE);
 }

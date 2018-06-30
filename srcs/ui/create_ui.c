@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ui.h"
+#include "events.h"
 
 static t_ui		*ui_new(char *path)
 {
@@ -48,6 +49,47 @@ int				make_grid(t_wid_data *wid_d)
 	return (1);
 }
 
+void            focus_me(GtkWidget  *widget, gpointer data)
+{
+    ft_putstr("banana\n");
+    gtk_widget_grab_focus(widget);
+    gtk_widget_grab_default(widget);
+}
+
+static int      create_renderer(void)
+{
+    GtkWidget   *wid;
+    GtkWidget   *ev_box;
+
+    if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
+        return (0);
+	wid = (GtkWidget*)g_data->img->widget;
+	ft_putstr("meuh\n");
+	gtk_widget_set_can_focus(wid, TRUE);
+	gtk_widget_set_can_default(wid, TRUE);
+    ft_putstr("shize\n");
+	if (!(g_data->ui->ev_box = gtk_event_box_new()))
+	        return (0);
+    ft_putstr("patator\n");
+	ev_box = g_data->ui->ev_box;
+	ft_putstr("pouic");
+	gtk_container_add(GTK_CONTAINER(ev_box), wid);
+	gtk_widget_set_can_focus(ev_box, TRUE);
+	gtk_widget_set_can_default(ev_box, TRUE);
+	ft_putstr("pouic");
+    gtk_widget_add_events(ev_box, GDK_KEY_PRESS);
+	//g_signal_connect(G_OBJECT(g_data->win), "key_press_event",
+	//			G_CALLBACK(ft_keyboard), data);
+	g_signal_connect(G_OBJECT(ev_box), "key_press_event",
+				G_CALLBACK(ft_keyboard), g_data);
+    gtk_event_box_set_above_child(GTK_EVENT_BOX(ev_box), TRUE);
+    //g_signal_connect(G_OBJECT(wid), "clicked",
+      //      G_CALLBACK(&focus_me), g_data);
+    //g_signal_connect(G_OBJECT(ev_box), "clicked",
+	//			G_CALLBACK(&focus_me), g_data);
+    return(1);
+}
+
 int				create_ui(char *path)
 {
 	GtkWidget		*win;
@@ -56,13 +98,14 @@ int				create_ui(char *path)
 
 	if (!(win = (void*)gtk_window_new(GTK_WINDOW_TOPLEVEL)))
 		return (0);
-	g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL);
+
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
 	if (!(g_data->ui = ui_new(path)))
 		return (0);
+    create_renderer();
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab), TRUE);
 	if (!(create_toolbar(v_box, g_data->ui)))
 		return (0);
@@ -72,8 +115,10 @@ int				create_ui(char *path)
 			NULL);
 	gtk_box_pack_start(GTK_BOX(v_box), g_data->ui->tab, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(h_box), v_box, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(h_box), g_data->ui->ev_box, FALSE, FALSE, 0);
+	//gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
+	ft_putstr("before show");
 	gtk_widget_show_all(win);
 	g_data->win = win;
 	return (1);

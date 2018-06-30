@@ -88,6 +88,7 @@ GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, gdouble value)
 	if (wid_d)
 		gtk_grid_attach(GTK_GRID(wid_d->grid), scale, wid_d->pos.y,
 				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
+    gtk_widget_set_can_focus(scale, FALSE);
 	return (scale);
 }
 

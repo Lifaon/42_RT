@@ -29,10 +29,10 @@ t_funar_keyb			*fill_funar_key_event(int *size)
 	i = 0;
 	*size = 12;
 	tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * *size);
-	tab[i++] = add_one(GDK_KEY_Up, &rotate_up);
-	tab[i++] = add_one(GDK_KEY_Left, &rotate_left);
-	tab[i++] = add_one(GDK_KEY_Down, &rotate_down);
-	tab[i++] = add_one(GDK_KEY_Right, &rotate_right);
+	tab[i++] = add_one(GDK_KEY_i, &rotate_up);
+	tab[i++] = add_one(GDK_KEY_j, &rotate_left);
+	tab[i++] = add_one(GDK_KEY_k, &rotate_down);
+	tab[i++] = add_one(GDK_KEY_l, &rotate_right);
 	tab[i++] = add_one(GDK_KEY_w, &translate_w);
 	tab[i++] = add_one(GDK_KEY_a, &translate_a);
 	tab[i++] = add_one(GDK_KEY_s, &translate_s);

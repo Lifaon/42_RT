@@ -73,7 +73,12 @@ int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
 	if (!(l_new(wid_d, txt)))
 		return (0);
 	wid_d->pos.y += 1;
-	str = ft_dbtoa(value);
+	if (value == INFINITY)
+        str = ft_strdup("inf");
+    else if (value == -INFINITY)
+        str = ft_strdup("-inf");
+    else
+        str = ft_dbtoa(value);
 	if (!(entry = entry_new(wid_d, param, str)))
 		return (0);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);

@@ -56,11 +56,12 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 0);
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	wid_d->f = &change_obj_spec;
-	if (!(make_label_and_scale(wid_d, "specular", obj->spec * 100i, obj)))
+	if (!(make_label_and_scale(wid_d, "specular", obj->spec * 100, obj)))
 		return (0);
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
-	if (!(make_label_and_scale(wid_d, "Alpha", obj->r * 100, obj)))
+	wid_d->min_max = ptdb_set(1, 200);
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
 		return (0);
 	return (construct_phase_2(wid_d, obj));
 }

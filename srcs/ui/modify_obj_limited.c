@@ -30,7 +30,7 @@ void			change_obj_min(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].min;
 	group = (GtkSizeGroup*)param;
-	change_vec_from_scale(group, vec);
+	//change_vec_from_scale(group, vec);
 }
 
 void			change_obj_max(GtkWidget *widget, gpointer param)
@@ -42,5 +42,5 @@ void			change_obj_max(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].max;
 	group = (GtkSizeGroup*)param;
-	change_vec_from_scale(group, vec);
+	//change_vec_from_scale(group, vec);
 }

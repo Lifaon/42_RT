@@ -28,7 +28,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	new_cb_limited(wid_d, group, obj);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_obj_min;
-	if (!(group = add_vector_choose(wid_d, "min", obj->min, NULL)))
+	if (!(group = add_vector_choose_no_scale(wid_d, "min", obj->min, NULL)))
 		return (0);
 	wid_d->pos = pt_set(crd.x + 1, 2);
 	wid_d->f = &change_obj_max;

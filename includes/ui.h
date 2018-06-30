@@ -58,6 +58,8 @@ GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec,
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
+GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec,
+		GtkSizeGroup *group);
 int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);

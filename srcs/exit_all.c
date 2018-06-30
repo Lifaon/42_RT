@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 19:55:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/30 05:45:20 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	exit_all(t_data *data)
 	if (data->nb_objects)
 	{
 		while (data->nb_objects--)
-			pixelbuf_free(&data->objs[data->nb_objects].tex);
+			if (data->objs[data->nb_objects].tex)
+				free(data->objs[data->nb_objects].tex);
 		free(data->objs);
 	}
 	if (data->nb_lights)

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/29 20:36:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/30 04:44:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	uv_mapping_sphere(t_obj obj, t_inter *inter)
 	if (dot_product(obj.z_dir, vp) < 0)
 		u = 1 - u;
 	v = phi / M_PI;
-	return (obj.tex->pxl[((int)(obj.tex->size.x * u) + \
-		((int)(obj.tex->size.y * v) * obj.tex->size.x))]);
+	return (obj.tex[((int)(obj.tex_size.x * u) \
+		+ ((int)(obj.tex_size.y * v) * obj.tex_size.x))].c);
 }
 
 static int	uv_mapping_plane(t_obj obj, t_inter *inter)
@@ -39,11 +39,18 @@ static int	uv_mapping_plane(t_obj obj, t_inter *inter)
 	vp = vec_substract(inter->ip, obj.pos);
 	vp_len = get_length(vp);
 	vp = vec_normalize(vp);
-	u = (int)(dot_product(vp, obj.y_dir) * vp_len) + (obj.tex->size.x / 2);
-	v = (int)(dot_product(vp, obj.z_dir) * vp_len) \
-		+ (obj.tex->size.y / 2);
-	if (u >= 0 && u < obj.tex->size.x && v >= 0 && v < obj.tex->size.y)
-		return (obj.tex->pxl[u + (v * obj.tex->size.x)]);
+	u = (int)(dot_product(vp, obj.y_dir) * vp_len) + (obj.tex_size.x / 2);
+	v = (int)(dot_product(vp, obj.z_dir) * vp_len) + (obj.tex_size.y / 2);
+	//u -= 1000;
+	//v += 1000;
+	//u %= obj.tex_size.x;
+	//v %= obj.tex_size.y;
+	//if (u < 0)
+	//	u = obj.tex_size.x + u;
+	//if (v < 0)
+	//	v = obj.tex_size.y + v;
+	if (u >= 0 && u < obj.tex_size.x && v >= 0 && v < obj.tex_size.y)
+		return (obj.tex[u + (v * obj.tex_size.x)].c);
 	return (obj.color.c);
 }
 
@@ -62,12 +69,14 @@ static int	uv_mapping_cyl_cone(t_obj obj, t_inter *inter)
 	u = (acos(dot_product(vp, obj.y_dir) / sin(phi))) / (2 * M_PI);
 	if (dot_product(obj.z_dir, vp) < 0)
 		u = 1 - u;
-	v = -(int)(dot_product(obj.dir, vp) * vp_len) % obj.tex->size.y;
-	if (v < 0)
-		v = obj.tex->size.y + v;
-	if (u >= 0 && u <= 1 && v >= 0 && v < obj.tex->size.y)
-		return (obj.tex->pxl[(int)(obj.tex->size.x * u) \
-		+ (v * obj.tex->size.x)]);
+	v = (obj.tex_size.y / 2) - (int)(dot_product(obj.dir, vp) * vp_len);
+	//v += 1000;
+	//v %= obj.tex_size.y;
+	//if (v < 0)
+	//	v = obj.tex_size.y + v;
+	if (u >= 0 && u <= 1 && v >= 0 && v < obj.tex_size.y)
+		return (obj.tex[(int)(obj.tex_size.x * u) \
+		+ (v * obj.tex_size.x)].c);
 	return (obj.color.c);
 }
 

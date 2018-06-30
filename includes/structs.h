@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 19:53:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/06/30 04:26:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ typedef struct		s_obj
 	t_vec			min;
 	t_vec			max;
 	t_vec			oc;
-	t_pixelbuf		*tex;
+	t_color			*tex;
+	t_point			tex_size;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);

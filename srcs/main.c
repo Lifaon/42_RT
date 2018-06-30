@@ -49,10 +49,8 @@ int		main(int ac, char **av)
 //	g_data->objs[0].shiny = 1;
 //	g_data->objs[0].shin_pourcentage = 1;
 	gtk_init(&ac, &av);
-	ft_putstr("Here Iam");
 	if (create_ui(av[0]) == 0)
 		return (0);
-    ft_putstr("born to became");
 	//g_data->aa = 4;
 	//g_data->objs[0].tex = pixelbuf_new_from_file("./textures/bricks.png");
 	put_gdk_image();

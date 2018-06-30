@@ -58,3 +58,15 @@ void	modify_obj_limited_type(GtkWidget *widget, gpointer param)
 	obj->intersect = g_data->intersect[type];
 	obj->get_normal = g_data->get_normal[type];
 }
+
+void    change_obj_color(GtkWidget *widget, gpointer param)
+{
+    gpointer    color;
+
+	if (!param && !widget)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+    color = (gpointer)&g_data->objs[g_data->ui->page_obj].color;
+	chose_color((GtkWidget*)param, color);
+}

@@ -75,7 +75,7 @@ int				get_int_obj_type(const char *type);
 char			*get_str_obj_type(int type);
 
 /*
-** Simple function to handle number and string for specific matters 
+** Simple function to handle number and string for specific matters
 */
 char			*join_int(char const *s1, int n);
 size_t			size_int(int n);
@@ -111,6 +111,7 @@ void			add_one_light(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
 void			change_light_dir(GtkWidget *widget, gpointer param);
 void			change_light_r(GtkWidget *widget, gpointer param);
+void			change_light_color(GtkWidget *widget, gpointer param);
 void			change_light_ambi(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
 void			switch_parallel_light(GtkWidget *widget, gboolean state,
@@ -127,6 +128,7 @@ void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, gpointer param);
+void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
 void			change_obj_min(GtkWidget *widget, gpointer param);
@@ -143,6 +145,7 @@ void	change_px(GtkWidget *widget, gpointer param);
 ** => Other UI event
 */
 void			chose_color(GtkWidget *widget, gpointer useless);
+void            color_widget_img(GtkWidget *img, t_color color);
 gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,

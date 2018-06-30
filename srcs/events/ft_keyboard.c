@@ -49,17 +49,12 @@ gboolean		ft_keyboard(GtkWidget *widget, GdkEventKey *event, gpointer param)
 
 	if (!widget && !event && !param)
 		param = NULL;
-    /*if ((gtk_widget_is_focus(g_data->img->widget) == FALSE) && event->keyval != GDK_KEY_Escape)
-        return (FALSE);*/
 	par = (t_data*)param;
 	ret = 0;
 	if ((ret = do_event(event->keyval, par)) == 1)
 		put_gdk_image();
 	if (ret == -1)
 		exit_all(par);
-    gtk_widget_grab_default(g_data->ui->ev_box);
-	/*if (event->keyval == 0)//SDLK_h)
-		draw_image(par);*/
-		//put_pixelbuf_to_widget(par->img, NULL);
+    //gtk_widget_grab_default(g_data->ui->ev_box);
 	return (0);
 }

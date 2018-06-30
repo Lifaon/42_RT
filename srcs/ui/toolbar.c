@@ -21,9 +21,7 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 
 	if (!(str = ft_strjoin(g_data->ui->path, "/srcs/ui/assets/")))
 		return (NULL);
-//	if (!(str = ft_strjoin(".", "/srcs/ui/assets/")))
 	str = ft_strjoin_free(str, img_name);
-	ft_putendl(str);
 	if (!(img = gtk_image_new_from_file(str)))
 		return (NULL);
 	if (!(item = gtk_tool_button_new(img, b_text)))

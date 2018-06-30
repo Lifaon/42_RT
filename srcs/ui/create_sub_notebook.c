@@ -21,11 +21,9 @@ int		create_sub_notebook(t_ui *ui, int do_options)
 		return (0);
 	if (!(create_object_ui(ui->tab)))
 		return (0);
-	ft_putstr("cmon\n");
 	if (do_options == 1)
 		if (!(create_options_ui(ui->tab)))
 			return (0);
-	ft_putstr("my menn\n");
 	g_data->ui->is_active = 1;
 	return (1);
 }

@@ -49,10 +49,10 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(0, 3);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, obj->color.c);
-	wid_d->f = &chose_color;
+	wid_d->f = &change_obj_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
-	pixelbuf_free(&pxb);
+	free(pxb);
 	wid_d->pos = pt_set(3, 0);
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	wid_d->f = &change_obj_spec;
@@ -98,7 +98,6 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
 		return (0);
 	ft_strdel(&str);
-	ft_putstr("here\n");//
 	return (1);
 }
 

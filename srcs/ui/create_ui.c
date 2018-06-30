@@ -25,7 +25,6 @@ static t_ui		*ui_new(char *path)
 	ui->page_obj = 0;
 	ui->page_cam = 0;
 	ui->is_active = 0;
-	ft_putendl(path);
 	chr = ft_strstr(path, "/rt");
 	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
 	//ui->path = ft_strdup(path);
@@ -51,7 +50,6 @@ int				make_grid(t_wid_data *wid_d)
 
 void            focus_me(GtkWidget  *widget, gpointer data)
 {
-    ft_putstr("banana\n");
     gtk_widget_grab_focus(widget);
     gtk_widget_grab_default(widget);
 }
@@ -64,19 +62,14 @@ static int      create_renderer(void)
     if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
         return (0);
 	wid = (GtkWidget*)g_data->img->widget;
-	ft_putstr("meuh\n");
 	gtk_widget_set_can_focus(wid, TRUE);
 	gtk_widget_set_can_default(wid, TRUE);
-    ft_putstr("shize\n");
 	if (!(g_data->ui->ev_box = gtk_event_box_new()))
 	        return (0);
-    ft_putstr("patator\n");
 	ev_box = g_data->ui->ev_box;
-	ft_putstr("pouic");
 	gtk_container_add(GTK_CONTAINER(ev_box), wid);
 	gtk_widget_set_can_focus(ev_box, TRUE);
 	gtk_widget_set_can_default(ev_box, TRUE);
-	ft_putstr("pouic");
     gtk_widget_add_events(ev_box, GDK_KEY_PRESS);
 	//g_signal_connect(G_OBJECT(g_data->win), "key_press_event",
 	//			G_CALLBACK(ft_keyboard), data);
@@ -118,7 +111,6 @@ int				create_ui(char *path)
 	gtk_box_pack_start(GTK_BOX(h_box), g_data->ui->ev_box, FALSE, FALSE, 0);
 	//gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
-	ft_putstr("before show");
 	gtk_widget_show_all(win);
 	g_data->win = win;
 	return (1);

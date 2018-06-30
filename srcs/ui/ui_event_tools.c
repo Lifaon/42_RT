@@ -23,3 +23,13 @@ void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
 		lst = lst->next;
 	}
 }
+
+void    color_widget_img(GtkWidget *img, t_color color)
+{
+    t_pixelbuf      *pxb;
+
+    pxb = pixelbuf_new_from_img(img);
+    fill_pixelbuf_in_color(pxb, color.c);
+    put_pixelbuf_to_widget(pxb, NULL);
+    pixelbuf_free(&pxb);
+}

@@ -15,9 +15,14 @@
 t_pixelbuf		*g_pxb;
 t_color			g_color;
 GtkWidget		*g_win_color;
+GtkWidget       *g_img;
 
 static void		ev_color_cancel(GtkWidget *widget, gpointer param)
 {
+	t_color		*prev_color;
+
+	prev_color = (t_color*)param;
+	g_color.c = prev_color->c;
 	if (!widget && !param)
 		return ;
 	gtk_widget_destroy(g_win_color);
@@ -28,9 +33,11 @@ static void		ev_color_apply(GtkWidget *widget, gpointer param)
 {
 	t_color		*color;
 
-	color = &g_data->objs[g_data->ui->page_obj].color;
+    if (!widget && !param)
+		return ;
+	color = (t_color*)param;
 	*color = g_color;
-	put_pixelbuf_to_widget(g_pxb, (GtkWidget*)param);
+	color_widget_img(g_img, g_color);
 	gtk_widget_destroy(g_win_color);
 	pixelbuf_free(&g_pxb);
 }
@@ -60,13 +67,14 @@ static t_color	get_color_of_img(GtkWidget *img)
 	return (color);
 }
 
-void			chose_color(GtkWidget *widget, gpointer param)
+void			chose_color(GtkWidget *img, gpointer param)
 {
 	t_wid_data		wid_d;
 
 	init_wid_data(&wid_d, 1, ptdb_set(0, 255));
 	wid_d.f = &scale_change_color;
-	g_color = get_color_of_img(param);
+	g_img = img;
+	g_color = get_color_of_img(img);
 	add_color_choose(&wid_d, g_color);
 	g_pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(g_pxb, g_color.c);
@@ -80,10 +88,11 @@ void			chose_color(GtkWidget *widget, gpointer param)
 	b_new(&wid_d, param, "apply", NULL);
 	wid_d.pos = pt_set(8, 1);
 	wid_d.f = &ev_color_cancel;
-	b_new(&wid_d, (gpointer)widget, "cancel", NULL);
+	b_new(&wid_d, (gpointer)img, "cancel", NULL);
 	g_win_color = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_position(GTK_WINDOW(g_win_color), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(g_win_color), 200, 400);
 	gtk_container_add(GTK_CONTAINER(g_win_color), wid_d.grid);
 	gtk_widget_show_all(g_win_color);
+	//return (g_color);
 }

@@ -29,12 +29,12 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 		return (0);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, light->color.c);
-	wid_d->f = &chose_color;
+	wid_d->f = &change_light_color;
 	wid_d->size = pt_set(2, 1);
 	if (!(b_new(wid_d, (gpointer)pxb->widget, "light color", pxb->widget)))
 		return (0);
 	wid_d->size = pt_set(1, 1);
-	pixelbuf_free(&pxb);
+	free(pxb);
 	wid_d->pos = pt_set(0, 3);
 	if (!(switch_new(wid_d, (gpointer)group, TRUE, &switch_parallel_light)))
 		return (0);

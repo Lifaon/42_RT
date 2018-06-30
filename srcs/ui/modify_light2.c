@@ -36,3 +36,16 @@ void			change_light_ambi(GtkWidget *widget, gpointer param)
 	value = gtk_range_get_value(GTK_RANGE(widget)) / 100;
 	g_data->lights[g_data->ui->page_light].ambi = value;
 }
+
+void			change_light_color(GtkWidget *widget, gpointer param)
+{
+    t_color    *color;
+
+	if (!param && !widget)
+		return ;
+	if (g_data->ui->is_active == 0)
+		return ;
+    color = &g_data->lights[g_data->ui->page_light].color;
+    chose_color((GtkWidget*)param, (gpointer)color);
+}
+

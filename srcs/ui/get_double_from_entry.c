@@ -69,7 +69,29 @@ static char		*str_end_digit(char *str)
 	return (str);
 }
 
-double		get_double_from_entry(GtkWidget *wid)
+int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
+{
+	if (mode == MODE_PLUS_INF || mode == MODE_BOTH_INF &&
+	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
+			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
+	{
+		*dst = (double)INFINITY;
+		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
+		ft_strdel(&str);
+		return (1);
+	}
+	else if (mode == MODE_LESS_INF || mode == MODE_BOTH_INF &&
+	(!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF"))))
+	{
+		*dst = (double)-INFINITY;
+		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
+		ft_strdel(&str);
+		return (1);
+	}
+	return (0);
+}
+
+double		get_double_from_entry(GtkWidget *wid, int infinity_mode)
 {
 	char			*str;
 	char			*str2;
@@ -77,28 +99,17 @@ double		get_double_from_entry(GtkWidget *wid)
 
 	if (!(str = ft_strupper(strdup(gtk_entry_get_text(GTK_ENTRY(wid))))))
 		return (0);
-	if (!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
-			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF")))
+	if (infinity_mode != MODE_NO_INF)
+		if (get_infinity(wid, &dst, str, infinity_mode))
+			return (dst);
+	str2 = str_end_digit(str);
+	ft_putstr("finale = ");
+	ft_putendl(str2);
+	gtk_entry_set_text(GTK_ENTRY(wid), str2);
+	if ((dst = my_ft_atof(str)) <= 0)
 	{
-		dst = INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
-	}
-	/*else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
-	{
-		dst = -INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
-	}*/
-	else
-	{
-		str2 = str_end_digit(str);
-		ft_putstr("finale = ");
-		ft_putendl(str2);
-		gtk_entry_set_text(GTK_ENTRY(wid), str2);
-		if ((dst = my_ft_atof(str)) <= 0)
-		{
-			gtk_entry_set_text(GTK_ENTRY(wid), "0");
-			dst = 0.0;
-		}
+		gtk_entry_set_text(GTK_ENTRY(wid), "0");
+		dst = 0.0;
 	}
 	ft_strdel(&str);
 	return (dst);

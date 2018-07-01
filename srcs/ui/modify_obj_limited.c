@@ -18,6 +18,7 @@ void	switch_obj_limited(GtkWidget *widget, gboolean state,  gpointer param)
 		return ;
 	if (state == FALSE)
 		g_data->objs[g_data->ui->page_obj].limited = -1;
+	ft_putstr("ah ah\n");
 	set_group_widget_active(GTK_SIZE_GROUP(param), state);
 }
 
@@ -30,7 +31,7 @@ void			change_obj_min(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].min;
 	group = (GtkSizeGroup*)param;
-	//change_vec_from_scale(group, vec);
+	change_vec_from_entry(group, vec, MODE_BOTH_INF);
 }
 
 void			change_obj_max(GtkWidget *widget, gpointer param)
@@ -42,5 +43,6 @@ void			change_obj_max(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].max;
 	group = (GtkSizeGroup*)param;
+	change_vec_from_entry(group, vec, MODE_BOTH_INF);
 	//change_vec_from_scale(group, vec);
 }

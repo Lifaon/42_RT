@@ -49,4 +49,12 @@
 **	Alternative to enums for OpenCL compatibility.
 */
 
+# define MODE_NO_INF 0
+# define MODE_PLUS_INF 1
+# define MODE_LESS_INF 2
+# define MODE_BOTH_INF 3
+/*
+** used to know what infinite value is acceptable for GtkEntry before 
+** modifying g_data
+*/
 #endif

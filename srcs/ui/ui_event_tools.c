@@ -19,6 +19,10 @@ void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
 	lst = gtk_size_group_get_widgets(group);
 	while (lst)
 	{
+		if (status == TRUE)
+			ft_putstr("TRUE\n");
+		else
+			ft_putstr("FALSE\n");
 		gtk_widget_set_sensitive(GTK_WIDGET((GtkWidget*)lst->data), status);
 		lst = lst->next;
 	}

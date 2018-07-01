@@ -12,10 +12,34 @@
 
 #include "ui.h"
 
+static GtkSizeGroup		*group_join(GtkSizeGroup *src1, GtkSizeGroup *src2)
+{
+	GtkSizeGroup	*dst;
+	GSList			*lst;
+	GtkWidget		*son;
+
+	dst = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
+	lst = gtk_size_group_get_widgets(src1);
+	while (lst)
+	{
+		son = (GtkWidget*)lst->data;
+		gtk_size_group_add_widget(dst, son);
+		lst = lst->next;
+	}
+	lst = gtk_size_group_get_widgets(src2);
+	while (lst)
+	{
+		son = (GtkWidget*)lst->data;
+		gtk_size_group_add_widget(dst, son);
+		lst = lst->next;
+	}
+	return (dst);
+}
+
 int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 {
 	gboolean		is_limited;
-	GtkSizeGroup	*group;
+	GtkSizeGroup	*group[3];
 	t_point			crd;
 	GtkWidget		*wid;
 	GtkWidget		*sw;
@@ -28,11 +52,11 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	new_cb_limited(wid_d, group, obj);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_obj_min;
-	if (!(group = add_vector_choose_no_scale(wid_d, "min", obj->min, NULL)))
+	if (!(group[0] = add_vector_choose_no_scale(wid_d, "min", obj->min, NULL)))
 		return (0);
 	wid_d->pos = pt_set(crd.x + 1, 2);
 	wid_d->f = &change_obj_max;
-	if (!(group = add_vector_choose(wid_d, "max", obj->min, group)))
+	if (!(group[1] = add_vector_choose_no_scale(wid_d, "max", obj->max, NULL)))
 		return (0);
 	wid_d->f = NULL;
 	/*is_limited = g_data->objs[index].limited == 1 ? TRUE : FALSE
@@ -58,10 +82,11 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 		return (create_limited_object_ui(wid_d, index))*/
 	wid_d->pos = crd;
 	g_data->ui->is_active = 1;
-	if (!(sw = switch_new(wid_d, group, is_limited, &switch_obj_limited)))
+	group[2] = group_join(group[0], group[1]);
+	if (!(sw = switch_new(wid_d, group[2], is_limited, &switch_obj_limited)))
 		return (0);
 	if (is_limited == FALSE)
-		switch_obj_limited(sw, FALSE, group);
+		switch_obj_limited(sw, FALSE, group[2]);
 	g_data->ui->is_active = 0;
 	return (1);
 }

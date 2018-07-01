@@ -39,8 +39,8 @@ static int	uv_mapping_plane(t_obj obj, t_inter *inter)
 	vp = vec_substract(inter->ip, obj.pos);
 	vp_len = get_length(vp);
 	vp = vec_normalize(vp);
-	u = (int)(dot_product(vp, obj.y_dir) * vp_len) + (obj.tex_size.x / 2);
-	v = (int)(dot_product(vp, obj.z_dir) * vp_len) + (obj.tex_size.y / 2);
+	u = (int)(dot_product(vp, obj.y_dir) * vp_len) + (obj.tex->size.x / 2);
+	v = (int)(dot_product(vp, obj.z_dir) * vp_len) + (obj.tex->size.y / 2);
 	//u -= 1000;
 	//v += 1000;
 	//u %= obj.tex_size.x;

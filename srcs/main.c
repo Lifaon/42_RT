@@ -54,7 +54,8 @@ int		main(int ac, char **av)
 	if (create_ui(av[0]) == 0)
 		return (0);
 	//g_data->aa = 4;
-	parse_texture(&g_data->objs[0], "./textures/test.gif");
+	parse_texture(&g_data->objs[0], "./textures/bricks.png");
+	parse_texture(&g_data->objs[5], "./textures/rainbow.png");
 	put_gdk_image();
 	//print_parsed_data(data);*/
 	ft_event(g_data);

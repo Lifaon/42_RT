@@ -12,35 +12,50 @@
 
 #include "parse.h"
 
+static int		add_alpha(t_obj * obj, t_pixelbuf **pxbuf)
+{
+	uint8_t		*tmp;
+	GtkWidget	*img;
+	t_point		size;
+	t_color		color;
+	int			i;
+
+	if (!(tmp = (uint8_t*)malloc(4 * (*pxbuf)->size.x * (*pxbuf)->size.y)))
+		return (0);
+	tmp = memcpy(tmp, (*pxbuf)->pxl, 4 * (*pxbuf)->size.x * (*pxbuf)->size.y);
+	img = (*pxbuf)->widget;
+	size = (*pxbuf)->size;
+	pixelbuf_free(pxbuf);
+	*pxbuf = pixelbuf_new(size, img);
+	obj->tex = *pxbuf;
+	i = -1;
+	while (++i < (*pxbuf)->size.x * (*pxbuf)->size.y)
+	{
+		color.argb.a = 255;
+		color.argb.r = tmp[i * 3];
+		color.argb.g = tmp[(i * 3) + 1];
+		color.argb.b = tmp[(i * 3) + 2];
+		(*pxbuf)->pxl[i] = color.c;
+	}
+	return (1);
+}
+
 void	parse_texture(t_obj *obj, char *file_name)
 {
 	t_pixelbuf	*pxbuf;
-	uint8_t		*tmp;
-	int			i;
 
 	if (!(pxbuf = pixelbuf_new_from_file(file_name)))
 		return ;
-	if (!(obj->tex = (t_color *)malloc(32 * pxbuf->size.x * pxbuf->size.y)))
+	/*if (!(obj->tex = (t_color *)malloc(32 * pxbuf->size.x * pxbuf->size.y)))
 	{
 		pixelbuf_free(&pxbuf);
 		return ;
-	}
-	obj->tex_size.x = pxbuf->size.x;
-	obj->tex_size.y = pxbuf->size.y;
-	i = -1;
-	if (gdk_pixbuf_get_has_alpha(pxbuf->buf))
-		while (++i < pxbuf->size.x * pxbuf->size.y)
-			obj->tex[i].c = pxbuf->pxl[i];
-	else
-	{
-		tmp = (uint8_t *)pxbuf->pxl;
-		while (++i < pxbuf->size.x * pxbuf->size.y)
-		{
-			obj->tex[i].argb.a = 255;
-			obj->tex[i].argb.r = tmp[i * 3];
-			obj->tex[i].argb.g = tmp[(i * 3) + 1];
-			obj->tex[i].argb.b = tmp[(i * 3) + 2];
-		}
-	}
-	pixelbuf_free(&pxbuf);
+	}*/
+	obj->tex = pxbuf;
+	//obj->tex_size.x = pxbuf->size.x;
+	//obj->tex_size.y = pxbuf->size.y;
+	if (gdk_pixbuf_get_has_alpha(pxbuf->buf) == FALSE)
+		add_alpha(obj, &pxbuf);
+		//while (++i < pxbuf->size.x * pxbuf->size.y)
+		//	obj->tex[i].c = pxbuf->pxl[i];
 }

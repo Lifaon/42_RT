@@ -124,7 +124,8 @@ typedef struct		s_obj
 	t_vec			min;
 	t_vec			max;
 	t_vec			oc;
-	t_color			*tex;
+	//t_color			*tex;
+	t_pixelbuf			*tex;
 	t_point			tex_size;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);

@@ -30,7 +30,8 @@
 			"position" : [0, 0, 1000],
 			"angle" : [90, 0, 0],
 			"color" : [0, 180, 180],
-			"specular" : 0
+			"specular" : 0,
+			"refraction's pourcentage" : 80
 		},
 		"plane" :
 		{

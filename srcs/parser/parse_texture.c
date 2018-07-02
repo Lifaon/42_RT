@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 04:26:11 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/30 05:06:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/02 02:22:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int		add_alpha(t_obj * obj, t_pixelbuf **pxbuf)
 	t_color		color;
 	int			i;
 
-	if (!(tmp = (uint8_t*)malloc(4 * (*pxbuf)->size.x * (*pxbuf)->size.y)))
-		return (0);
-	tmp = memcpy(tmp, (*pxbuf)->pxl, 4 * (*pxbuf)->size.x * (*pxbuf)->size.y);
+	if (!(tmp = (uint8_t*)malloc(3 * (*pxbuf)->size.x * (*pxbuf)->size.y)))
+		return (-1);
+	tmp = memcpy(tmp, (*pxbuf)->pxl, 3 * (*pxbuf)->size.x * (*pxbuf)->size.y);
 	img = (*pxbuf)->widget;
 	size = (*pxbuf)->size;
 	pixelbuf_free(pxbuf);
@@ -37,7 +37,8 @@ static int		add_alpha(t_obj * obj, t_pixelbuf **pxbuf)
 		color.argb.b = tmp[(i * 3) + 2];
 		(*pxbuf)->pxl[i] = color.c;
 	}
-	return (1);
+	free(tmp);
+	return (0);
 }
 
 void	parse_texture(t_obj *obj, char *file_name)
@@ -46,16 +47,8 @@ void	parse_texture(t_obj *obj, char *file_name)
 
 	if (!(pxbuf = pixelbuf_new_from_file(file_name)))
 		return ;
-	/*if (!(obj->tex = (t_color *)malloc(32 * pxbuf->size.x * pxbuf->size.y)))
-	{
-		pixelbuf_free(&pxbuf);
-		return ;
-	}*/
 	obj->tex = pxbuf;
-	//obj->tex_size.x = pxbuf->size.x;
-	//obj->tex_size.y = pxbuf->size.y;
-	if (gdk_pixbuf_get_has_alpha(pxbuf->buf) == FALSE)
-		add_alpha(obj, &pxbuf);
-		//while (++i < pxbuf->size.x * pxbuf->size.y)
-		//	obj->tex[i].c = pxbuf->pxl[i];
+	if (gdk_pixbuf_get_has_alpha(pxbuf->buf) == FALSE \
+		&& add_alpha(obj, &pxbuf))
+			pixelbuf_free(&obj->tex);
 }

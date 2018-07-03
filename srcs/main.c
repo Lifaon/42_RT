@@ -6,14 +6,13 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 04:12:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 04:10:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "ui.h"
 #include <time.h>//
-#include "libft.h"//
 
 void			get_time(void)
 {
@@ -40,23 +39,17 @@ static int ft_exit(void)
 	return (0);
 }
 
-void	parse_texture(t_obj *obj, char *file_name);
-
 int		main(int ac, char **av)
 {
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
 	g_data = data_init(ac, av);
-	get_oc();
-//	g_data->objs[0].shiny = 1;
-//	g_data->objs[0].shin_pourcentage = 1;
 	gtk_init(&ac, &av);
+	parse(g_data, av[1]);
+	get_oc();
 	if (create_ui(av[0]) == 0)
 		return (0);
-	//g_data->aa = 4;
-	//parse_texture(&g_data->objs[1], "./textures/paysage.jpg");
 	put_gdk_image();
-	//print_parsed_data(data);*/
 	ft_event(g_data);
 	return (0);
 }

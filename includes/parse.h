@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/30 04:41:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 02:50:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		brackets(char *str);
 void	parse_cameras(t_data *data, char *str, int *index);
 void	parse_lights(t_data *data, char *str, int *index);
 void	parse_objects(t_data *data, char *str, int *index);
-void	parse_texture(t_obj *obj, char *file_name);
 void	get_vp_up_left(t_camera *cam);
 void	get_dir(t_obj *obj);
 /*
@@ -70,8 +69,10 @@ int		get_nb_objects(char *str);
 */
 
 double	parse_nb(char *str, int *index);
+t_point	parse_point(char *str, int *index);
 t_vec	parse_vec(char *str, int *index);
 t_color	parse_color(char *str, int *index);
+void	parse_texture(t_obj *obj, char *str, int *index);
 /*
 **	parse_nb(), parse_vec() and parse_color() take a string and return either
 **	a double, a t_vec, or a t_color that matches what is written in the string.

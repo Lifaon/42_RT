@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/29 01:34:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:35:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,8 @@ static int		blocked(t_data *data, t_inter inter, t_vec *light, double *dot)
 	*dot = dot_product(inter.normal, *light);
 	if (*dot <= 0)
 		return (1);
-	inter.min_dist = 0.01;
-	while (++i < data->nb_objects)
-	{
-		inter.oc = vec_substract(inter.ip, data->objs[i].pos);
-		if (data->objs[i].intersect(data->objs[i], *light, &inter) && \
-			inter.t < len)
-			return (1);
-	}
+	if (other_hit(data, *light, &inter) && inter.t < len)
+		return (1);
 	return (0);
 }
 
@@ -41,10 +35,7 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	t_vec	light_vec;
 	double	dot;
 
-	if (data->objs[inter->obj_i].tex)
-		color.c = uv_mapping(data->objs[inter->obj_i], inter);
-	else
-		color = data->objs[inter->obj_i].color;
+	color = inter->color;
 	inter->origin = inter->ip;
 	ret = ambient_shading(color, light);
 	light_vec = vec_substract(light.pos, inter->ip);

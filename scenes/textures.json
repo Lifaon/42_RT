@@ -37,13 +37,15 @@
 		},
 		"cone" :
 		{
-			"position" : [800, 200, 1500],
+			"position" : [600, -800, 1500],
 			"color" : [255, 160, 0],
 			"angle" : [-10, 0, -10],
 			"radius" : 10,
 			"specular" : 1,
 			"texture" : "textures/rainbow.png",
-			"tex_scale" : 5
+			"tex_scale" : 2,
+			"tex_pos" : [1500],
+			"tex_repeat" : 0
 		},
 		"plane" :
 		{
@@ -52,7 +54,8 @@
 			"color" : [0, 180, 180],
 			"specular" : 0,
 			"texture" : "textures/bricks.png",
-			"tex_scale" : 0.3
+			"tex_scale" : 0.5,
+			"tex_repeat" : 1
 		}
 	}
 }

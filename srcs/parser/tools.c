@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 04:16:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:41:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_point	parse_point(char *str, int *index)
 	if (!str[i])
 		return (ret);
 	ret.x = ft_atoi(str + (++i));
-	while (str[++i] && str[i] != ']' && str[i] != ':');
-	if (str[i] != ':')
+	while (str[++i] && str[i] != ']' && str[i] != ',');
+	if (str[i] != ',')
 		return (ret);
 	ret.y = ft_atoi(str + (++i));
 	while (str[++i] && str[i] != ']');

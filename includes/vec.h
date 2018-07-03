@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/29 01:28:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 18:48:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 **	Functions to call for each ray.
 */
 t_vec	compute_ray(t_vec vp);
-int		hit(t_data *data, t_vec ray, t_inter *inter);
+int		first_hit(t_data *data, t_vec ray, t_inter *inter);
+int		other_hit(t_data *data, t_vec ray, t_inter *inter);
 
 /*
 **	Intersection functions.
@@ -40,7 +41,7 @@ int		limit_rectangle(t_obj plane, t_vec ray, t_inter *inter);
 int		limit_circle(t_obj plane, t_vec ray, t_inter *inter);
 int		limit_cyl(t_obj cyl, t_vec ray, t_inter *inter);
 int		limit_cone(t_obj cone, t_vec ray, t_inter *inter);
-
+int		limit_tex(t_obj obj, t_vec ray, t_inter *inter);
 
 /*
 **	Functions to get the normal of the objects at the intersection point.
@@ -67,7 +68,13 @@ t_vec	vec_normalize(t_vec u);
 double	get_length(t_vec u);
 double	dot_product(t_vec u, t_vec v);
 
-int		uv_mapping(t_obj obj, t_inter *inter);
+/*
+**	UV mapping for textures.
+*/
+void	uv_mapping_sphere(t_obj obj, t_vec ray, t_inter *inter);
+void	uv_mapping_plane(t_obj obj, t_vec ray, t_inter *inter);
+void	uv_mapping_cyl_cone(t_obj obj, t_vec ray, t_inter *inter);
+int		uv_mapping(t_obj obj, t_vec ray, t_inter *inter);
 
 /*
 ** Rotations

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 04:17:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:16:39 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	init_one_object(t_data *data, int index)
 	data->objs[index].tex = NULL;
 	data->objs[index].tex_pos = (t_point){0, 0};
 	data->objs[index].tex_scale = 1;
-	data->objs[index].tex_repeat = 1;
+	data->objs[index].tex_repeat = 0;
+	data->objs[index].tex_limit = 1;
 	data->objs[index].shiny = 0;
 	data->objs[index].shin_pourcentage = 0.5;
-	data->objs[index].tex_repeat = 1;
 	data->objs[index].intersect = intersect_sphere;
 	data->objs[index].limit = limit_axe;
 	data->objs[index].get_normal = get_sphere_normal;

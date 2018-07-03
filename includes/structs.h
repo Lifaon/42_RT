@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 03:11:03 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 18:47:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct		s_inter
 	double			t;
 	double			delta;
 	double			min_dist;
+	t_point			uv;
+	t_color			color;
 	t_color			spec;
 	t_vec			ip;
 	t_vec			normal;
@@ -128,6 +130,7 @@ typedef struct		s_obj
 	t_point			tex_pos;
 	double			tex_scale;
 	int				tex_repeat;
+	int				tex_limit;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);

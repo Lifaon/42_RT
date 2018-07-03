@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 05:24:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:54:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static void	which_light_variable(t_light *light, char *str, int *index)
 		light->r = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"ambient\"", index))
 		light->ambi = parse_nb(str + *index, index);
-	else if (read_quotes(str + *index, "\"direction\"", index))
-	{
-		light->dir = parse_vec(str + *index, index);
-		light->is_para = (light->dir.x != 0.0 || light->dir.y != 0.0 \
-			|| light->dir.z != 0.0) ? 1 : 0;
-	}
+	else if (read_quotes(str + *index, "\"angle\"", index))
+		light->angle = parse_vec(str + *index, index);
+	else if (read_quotes(str + *index, "\"is_para\"", index))
+		light->is_para = parse_nb(str + *index, index);
 }
 
 static void	parse_light(t_light *light, char *str, int *index)
@@ -47,6 +45,7 @@ static void	parse_light(t_light *light, char *str, int *index)
 	}
 	if (light->ambi > 1 || light->ambi < 0)
 		light->ambi = light->ambi > 1 ? 1 : 0;
+	light->dir = all_rotations(light->dir, light->angle);
 	light->color_neg = substract_colors((t_color){.c = 0xFFFFFF}, light->color);
 	*index += i;
 }

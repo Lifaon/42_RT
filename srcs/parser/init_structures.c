@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:16:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:56:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	init_one_light(t_data *data, int index)
 	data->lights[index].disabled = 0;
 	data->lights[index].r = 1;
 	data->lights[index].ambi = 0.3;
-	data->lights[index].pos = (t_vec){0.0, 0.0, 0.0};
-	data->lights[index].dir = (t_vec){0.0, 0.0, 0.0};
+	data->lights[index].pos = (t_vec){0, 0, 0};
+	data->lights[index].dir = (t_vec){0, 0, -1};
+	data->lights[index].angle = (t_vec){0, 0, 0};
 	data->lights[index].color.c = 0xFFFFFFFF;
 }
 

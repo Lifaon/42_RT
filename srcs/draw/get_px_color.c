@@ -6,24 +6,27 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:35:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 00:05:41 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static int		blocked(t_data *data, t_inter inter, t_vec *light, double *dot)
+static int		blocked(t_light light, t_inter inter, t_vec *vec, double *dot)
 {
 	int		i;
 	double	len;
 
 	i = -1;
-	len = get_length(*light);
-	*light = vec_normalize(*light);
-	*dot = dot_product(inter.normal, *light);
+	if (light.is_para)
+		len = INFINITY;
+	else
+		len = get_length(*vec);
+	*vec = vec_normalize(*vec);
+	*dot = dot_product(inter.normal, *vec);
 	if (*dot <= 0)
 		return (1);
-	if (other_hit(data, *light, &inter) && inter.t < len)
+	if (other_hit(g_data, *vec, &inter) && inter.t < len)
 		return (1);
 	return (0);
 }
@@ -38,8 +41,11 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	color = inter->color;
 	inter->origin = inter->ip;
 	ret = ambient_shading(color, light);
-	light_vec = vec_substract(light.pos, inter->ip);
-	if (blocked(data, *inter, &light_vec, &dot))
+	if (light.is_para)
+		light_vec = light.dir;
+	else
+		light_vec = vec_substract(light.pos, inter->ip);
+	if (blocked(light, *inter, &light_vec, &dot))
 		return (ret);
 	ret = add_colors(ret, diffuse_shading(color, light, dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\

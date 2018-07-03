@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 18:47:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:43:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct		s_light
 	double			ambi;
 	t_vec			pos;
 	t_vec			dir;
+	t_vec			angle;
 	t_color			color;
 	t_color			color_neg;
 }					t_light;

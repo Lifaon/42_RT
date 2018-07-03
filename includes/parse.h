@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 02:50:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:54:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	exit_all(t_data *data);
 
 t_vec	vec_normalize(t_vec u);
 t_vec	vec_substract(t_vec u, t_vec v);
+t_vec	all_rotations(t_vec ray, t_vec angle);
 t_color	substract_colors(t_color col1, t_color col2);
 
 #endif

@@ -11,10 +11,14 @@
 	[
 		{
 			"position" : [-800, 500, 500],
+			"angle" : [30, -30, 0],
+			"is_para" : 1,
 			"ambient" : 0.4
 		},
 		{
 			"position" : [-700, 600, 500],
+			"angle" : [30, -20, 0],
+			"is_para" : 1,
 			"ambient" : 0.4
 		}
 	],

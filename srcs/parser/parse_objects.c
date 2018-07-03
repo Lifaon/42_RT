@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 02:50:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:55:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->tex_scale = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"tex_repeat\"", index))
 		object->tex_repeat = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"tex_limit\"", index))
+		object->tex_limit = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"reflection's pourcentage\"", index))
 	{
 		object->shiny = 1;

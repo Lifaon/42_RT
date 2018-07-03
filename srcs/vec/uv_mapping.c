@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:44:26 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:59:54 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	uv_mapping_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 
 int		uv_mapping(t_obj obj, t_vec ray, t_inter *inter)
 {
-	if (obj.tex_limit && !obj.tex_repeat && obj.obj_type != SPHERE)
-		return (obj.tex->pxl[inter->uv.x + (inter->uv.y * obj.tex->size.x)]);
 	if (obj.obj_type == SPHERE)
 		uv_mapping_sphere(obj, ray, inter);
 	else if (obj.obj_type == PLANE)

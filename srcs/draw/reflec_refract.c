@@ -72,8 +72,8 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret)
 	angle_i = acos(dot_product(ray, inter.normal));
 	angle_t = asin((n_i * sin(angle_i)) / n_t);
 	// Loi de Snell-Descartes.
-	r = vec_substract(vec_multiply(vec_add(ray, vec_multiply(inter.normal, \
-						cos(angle_i))), n_i / n_t), vec_multiply(inter.normal, cos(angle_t)));
+	r = vec_normalize(vec_substract(vec_multiply(vec_add(ray, vec_multiply(inter.normal, \
+						cos(angle_i))), n_i / n_t), vec_multiply(inter.normal, cos(angle_t))));
 	i = -1;
 	ip = vec_add(ip, vec_multiply(r, 0.3));
 	while (++i < data->nb_objects)

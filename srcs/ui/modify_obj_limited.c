@@ -18,7 +18,7 @@ void	switch_obj_limited(GtkWidget *widget, gboolean state,  gpointer param)
 		return ;
 	if (state == FALSE)
 		g_data->objs[g_data->ui->page_obj].limited = -1;
-	set_group_widget_active(GTK_SIZE_GROUP(param), state);
+	set_child_widget_active(GTK_CONTAINER(param), state);
 }
 
 void			change_obj_min(GtkWidget *widget, gpointer param)

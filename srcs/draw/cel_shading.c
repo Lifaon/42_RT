@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 03:38:24 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/04 06:19:15 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 17:11:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ static int	draw_grey_pixel(t_vec vp)
 {
 	t_inter	inter;
 	t_vec	ray;
-	int		i;
 	int		t;
-	int		ret;
 
-	i = -1;
 	ray = compute_ray(vp);
 	inter.min_dist = 0.01;
-	ret = first_hit(g_data, ray, &inter);
+	if (!(first_hit(g_data, ray, &inter)))
+		return (0xFFFFFFFF);
+	t = 0;
 	if (g_data->objs[inter.obj_i].obj_type != PLANE)
-		t = inter.t == inter.t1 ? inter.t < inter.t2 : inter.t < inter.t1;
-	else
-		t = 0;
-	if (ret)
-		return (inter.obj_i * 2 + t);
-	return (0xFFFFFFFF);
+	{
+		inter.normal = g_data->objs[inter.obj_i].get_normal(\
+			g_data->objs[inter.obj_i], inter);
+		if (dot_product(ray, inter.normal) <= 0)
+			t = 1;
+	}
+	return (inter.obj_i * 2 + t);
 }
 
 static void	*draw_grey_thread(void *thr)
@@ -99,9 +99,9 @@ void	fill_edges(float *edges, const uint32_t *pxl, const t_point size)
 				&& (crd.y == 0 || (pxl[i] == pxl[i - size.x])) \
 				&& (crd.x == size.x - 1 || (pxl[i] == pxl[i + 1])) \
 				&& (crd.y == size.y - 1 || (pxl[i] == pxl[i + size.x])))
-				edges[i] = 0;
+				edges[i] = 0.;
 			else
-				edges[i] = 1;
+				edges[i] = 1.;
 			++i;
 		}
 	}
@@ -125,7 +125,7 @@ void	cel_shading(void)
 	i = -1;
 	while (++i < total_size)
 	{
-		if (edges[i])
+		if (edges[i] == 1.)
 			g_data->img->pxl[i] = 0xFF000000;
 	}
 	free(edges);

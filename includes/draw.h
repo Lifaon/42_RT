@@ -44,6 +44,20 @@ void	depth_of_field(t_data *data, t_vec point);
 void	blur(t_data *data);
 void	sepia(t_data *data);
 void	black_and_white(t_data *data);
+double	noise_3D_setup(t_perlin p);
+
+/*
+** Functions used for perlin noise/noises
+*/
+void		perlin_tab1(t_perlin p);
+void		perlin_tab6(t_perlin p);
+void		perlin_tab11(t_perlin p);
+double		dot_perlin(const int *v, const double x, const double y, \
+			const double z);
+int			*get_gradian(int x, int y, int z, t_perlin p);
+double		quintic_poly(const double t);
+double		linear_interpolation(double a, double b, double t);
+void		int_frac(double value, int *int_part, double *frac_part);
 
 /*
 **	Functions used for color management.

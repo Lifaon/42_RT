@@ -110,6 +110,40 @@ typedef struct		s_light
 **	r = radius of the light source ; pos = position ; dir = direction.
 */
 
+typedef struct		s_perlin
+{
+	int				x1;
+	int				y1;
+	int				z1;
+	double			x;
+	double			y;
+	double			z;
+	double			x_pos;
+	double			y_pos;
+	double			z_pos;
+	double			g000;
+	double			g001;
+	double			g010;
+	double			g011;
+	double			g100;
+	double			g101;
+	double			g110;
+	double			g111;
+	double			u;
+	double			v;
+	double			w;
+	double			x00;
+	double			x10;
+	double			x01;
+	double			x11;
+	double			xy0;
+	double			xy1;
+	double			xyz;
+	double			perlin_stain;
+	unsigned char	perm[298];
+	int				grad3[16][3];
+}					t_perlin;
+
 typedef struct		s_obj
 {
 	int				obj_type;

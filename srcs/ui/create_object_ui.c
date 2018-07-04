@@ -20,6 +20,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(5, 0);
 	wid_d->f = &change_obj_angle;
 	vec = obj->angle;
+	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
 	if (!(group = add_vector_choose(wid_d, "angle rotation", vec, NULL)))
 		return (0);
 	wid_d->pos = pt_set(5, 2);
@@ -66,16 +67,19 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	return (construct_phase_2(wid_d, obj));
 }
 
-static int		create_new_obj_button(GtkWidget *box)
+static GtkWidget 	*create_scrollable(GtkWidget *child)
 {
-	GtkWidget		*button;
+	GtkAdjustment	*v_adj;
+	GtkWidget 		*sbar;
 
-	if (!(button = gtk_button_new_with_label("add object")))
-		return (0);
-	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
-	g_signal_connect(G_OBJECT(button), "clicked",
-			G_CALLBACK(add_one_obj), NULL);
-	return (1);
+	if (!(v_adj = gtk_adjustment_new(0, 0, 1020, 10, 100, 20)))
+		return (NULL);
+	if (!(sbar = gtk_scrolled_window_new(NULL, v_adj)))
+		return (NULL);
+	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar), g_data->img->size.y - 200);
+	gtk_scrolled_window_set_overlay_scrolling(GTK_SCROLLED_WINDOW(sbar), FALSE);
+	gtk_container_add(GTK_CONTAINER(sbar), child);
+	return (sbar);
 }
 
 int				create_object_tab(GtkWidget *tab_obj, int index)
@@ -83,6 +87,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	GtkWidget		*l_title;
 	t_wid_data		wid_d;
 	char			*str;
+	GtkWidget 		*sbar;
 
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(-180, 180))))
 		return (0);
@@ -90,14 +95,16 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 		return (0);
 	if (!(l_title = gtk_label_new(str)))
 		return (0);
-	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_obj), wid_d.grid,
-			l_title)) < 0)
+	if (!(sbar = create_scrollable(wid_d.grid)))
 		return (0);
-	gtk_widget_show_all(tab_obj);
+	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_obj), sbar,
+			l_title)) < 0)
+	return (0);
 	while (g_data->ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
+	gtk_widget_show_all(tab_obj);
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
-		return (0);
+		return (0);	
 	ft_strdel(&str);
 	return (1);
 }
@@ -106,6 +113,7 @@ int				create_object_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	GtkWidget		*box;
+		GtkWidget	*button;
 	int				i;
 
 	if (!(g_data->ui->tab_objs = gtk_notebook_new()))
@@ -113,7 +121,11 @@ int				create_object_ui(GtkWidget *tab)
 	g_signal_connect(G_OBJECT(g_data->ui->tab_objs), "switch-page",
 			G_CALLBACK(change_page_obj), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-	create_new_obj_button(box);
+	if (!(button = gtk_button_new_with_label("add object")))
+		return (0);
+	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
+	g_signal_connect(G_OBJECT(button), "clicked",
+			G_CALLBACK(add_one_obj), NULL);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_objs), TRUE);
 	i = -1;
 	while (++i < g_data->nb_objects)

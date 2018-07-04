@@ -50,7 +50,6 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	t_light		*lights_new;
 	int			i;
 
-	check_ui_active(0);
 	i = -1;
 	g_data->nb_lights += 1;
 	g_data->nb_lights_on += 1;
@@ -62,7 +61,7 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	init_one_light(g_data, i);
 	create_light_tab(g_data->ui->tab_light, i);
 	gtk_widget_show_all(g_data->win);
-	check_ui_active(1);
+	g_data->ui->is_active = 1;
 }
 
 void			change_light_pos(GtkWidget *widget, gpointer param)

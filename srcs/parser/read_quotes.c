@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_all.c                                         :+:      :+:    :+:   */
+/*   read_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/30 05:45:20 by mlantonn         ###   ########.fr       */
+/*   Created: 2018/07/03 02:37:17 by mlantonn          #+#    #+#             */
+/*   Updated: 2018/07/03 02:37:25 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "parse.h"
 
-
-void	exit_all(t_data *data)
+int		read_quotes(char *str, char *word, int *index)
 {
-	if (data->nb_objects)
+	int i;
+
+	i = 0;
+	while (str[i] && word[i])
 	{
-		while (data->nb_objects--)
-			if (data->objs[data->nb_objects].tex)
-				free(data->objs[data->nb_objects].tex);
-		free(data->objs);
+		if (str[i] != word[i])
+			return (0);
+		++i;
 	}
-	if (data->nb_lights)
-		free(data->lights);
-	if (data->ui)
-	{
-		ft_strdel(&data->ui->path);
-		free(data->ui);
-	}
-	exit(EXIT_SUCCESS);
+	*index += i;
+	return (1);
 }

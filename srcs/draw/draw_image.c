@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/28 18:22:05 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/03 18:49:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 		if (rec == 0)
 			ray = compute_ray(vp);
 		inter.min_dist = 0.01;
-		if (hit(data, ray, &inter))
+		if (first_hit(data, ray, &inter))
 		{
 			ret = get_px_color(data, inter);
 			if (data->objs[inter.obj_i].shiny == 1)

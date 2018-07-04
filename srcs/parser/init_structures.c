@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 19:00:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:56:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	init_one_light(t_data *data, int index)
 	data->lights[index].disabled = 0;
 	data->lights[index].r = 1;
 	data->lights[index].ambi = 0.3;
-	data->lights[index].pos = (t_vec){0.0, 0.0, 0.0};
-	data->lights[index].dir = (t_vec){0.0, 0.0, 0.0};
+	data->lights[index].pos = (t_vec){0, 0, 0};
+	data->lights[index].dir = (t_vec){0, 0, -1};
+	data->lights[index].angle = (t_vec){0, 0, 0};
 	data->lights[index].color.c = 0xFFFFFFFF;
 }
 
@@ -69,6 +70,12 @@ void	init_one_object(t_data *data, int index)
 	data->objs[index].min = (t_vec){-INFINITY, -INFINITY, -INFINITY};
 	data->objs[index].max = (t_vec){INFINITY, INFINITY, INFINITY};
 	data->objs[index].tex = NULL;
+	data->objs[index].tex_pos = (t_point){0, 0};
+	data->objs[index].tex_scale = 1;
+	data->objs[index].tex_repeat = 0;
+	data->objs[index].tex_limit = 1;
+	data->objs[index].shiny = 0;
+	data->objs[index].shin_pourcentage = 0.5;
 	data->objs[index].intersect = intersect_sphere;
 	data->objs[index].limit = limit_axe;
 	data->objs[index].get_normal = get_sphere_normal;

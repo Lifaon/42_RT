@@ -6,15 +6,15 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/23 20:00:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 16:14:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_W 700
-# define WIN_H 550
+# define WIN_W 900
+# define WIN_H 700
 /*
 **	Size of the window created.
 */

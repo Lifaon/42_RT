@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 05:33:12 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:54:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ int		get_nb_objects(char *str);
 */
 
 double	parse_nb(char *str, int *index);
+t_point	parse_point(char *str, int *index);
 t_vec	parse_vec(char *str, int *index);
 t_color	parse_color(char *str, int *index);
+void	parse_texture(t_obj *obj, char *str, int *index);
 /*
 **	parse_nb(), parse_vec() and parse_color() take a string and return either
 **	a double, a t_vec, or a t_color that matches what is written in the string.
@@ -96,6 +98,7 @@ void	exit_all(t_data *data);
 
 t_vec	vec_normalize(t_vec u);
 t_vec	vec_substract(t_vec u, t_vec v);
+t_vec	all_rotations(t_vec ray, t_vec angle);
 t_color	substract_colors(t_color col1, t_color col2);
 
 #endif

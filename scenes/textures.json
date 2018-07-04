@@ -1,0 +1,65 @@
+{
+	"cameras" :
+	[
+		{
+			"fov" : 20,
+			"position" : [200, 0, -3000],
+			"angle" : [0, 0, 0]
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [-800, 500, 500],
+			"angle" : [30, -30, 0],
+			"is_para" : 1,
+			"ambient" : 0.4
+		},
+		{
+			"position" : [-700, 600, 500],
+			"angle" : [30, -20, 0],
+			"is_para" : 1,
+			"ambient" : 0.4
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [-300, 200, 1000],
+			"radius" : 100,
+			"specular" : 0,
+			"texture" : "textures/world.jpg"
+		},
+		"cylinder" :
+		{
+			"position" : [0, 0, 1500],
+			"color" : [255, 160, 0],
+			"radius" : 200,
+			"specular" : 0,
+			"texture" : "textures/rocks.png"
+		},
+		"cone" :
+		{
+			"position" : [600, -800, 1500],
+			"color" : [255, 160, 0],
+			"angle" : [-10, 0, -10],
+			"radius" : 10,
+			"specular" : 1,
+			"texture" : "textures/rainbow.png",
+			"tex_scale" : 2,
+			"tex_pos" : [1500],
+			"tex_repeat" : 0
+		},
+		"plane" :
+		{
+			"position" : [0, 0, 1750],
+			"angle" : [90, 0, 0],
+			"color" : [0, 180, 180],
+			"specular" : 0,
+			"texture" : "textures/bricks.png",
+			"tex_scale" : 0.5,
+			"tex_repeat" : 1
+		}
+	}
+}

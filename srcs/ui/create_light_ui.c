@@ -60,7 +60,7 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
 		return (0);
 	wid_d->pos = pt_set(1, 2);
-	wid_d->f = &change_light_dir;
+	wid_d->f = &change_light_angle;
 	vec = light->dir;
 	if (!(group = add_vector_choose(wid_d, "direction", vec, NULL)))
 		return (0);

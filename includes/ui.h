@@ -111,7 +111,7 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 */
 void			add_one_light(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
-void			change_light_dir(GtkWidget *widget, gpointer param);
+void			change_light_angle(GtkWidget *widget, gpointer param);
 void			change_light_r(GtkWidget *widget, gpointer param);
 void			change_light_color(GtkWidget *widget, gpointer param);
 void			change_light_ambi(GtkWidget *widget, gpointer param);

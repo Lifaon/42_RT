@@ -18,7 +18,6 @@ void	switch_obj_limited(GtkWidget *widget, gboolean state,  gpointer param)
 		return ;
 	if (state == FALSE)
 		g_data->objs[g_data->ui->page_obj].limited = -1;
-	ft_putstr("ah ah\n");
 	set_group_widget_active(GTK_SIZE_GROUP(param), state);
 }
 

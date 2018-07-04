@@ -77,14 +77,14 @@ void			change_light_pos(GtkWidget *widget, gpointer param)
 	change_vec_from_scale(group, vec);
 }
 
-void			change_light_dir(GtkWidget *widget, gpointer param)
+void			change_light_angle(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
 	if (g_data->ui->is_active == 0)
 		return ;
-	vec = &g_data->lights[g_data->ui->page_light].dir;
+	vec = &g_data->lights[g_data->ui->page_light].angle;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
 }

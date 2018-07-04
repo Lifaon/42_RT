@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/29 01:31:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 21:27:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_color	ambient_shading(t_color color, t_light light)
 
 t_color	diffuse_shading(t_color color, t_light light, double dot)
 {
+	if (dot >= 0.5)
+		return (substract_colors(col_multiply(color, 0.5), light.color_neg));
+	else
+		dot = (double)(int)((dot) * 10) / 10;
 	return (substract_colors(col_multiply(color, dot), light.color_neg));
 }
 
@@ -30,14 +34,16 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter)
 	t_vec	v;
 	double	dot;
 
-	ret.c = color.c;
-	ret = col_multiply(ret, obj.spec);
+	ret.c = 0xFF000000;
+	return (ret);
+	if (obj.spec == 0)
+		ret = col_multiply(ret, obj.spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\
 			light));
 	v = vec_normalize(vec_substract(g_data->cam.pos, inter.ip));
 	dot = dot_product(v, r);
-	if (dot > 0)
+	if (dot > 0.5)
 		ret = col_multiply(ret, pow(dot, obj.alpha));
 	else
 		ret.c = 0;

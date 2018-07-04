@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 23:43:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 00:51:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ typedef struct		s_data
 	t_camera		cam;
 	int				px;
 	int				aa;
+	int				cartoon;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);

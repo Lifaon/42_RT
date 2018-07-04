@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:41:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 01:28:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_color	parse_color_2(char *str, int *index, t_color ret, int i)
 	if (str[i] != ',')
 		return (ret);
 	nb = abs(ft_atoi(str + (++i)));
-	ft_putendl(str);
 	ret.argb.a = nb <= 255 ? nb : 255;
 	while (str[++i] && str[i] != ']');
 	if (str[i] == ',')

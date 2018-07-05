@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 01:47:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/05 03:22:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ t_data		*data_init(int ac, char **av)
 		return (NULL);
 	data->aa = 1;
 	data->px = 0;
+	data->cel_shading = 0;
+	data->depth_of_field = -1;
+	data->filter = FILTER_NONE;
 	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;

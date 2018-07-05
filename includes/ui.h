@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:49:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/05 22:25:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,9 @@ void			change_obj_max(GtkWidget *widget, gpointer param);
 void	get_int_from_scale(GtkWidget *widget, gpointer param);
 void	change_aa(GtkWidget *widget, gpointer param);
 void	change_px(GtkWidget *widget, gpointer param);
+t_vec	pitch(t_vec ray, t_vec angle);
+t_vec	yaw(t_vec ray, t_vec angle);
+t_vec	roll(t_vec ray, t_vec angle);
 
 /*
 ** => camera event

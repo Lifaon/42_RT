@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 22:38:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 01:19:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/05 05:03:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 
 void	put_gdk_image(void)
 {
-	!g_data->px ? draw_image() : draw_pixelated_image(g_data);
-	//!g_data->px ? depth_of_field(g_data, (t_vec){0, 200, 0}) : draw_pixelated_image(g_data);
+	if (g_data->px > 1)
+		draw_pixelated_image(g_data);
+	else if (g_data->cel_shading)
+		cel_shading();
+	else if (g_data->depth_of_field >= 0 \
+		&& g_data->depth_of_field < g_data->nb_objects)
+		depth_of_field();
+	else
+		draw_image();
+	if (g_data->filter == FILTER_BNW)
+		black_and_white(g_data);
+	else if (g_data->filter == FILTER_SEPIA)
+		sepia(g_data);
 	put_pixelbuf_to_widget(g_data->img, NULL);
 	gtk_widget_show_all(g_data->win);
 }

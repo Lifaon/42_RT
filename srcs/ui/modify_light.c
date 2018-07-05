@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:47:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/05 22:29:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,16 @@ void			change_light_angle(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
+	t_vec			dir;
 
 	if (g_data->ui->is_active == 0)
 		return ;
 	vec = &g_data->lights[g_data->ui->page_light].angle;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
+	dir = (t_vec){0, 0, -1};
+	dir = pitch(dir, *vec);
+	dir = yaw(dir, *vec);
+	dir = roll(dir, *vec);
+	g_data->lights[g_data->ui->page_light].dir = dir;
 }

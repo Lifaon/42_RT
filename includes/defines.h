@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 16:14:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/05 22:18:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,12 @@
 # define MODE_LESS_INF 2
 # define MODE_BOTH_INF 3
 /*
-** used to know what infinite value is acceptable for GtkEntry before 
+** used to know what infinite value is acceptable for GtkEntry before
 ** modifying g_data
 */
+
+# define FILTER_NONE 0
+# define FILTER_BNW 1
+# define FILTER_SEPIA 2
+
 #endif

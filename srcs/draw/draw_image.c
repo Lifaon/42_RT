@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 18:49:27 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/04 06:28:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret
 	return (ret);
 }
 
-static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
+static t_color	draw_pixel(t_data *data, t_vec vp)
 {
 	t_inter		inter;
 	t_vec		ray;
-	t_vec		r;
 	t_color		ret;
 	int			i;
 
@@ -70,8 +69,7 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 	if (data->aa <= 1)
 	{
 		ret.c = 0xFF000000;
-		if (rec == 0)
-			ray = compute_ray(vp);
+		ray = compute_ray(vp);
 		inter.min_dist = 0.01;
 		if (first_hit(data, ray, &inter))
 		{
@@ -99,11 +97,11 @@ static void	*draw_thread(void *thr)
 	while (++crd.y < ymax)
 	{
 		crd.x = 0;
+		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
 		while (++crd.x < WIN_W)
 		{
 			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
-			vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
-			pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp, 0).c);
+			pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
 		}
 	}
 	pthread_exit(NULL);

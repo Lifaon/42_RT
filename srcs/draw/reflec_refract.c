@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/02 22:03:10 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/06 00:12:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret
 		inter.t = t;
 		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
-		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].shin_pourcentage));
+		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].shiny));
 		if (data->objs[inter.obj_i].shiny && rec < 3)
 			ret = draw_reflec(data, inter, r, ++rec, ret);
 	}
@@ -80,7 +80,7 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 	}
 	eta = n_i / n_t;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
-	if (k < 0.0f) // nor refraction car full reflection interne 
+	if (k < 0.0f) // nor refraction car full reflection interne
 		return ((t_color){.c = 0xFF000000});
 	ip = inter.ip;
 	t = INFINITY;
@@ -105,7 +105,7 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 		inter.origin = ip;
 		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
-		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].trans_pourcentage));
+		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].trans));
 		if (inter.obj_i == obj_i_tmp)
 			ret = draw_refract(data, inter, r, ret, ++rec);
 	}

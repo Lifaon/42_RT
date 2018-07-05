@@ -62,6 +62,7 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	wid_d->pos = pt_set(1, 2);
 	wid_d->f = &change_light_angle;
 	vec = light->dir;
+	wid_d->min_max = ptdb_set(-180, 180);
 	if (!(group = add_vector_choose(wid_d, "direction", vec, NULL)))
 		return (0);
 	return (construct_phase_2(wid_d, light, group));

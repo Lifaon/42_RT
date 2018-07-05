@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/05 02:03:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/28 17:55:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,8 @@ typedef struct		s_obj
 	int				shiny;
 	double			shin_pourcentage;
 	int				trans;
-	double			refrac_index;
+	double			trans_pourcentage;
+	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong

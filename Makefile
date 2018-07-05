@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/05 03:18:06 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/06/27 20:09:47 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS  = draw/anti_aliasing.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		draw/put_gdk_image.c \
+		draw/reflec_refract.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \

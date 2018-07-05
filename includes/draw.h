@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/05 01:39:04 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/06/27 19:13:10 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	cel_shading(void);
 t_color	get_px_color(t_data *data, t_inter inter);
 t_color	anti_aliasing(t_data *data, t_vec vp);
 t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color r);
+t_color	draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int rec);
 
 /*
 **	Phong shading.

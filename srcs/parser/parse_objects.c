@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:55:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/02 21:50:17 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,15 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 	else if (read_quotes(str + *index, "\"reflection's pourcentage\"", index))
 	{
 		object->shiny = 1;
-		object->shin_pourcentage = parse_nb(str + *index, index);
+		object->shin_pourcentage = parse_nb(str + *index, index) / 100.00;
 	}
+	else if (read_quotes(str + *index, "\"refraction's pourcentage\"", index))
+	{
+		object->trans = 1;
+		object->trans_pourcentage = parse_nb(str + *index, index) / 100.00;
+	}
+	else if (read_quotes(str + *index, "\"ior\"", index))
+		object->ior = parse_nb(str + *index, index);
 }
 
 static void	parse_object(t_obj *object, char *str, int *index)

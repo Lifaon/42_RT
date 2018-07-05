@@ -59,7 +59,7 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 	t_vec		r;
 	t_vec		ip;
 	double		n_i = 1.0f;
-	double		n_t = 1.5f /*data->objs[inter->obj_i].ior pas encore dans le parser */;
+	double		n_t = 1.0f /*data->objs[inter->obj_i].ior pas encore dans le parser */;
 	double		angle_i;
 	double		angle_t;
 	double		t;
@@ -109,7 +109,7 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
 		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].trans_pourcentage));
-		if (data->objs[inter.obj_i].trans && rec < 3)
+		if (inter.obj_i == obj_i_tmp)
 			ret = draw_refract(data, inter, r, ret, ++rec);
 	}
 	else

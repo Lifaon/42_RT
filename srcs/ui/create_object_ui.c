@@ -70,14 +70,20 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 static GtkWidget 	*create_scrollable(GtkWidget *child)
 {
 	GtkAdjustment	*v_adj;
+	GtkAdjustment	*h_adj;
 	GtkWidget 		*sbar;
 
 	if (!(v_adj = gtk_adjustment_new(0, 0, 1020, 10, 100, 20)))
+		return (NULL);
+	if (!(h_adj = gtk_adjustment_new(0, 0, 0, 0, 0, 0)))
 		return (NULL);
 	if (!(sbar = gtk_scrolled_window_new(NULL, v_adj)))
 		return (NULL);
 	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar), g_data->img->size.y - 200);
 	gtk_scrolled_window_set_overlay_scrolling(GTK_SCROLLED_WINDOW(sbar), FALSE);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sbar),
+                                GTK_POLICY_NEVER,
+                                GTK_POLICY_AUTOMATIC);
 	gtk_container_add(GTK_CONTAINER(sbar), child);
 	return (sbar);
 }

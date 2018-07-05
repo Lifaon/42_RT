@@ -67,6 +67,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->trans = 1;
 		object->trans_pourcentage = parse_nb(str + *index, index) / 100.00;
 	}
+	else if (read_quotes(str + *index, "\"ior\"", index))
+		object->ior = parse_nb(str + *index, index);
 }
 
 static void	parse_object(t_obj *object, char *str, int *index)

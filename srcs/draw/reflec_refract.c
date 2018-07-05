@@ -59,7 +59,7 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 	t_vec		r;
 	t_vec		ip;
 	double		n_i = 1.0f;
-	double		n_t = 1.0f /*data->objs[inter->obj_i].ior pas encore dans le parser */;
+	double		n_t = data->objs[inter.obj_i].ior;
 	double		angle_i;
 	double		angle_t;
 	double		t;
@@ -87,9 +87,6 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int r
 	obj_i_tmp = inter.obj_i;
 	angle_i = acos(dot);
 	angle_t = asin((n_i * sin(angle_i)) / n_t);
-	// Loi de Snell-Descartes.
-	//r = vec_normalize(vec_substract(vec_multiply(vec_add(ray, vec_multiply(inter.normal, \
-						cos(angle_i))), n_i / n_t), vec_multiply(inter.normal, cos(angle_t))));
 	r = vec_normalize(vec_add(vec_multiply(ray, eta), vec_multiply(inter.normal, eta * dot - sqrt(k))));
 	i = -1;
 	ip = vec_add(ip, vec_multiply(r, 0.3));

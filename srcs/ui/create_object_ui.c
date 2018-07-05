@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_object_ui.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:53:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/05 20:26:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,13 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 		return (0);
 	if ((gtk_notebook_append_page(GTK_NOTEBOOK(tab_obj), sbar,
 			l_title)) < 0)
-	return (0);
+		return (0);
+	gtk_widget_show_all(tab_obj);
 	while (g_data->ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
 	gtk_widget_show_all(tab_obj);
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
-		return (0);	
+		return (0);
 	ft_strdel(&str);
 	return (1);
 }

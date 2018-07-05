@@ -71,27 +71,29 @@ static char		*str_end_digit(char *str)
 
 int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
 {
-	if (mode == MODE_PLUS_INF || mode == MODE_BOTH_INF &&
+	if ((mode == MODE_PLUS_INF || mode == MODE_BOTH_INF) &&
 	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
 			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
 	{
-		*dst = (double)INFINITY;
+		*dst = INFINITY;
+		ft_putstr("mamamia\n");
+		ft_putstr(str);
 		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
 		ft_strdel(&str);
 		return (1);
 	}
-	else if (mode == MODE_LESS_INF || mode == MODE_BOTH_INF &&
+	else if ((mode == MODE_LESS_INF || mode == MODE_BOTH_INF) &&
 	(!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF"))))
 	{
-		*dst = (double)-INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
+		*dst = -INFINITY;
+		gtk_entry_set_text(GTK_ENTRY(wid), "-inf");
 		ft_strdel(&str);
 		return (1);
 	}
 	return (0);
 }
 
-double		get_double_from_entry(GtkWidget *wid, int infinity_mode)
+double		get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max)
 {
 	char			*str;
 	char			*str2;
@@ -106,10 +108,20 @@ double		get_double_from_entry(GtkWidget *wid, int infinity_mode)
 	ft_putstr("finale = ");
 	ft_putendl(str2);
 	gtk_entry_set_text(GTK_ENTRY(wid), str2);
-	if ((dst = my_ft_atof(str)) <= 0)
+	dst = my_ft_atof(str);
+	if (min != -INFINITY && dst < min)
 	{
-		gtk_entry_set_text(GTK_ENTRY(wid), "0");
-		dst = 0.0;
+		ft_strdel(&str);
+		str = ft_itoa(min);
+		gtk_entry_set_text(GTK_ENTRY(wid), str);
+		dst = min;
+	}
+	else if (max != INFINITY && dst > max)
+	{
+		ft_strdel(&str);
+		str = ft_itoa(max);
+		gtk_entry_set_text(GTK_ENTRY(wid), str);
+		dst = max;
 	}
 	ft_strdel(&str);
 	return (dst);

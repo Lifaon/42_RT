@@ -73,6 +73,6 @@ void			change_obj_r(GtkWidget *widget, gpointer param)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-	value = get_double_from_entry(widget, MODE_PLUS_INF);
+	value = get_double_from_entry(widget, MODE_PLUS_INF, 0, INFINITY);
 	g_data->objs[g_data->ui->page_obj].r = value;
 }

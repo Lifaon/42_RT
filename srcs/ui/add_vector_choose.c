@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ui.h"
+
 GtkSizeGroup	*add_vector_choose(t_wid_data *w_d, char *label, t_vec vec,
 		GtkSizeGroup *group)
 {
@@ -41,12 +42,25 @@ GtkSizeGroup	*add_vector_choose(t_wid_data *w_d, char *label, t_vec vec,
 	return (new_group);
 }
 
+GtkWidget	*make_label_and_entry_group(t_wid_data *wid_d, const char *txt,
+			gdouble value, GtkSizeGroup *group)
+{
+	GtkWidget	*entry;
+
+	if (!(entry = make_label_and_entry(wid_d, txt, value, (gpointer)group)))
+		return (NULL);
+	gtk_size_group_add_widget(group, entry);
+	return (entry);
+
+}
+
 GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec,
 		GtkSizeGroup *group)
 {
 	GtkSizeGroup	*new_group;
 	t_wid_data		frame_d;
 	GtkWidget		*frame;
+	GtkWidget		*entry;
 
 	if (group)
 		new_group = group;
@@ -59,11 +73,11 @@ GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec
 	frame_d.f = w_d->f;
 	gtk_container_set_border_width(GTK_CONTAINER(frame_d.grid), 10);
 	frame_d.pos.y = w_d->pos.y;
-	if (make_label_and_entry(&frame_d, "x", vec.x, new_group) < 1)
+	if (!(make_label_and_entry_group(&frame_d, "x", vec.x, new_group)))
 		return (NULL);
-	if (make_label_and_entry(&frame_d, "y", vec.y, new_group) < 1)
+	if (!(make_label_and_entry_group(&frame_d, "y", vec.y, new_group)))
 		return (NULL);
-	if (make_label_and_entry(&frame_d, "z", vec.z, new_group) < 1)
+	if (!(make_label_and_entry_group(&frame_d, "z", vec.z, new_group)))
 		return (NULL);
 	gtk_container_add(GTK_CONTAINER(frame), frame_d.grid);
 	gtk_grid_attach(GTK_GRID(w_d->grid), frame, w_d->pos.y, w_d->pos.x, 2, 7);

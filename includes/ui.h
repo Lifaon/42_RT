@@ -63,7 +63,7 @@ GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec
 int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
-int				make_label_and_entry(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
 int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
@@ -133,6 +133,7 @@ void			change_obj_r(GtkWidget *widget, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
+void		modify_obj_limited_type(GtkWidget *widget, gpointer param);
 void			change_obj_min(GtkWidget *widget, gpointer param);
 void			change_obj_max(GtkWidget *widget, gpointer param);
 
@@ -162,11 +163,11 @@ gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
 gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
-		int mode_infinity);
+		int mode_infinity, t_ptdb limits);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);//
-double			get_double_from_entry(GtkWidget *wid, int infinity_mode);
+double			get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 void			set_child_widget_active(GtkContainer *container, gboolean status);
 #endif

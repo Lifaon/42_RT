@@ -37,10 +37,8 @@ static int	phase_1(t_wid_data *wid_d, t_obj *obj, gboolean is_limited)
 	wid_d->f = &change_obj_max;
 	if (!(group[1] = add_vector_choose_no_scale(wid_d, "max", obj->max, NULL)))
 		return (0);
-	wid_d->f = NULL;
 	if (!(phase_2(wid_d, obj, is_limited)))//
 		return (0);
-
 	return (1);
 	//return (phase_2(wid_d, obj, is_limited));
 }
@@ -60,6 +58,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
 	if (!(l_new(&frame_d, "limited object")))
 		return (0);
+	frame_d.f = modify_obj_limited_type;
 	frame_d.pos.y = 2;
 	if (!(new_cb_limited(&frame_d, obj, obj)))
 		return (0);

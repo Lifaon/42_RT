@@ -63,7 +63,7 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	return (1);
 }
 
-int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
+GtkWidget					*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param)
 {
 	GtkWidget	*entry;
@@ -71,7 +71,7 @@ int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
 
 	check_ui_active(0);
 	if (!(l_new(wid_d, txt)))
-		return (0);
+		return (NULL);
 	wid_d->pos.y += 1;
 	if (value == INFINITY)
         str = ft_strdup("inf");
@@ -80,11 +80,11 @@ int					make_label_and_entry(t_wid_data *wid_d, const char *txt,
     else
         str = ft_dbtoa(value);
 	if (!(entry = entry_new(wid_d, param, str)))
-		return (0);
+		return (NULL);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);
 	ft_strdel(&str);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
-	return (1);
+	return (entry);
 }
 
 int					make_label_and_scale(t_wid_data *wid_d, const char *txt,

@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/04 20:08:24 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/07/05 03:18:06 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS  = draw/anti_aliasing.c \
 		draw/cel_shading.c \
 		draw/colors.c \
 		draw/depth_of_field.c \
-		draw/draw_edge_image.c \
 		draw/draw_image.c \
 		draw/draw_pixelated_image.c \
 		draw/filters.c \

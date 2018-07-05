@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/04 21:27:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/05 02:24:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ t_color	ambient_shading(t_color color, t_light light)
 
 t_color	diffuse_shading(t_color color, t_light light, double dot)
 {
-	if (dot >= 0.5)
-		return (substract_colors(col_multiply(color, 0.5), light.color_neg));
-	else
-		dot = (double)(int)((dot) * 10) / 10;
+	if (g_data->cel_shading && g_data->px < 2)
+	{
+		if (dot >= 0.5)
+			return (substract_colors(col_multiply(color, 0.5), light.color_neg));
+		else
+			dot = (double)(int)((dot) * 10) / 10;
+	}
 	return (substract_colors(col_multiply(color, dot), light.color_neg));
 }
 
@@ -34,10 +37,12 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter)
 	t_vec	v;
 	double	dot;
 
-	ret.c = 0xFF000000;
-	return (ret);
-	if (obj.spec == 0)
-		ret = col_multiply(ret, obj.spec);
+	if (g_data->cel_shading && g_data->px < 2)
+	{
+		ret.c = 0xFF000000;
+		return (ret);
+	}
+	ret = col_multiply(color, obj.spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\
 			light));

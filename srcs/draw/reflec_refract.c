@@ -54,26 +54,43 @@ t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color ret
 	return (ret);
 }
 
-t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret)
+t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int rec)
 {
 	t_vec		r;
 	t_vec		ip;
-	double		n_i = 1.;
-	double		n_t = 1.;
+	double		n_i = 1.0f;
+	double		n_t = 1.5f /*data->objs[inter->obj_i].ior pas encore dans le parser */;
 	double		angle_i;
 	double		angle_t;
 	double		t;
 	int			i;
 	int			obj_i_tmp;
+	double		dot;
+	double		eta;
+	double		k;
 
+	inter.normal = data->objs[inter.obj_i].get_normal(data->objs[inter.obj_i], inter);
+	dot = dot_product(ray, inter.normal);
+	if (dot < 0.0f) // on est dans en dehors de l'objet //
+		dot = -dot;
+	else // on est dans l'objet //
+	{
+		inter.normal = vec_multiply(inter.normal, -1);
+		ft_swap_double(&n_i, &n_t);
+	}
+	eta = n_i / n_t;
+	k = 1.0f - eta * eta * (1.0f - dot * dot);
+	if (k < 0.0f) // nor refraction car full reflection interne 
+		return ((t_color){.c = 0xFF000000});
 	ip = inter.ip;
 	t = INFINITY;
 	obj_i_tmp = inter.obj_i;
-	angle_i = acos(dot_product(ray, inter.normal));
+	angle_i = acos(dot);
 	angle_t = asin((n_i * sin(angle_i)) / n_t);
 	// Loi de Snell-Descartes.
-	r = vec_normalize(vec_substract(vec_multiply(vec_add(ray, vec_multiply(inter.normal, \
+	//r = vec_normalize(vec_substract(vec_multiply(vec_add(ray, vec_multiply(inter.normal, \
 						cos(angle_i))), n_i / n_t), vec_multiply(inter.normal, cos(angle_t))));
+	r = vec_normalize(vec_add(vec_multiply(ray, eta), vec_multiply(inter.normal, eta * dot - sqrt(k))));
 	i = -1;
 	ip = vec_add(ip, vec_multiply(r, 0.3));
 	while (++i < data->nb_objects)
@@ -91,8 +108,9 @@ t_color		draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret)
 		inter.origin = ip;
 		inter.ip = vec_add(ip, vec_multiply(r, inter.t));
 		inter.normal = get_normal(r, data->objs[inter.obj_i], inter);
-		//ret = get_px_color(data, inter);
 		ret = blend_colors(ret, col_multiply(get_px_color(data, inter), data->objs[obj_i_tmp].trans_pourcentage));
+		if (data->objs[inter.obj_i].trans && rec < 3)
+			ret = draw_refract(data, inter, r, ret, ++rec);
 	}
 	else
 		ret = blend_colors(ret, (t_color){.c = 0xFF000000});

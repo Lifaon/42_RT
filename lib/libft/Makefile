@@ -104,8 +104,7 @@ SRCS_NAME = exit_cause.c\
 			ft_strtrim.c\
 			ft_strupper.c\
 			ft_strlower.c\
-			ft_swap_char.c\
-			ft_swap_nbr.c\
+			ft_swap.c\
 			ft_tolower.c\
 			ft_toupper.c\
 			get_next_line.c\

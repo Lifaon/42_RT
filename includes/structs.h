@@ -131,7 +131,7 @@ typedef struct		s_obj
 	double			shin_pourcentage;
 	int				trans;
 	double			trans_pourcentage;
-	double			refrac_index;
+	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong

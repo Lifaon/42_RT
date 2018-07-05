@@ -35,7 +35,7 @@ static t_color	draw_pixel(t_data *data, t_vec vp, int rec)
 			if (data->objs[inter.obj_i].shiny == 1)
 				ret = draw_reflec(data, inter, ray, 0, ret);
 			if (data->objs[inter.obj_i].trans == 1)
-				ret = draw_refract(data, inter, ray, ret);
+				ret = draw_refract(data, inter, ray, ret, 0);
 		}
 		return (ret);
 	}

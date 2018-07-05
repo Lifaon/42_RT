@@ -24,7 +24,7 @@ void	draw_pixelated_image(t_data *data);
 t_color	get_px_color(t_data *data, t_inter inter);
 t_color	anti_aliasing(t_data *data, t_vec vp);
 t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color r);
-t_color	draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret);
+t_color	draw_refract(t_data *data, t_inter inter, t_vec ray, t_color ret, int rec);
 
 /*
 **	Phong shading.

@@ -120,6 +120,8 @@ SRCS  = draw/anti_aliasing.c \
 		ui/ui_event_tools.c \
 		ui/get_double_from_entry.c \
 		\
+		host.c \
+		client.c \
 		data_init.c \
 		exit_all.c \
 		main.c

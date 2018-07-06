@@ -33,6 +33,38 @@ void			get_time(void)
 	time++;
 }
 
+static void		check_argv(int argc, char **argv, t_data *data)
+{
+	int		i;
+	int		cluster;
+
+	cluster = 0;
+	i = 0;
+	while (++i < argc)
+	{
+		if (ft_strcmp(argv[i], "-host") == 0)
+		{
+			printf("server\n");
+			if (cluster == 1)
+				exit_cause("cannot have -host and -client running as the same time");
+			cluster = 1;
+			init_host(data);
+		}
+		if (ft_strcmp(argv[i], "-client") == 0)
+		{
+			printf("client\n");
+			if (cluster == 1)
+				exit_cause("cannot have -host and -client running as the same time");
+			cluster = 1;
+			if (!(argv[++i]))
+				exit_cause("no ip address found\nUsage : -client -ip_addr\n");
+			if (inet_addr(argv[i]) == INADDR_NONE)
+				exit_cause("ip address not well formatted\nUsage : [...] -client -ip_addr\n");
+			client(data, argv[i]);
+		}
+	}
+}
+
 static int ft_exit(void)
 {
 	ft_putendl("Usage : ./rt \'file_name\'");
@@ -41,11 +73,20 @@ static int ft_exit(void)
 
 int		main(int ac, char **av)
 {
-	if (ac != 2 || ft_strlen(av[1]) < 1)
+	int		i;
+
+	i = 0;
+	if (ac == 1)
 		return (ft_exit());
 	g_data = data_init(ac, av);
+	while(++i < ac)
+	{
+		if (ft_strstr(av[i], ".json"))
+			break;
+	}
+	parse(g_data, av[i]);
+	check_argv(ac, av, g_data);
 	gtk_init(&ac, &av);
-	parse(g_data, av[1]);
 	get_oc();
 	if (create_ui(av[0]) == 0)
 		return (0);

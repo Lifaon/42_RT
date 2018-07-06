@@ -28,6 +28,32 @@
 # include "structs.h"
 # include "defines.h"
 
+# include <sys/socket.h>
+# include <sys/types.h>
+# include <netdb.h>
+# include <ifaddrs.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
+
+# define closesocket(param) close(param)
+# define INVALID_SOCKET -1
+# define SOCKET_ERROR -1
+# define PORT 3333
+# define SOCK_BUFF 50
+
+typedef int SOCKET;
+typedef struct sockaddr_in SOCKADDR_IN;
+typedef struct sockaddr SOCKADDR;
+
+typedef struct			s_sockaddr_in
+{
+	short				sin_family;
+	unsigned short		sin_port;
+	struct in_addr		sin_addr;
+	char				sin_zero[8];
+}						t_sockaddr_in;
+
+
 /*
 **	Function used to parse the given file.
 */
@@ -53,5 +79,8 @@ void			ft_event(t_data *data);
 **	Frees everything that has to be freed.
 */
 void			exit_all(t_data *data);
+
+void			init_host(t_data *data);
+void			client(t_data *data, char *ip);
 
 #endif

@@ -1,0 +1,90 @@
+{
+	"cameras" :
+	[
+		{
+			"position" : [0.0, -50.0, -4500.0],
+			"fov" : 20.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [100, 100, 100],
+			"ambiant" : 0.3
+		}
+	],
+	"objects" :
+	{
+		"sphere" :
+		{
+			"position" : [0.0, 100, 200],
+			"color" : [166, 0, 166, 255],
+			"alpha" : 100.0,
+			"radius" : 50
+		},
+		"sphere" :
+		{
+			"position" : [-100.0, -70.0, 0],
+			"color" : [0, 255, 0, 255],
+			"alpha" : 100.0,
+			"radius" : 50
+		},
+		"plane" :
+		{
+			"position" : [0.0, -200.0, 400],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [0.0, 0.0, 0.0],
+			"specular" : 0.0,
+			"shiny" : 0.6
+		},
+		"plane" :
+		{
+			"position" : [0.0, 200.0, 400],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [0.0, 0.0, 0.0],
+			"specular" : 0.0,
+			"shiny" : 0.6
+		},
+		"plane" :
+		{
+			"position" : [0.0, 0, 400.0],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [90.0, 0.0, 0.0],
+			"specular" : 0.0,
+			"shiny" : 0.6
+		},
+		"plane" :
+		{
+			"position" : [-200, 0, 1000.0],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [0.0, 0.0, 90.0],
+			"specular" : 0.0,
+			"shiny" : 0.6
+		},
+		"plane" :
+		{
+			"position" : [200, 0, 1000.0],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [0.0, 0.0, 90.0],
+			"specular" : 0.0,
+			"shiny" : 0.6
+		}
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 00:19:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/06 06:58:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,15 @@ static t_color	draw_pixel(t_data *data, t_vec vp)
 	t_inter		inter;
 	t_vec		ray;
 	t_color		ret;
-	int			i;
 
-	i = -1;
 	if (data->aa <= 1)
 	{
+		inter.depth = 0;
 		ret.c = 0xFF000000;
 		ray = compute_ray(vp);
 		inter.min_dist = 0.01;
 		if (first_hit(data, ray, &inter))
-		{
-			ret = get_px_color(data, inter);
-			if (data->objs[inter.obj_i].shiny != 0.)
-				ret = draw_reflec(data, inter, ray, 0, ret);
-			if (data->objs[inter.obj_i].trans != 0.)
-				ret = draw_refract(data, inter, ray, ret, 0);
-		}
+			ret = get_px_color(data, ray, inter);
 		return (ret);
 	}
 	else

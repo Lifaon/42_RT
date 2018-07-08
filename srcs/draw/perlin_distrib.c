@@ -28,4 +28,5 @@ void		call_perlin(t_data data)
 		apply_perlin(inter, p, obj);
 	if (obj.obj_type == CYLINDER)
 		apply_perlin(inter, p, obj);
+	draw_image();
 }

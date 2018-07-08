@@ -54,10 +54,16 @@ void		perlin_tab6(t_perlin p);
 void		perlin_tab11(t_perlin p);
 double		dot_perlin(const int *v, const double x, const double y, \
 			const double z);
-int			*get_gradian(int x, int y, int z, t_perlin p);
+int			*get_gradian(int x, int y, int z, t_perlin *p);
 double		quintic_poly(const double t);
 double		linear_interpolation(double a, double b, double t);
 void		int_frac(double value, int *int_part, double *frac_part);
+void		apply_perlin(t_inter inter, t_perlin p, t_obj obj);
+void		call_perlin(t_data data);
+double		noise_3D(double pos_x, double pos_y, double pos_z, t_perlin p);
+double		noise_3D_setup(t_perlin p);
+
+
 
 /*
 **	Functions used for color management.

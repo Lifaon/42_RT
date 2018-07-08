@@ -34,6 +34,11 @@ SRCS  = draw/anti_aliasing.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		draw/put_gdk_image.c \
+		draw/perlin_distrib.c \
+		draw/perlin_setup1.c \
+		draw/perlin_setup2.c \
+		draw/perlin_setup3.c \
+		draw/perlin.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \

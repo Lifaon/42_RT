@@ -1,4 +1,6 @@
-static void	perlin_tab5
+#include "draw.h"
+
+static void	perlin_tab5(t_perlin p)
 {
 	p.perm[95] = 54;
 	p.perm[96] = 65;

@@ -1,3 +1,5 @@
+#include "draw.h"
+
 static void		perlin_tab10(t_perlin p)
 {
 	p.perm[215] = 107;
@@ -82,7 +84,7 @@ static void		perlin_tab8(t_perlin p)
 	p.perm[188] = 178;
 	p.perm[189] = 185;
 	p.perm[190] = 112;
-	perlin_tab9d(p);
+	perlin_tab9(p);
 }
 
 static void		perlin_tab7(t_perlin p)

@@ -65,7 +65,7 @@ int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
-int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
 int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));

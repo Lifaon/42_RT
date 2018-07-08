@@ -87,18 +87,19 @@ GtkWidget					*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 	return (entry);
 }
 
-int					make_label_and_scale(t_wid_data *wid_d, const char *txt,
+GtkWidget					*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param)
 {
+	GtkWidget 	*scale;
 //	check_ui_active(0);
 	if (!(l_new(wid_d, txt)))
-		return (0);
+		return (NULL);
 	wid_d->pos.y += 1;
-	if (!(scale_new(wid_d, param, value)))
+	if (!(scale = scale_new(wid_d, param, value)))
 		return (0);
 //	check_ui_active(1);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
-	return (1);
+	return (scale);
 }
 
 int				make_label_and_switch(t_wid_data *wid_d, const char *txt,

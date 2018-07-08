@@ -26,6 +26,25 @@ static size_t	get_size_integer(double n, long *integer)
 	return (size);
 }
 
+int				get_nb_of_zero(double n, long integer, char *str, size_t i)
+{
+	int		zero;
+	double	cpy;
+
+	zero = 0;
+	cpy = n - (double)integer;
+	cpy = (cpy < 0) ? cpy * -1 : cpy;
+	if (cpy == 0)
+		return (0);
+	while((cpy = cpy * 10) < 1.0)
+	{
+		if (str)
+			str[i--] = '0';
+		zero++;
+	}
+	return (zero);
+}
+
 static size_t	get_size(double n, long *integer, long *decimal)
 {
 	size_t		size;
@@ -40,9 +59,8 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	cpy = (n < 0) ? (n * -1) : n;
 	while (--i > size)
 		multiply *= 10;
-	if (((long)(cpy * 10 - *integer)) > 0)
+	if ((*decimal = ((long)((cpy - *integer) * multiply))) > 0)
 	{
-		*decimal = (long)((cpy - *integer) * multiply);
 		while (*decimal != 0 && (*decimal % 10) == 0)
 			*decimal /= 10;
 	}
@@ -51,6 +69,7 @@ static size_t	get_size(double n, long *integer, long *decimal)
 	cpy_decimal = *decimal;
 	while (cpy_decimal /= 10)
 		size++;
+	size += get_nb_of_zero(n, *integer, NULL, 0);
 	return (size);
 }
 
@@ -79,6 +98,7 @@ char			*ft_dbtoa(double n)
 	if (decimal == 0)
 		dst[--size] = '0';
 	size = write_long(&decimal, size, dst);
+	size -= get_nb_of_zero(n, integer, dst, size);
 	dst[size] = '.';
 	if (integer == 0)
 		dst[--size] = '0';

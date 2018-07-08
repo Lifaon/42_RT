@@ -59,7 +59,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(l_new(&frame_d, "limited object")))
 		return (0);
 	frame_d.f = modify_obj_limited_type;
-	frame_d.pos.y = 2;
+	frame_d.pos.y = 1;
 	if (!(new_cb_limited(&frame_d, obj, obj)))
 		return (0);
 	if (!(phase_1(&frame_d, obj, is_limited)))

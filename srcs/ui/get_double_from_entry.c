@@ -57,7 +57,6 @@ static char		*str_end_digit(char *str)
 		i++;
 	while (str[i])
 	{
-		ft_putendl(&str[i]);
 		if (str[i] == ',' || str[i] == '.')
 			separator++;
 		if ((separator > 1) || ((str[i] != ',' && str[i] != '.') &&
@@ -76,8 +75,6 @@ int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
 			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
 	{
 		*dst = INFINITY;
-		ft_putstr("mamamia\n");
-		ft_putstr(str);
 		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
 		ft_strdel(&str);
 		return (1);
@@ -105,12 +102,9 @@ double		get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, dou
 		if (get_infinity(wid, &dst, str, infinity_mode))
 			return (dst);
 	str2 = str_end_digit(str);
-	//ft_putstr("finale = ");
-	ft_putendl(str2);
 	dst = my_ft_atof(str);
 	ft_strdel(&str);
 	str = ft_dbtoa(dst);
-	printf("dst = %lf     %s\n",dst, str);
 	gtk_entry_set_text(GTK_ENTRY(wid), str);
 	ft_strdel(&str);
 	if (min != -INFINITY && dst < min)

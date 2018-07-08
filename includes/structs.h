@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 23:43:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/06 07:29:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_added
 typedef struct		s_inter
 {
 	int				obj_i;
+	int				depth;
 	double			t1;
 	double			t2;
 	double			t;
@@ -135,10 +136,9 @@ typedef struct		s_obj
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-	int				shiny;
-	double			shin_pourcentage;
-	int				trans;
-	double			refrac_index;
+	double			shiny;
+	double			trans;
+	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
@@ -175,8 +175,12 @@ typedef struct		s_data
 	int				i;
 	t_camera		cams[CAM_NB];
 	t_camera		cam;
-	int				px;
 	int				aa;
+	int				px;
+	int				cel_shading;
+	int				depth_of_field;
+	int				filter;
+	int				depth_max;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);

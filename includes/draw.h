@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/29 01:32:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/06 05:54:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 */
 void	draw_image(void);
 void	draw_pixelated_image(t_data *data);
-t_color	get_px_color(t_data *data, t_inter inter);
+void	cel_shading(void);
+t_color	get_px_color(t_data *data, t_vec ray, t_inter inter);
 t_color	anti_aliasing(t_data *data, t_vec vp);
-t_color	draw_reflec(t_data *data, t_inter inter, t_vec ray, int rec, t_color r);
+t_color	draw_reflec(t_data *data, t_inter *inter, t_color ret, t_vec ray);
+t_color	draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray);
 
 /*
 **	Phong shading.
@@ -36,7 +38,7 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter);
 **	Depth_of_field function. This function takes 3D coordinates which represent
 **	the focal point of the image.
 */
-void	depth_of_field(t_data *data, t_vec point);
+void	depth_of_field();
 
 /*
 **	Filters.

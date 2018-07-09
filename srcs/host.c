@@ -1,4 +1,5 @@
 #include "rtv1.h"
+#include "draw.h"
 
 static void		print_host(void)
 {
@@ -44,6 +45,7 @@ void		init_host(t_data *data)
 	recsize = sizeof(sin);
 	crecsize = sizeof(csin);
 	sock = socket(AF_INET, SOCK_STREAM, 0);
+	return ;
 	if(sock != INVALID_SOCKET)
 	{
 		printf("La socket %d est maintenant ouverte en mode TCP/IP\n", sock);
@@ -77,7 +79,15 @@ void		init_host(t_data *data)
 						to_send[2] = 48 + 2; //2 va etre le nombre de clients //
 						sock_err = send(csock, (char*)to_send, sizeof(char) * 3, 0);
 						printf("message envoye !\n");
+						data->test = 42;
+						send(csock, (t_data*)data, sizeof(t_data), 0);
+						printf("data envoye !\n");
 						FD_SET(csock, &readfs);
+						data->x = 0;
+						data->nb_client = 2; //pour l'instant je le fais avec que un client //
+		//				if (!(data->img = (uint32_t*)malloc(sizeof(uint32_t) * (WIN_H * WIN_X))))
+		//					exit(0);
+		//				draw_image();
 						/*
 						if (FD_ISSET(csock, &readfs))
 						{
@@ -106,6 +116,7 @@ void		init_host(t_data *data)
 		/* Fermeture de la socket client et de la socket serveur */
 		//	printf("Fermeture de la socket client\n");
 		//	closesocket(csock);
+		free(data->img);
 		printf("Fermeture de la socket serveur\n");
 		closesocket(sock);
 		printf("Fermeture du serveur terminée\n");

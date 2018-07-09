@@ -1,4 +1,5 @@
 #include "rtv1.h"
+#include "draw.h"
 
 void client(t_data *data, char *ip)
 {
@@ -20,12 +21,16 @@ void client(t_data *data, char *ip)
 	else
 		printf("Impossible de se connecter\n");
 	char *buff;
-	buff = (char*)malloc(sizeof(char) * ft_strlen("bonjour\n"));
+	buff = (char*)malloc(sizeof(char) * 3);
 	sock = recv(sock, (char*)buff, sizeof(char) * SOCK_BUFF, 0);
-	NL;
 	printf("message recu : %s\n", buff);
-	NL;
-	exit(1);
+	recv(sock, (t_data*)data, sizeof(t_data), 0);
+	printf("data->test: %d\n", data->test);
+	data->x = buff[0] - 48;
+	data->nb_client = buff[2] - 48;
+	draw_image();
+
+
 
 	/* On ferme la socket précédemment ouverte */
 	closesocket(sock);

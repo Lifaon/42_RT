@@ -54,12 +54,15 @@ static void	*draw_thread(void *thr)
 	ymax = (i + 1) * WIN_H / NB_THR;
 	while (++crd.y < ymax)
 	{
-		crd.x = 0;
+		crd.x = (g_data->x / g_data->nb_client) * WIN_W;
 		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
-		while (++crd.x < WIN_W)
+		while (++crd.x < (((g_data->x + 1) / g_data->nb_client) *  WIN_W))
 		{
 			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
-			pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
+			if (g_data->clust == 0)
+				pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
+			else
+				g_data->img[crd.x + (crd.y * (((g_data->x + 1) / g_data->nb_client) * WIN_W))] = draw_pixel(g_data, vp).c;
 		}
 	}
 	pthread_exit(NULL);

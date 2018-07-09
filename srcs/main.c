@@ -36,32 +36,36 @@ void			get_time(void)
 static void		check_argv(int argc, char **argv, t_data *data)
 {
 	int		i;
-	int		cluster;
 
-	cluster = 0;
+	data->clust = 0;
 	i = 0;
 	while (++i < argc)
 	{
 		if (ft_strcmp(argv[i], "-host") == 0)
 		{
 			printf("server\n");
-			if (cluster == 1)
+			if (data->clust == 1)
 				exit_cause("cannot have -host and -client running as the same time");
-			cluster = 1;
+			data->clust = 1;
 			init_host(data);
 		}
 		if (ft_strcmp(argv[i], "-client") == 0)
 		{
 			printf("client\n");
-			if (cluster == 1)
+			if (data->clust == 1)
 				exit_cause("cannot have -host and -client running as the same time");
-			cluster = 1;
+			data->clust = 1;
 			if (!(argv[++i]))
 				exit_cause("no ip address found\nUsage : -client -ip_addr\n");
 			if (inet_addr(argv[i]) == INADDR_NONE)
 				exit_cause("ip address not well formatted\nUsage : [...] -client -ip_addr\n");
 			client(data, argv[i]);
 		}
+	}
+	if (data->clust == 0)
+	{
+		data->x = 0;
+		data->nb_client = 1;
 	}
 }
 
@@ -85,8 +89,8 @@ int		main(int ac, char **av)
 			break;
 	}
 	parse(g_data, av[i]);
-	check_argv(ac, av, g_data);
 	gtk_init(&ac, &av);
+	check_argv(ac, av, g_data);
 	get_oc();
 	if (create_ui(av[0]) == 0)
 		return (0);

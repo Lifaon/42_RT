@@ -188,6 +188,11 @@ typedef struct		s_data
 	t_pixelbuf		*img;
 	t_ui			*ui;
 	int				draw;//
+	int				clust;
+	int				x;
+	int				nb_client;
+	int				test;
+	uint32_t		*img;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in

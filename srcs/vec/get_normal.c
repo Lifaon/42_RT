@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 06:08:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/09 04:42:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,18 @@ t_vec	get_cylinder_normal(t_obj cyl, t_inter inter)
 
 t_vec	get_cone_normal(t_obj cone, t_inter inter)
 {
-	t_vec hyp;
+	t_vec b;
+	t_vec a;
+	t_vec scaled;
 	t_vec norm;
+	t_vec dir;
 
-	hyp = (vec_substract(inter.ip, cone.pos));
-	norm = vec_cross_product(hyp, cone.dir);
-	norm = vec_cross_product(hyp, norm);
+	dir = vec_normalize(cone.dir);
+	b = vec_normalize(vec_substract(cone.pos, inter.ip));
+	a = vec_multiply(dir, vec_cos(b, dir));
+	norm = vec_substract(b, a);
+	scaled = vec_cross_product(b, norm);
+	norm = vec_cross_product(b, scaled);
 	return (vec_normalize(norm));
 }
 

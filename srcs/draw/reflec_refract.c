@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/06 07:04:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/09 04:00:44 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	eta = n_i / n_t;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
 	if (k < 0.0f) // no refraction car full reflection interne
-		return (blend_coeff(ret, (t_color){.c = 0xFF000000}, coeff));
+		return (ret);
 	angle_i = acos(dot);
 	angle_t = asin((n_i * sin(angle_i)) / n_t);
 	r = vec_normalize(vec_add(vec_multiply(ray, eta), \

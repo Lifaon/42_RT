@@ -6,28 +6,52 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 07:28:57 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/09 04:30:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static int		blocked(t_light light, t_inter inter, t_vec *vec, double *dot)
+static t_color	blend_coeff(t_color old, t_color new, double coeff)
 {
-	int		i;
+	t_color old_coeff;
+	t_color new_coeff;
+
+	old_coeff = col_multiply(old, 1 - coeff);
+	new_coeff = col_multiply(new, coeff);
+	return (add_colors(old_coeff, new_coeff));
+}
+
+static t_color	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
+{
+	t_color	ret;
+
+	ret = inter->shadow;
+	inter->trans_at_ip = 1 - obj.trans;
+	if (obj.tex && obj.trans)
+		ret.c = uv_mapping(obj, ray, inter);
+	return (ret);
+}
+
+static int		blocked(t_light light, t_inter *inter, t_vec *vec, double *dot)
+{
+	t_inter	inter_tmp;
 	double	len;
 
-	i = -1;
-	if (light.is_para)
-		len = INFINITY;
-	else
-		len = get_length(*vec);
+	len = light.is_para ? INFINITY : get_length(*vec);
 	*vec = vec_normalize(*vec);
-	*dot = dot_product(inter.normal, *vec);
+	*dot = dot_product(inter->normal, *vec);
+	inter->trans_at_ip = 1.;
 	if (*dot <= 0)
 		return (1);
-	if (other_hit(g_data, *vec, &inter) && inter.t < len)
+	inter_tmp.origin = inter->origin;
+	inter_tmp.shadow = inter->shadow;;
+	if (other_hit(g_data, *vec, &inter_tmp) && inter_tmp.t < len)
+	{
+		inter->shadow = get_color_at_ip(g_data->objs[inter_tmp.obj_i], *vec, &inter_tmp);
+		inter->trans_at_ip = inter_tmp.trans_at_ip;
 		return (1);
+	}
 	return (0);
 }
 
@@ -41,12 +65,15 @@ static t_color	shade(t_data *data, t_vec ray, t_inter *inter, t_light light)
 	color = inter->color;
 	inter->origin = inter->ip;
 	ret = ambient_shading(color, light);
-	if (light.is_para)
-		light_vec = light.dir;
-	else
-		light_vec = vec_substract(light.pos, inter->ip);
-	if (blocked(light, *inter, &light_vec, &dot))
-		return (ret);
+	inter->shadow = ret;
+	light_vec = light.is_para ? light.dir : vec_substract(light.pos, inter->ip);
+	if (blocked(light, inter, &light_vec, &dot))
+	{
+		if (inter->trans_at_ip == 1.)
+			return (inter->shadow);
+		else if (inter->trans_at_ip != 0)
+			return (blend_coeff(color, inter->shadow, inter->trans_at_ip));
+	}
 	ret = add_colors(ret, diffuse_shading(color, light, dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
 		data->objs[inter->obj_i], light.color, light_vec, *inter));

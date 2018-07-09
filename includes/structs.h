@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 07:29:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/09 03:18:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ typedef struct		s_inter
 	double			t;
 	double			delta;
 	double			min_dist;
+	double			trans_at_ip;
 	t_point			uv;
 	t_color			color;
+	t_color			shadow;
 	t_color			spec;
 	t_vec			ip;
 	t_vec			normal;

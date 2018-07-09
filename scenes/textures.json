@@ -29,7 +29,8 @@
 			"position" : [-300, 200, 1000],
 			"radius" : 100,
 			"specular" : 0,
-			"texture" : "textures/world.jpg"
+			"texture" : "textures/world.jpg",
+			"trans" : 1
 		},
 		"cylinder" :
 		{
@@ -37,7 +38,8 @@
 			"color" : [255, 160, 0],
 			"radius" : 200,
 			"specular" : 0,
-			"texture" : "textures/rocks.png"
+			"texture" : "textures/rocks.png",
+			"shiny" : 0.5
 		},
 		"cone" :
 		{
@@ -46,14 +48,16 @@
 			"angle" : [-10, 0, -10],
 			"radius" : 10,
 			"specular" : 1,
-			"texture" : "textures/rainbow.png",
+			"texture" : "textures/vert.jpg",
 			"tex_scale" : 2,
 			"tex_pos" : [1500],
-			"tex_repeat" : 0
+			"tex_repeat" : 1,
+			"trans" : 0.6,
+			"ior" : 1.6
 		},
 		"plane" :
 		{
-			"position" : [0, 0, 1750],
+			"position" : [0, 0, -1750],
 			"angle" : [90, 0, 0],
 			"color" : [0, 180, 180],
 			"specular" : 0,

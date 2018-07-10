@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 20:01:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 20:29:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int				create_camera_ui(GtkWidget *tab)
 
 	if (!(init_wid_data(&wid_d, 10, ptdb_set(1, 180))))
 		return (0);
-	//gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_cam), TRUE);
 	if (!(l_title = gtk_label_new("Camera")))
 		return (0);
 	l_new(&wid_d, "Select camera");

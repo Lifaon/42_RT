@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:58:26 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 20:01:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 int 			phase_1(t_wid_data *wid_d)
 {
-	wid_d->f = NULL;
+	int		x;
+
+	wid_d->f = change_cam_fov;
 	wid_d->pos = pt_set(1, 0);
 	if (!(g_data->ui->sc_fov = make_label_and_scale(wid_d, 
 		"Field Of Vision", g_data->cams[0].fov, NULL)))
 		return (0);
+	wid_d->f = change_cam_pos;
+	x = wid_d->pos.x;
 	wid_d->min_max = ptdb_set(-50000, 50000);
-	if (!(g_data->ui->gp_campos = add_vector_choose(wid_d, 
+	if (!(g_data->ui->gp_cam_pos = add_vector_choose(wid_d, 
 		"position", g_data->cams[0].pos, NULL)))
+		return (0);
+	wid_d->pos = pt_set(x, 2);
+	wid_d->min_max = ptdb_set(-180, 180);
+	wid_d->f = change_cam_angle;
+	if (!(g_data->ui->gp_cam_angle = add_vector_choose(wid_d, 
+		"angle", g_data->cams[0].angle, NULL)))
 		return (0);
 	return (1);
 }
@@ -34,14 +44,14 @@ int				create_camera_ui(GtkWidget *tab)
 	int				i;
 
 
-	if (!(init_wid_data(&wid_d, 10, ptdb_set(0, 1000))))
+	if (!(init_wid_data(&wid_d, 10, ptdb_set(1, 180))))
 		return (0);
 	//gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_cam), TRUE);
 	if (!(l_title = gtk_label_new("Camera")))
 		return (0);
 	l_new(&wid_d, "Select camera");
 	wid_d.pos.y = 2;
-	if (!(l_value = l_new(&wid_d, "0")))
+	if (!(l_value = l_new(&wid_d, "1")))
 		return (0);
 	wid_d.pos.y = 1;
 	wid_d.f = &change_left_cam;

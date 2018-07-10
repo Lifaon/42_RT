@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:48:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:59:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int 	get_limited_obj_type(t_obj *obj, int axe)
+static int	get_limited_obj_type(t_obj *obj, int axe)
 {
 	printf("obj_type = %d, axe = %d\n", obj->obj_type, axe);
 	if (axe == 0)
@@ -22,7 +22,7 @@ static int 	get_limited_obj_type(t_obj *obj, int axe)
 		if (obj->obj_type == SPHERE)
 			return (LIMIT_SPHERE);
 		if (obj->obj_type == CYLINDER)
-			return(LIMIT_CYLINDER);
+			return (LIMIT_CYLINDER);
 		if (obj->obj_type == CONE)
 			return (LIMIT_CONE);
 		if (obj->obj_type == PLANE)
@@ -33,7 +33,8 @@ static int 	get_limited_obj_type(t_obj *obj, int axe)
 	return (-1);
 }
 
-void		switch_obj_limited(GtkWidget *widget, gboolean state,  gpointer param)
+void		switch_obj_limited(GtkWidget *widget,
+		gboolean state, gpointer param)
 {
 	if (!widget)
 		return ;
@@ -46,7 +47,7 @@ void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
 {
 	int			axe;
 	t_obj		*obj;
-	int 		type;
+	int			type;
 
 	if (!param && !widget)
 		param = NULL;
@@ -68,7 +69,8 @@ void		change_obj_min(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].min;
 	group = (GtkSizeGroup*)param;
-	change_vec_from_entry(group, vec, MODE_BOTH_INF, ptdb_set(-INFINITY, INFINITY));
+	change_vec_from_entry(group, vec, MODE_BOTH_INF,
+			ptdb_set(-INFINITY, INFINITY));
 	printf("x = %lf  y = %lf  z = %lf\n", vec->x, vec->y, vec->z);
 }
 
@@ -81,6 +83,7 @@ void		change_obj_max(GtkWidget *widget, gpointer param)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].max;
 	group = (GtkSizeGroup*)param;
-	change_vec_from_entry(group, vec, MODE_BOTH_INF, ptdb_set(-INFINITY, INFINITY));
+	change_vec_from_entry(group, vec, MODE_BOTH_INF,
+			ptdb_set(-INFINITY, INFINITY));
 	printf("x = %lf  y = %lf  z = %lf\n", vec->x, vec->y, vec->z);
 }

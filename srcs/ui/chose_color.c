@@ -6,11 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 17:52:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:31:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+/*
+** Theses global variable are only accessible by function on this file
+ */
 
 t_pixelbuf		*g_pxb;
 t_color			g_color;

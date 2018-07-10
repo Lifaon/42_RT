@@ -6,11 +6,40 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 17:45:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:18:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+
+void			set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
+{
+	GSList		*lst;
+	GtkWidget 	*son;
+	int			i;
+	char 		*str[3];
+
+	lst = gtk_size_group_get_widgets(group);
+	str[0] = ft_dbtoa(vec.z);
+	str[1] = ft_dbtoa(vec.y);
+	str[2] = ft_dbtoa(vec.x);
+	i = 0;
+	while (lst)
+	{
+		son = lst->data;
+		if (GTK_IS_ENTRY(son))
+			gtk_entry_set_text(GTK_ENTRY(son), str[i - 1]);
+		if (GTK_IS_SCALE(son) && ++i == 1)
+			gtk_range_set_value(GTK_RANGE(son), vec.z);
+		else if (GTK_IS_SCALE(son) && i == 2)
+			gtk_range_set_value(GTK_RANGE(son), vec.y);
+		else if (GTK_IS_SCALE(son) && i == 3)
+			gtk_range_set_value(GTK_RANGE(son), vec.x);
+		lst = lst->next;
+	}
+	while (--i >= 0)
+		ft_strdel(&str[i]);
+}
 
 void	set_child_widget_active(GtkContainer *container, gboolean status)
 {
@@ -46,3 +75,8 @@ void	color_widget_img(GtkWidget *img, t_color color)
 	put_pixelbuf_to_widget(pxb, NULL);
 	free(pxb);
 }
+
+/*
+** Here we use free instead of pixelbuf_free because the widget still need 
+** the pixbuf.
+*/

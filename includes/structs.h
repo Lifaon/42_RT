@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 07:29:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:41:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,8 @@ typedef struct		s_ui
 	GtkWidget		*tab_objs;
 	GtkWidget		*ev_box;
 	GtkWidget		*sc_fov;
-	GtkSizeGroup	*gp_campos;
+	GtkSizeGroup	*gp_cam_pos;
+	GtkSizeGroup	*gp_cam_angle;
 	char			*path;
 	int				is_active;
 	int				page_light;

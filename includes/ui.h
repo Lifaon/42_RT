@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/05 22:25:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:44:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,26 +133,28 @@ void			change_obj_r(GtkWidget *widget, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
-void		modify_obj_limited_type(GtkWidget *widget, gpointer param);
+void			modify_obj_limited_type(GtkWidget *widget, gpointer param);
 void			change_obj_min(GtkWidget *widget, gpointer param);
 void			change_obj_max(GtkWidget *widget, gpointer param);
 
 /*
 ** => options event
 */
-void	get_int_from_scale(GtkWidget *widget, gpointer param);
-void	change_aa(GtkWidget *widget, gpointer param);
-void	change_px(GtkWidget *widget, gpointer param);
-t_vec	pitch(t_vec ray, t_vec angle);
-t_vec	yaw(t_vec ray, t_vec angle);
-t_vec	roll(t_vec ray, t_vec angle);
+void			get_int_from_scale(GtkWidget *widget, gpointer param);
+void			change_aa(GtkWidget *widget, gpointer param);
+void			change_px(GtkWidget *widget, gpointer param);
+t_vec			pitch(t_vec ray, t_vec angle);
+t_vec			yaw(t_vec ray, t_vec angle);
+t_vec			roll(t_vec ray, t_vec angle);
 
 /*
 ** => camera event
 */
-void	change_left_cam(GtkWidget *widget, gpointer param);
-void	change_right_cam(GtkWidget *widget, gpointer param);
-
+void			change_left_cam(GtkWidget *widget, gpointer param);
+void			change_right_cam(GtkWidget *widget, gpointer param);
+void			change_cam_fov(GtkWidget *widget, gpointer param);
+void			change_cam_angle(GtkWidget *widget, gpointer param);
+void			change_cam_pos(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event
@@ -173,4 +175,6 @@ void			free_to_free(void *content);//
 double			get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 void			set_child_widget_active(GtkContainer *container, gboolean status);
+void			set_entry_and_scale_from_vector(GtkSizeGroup *group,
+		t_vec vec);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:39:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:49:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(l_new(&frame_d, "limited object")))
 		return (0);
 	frame_d.f = modify_obj_limited_type;
-	frame_d.pos.y = 1;
+	frame_d.pos.y = 2;
 	if (!(new_cb_limited(&frame_d, obj, obj)))
 		return (0);
 	if (!(phase_1(&frame_d, obj, is_limited)))

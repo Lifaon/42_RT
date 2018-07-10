@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 19:26:36 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:59:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:02:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void			change_obj_angle(GtkWidget *widget, gpointer param)
 	get_dir(&g_data->objs[g_data->ui->page_obj]);
 }
 
-void    change_obj_color(GtkWidget *widget, gpointer param)
+void	change_obj_color(GtkWidget *widget, gpointer param)
 {
-    gpointer    color;
+	gpointer	color;
 
 	if (!param && !widget)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-    color = (gpointer)&g_data->objs[g_data->ui->page_obj].color;
+	color = (gpointer)&g_data->objs[g_data->ui->page_obj].color;
 	chose_color((GtkWidget*)param, color);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/28 17:55:01 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/10 00:09:49 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ typedef struct		s_data
 	int				x;
 	int				nb_client;
 	int				test;
-	uint32_t		*img;
+	uint32_t		*img_clus;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in

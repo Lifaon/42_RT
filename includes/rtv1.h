@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:07:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 00:10:23 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define INVALID_SOCKET -1
 # define SOCKET_ERROR -1
 # define PORT 3333
-# define SOCK_BUFF 50
+# define SOCK_BUFF 100
 
 typedef int SOCKET;
 typedef struct sockaddr_in SOCKADDR_IN;
@@ -80,7 +80,7 @@ void			ft_event(t_data *data);
 */
 void			exit_all(t_data *data);
 
-void			init_host(t_data *data);
+void			init_host(t_data *data, char *map);
 void			client(t_data *data, char *ip);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 20:29:00 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/09 21:13:06 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	*draw_thread(void *thr)
 			if (g_data->clust == 0)
 				pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
 			else
-				g_data->img[crd.x + (crd.y * (((g_data->x + 1) / g_data->nb_client) * WIN_W))] = draw_pixel(g_data, vp).c;
+				g_data->img_clus[crd.x + (crd.y * (((g_data->x + 1) / g_data->nb_client) * WIN_W))] = draw_pixel(g_data, vp).c;
 		}
 	}
 	pthread_exit(NULL);

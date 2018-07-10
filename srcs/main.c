@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 21:51:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/10 00:51:05 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			get_time(void)
 	time++;
 }
 
-static void		check_argv(int argc, char **argv, t_data *data)
+static void		check_argv(int argc, char **argv, t_data *data, char *map)
 {
 	int		i;
 
@@ -47,7 +47,7 @@ static void		check_argv(int argc, char **argv, t_data *data)
 			if (data->clust == 1)
 				exit_cause("cannot have -host and -client running as the same time");
 			data->clust = 1;
-			init_host(data);
+			init_host(data, map);
 		}
 		if (ft_strcmp(argv[i], "-client") == 0)
 		{
@@ -77,6 +77,7 @@ static int ft_exit(void)
 
 int		main(int ac, char **av)
 {
+	int		fd;
 	int		i;
 
 	i = 0;
@@ -90,8 +91,8 @@ int		main(int ac, char **av)
 	}
 	parse(g_data, av[i]);
 	gtk_init(&ac, &av);
-	check_argv(ac, av, g_data);
 	get_oc();
+	check_argv(ac, av, g_data, av[i]);
 	if (create_ui(av[0]) == 0)
 		return (0);
 	put_gdk_image();

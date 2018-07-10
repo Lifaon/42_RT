@@ -152,17 +152,19 @@ typedef struct		s_obj
 
 typedef struct		s_ui
 {
-	GtkWidget	*tab;
-	t_list		*to_free;//
-	GtkWidget	*tab_light;
-	GtkWidget	*tab_cams;
-	GtkWidget	*tab_objs;
-	GtkWidget	*ev_box;
-	char		*path;
-	int			is_active;
-	int			page_light;
-	int			page_cam;
-	int			page_obj;
+	GtkWidget		*tab;
+	t_list			*to_free;//
+	GtkWidget		*tab_light;
+	GtkWidget		*tab_cams;
+	GtkWidget		*tab_objs;
+	GtkWidget		*ev_box;
+	GtkWidget		*sc_fov;
+	GtkSizeGroup	*gp_campos;
+	char			*path;
+	int				is_active;
+	int				page_light;
+	int				page_cam;
+	int				page_obj;
 }					t_ui;
 
 typedef struct		s_data

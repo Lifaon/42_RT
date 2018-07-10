@@ -53,8 +53,7 @@ GtkWidget	*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		gtk_container_add(GTK_CONTAINER(b), box);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(b), "clicked", G_CALLBACK(wid_d->f), param);
-	if (wid_d)
-		gtk_grid_attach(GTK_GRID(wid_d->grid), b, wid_d->pos.y,
+	gtk_grid_attach(GTK_GRID(wid_d->grid), b, wid_d->pos.y,
 				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
 	return (b);
 }

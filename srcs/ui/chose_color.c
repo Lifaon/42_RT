@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/25 21:43:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:52:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_pixelbuf		*g_pxb;
 t_color			g_color;
 GtkWidget		*g_win_color;
-GtkWidget       *g_img;
+GtkWidget		*g_img;
 
 static void		ev_color_cancel(GtkWidget *widget, gpointer param)
 {
@@ -33,7 +33,7 @@ static void		ev_color_apply(GtkWidget *widget, gpointer param)
 {
 	t_color		*color;
 
-    if (!widget && !param)
+	if (!widget && !param)
 		return ;
 	color = (t_color*)param;
 	*color = g_color;
@@ -94,5 +94,4 @@ void			chose_color(GtkWidget *img, gpointer param)
 	gtk_window_set_default_size(GTK_WINDOW(g_win_color), 200, 400);
 	gtk_container_add(GTK_CONTAINER(g_win_color), wid_d.grid);
 	gtk_widget_show_all(g_win_color);
-	//return (g_color);
 }

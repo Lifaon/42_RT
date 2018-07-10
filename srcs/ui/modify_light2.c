@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:18:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/26 15:30:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 16:02:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			change_light_color(GtkWidget *widget, gpointer param)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
-    color = &g_data->lights[g_data->ui->page_light].color;
-    chose_color((GtkWidget*)param, (gpointer)color);
+	color = &g_data->lights[g_data->ui->page_light].color;
+	chose_color((GtkWidget*)param, (gpointer)color);
 }
 

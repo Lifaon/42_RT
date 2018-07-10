@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:49:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:45:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
 	}
 }
 
-void    color_widget_img(GtkWidget *img, t_color color)
+void	color_widget_img(GtkWidget *img, t_color color)
 {
-    t_pixelbuf      *pxb;
+	t_pixelbuf		*pxb;
 
-    pxb = pixelbuf_new_from_img(img);
-    fill_pixelbuf_in_color(pxb, color.c);
-    put_pixelbuf_to_widget(pxb, NULL);
-    pixelbuf_free(&pxb);
+	pxb = pixelbuf_new_from_img(img);
+	fill_pixelbuf_in_color(pxb, color.c);
+	put_pixelbuf_to_widget(pxb, NULL);
+	free(pxb);
 }

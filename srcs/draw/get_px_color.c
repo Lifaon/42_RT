@@ -61,6 +61,7 @@ t_color			get_px_color(t_data *data, t_inter inter)
 
 	if (!data->nb_lights || !data->nb_lights_on)
 		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
+	call_perlin(*data);
 	added = (t_added){0, 0, 0, 0};
 	i = -1;
 	inter.spec.c = 0;

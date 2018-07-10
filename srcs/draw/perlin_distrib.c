@@ -1,7 +1,10 @@
 #include "draw.h"
 
-void		apply_perlin(t_inter inter, t_perlin p, t_obj obj)
+void		apply_perlin(t_data data)
 {
+	t_obj obj;
+	t_perlin p;
+	t_inter inter;
 	int a;
 
 	a = 2;
@@ -21,12 +24,11 @@ void		call_perlin(t_data data)
 	t_inter inter;
 
 	if (obj.obj_type == PLANE)
-		apply_perlin(inter, p, obj);
+		apply_perlin(data);
 	if (obj.obj_type == SPHERE)
-		apply_perlin(inter, p, obj);
+		apply_perlin(data);
 	if (obj.obj_type == CONE)
-		apply_perlin(inter, p, obj);
+		apply_perlin(data);
 	if (obj.obj_type == CYLINDER)
-		apply_perlin(inter, p, obj);
-	draw_image();
+		apply_perlin(data);
 }

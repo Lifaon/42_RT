@@ -73,7 +73,7 @@ void	perlin_tab11(t_perlin p)
 
 double		noise_3D_setup(t_perlin p)
 {
-	p.g111 = dot_perlin(get_gradian(p.x1 + 1, p.y1 + 1, p.z1 +1,\
+	p.g111 = dot_perlin(get_grad(p.x1 + 1, p.y1 + 1, p.z1 +1,\
 		&p), p.x -1, p.y - 1, p.z - 1);
 	p.u = quintic_poly(p.x);
 	p.v = quintic_poly(p.y);
@@ -96,12 +96,12 @@ double		noise_3D(double pos_x, double pos_y, double pos_z, t_perlin p)
 	int_frac(pos_x, &p.x1, &p.x);
 	int_frac(pos_y, &p.y1, &p.y);
 	int_frac(pos_z, &p.z1, &p.z);
-	p.g000 = dot_perlin(get_gradian(p.x1, p.y1, p.z1, &p), p.x, p.y, p.z);
-	p.g001 = dot_perlin(get_gradian(p.x1, p.y1, p.z1 + 1, &p), p.x, p.y, p.z - 1);
-	p.g010 = dot_perlin(get_gradian(p.x1, p.y1 + 1, p.z1, &p), p.x, p.y - 1, p.z);
-	p.g011 = dot_perlin(get_gradian(p.x1, p.y1 + 1, p.z1 + 1, &p), p.x, p.y - 1, p.z - 1);
-	p.g100 = dot_perlin(get_gradian(p.x1 + 1, p.y1, p.z1, &p), p.x - 1, p.y, p.z);
-	p.g101 = dot_perlin(get_gradian(p.x1 + 1, p.y1, p.z1 + 1, &p), p.x - 1, p.y, p.z - 1);
-	p.g110 = dot_perlin(get_gradian(p.x1 + 1, p.y1 + 1, p.z1, &p), p.x -1, p.y - 1, p.z);
+	p.g000 = dot_perlin(get_grad(p.x1, p.y1, p.z1, &p), p.x, p.y, p.z);
+	p.g001 = dot_perlin(get_grad(p.x1, p.y1, p.z1 + 1, &p), p.x, p.y, p.z - 1);
+	p.g010 = dot_perlin(get_grad(p.x1, p.y1 + 1, p.z1, &p), p.x, p.y - 1, p.z);
+	p.g011 = dot_perlin(get_grad(p.x1, p.y1 + 1, p.z1 + 1, &p), p.x, p.y - 1, p.z - 1);
+	p.g100 = dot_perlin(get_grad(p.x1 + 1, p.y1, p.z1, &p), p.x - 1, p.y, p.z);
+	p.g101 = dot_perlin(get_grad(p.x1 + 1, p.y1, p.z1 + 1, &p), p.x - 1, p.y, p.z - 1);
+	p.g110 = dot_perlin(get_grad(p.x1 + 1, p.y1 + 1, p.z1, &p), p.x -1, p.y - 1, p.z);
 	return (noise_3D_setup(p));
 }

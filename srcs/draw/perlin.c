@@ -6,12 +6,12 @@ double		dot_perlin(const int *v, const double x, const double y, \
 	return (v[0] * x + v[1] * y + v[2] * z);
 }
 
-int		*get_gradian(int x, int y, int z, t_perlin *p)
+int			*get_grad(int x, int y, int z, t_perlin *p)
 {
-	int	r_value;
+	int rand_value;
 
-	r_value = p->perm[z + p->perm[y + p->perm[x]]];
-	return (p->grad3[r_value & 15]);
+	rand_value = p->perm[z + p->perm[y + p->perm[x]]];
+	return (p->grad3[rand_value & 15]);
 }
 
 double		quintic_poly(const double t)

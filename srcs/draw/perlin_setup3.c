@@ -90,6 +90,7 @@ double		noise_3D_setup(t_perlin p)
 
 double		noise_3D(double pos_x, double pos_y, double pos_z, t_perlin p)
 {
+	p.perlin_stain = 0.1;
 	pos_x = fabs(pos_x) / p.perlin_stain;
 	pos_y = fabs(pos_y) / p.perlin_stain;
 	pos_z = fabs(pos_z) / p.perlin_stain;

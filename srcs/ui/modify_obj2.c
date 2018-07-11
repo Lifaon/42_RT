@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:54:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:38:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,12 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param)
 	g_data->objs[g_data->ui->page_obj].alpha = value;
 }
 
-void			change_obj_r(GtkWidget *widget, gpointer param)
+void			change_obj_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param)
 {
 	double		value;
 
-	if (!param && !widget)
+	if (!param && !widget && !event)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;

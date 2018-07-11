@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 18:02:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:52:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 static GtkWidget		*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 		gdouble value)
 {
-	void		(*f_swap)(GtkWidget*, gpointer);
+	void		(*f_swap)(GtkWidget*, GdkEvent *event, gpointer);
 	char		*str;
 	GtkWidget	*entry;
 
-	f_swap = wid_d->f;
+	f_swap = wid_d->entry_f;
 	wid_d->pos.y += 1;
 	wid_d->f = NULL;
 	if (value == INFINITY)
@@ -33,7 +33,7 @@ static GtkWidget		*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 		return (NULL);
 	ft_strdel(&str);
 	gtk_size_group_add_widget(group, entry);
-	wid_d->f = f_swap;
+	wid_d->entry_f = f_swap;
 	return (entry);
 }
 
@@ -56,7 +56,7 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	if (!(scale = scale_new(wid_d, (void*)group, value)))
 		return (0);
 	gtk_size_group_add_widget(group, scale);
-	g_signal_connect(G_OBJECT(entry), "activate",
+	g_signal_connect(G_OBJECT(entry), "focus-out-event",
 			G_CALLBACK(entry_change_scale), (gpointer)scale);
 	wid_d->size = pt_set(1, 1);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, y);

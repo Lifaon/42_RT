@@ -6,18 +6,18 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:15:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:13:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:40:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-void	entry_change_scale(GtkWidget *widget, gpointer param)
+void	entry_change_scale(GtkWidget *widget, GdkEvent *event, gpointer param)
 {
 	GtkWidget	*scale;
 	double		value;
 
-	if (!param)
+	if (!widget && !param && !event)
 		return ;
 	if (g_data->ui->is_active == 0)
 		return ;

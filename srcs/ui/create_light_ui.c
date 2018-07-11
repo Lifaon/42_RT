@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 15:55:51 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:45:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	t_pixelbuf		*pxb;
 
 	wid_d->pos.y = 0;
-	wid_d->f = &change_light_r;
+	wid_d->entry_f = change_light_r;
 	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
 	if (!(make_label_and_entry(wid_d, "radius", light->r, light)))
 		return (0);

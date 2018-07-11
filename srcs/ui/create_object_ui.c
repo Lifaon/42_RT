@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/05 20:26:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:50:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
 	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
 		return (0);
-	wid_d->f = change_obj_r;
+	wid_d->entry_f = change_obj_r;
 	wid_d->pos.y = 0;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);

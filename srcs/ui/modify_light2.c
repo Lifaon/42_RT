@@ -6,13 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:18:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 16:02:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:37:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-void			change_light_r(GtkWidget *widget, gpointer param)
+void			change_light_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param)
 {
 	double		value;
 

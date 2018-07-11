@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/10 19:41:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:25:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ typedef struct		s_wid_data
 	double			step;
 	GtkWidget		*grid;
 	void			(*f)(GtkWidget*, gpointer);
+	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;
 /*
 ** This structure is used to make widget, position it to a grid

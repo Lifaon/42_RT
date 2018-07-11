@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 19:44:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 11:50:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 void			set_wid_data_scale(t_wid_data *wid_d, double step,
 		t_ptdb min_max);
 int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max);
-t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
+t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);//to suppress
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
@@ -98,13 +98,10 @@ void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
 void			click_redraw(GtkWidget *widget, gpointer param);
-void			entry_change_scale(GtkWidget *widget, gpointer param);
 size_t			size_of_str_json(void);
 char			*fill_object_json(char *str, int type, int i);
 int				size_of_object_json(int size, int type, int i);
 char			*fill_str_json(size_t size);
-int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
-		t_vec *vec);
 
 /*
 ** => light event
@@ -112,7 +109,8 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 void			add_one_light(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
 void			change_light_angle(GtkWidget *widget, gpointer param);
-void			change_light_r(GtkWidget *widget, gpointer param);
+void			change_light_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
 void			change_light_color(GtkWidget *widget, gpointer param);
 void			change_light_ambi(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
@@ -129,7 +127,7 @@ void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
-void			change_obj_r(GtkWidget *widget, gpointer param);
+void			change_obj_r(GtkWidget *widget, GdkEvent *event, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
@@ -177,4 +175,8 @@ void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 void			set_child_widget_active(GtkContainer *container, gboolean status);
 void			set_entry_and_scale_from_vector(GtkSizeGroup *group,
 		t_vec vec);
+int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
+		t_vec *vec);
+void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
+		gpointer param);
 #endif

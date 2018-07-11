@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:50:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:24:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,12 @@ GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec,
-		GtkSizeGroup *group);
+GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
+GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label,
+		t_vec vec);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
-GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec,
-		GtkSizeGroup *group);
 int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
@@ -132,8 +131,10 @@ void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
 void			modify_obj_limited_type(GtkWidget *widget, gpointer param);
-void			change_obj_min(GtkWidget *widget, gpointer param);
-void			change_obj_max(GtkWidget *widget, gpointer param);
+void			change_obj_min(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			change_obj_max(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
 
 /*
 ** => options event

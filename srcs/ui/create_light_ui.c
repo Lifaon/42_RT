@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:45:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:25:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	wid_d->pos = pt_set(1, 0);
 	vec = light->pos;
 	wid_d->f = &change_light_pos;
-	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
+	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	wid_d->pos = pt_set(1, 2);
 	wid_d->f = &change_light_angle;
 	vec = light->dir;
 	wid_d->min_max = ptdb_set(-180, 180);
-	if (!(group = add_vector_choose(wid_d, "direction", vec, NULL)))
+	if (!(group = add_vector_choose(wid_d, "direction", vec)))
 		return (0);
 	return (construct_phase_2(wid_d, light, group));
 }

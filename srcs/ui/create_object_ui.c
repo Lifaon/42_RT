@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:50:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:25:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	wid_d->f = &change_obj_angle;
 	vec = obj->angle;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
-	if (!(group = add_vector_choose(wid_d, "angle rotation", vec, NULL)))
+	if (!(group = add_vector_choose(wid_d, "angle rotation", vec)))
 		return (0);
 	wid_d->pos = pt_set(5, 2);
 	vec = obj->pos;
 	wid_d->f = &change_obj_pos;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
-	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
+	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	wid_d->entry_f = change_obj_r;
 	wid_d->pos.y = 0;
@@ -79,7 +79,8 @@ static GtkWidget 	*create_scrollable(GtkWidget *child)
 		return (NULL);
 	if (!(sbar = gtk_scrolled_window_new(NULL, v_adj)))
 		return (NULL);
-	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar), g_data->img->size.y - 200);
+	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar),
+			g_data->img->size.y - 200);
 	gtk_scrolled_window_set_overlay_scrolling(GTK_SCROLLED_WINDOW(sbar), FALSE);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sbar),
                                 GTK_POLICY_NEVER,

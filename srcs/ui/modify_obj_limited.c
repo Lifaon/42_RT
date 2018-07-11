@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 17:59:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:14:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void		switch_obj_limited(GtkWidget *widget,
 	if (!widget)
 		return ;
 	if (state == FALSE)
-		g_data->objs[g_data->ui->page_obj].limited = -1;
+		g_data->objs[g_data->ui->page_obj].limited = LIMIT_NONE;
+	if (state == TRUE)
+		g_data->objs[g_data->ui->page_obj].limited = LIMIT_AXE;
 	set_child_widget_active(GTK_CONTAINER(param), state);
 }
 
@@ -60,11 +62,13 @@ void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
 	obj->limit = g_data->limit[type];
 }
 
-void		change_obj_min(GtkWidget *widget, gpointer param)
+void		change_obj_min(GtkWidget *widget, GdkEvent *event, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
+	if (!param && !widget && !event)
+		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].min;
@@ -74,11 +78,13 @@ void		change_obj_min(GtkWidget *widget, gpointer param)
 	printf("x = %lf  y = %lf  z = %lf\n", vec->x, vec->y, vec->z);
 }
 
-void		change_obj_max(GtkWidget *widget, gpointer param)
+void		change_obj_max(GtkWidget *widget, GdkEvent *event, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
+	if (!param && !widget && !event)
+		return ;
 	if (g_data->ui->is_active == 0)
 		return ;
 	vec = &g_data->objs[g_data->ui->page_obj].max;

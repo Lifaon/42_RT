@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 19:49:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:23:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static int	phase_1(t_wid_data *wid_d, t_obj *obj, gboolean is_limited)
 	GtkSizeGroup	*group[2];
 
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	wid_d->f = &change_obj_min;
-	if (!(group[0] = add_vector_choose_no_scale(wid_d, "min", obj->min, NULL)))
+	wid_d->entry_f = &change_obj_min;
+	if (!(group[0] = add_vector_choose_no_scale(wid_d, "min", obj->min)))
 		return (0);
 	wid_d->pos = pt_set(1, 2);
-	wid_d->f = &change_obj_max;
-	if (!(group[1] = add_vector_choose_no_scale(wid_d, "max", obj->max, NULL)))
+	wid_d->entry_f = &change_obj_max;
+	if (!(group[1] = add_vector_choose_no_scale(wid_d, "max", obj->max)))
 		return (0);
 	if (!(phase_2(wid_d, obj, is_limited)))//
 		return (0);

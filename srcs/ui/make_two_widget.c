@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:52:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 14:13:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static GtkWidget		*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 
 	f_swap = wid_d->entry_f;
 	wid_d->pos.y += 1;
-	wid_d->f = NULL;
+	wid_d->entry_f = NULL;
 	if (value == INFINITY)
 		str = ft_strdup("inf");
 	else if (value == -INFINITY)
@@ -56,7 +56,7 @@ int					make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 	if (!(scale = scale_new(wid_d, (void*)group, value)))
 		return (0);
 	gtk_size_group_add_widget(group, scale);
-	g_signal_connect(G_OBJECT(entry), "focus-out-event",
+	g_signal_connect_after(G_OBJECT(entry), "focus-out-event",
 			G_CALLBACK(entry_change_scale), (gpointer)scale);
 	wid_d->size = pt_set(1, 1);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, y);

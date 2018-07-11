@@ -6,29 +6,36 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 16:48:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:21:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 15:21:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
+static int			get_cb_limit_value_from_obj(t_obj *obj)
+{
+	if (obj->limited == LIMIT_AXE || obj->limited == LIMIT_NONE)
+		return (0);
+	if (obj->obj_type == PLANE && obj->limited == LIMIT_CIRCLE)
+		return (2);
+	return (1);
+}
+
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 {
 	GtkWidget		*cb;
-	char			*str;
+	int				id;
 
-	//if (!(l_new(wid_d, "Type")))
-	//	return (NULL);
 	if (!(cb = gtk_combo_box_text_new()))
 		return (NULL);
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "principal axe");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "revolution axe");
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "circle");
-	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 1);
-	str = get_str_obj_type(obj->obj_type);
-	gtk_combo_box_set_active_id(GTK_COMBO_BOX(cb), str);
-	ft_strdel(&str);
+	if (obj->obj_type == PLANE)
+		gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "circle");
+	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 0);
+	id = get_cb_limit_value_from_obj(obj);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), id);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(cb), "changed", G_CALLBACK(wid_d->f), param);
 	//wid_d->pos.y += 1;

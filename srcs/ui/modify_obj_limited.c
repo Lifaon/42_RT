@@ -6,15 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:14:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 15:22:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int	get_limited_obj_type(t_obj *obj, int axe)
+static int			get_limited_obj_type(t_obj *obj, int axe)
 {
-	printf("obj_type = %d, axe = %d\n", obj->obj_type, axe);
 	if (axe == 0)
 		return (LIMIT_AXE);
 	if (axe == 1)
@@ -41,7 +40,10 @@ void		switch_obj_limited(GtkWidget *widget,
 	if (state == FALSE)
 		g_data->objs[g_data->ui->page_obj].limited = LIMIT_NONE;
 	if (state == TRUE)
+	{
 		g_data->objs[g_data->ui->page_obj].limited = LIMIT_AXE;
+		gtk_combo_box_set_active(GTK_COMBO_BOX(g_data->ui->cb_obj_limit), 0);
+	}
 	set_child_widget_active(GTK_CONTAINER(param), state);
 }
 
@@ -57,7 +59,6 @@ void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
 	obj = &g_data->objs[g_data->ui->page_obj];
 	if ((type = get_limited_obj_type(obj, axe)) < 0)
 		return ;
-	ft_putnbr(type);
 	obj->limited = type;
 	obj->limit = g_data->limit[type];
 }
@@ -75,7 +76,6 @@ void		change_obj_min(GtkWidget *widget, GdkEvent *event, gpointer param)
 	group = (GtkSizeGroup*)param;
 	change_vec_from_entry(group, vec, MODE_BOTH_INF,
 			ptdb_set(-INFINITY, INFINITY));
-	printf("x = %lf  y = %lf  z = %lf\n", vec->x, vec->y, vec->z);
 }
 
 void		change_obj_max(GtkWidget *widget, GdkEvent *event, gpointer param)
@@ -91,5 +91,4 @@ void		change_obj_max(GtkWidget *widget, GdkEvent *event, gpointer param)
 	group = (GtkSizeGroup*)param;
 	change_vec_from_entry(group, vec, MODE_BOTH_INF,
 			ptdb_set(-INFINITY, INFINITY));
-	printf("x = %lf  y = %lf  z = %lf\n", vec->x, vec->y, vec->z);
 }

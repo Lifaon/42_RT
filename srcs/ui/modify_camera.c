@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 19:19:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 19:56:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 14:39:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void			change_cam_fov(GtkWidget *widget, gpointer param)
 		return ;
 	value = gtk_range_get_value(GTK_RANGE(widget));
 	g_data->cams[g_data->i].fov = value;
+	g_data->cam = g_data->cams[g_data->i];
 }
 
 void			change_cam_angle(GtkWidget *widget, gpointer param)
@@ -34,6 +35,7 @@ void			change_cam_angle(GtkWidget *widget, gpointer param)
 	vec = &g_data->cams[g_data->i].angle;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
+	g_data->cam = g_data->cams[g_data->i];
 }
 
 void			change_cam_pos(GtkWidget *widget, gpointer param)
@@ -46,6 +48,8 @@ void			change_cam_pos(GtkWidget *widget, gpointer param)
 	vec = &g_data->cams[g_data->i].pos;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
+	g_data->cam = g_data->cams[g_data->i];
+	printf("x= %lf, y =%lf, z = %lf\n", vec->x, vec->y, vec->z);
 }
 
 void			change_left_cam(GtkWidget *widget, gpointer param)

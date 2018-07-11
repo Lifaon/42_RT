@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:15:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:35:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 14:30:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	entry_change_scale(GtkWidget *widget, GdkEvent *event, gpointer param)
 	adj = gtk_range_get_adjustment(GTK_RANGE(scale));
 	min = gtk_adjustment_get_lower(adj);
 	max = gtk_adjustment_get_upper(adj);
-	//value = ft_atof(gtk_entry_get_text(GTK_ENTRY(widget)));
 	value = get_double_from_entry(widget, MODE_NO_INF, min, max);
 	gtk_range_set_value(GTK_RANGE(scale), value);
 }

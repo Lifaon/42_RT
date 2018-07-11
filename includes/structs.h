@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/11 12:03:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 15:19:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct		s_ui
 	GtkSizeGroup	*gp_cam_pos;
 	GtkSizeGroup	*gp_cam_angle;
 	GtkSizeGroup	*gp_obj_min;
+	GtkWidget		*cb_obj_limit;
 	GtkSizeGroup	*gp_obj_max;
 	char			*path;
 	int				is_active;

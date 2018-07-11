@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:47:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 14:02:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param, const char *txt)
 	{
 		//g_signal_connect(G_OBJECT(entry), "activate", G_CALLBACK(wid_d->f),
 		//		param);
-		g_signal_connect(G_OBJECT(entry), "focus-out-event",
+		g_signal_connect_after(G_OBJECT(entry), "focus-out-event",
 				G_CALLBACK(wid_d->entry_f), param);
 	}
 	if (txt)

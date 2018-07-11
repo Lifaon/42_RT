@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_obj2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:38:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 00:18:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void			add_one_obj(GtkWidget *widget, gpointer param)
 	init_one_object(g_data, i);
 	create_object_tab(g_data->ui->tab_objs, i);
 	gtk_widget_show_all(g_data->win);
+	get_oc();
 	g_data->ui->is_active = 1;
 }
 

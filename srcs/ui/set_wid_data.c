@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:59:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 11:46:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:26:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max)
 	wid_d->size = pt_set(1, 1);
 	wid_d->f = NULL;
 	wid_d->entry_f = NULL;
+	wid_d->param = NULL;
 	wid_d->step = step;
 	wid_d->min_max = min_max;
 	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);

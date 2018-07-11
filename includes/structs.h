@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/11 15:41:26 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:26:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ typedef struct		s_wid_data
 	t_ptdb			min_max;
 	double			step;
 	GtkWidget		*grid;
+	gpointer		param;
 	void			(*f)(GtkWidget*, gpointer);
 	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;

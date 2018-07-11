@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 19:23:33 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:52:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:53:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-int		create_sub_notebook(t_ui *ui, int do_options)
+int		create_sub_notebook(t_ui *ui)
 {
 	g_data->ui->is_active = 0;
 	if (!(create_light_ui(ui->tab)))
@@ -21,8 +21,7 @@ int		create_sub_notebook(t_ui *ui, int do_options)
 		return (0);
 	if (!(create_object_ui(ui->tab)))
 		return (0);
-	if (do_options == 1)
-		if (!(create_options_ui(ui->tab)))
+	if (!(create_options_ui(ui->tab)))
 			return (0);
 	g_data->ui->is_active = 1;
 	return (1);

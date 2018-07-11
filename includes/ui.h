@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:24:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:51:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ** Parent functions
  */
 int				create_ui(char *path);
-int				create_sub_notebook(t_ui *ui, int do_param);
+int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
@@ -53,6 +53,8 @@ GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
+GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
+		int set_value, char **txt);
 GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
 GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label,
@@ -126,7 +128,8 @@ void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
-void			change_obj_r(GtkWidget *widget, GdkEvent *event, gpointer param);
+void			change_obj_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
@@ -142,6 +145,9 @@ void			change_obj_max(GtkWidget *widget, GdkEvent *event,
 void			get_int_from_scale(GtkWidget *widget, gpointer param);
 void			change_aa(GtkWidget *widget, gpointer param);
 void			change_px(GtkWidget *widget, gpointer param);
+void			switch_cel_shading(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			change_filter(GtkWidget *widget, gpointer param);
 t_vec			pitch(t_vec ray, t_vec angle);
 t_vec			yaw(t_vec ray, t_vec angle);
 t_vec			roll(t_vec ray, t_vec angle);

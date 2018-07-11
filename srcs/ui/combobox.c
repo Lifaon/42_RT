@@ -6,19 +6,48 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 16:48:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 15:21:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:52:32 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int			get_cb_limit_value_from_obj(t_obj *obj)
+static int		get_cb_limit_value_from_obj(t_obj *obj)
 {
 	if (obj->limited == LIMIT_AXE || obj->limited == LIMIT_NONE)
 		return (0);
 	if (obj->obj_type == PLANE && obj->limited == LIMIT_CIRCLE)
 		return (2);
 	return (1);
+}
+
+GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
+		int set_value, char **txt)
+{
+	GtkWidget		*cb;
+	char			*str;
+	int				i;
+
+	if (!(l_new(wid_d, label)))
+		return (NULL);
+	if (!(cb = gtk_combo_box_text_new()))
+		return (NULL);
+	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
+	i = -1;
+	while (txt[++i])
+		gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, txt[i]);
+	if (set_value < i)
+		gtk_combo_box_set_active(GTK_COMBO_BOX(cb), set_value);
+	while (--i >= 0)
+		ft_strdel(&txt[i]);
+	free(txt);
+	if (wid_d->f)
+		g_signal_connect(G_OBJECT(cb), "changed", G_CALLBACK(wid_d->f),
+				wid_d->param);
+	wid_d->pos.y += 1;
+	gtk_grid_attach(GTK_GRID(wid_d->grid), cb, wid_d->pos.y, wid_d->pos.x,
+			wid_d->size.x, wid_d->size.y);
+	return (cb);
 }
 
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)

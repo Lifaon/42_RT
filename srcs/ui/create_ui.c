@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:48:05 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:06:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,29 @@ void            focus_me(GtkWidget  *widget, gpointer data)
 
 static int      create_renderer(void)
 {
-    GtkWidget   *wid;
-    GtkWidget   *ev_box;
+	GtkWidget	*wid;
+	GtkWidget	*ev_box;
 
-    if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
-        return (0);
+	if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
+		return (0);
 	wid = (GtkWidget*)g_data->img->widget;
 	gtk_widget_set_can_focus(wid, TRUE);
 	gtk_widget_set_can_default(wid, TRUE);
 	if (!(g_data->ui->ev_box = gtk_event_box_new()))
-	        return (0);
+		return (0);
 	ev_box = g_data->ui->ev_box;
 	gtk_container_add(GTK_CONTAINER(ev_box), wid);
 	gtk_widget_set_can_focus(ev_box, TRUE);
 	gtk_widget_set_can_default(ev_box, TRUE);
-    gtk_widget_add_events(ev_box, GDK_KEY_PRESS);
+	gtk_widget_add_events(ev_box, GDK_KEY_PRESS);
 	//g_signal_connect(G_OBJECT(g_data->win), "key_press_event",
 	//			G_CALLBACK(ft_keyboard), data);
 	g_signal_connect(G_OBJECT(ev_box), "key_press_event",
 				G_CALLBACK(ft_keyboard), g_data);
-    gtk_event_box_set_above_child(GTK_EVENT_BOX(ev_box), TRUE);
-    //g_signal_connect(G_OBJECT(wid), "clicked",
-      //      G_CALLBACK(&focus_me), g_data);
-    //g_signal_connect(G_OBJECT(ev_box), "clicked",
+	gtk_event_box_set_above_child(GTK_EVENT_BOX(ev_box), TRUE);
+	//g_signal_connect(G_OBJECT(wid), "clicked",
+	  //      G_CALLBACK(&focus_me), g_data);
+	//g_signal_connect(G_OBJECT(ev_box), "clicked",
 	//			G_CALLBACK(&focus_me), g_data);
     return(1);
 }
@@ -98,11 +98,11 @@ int				create_ui(char *path)
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
 	if (!(g_data->ui = ui_new(path)))
 		return (0);
-    create_renderer();
+	create_renderer();
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab), TRUE);
 	if (!(create_toolbar(v_box, g_data->ui)))
 		return (0);
-	if (!(create_sub_notebook(g_data->ui, 1)))
+	if (!(create_sub_notebook(g_data->ui)))
 		return (0);
 	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit),
 			NULL);

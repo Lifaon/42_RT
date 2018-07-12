@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 18:06:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:28:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_ui		*ui_new(char *path)
 	ui->page_obj = 0;
 	ui->page_cam = 0;
 	ui->is_active = 0;
+	ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
 	chr = ft_strstr(path, "/rt");
 	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
 	//ui->path = ft_strdup(path);
@@ -64,9 +65,9 @@ static int      create_renderer(void)
 	wid = (GtkWidget*)g_data->img->widget;
 	gtk_widget_set_can_focus(wid, TRUE);
 	gtk_widget_set_can_default(wid, TRUE);
-	if (!(g_data->ui->ev_box = gtk_event_box_new()))
+	if (!(g_ui->ev_box = gtk_event_box_new()))
 		return (0);
-	ev_box = g_data->ui->ev_box;
+	ev_box = g_ui->ev_box;
 	gtk_container_add(GTK_CONTAINER(ev_box), wid);
 	gtk_widget_set_can_focus(ev_box, TRUE);
 	gtk_widget_set_can_default(ev_box, TRUE);
@@ -96,19 +97,19 @@ int				create_ui(char *path)
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-	if (!(g_data->ui = ui_new(path)))
+	if (!(g_ui = ui_new(path)))
 		return (0);
 	create_renderer();
-	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab), TRUE);
-	if (!(create_toolbar(v_box, g_data->ui)))
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab), TRUE);
+	if (!(create_toolbar(v_box, g_ui)))
 		return (0);
-	if (!(create_sub_notebook(g_data->ui)))
+	if (!(create_sub_notebook(g_ui)))
 		return (0);
 	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit),
 			NULL);
-	gtk_box_pack_start(GTK_BOX(v_box), g_data->ui->tab, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(v_box), g_ui->tab, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(h_box), v_box, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(h_box), g_data->ui->ev_box, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(h_box), g_ui->ev_box, FALSE, FALSE, 0);
 	//gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
 	gtk_widget_show_all(win);

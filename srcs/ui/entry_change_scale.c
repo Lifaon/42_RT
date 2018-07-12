@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:15:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 14:30:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:32:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	entry_change_scale(GtkWidget *widget, GdkEvent *event, gpointer param)
 
 	if (!widget && !param && !event)
 		return ;
-	if (g_data->ui->is_active == 0)
+	if (g_ui->is_active == 0)
 		return ;
 	scale = (GtkWidget*)param;
 	adj = gtk_range_get_adjustment(GTK_RANGE(scale));

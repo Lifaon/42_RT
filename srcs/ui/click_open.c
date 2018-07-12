@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 18:06:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:31:52 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		open_json(gchar *path)
 	g_data->cam = g_data->cams[g_data->i];
 	get_oc();
 	put_gdk_image();
-	if (!(create_sub_notebook(g_data->ui)))
+	if (!(create_sub_notebook(g_ui)))
 		return (-1);
 	gtk_widget_show_all(g_data->win);
 	return (1);
@@ -59,7 +59,7 @@ static void		destroy_tabs(GtkWidget *tab)
 		gtk_widget_destroy(tab_son);
 		cpy = cpy->next;
 	}
-	ft_lstdel(&g_data->ui->to_free, free_to_free);
+	ft_lstdel(&g_ui->to_free, free_to_free);
 	g_list_free(list);
 }
 

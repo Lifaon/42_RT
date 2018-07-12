@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 18:27:24 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/15 20:12:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:34:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ gboolean		mouse2(GtkWidget *widget, GdkEventMotion *event, gpointer param)
 	t_param				*par;
 	GdkEventKey			key_event;
 
-	//motion = (GdkEventMotion*)event;
 	key_event.keyval = 2;
 	if (!widget && !event && !param)
 		param = NULL;

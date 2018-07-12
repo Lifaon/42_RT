@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 19:31:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 18:57:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:31:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	change_aa(GtkWidget *widget, gpointer param)
 
 	if (!param && !widget)
 		return ;
-	if (g_data->ui->is_active == 0)
+	if (g_ui->is_active == 0)
 		return ;
 	value = (int)gtk_range_get_value(GTK_RANGE(widget));
 	if (value == 1)
@@ -44,7 +44,7 @@ void	change_px(GtkWidget *widget, gpointer param)
 
 	if (!param && !widget)
 		return ;
-	if (g_data->ui->is_active == 0)
+	if (g_ui->is_active == 0)
 		return ;
 	value = (int)gtk_range_get_value(GTK_RANGE(widget));
 		g_data->px = value;

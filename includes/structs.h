@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/11 18:26:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:27:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct		s_ui
 	GtkSizeGroup	*gp_obj_min;
 	GtkWidget		*cb_obj_limit;
 	GtkSizeGroup	*gp_obj_max;
+	GtkSizeGroup	*gp_dof_focus;
 	char			*path;
 	int				is_active;
 	int				page_light;
@@ -192,7 +193,6 @@ typedef struct		s_data
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	void			*win;
 	t_pixelbuf		*img;
-	t_ui			*ui;
 	int				draw;//
 }					t_data;
 /*
@@ -201,6 +201,7 @@ typedef struct		s_data
 */
 
 t_data				*g_data;
+t_ui				*g_ui;
 /*
 **	Global variable of the data structure.
 */

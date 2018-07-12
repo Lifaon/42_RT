@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:25:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:32:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int				create_light_tab(GtkWidget *tab_light, int index)
 			l_title)) < 0)
 		return (0);
 	gtk_widget_show_all(tab_light);
-	while (g_data->ui->page_light < index)
+	while (g_ui->page_light < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_light));
 	if (!(construct_phase_1(&wid_d, &g_data->lights[index])))
 		return (0);
@@ -110,20 +110,20 @@ int				create_light_ui(GtkWidget *tab)
 	GtkWidget		*box;
 	int				i;
 
-	if (!(g_data->ui->tab_light = gtk_notebook_new()))
+	if (!(g_ui->tab_light = gtk_notebook_new()))
 		return (0);
-	g_signal_connect(G_OBJECT(g_data->ui->tab_light), "switch-page",
+	g_signal_connect(G_OBJECT(g_ui->tab_light), "switch-page",
 			G_CALLBACK(change_page_light), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	create_light_button(box);
-	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_light), TRUE);
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_light), TRUE);
 	i = -1;
 	while (++i < g_data->nb_lights)
-		if (!(create_light_tab(g_data->ui->tab_light, i)))
+		if (!(create_light_tab(g_ui->tab_light, i)))
 			return (0);
 	if (!(l_title = gtk_label_new("Light")))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), g_data->ui->tab_light, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), g_ui->tab_light, FALSE, FALSE, 0);
 	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), box, l_title) < 0)
 		return (0);
 	return (1);

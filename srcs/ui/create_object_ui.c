@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 20:05:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:32:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 			l_title)) < 0)
 		return (0);
 	gtk_widget_show_all(tab_obj);
-	while (g_data->ui->page_obj < index)
+	while (g_ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
 	gtk_widget_show_all(tab_obj);
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
@@ -126,9 +126,9 @@ int				create_object_ui(GtkWidget *tab)
 		GtkWidget	*button;
 	int				i;
 
-	if (!(g_data->ui->tab_objs = gtk_notebook_new()))
+	if (!(g_ui->tab_objs = gtk_notebook_new()))
 		return (0);
-	g_signal_connect(G_OBJECT(g_data->ui->tab_objs), "switch-page",
+	g_signal_connect(G_OBJECT(g_ui->tab_objs), "switch-page",
 			G_CALLBACK(change_page_obj), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	if (!(button = gtk_button_new_with_label("add object")))
@@ -136,14 +136,14 @@ int				create_object_ui(GtkWidget *tab)
 	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
 	g_signal_connect(G_OBJECT(button), "clicked",
 			G_CALLBACK(add_one_obj), NULL);
-	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_objs), TRUE);
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_objs), TRUE);
 	i = -1;
 	while (++i < g_data->nb_objects)
-		if (!(create_object_tab(g_data->ui->tab_objs, i)))
+		if (!(create_object_tab(g_ui->tab_objs, i)))
 			return (0);
 	if (!(l_title = gtk_label_new("Object")))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), g_data->ui->tab_objs, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), g_ui->tab_objs, FALSE, FALSE, 0);
 	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), box, l_title) < 0)
 		return (0);
 	return (1);

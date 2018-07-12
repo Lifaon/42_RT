@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:36:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 20:12:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void			change_filter(GtkWidget *widget, gpointer param);
 t_vec			pitch(t_vec ray, t_vec angle);
 t_vec			yaw(t_vec ray, t_vec angle);
 t_vec			roll(t_vec ray, t_vec angle);
+void			get_vp_up_left(t_camera *cam);
 
 /*
 ** => camera event

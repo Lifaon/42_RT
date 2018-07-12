@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 19:19:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:30:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 20:21:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void			change_cam_fov(GtkWidget *widget, gpointer param)
 	value = gtk_range_get_value(GTK_RANGE(widget));
 	g_data->cams[g_data->i].fov = value;
 	g_data->cam = g_data->cams[g_data->i];
+	get_vp_up_left(&g_data->cam);
+	get_oc();
 }
 
 void			change_cam_angle(GtkWidget *widget, gpointer param)
@@ -36,6 +38,9 @@ void			change_cam_angle(GtkWidget *widget, gpointer param)
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
 	g_data->cam = g_data->cams[g_data->i];
+	get_vp_up_left(&g_data->cam);
+	get_oc();
+
 }
 
 void			change_cam_pos(GtkWidget *widget, gpointer param)
@@ -49,6 +54,8 @@ void			change_cam_pos(GtkWidget *widget, gpointer param)
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
 	g_data->cam = g_data->cams[g_data->i];
+	get_vp_up_left(&g_data->cam);
+	get_oc();
 	printf("x= %lf, y =%lf, z = %lf\n", vec->x, vec->y, vec->z);
 }
 
@@ -72,6 +79,8 @@ void			change_left_cam(GtkWidget *widget, gpointer param)
 			g_data->cam.angle);
 	set_entry_and_scale_from_vector(g_ui->gp_cam_pos, g_data->cam.pos);
 	gtk_range_set_value(GTK_RANGE(g_ui->sc_fov), g_data->cam.fov);
+	get_vp_up_left(&g_data->cam);
+	get_oc();
 	g_ui->is_active = 1;
 }
 
@@ -95,5 +104,7 @@ void			change_right_cam(GtkWidget *widget, gpointer param)
 			g_data->cam.angle);
 	set_entry_and_scale_from_vector(g_ui->gp_cam_pos, g_data->cam.pos);
 	gtk_range_set_value(GTK_RANGE(g_ui->sc_fov), g_data->cam.fov);
+	get_vp_up_left(&g_data->cam);
+	get_oc();
 	g_ui->is_active = 1;
 }

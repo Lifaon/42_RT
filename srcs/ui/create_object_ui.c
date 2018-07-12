@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:08:38 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:48:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
-	wid_d->entry_f = change_obj_r;
 	wid_d->pos.y = 0;
+	wid_d->f = NULL;
 	if (!(new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
 		return (0);
 	wid_d->pos.y = 2;
-	wid_d->pos.x -= 1;
+	//wid_d->pos.x -= 1;
+	wid_d->entry_f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
 	wid_d->pos.x += 1;

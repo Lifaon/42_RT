@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:32:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:08:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 
 	wid_d->entry_f = change_obj_r;
 	wid_d->pos.y = 0;
-	if (!(make_label_and_switch(wid_d, "DOF Focus", FALSE, NULL)))
+	if (!(new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
 		return (0);
 	wid_d->pos.y = 2;
 	wid_d->pos.x -= 1;
@@ -123,7 +123,7 @@ int				create_object_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	GtkWidget		*box;
-		GtkWidget	*button;
+	GtkWidget		*but;
 	int				i;
 
 	if (!(g_ui->tab_objs = gtk_notebook_new()))
@@ -131,11 +131,10 @@ int				create_object_ui(GtkWidget *tab)
 	g_signal_connect(G_OBJECT(g_ui->tab_objs), "switch-page",
 			G_CALLBACK(change_page_obj), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-	if (!(button = gtk_button_new_with_label("add object")))
+	if (!(but = gtk_button_new_with_label("add object")))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
-	g_signal_connect(G_OBJECT(button), "clicked",
-			G_CALLBACK(add_one_obj), NULL);
+	gtk_box_pack_start(GTK_BOX(box), but, FALSE, FALSE, 10);
+	g_signal_connect(G_OBJECT(but), "clicked", G_CALLBACK(add_one_obj), NULL);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_objs), TRUE);
 	i = -1;
 	while (++i < g_data->nb_objects)

@@ -6,11 +6,26 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/10 19:18:51 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:26:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+
+t_color		get_color_of_img(GtkWidget *img)
+{
+	t_color			color;
+	GdkPixbuf		*pxb;
+	uint32_t		*pxl;
+
+	color.c = 0;
+	if (!(pxb = gtk_image_get_pixbuf(GTK_IMAGE(img))))
+		return (color);
+	if (!(pxl = (uint32_t*)gdk_pixbuf_get_pixels(pxb)))
+		return (color);
+	color.c = pxl[0];
+	return (color);
+}
 
 void			set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
 {

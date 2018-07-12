@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/09 04:00:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 02:11:07 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	double		k;
 
 	++inter->depth;
-	coeff = data->objs[inter->obj_i].trans;
+	coeff = inter->trans_at_ip;
 	dot = dot_product(ray, data->objs[inter->obj_i].get_normal(\
 		data->objs[inter->obj_i], *inter));
 	if (dot < 0.0f) // on est dans en dehors de l'objet //

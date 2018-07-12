@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/10 08:46:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 03:48:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ static t_color	shade(t_data *data, t_vec ray, t_inter *inter, t_light light)
 	t_color	color;
 	t_color	ret;
 	t_vec	light_vec;
+	t_inter	tmp;
 	double	dot;
 
 	color = inter->color;
-	inter->origin = inter->ip;
 	ret = ambient_shading(color, light);
-	inter->shadow = ret;
+	tmp = *inter;
+	tmp.origin = inter->ip;
+	tmp.shadow = ret;
 	light_vec = light.is_para ? light.dir : vec_substract(light.pos, inter->ip);
-	if (blocked(light, inter, &light_vec, &dot))
-		return (inter->shadow);
+	if (blocked(light, &tmp, &light_vec, &dot))
+		return (tmp.shadow);
 	ret = add_colors(ret, diffuse_shading(color, light, dot));
 	inter->spec = add_colors(inter->spec, specular_shading(\
 		data->objs[inter->obj_i], light.color, light_vec, *inter));
@@ -56,9 +58,13 @@ static t_color	shade(t_data *data, t_vec ray, t_inter *inter, t_light light)
 
 static t_color	refra_refrec(t_data *data, t_inter inter, t_color ret, t_vec r)
 {
+	if (g_data->objs[inter.obj_i].tex && g_data->objs[inter.obj_i].tex_trans)
+		inter.trans_at_ip = 1 - (inter.color.argb.a / 255.);
+	else
+		inter.trans_at_ip = g_data->objs[inter.obj_i].trans;
 	if (inter.depth < data->depth_max && data->objs[inter.obj_i].shiny != 0)
 		return (draw_reflec(data, &inter, ret, r));
-	if (inter.depth < data->depth_max && data->objs[inter.obj_i].trans != 0)
+	if (inter.depth < data->depth_max && inter.trans_at_ip != 0)
 		return (draw_refract(data, &inter, ret, r));
 	return (ret);
 }

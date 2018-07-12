@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/04 01:31:21 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/10 06:15:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		other_hit(t_data *data, t_vec ray, t_inter *inter)
 	int		i;
 
 	t = INFINITY;
-	inter->min_dist = 0.01;
 	i = -1;
 	while (++i < data->nb_objects)
 	{

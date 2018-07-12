@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/11 18:26:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 04:12:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ typedef struct		s_inter
 {
 	int				obj_i;
 	int				depth;
+	int				in_object;
 	double			t1;
 	double			t2;
 	double			t;
 	double			delta;
 	double			min_dist;
+	double			trans_at_ip;
 	t_point			uv;
 	t_color			color;
+	t_color			shadow;
 	t_color			spec;
 	t_vec			ip;
 	t_vec			normal;
@@ -133,6 +136,7 @@ typedef struct		s_obj
 	double			tex_scale;
 	int				tex_repeat;
 	int				tex_limit;
+	int				tex_trans;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);

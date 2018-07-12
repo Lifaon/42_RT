@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/06 07:04:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 04:58:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,18 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	double		k;
 
 	++inter->depth;
-	coeff = data->objs[inter->obj_i].trans;
+	coeff = inter->trans_at_ip;
 	dot = dot_product(ray, data->objs[inter->obj_i].get_normal(\
 		data->objs[inter->obj_i], *inter));
-	if (dot < 0.0f) // on est dans en dehors de l'objet //
+	if (!inter->in_object) // on est dans en dehors de l'objet //
 		dot = -dot;
 	else // on est dans l'objet //
 		ft_swap_double(&n_i, &n_t);
+	inter->in_object = inter->in_object ? 0 : 1;
 	eta = n_i / n_t;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
 	if (k < 0.0f) // no refraction car full reflection interne
-		return (blend_coeff(ret, (t_color){.c = 0xFF000000}, coeff));
+		return (ret);
 	angle_i = acos(dot);
 	angle_t = asin((n_i * sin(angle_i)) / n_t);
 	r = vec_normalize(vec_add(vec_multiply(ray, eta), \

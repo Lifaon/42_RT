@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 06:58:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 04:14:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_color	draw_pixel(t_data *data, t_vec vp)
 	t_vec		ray;
 	t_color		ret;
 
+	inter.in_object = 0;
 	if (data->aa <= 1)
 	{
 		inter.depth = 0;

@@ -29,7 +29,7 @@
 			"position" : [-300, 200, 1000],
 			"radius" : 100,
 			"specular" : 0,
-			"texture" : "textures/world.jpg"
+			"texture" : "textures/world.jpg",
 		},
 		"cylinder" :
 		{
@@ -49,7 +49,8 @@
 			"texture" : "textures/rainbow.png",
 			"tex_scale" : 2,
 			"tex_pos" : [1500],
-			"tex_repeat" : 0
+			"tex_repeat" : 0,
+			"ior" : 1.3
 		},
 		"plane" :
 		{

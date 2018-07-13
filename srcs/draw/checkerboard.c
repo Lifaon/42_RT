@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 01:44:26 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:07:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/13 04:21:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	cb_sphere(t_obj obj, t_vec ray, t_inter *inter)
 	if (dot_product(obj.z_dir, vp) < 0)
 		u = 1 - u;
 	v = phi / M_PI;
-	inter->uv.x = (int)((obj.checkerboard * 2) * u);
-	inter->uv.y = (int)((obj.checkerboard * 2) * v);
+	inter->uv.x = (int)(obj.checkerboard * 2 * u);
+	inter->uv.y = (int)(obj.checkerboard * 2 * v);
 }
 
 static void	cb_plane(t_obj obj, t_vec ray, t_inter *inter)
@@ -42,9 +42,9 @@ static void	cb_plane(t_obj obj, t_vec ray, t_inter *inter)
 	inter->uv.x = ((int)(dot_product(vp, obj.y_dir) * vp_len));
 	inter->uv.y = ((int)(dot_product(vp, obj.z_dir) * vp_len));
 	if (inter->uv.x < 0)
-		inter->uv.x -= (obj.checkerboard * 2);
+		inter->uv.x -= (abs(obj.checkerboard) * 2);
 	if (inter->uv.y < 0)
-		inter->uv.y -= (obj.checkerboard * 2);
+		inter->uv.y -= (abs(obj.checkerboard) * 2);
 	inter->uv.x /= (obj.checkerboard * 2);
 	inter->uv.y /= (obj.checkerboard * 2);
 }
@@ -65,7 +65,7 @@ static void	cb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 		u = 1 - u;
 	inter->uv.y = (int)(dot_product(obj.dir, vp) * vp_len);
 	if (inter->uv.y < 0)
-		inter->uv.y -= (obj.checkerboard * 2);
+		inter->uv.y -= (abs(obj.checkerboard) * 2);
 	inter->uv.y /= (obj.checkerboard * 2);
 	inter->uv.x = (int)(u * (obj.checkerboard * 2));
 }

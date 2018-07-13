@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 17:44:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/13 04:05:21 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct		s_obj
 	double			spec;
 	double			alpha;
 	t_color			color;
+	t_color			color2;
 	t_vec			pos;
 	t_vec			dir;
 	t_vec			y_dir;
@@ -137,6 +138,7 @@ typedef struct		s_obj
 	int				tex_repeat;
 	int				tex_limit;
 	int				tex_trans;
+	int				checkerboard;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);

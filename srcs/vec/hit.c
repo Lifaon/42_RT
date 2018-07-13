@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/10 06:15:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/13 04:13:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 {
 	if (obj.tex)
 		return (uv_mapping(obj, ray, inter));
+	else if (obj.checkerboard)
+		return (checkerboard(obj, ray, inter).c);
 	return (obj.color.c);
 }
 

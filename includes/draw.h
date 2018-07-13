@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 04:58:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/13 01:54:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter);
 **	the focal point of the image.
 */
 void	depth_of_field();
+
+/*
+**	Checkerboard algorithm
+*/
+t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
 
 /*
 **	Filters.

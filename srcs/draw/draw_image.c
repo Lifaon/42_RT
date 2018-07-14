@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 04:14:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:14:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_color	draw_pixel(t_data *data, t_vec vp)
 		return (anti_aliasing(data, vp));
 }
 
-static void	*draw_thread(void *thr)
+static void		*draw_thread(void *thr)
 {
 	t_point		crd;
 	t_vec		vp;
@@ -48,7 +48,7 @@ static void	*draw_thread(void *thr)
 	ymax = (i + 1) * WIN_H / NB_THR;
 	while (++crd.y < ymax)
 	{
-		crd.x = 0;
+		crd.x = -1;
 		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
 		while (++crd.x < WIN_W)
 		{
@@ -59,7 +59,7 @@ static void	*draw_thread(void *thr)
 	pthread_exit(NULL);
 }
 
-void		draw_image(void)
+void			draw_image(void)
 {
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];

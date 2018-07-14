@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:05:21 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:30:43 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ typedef struct		s_obj
 	double			r;
 	double			spec;
 	double			alpha;
+	double			shiny;
+	double			trans;
+	double			ior;
 	t_color			color;
 	t_color			color2;
 	t_vec			pos;
@@ -139,12 +142,10 @@ typedef struct		s_obj
 	int				tex_limit;
 	int				tex_trans;
 	int				checkerboard;
+	int				rainbow;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-	double			shiny;
-	double			trans;
-	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong

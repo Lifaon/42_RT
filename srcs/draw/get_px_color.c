@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 05:49:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:39:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 
 	if (!data->nb_lights || !data->nb_lights_on)
 		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
-	if (g_data->objs[inter.obj_i].tex && g_data->objs[inter.obj_i].tex_trans)
-		inter.trans_at_ip = 1 - (inter.color.argb.a / 255.);
-	else
-		inter.trans_at_ip = data->objs[inter.obj_i].trans;
 	added = (t_added){0, 0, 0, 0};
 	i = -1;
 	inter.spec.c = 0;

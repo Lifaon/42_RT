@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:05:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:37:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->tex_trans = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"checkerboard\"", index))
 		object->checkerboard = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"rainbow\"", index))
+		object->rainbow = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"shiny\"", index))
 		object->shiny = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"trans\"", index))

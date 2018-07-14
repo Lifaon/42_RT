@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:14:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:47:17 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ t_vec	all_rotations(t_vec ray, t_vec angle);
 void	get_vp_up_left(t_camera *cam);
 void	get_oc(void);
 t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
+t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 
 #endif

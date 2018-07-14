@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 01:54:29 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/13 19:37:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	depth_of_field();
 **	Checkerboard algorithm
 */
 t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
+t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 
 /*
 **	Filters.

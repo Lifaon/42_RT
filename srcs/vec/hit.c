@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:13:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:47:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 static int	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 {
+	t_color ret;
+
 	if (obj.tex)
-		return (uv_mapping(obj, ray, inter));
+		ret.c = uv_mapping(obj, ray, inter);
 	else if (obj.checkerboard)
-		return (checkerboard(obj, ray, inter).c);
-	return (obj.color.c);
+		ret = checkerboard(obj, ray, inter);
+	else if (obj.rainbow)
+		ret = rainbow(obj, ray, inter);
+	else
+		ret = (obj.color);
+	if (obj.tex && obj.tex_trans)
+		inter->trans_at_ip = 1 - (ret.argb.a / 255.);
+	else
+		inter->trans_at_ip = obj.trans;
+	return (ret.c);
 }
 
 int		first_hit(t_data *data, t_vec ray, t_inter *inter)

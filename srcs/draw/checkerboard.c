@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 01:44:26 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 04:21:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/13 19:33:12 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	cb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 	inter->uv.x = (int)(u * (obj.checkerboard * 2));
 }
 
-t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter)
+t_color		checkerboard(t_obj obj, t_vec ray, t_inter *inter)
 {
 	if (obj.obj_type == SPHERE)
 		cb_sphere(obj, ray, inter);

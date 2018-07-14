@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:41:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:40:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		ev_color_apply(GtkWidget *widget, gpointer param)
 		return ;
 	prev_color = (t_color*)param;
 	*prev_color = g_color;
-	color_widget_img(g_img, g_color);
+	fill_img_in_color(g_img, g_color);
 	if (g_light)
 		g_light->color_neg = substract_colors((t_color){.c = 0xFFFFFFFF},
 				g_color);

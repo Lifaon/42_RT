@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:36:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:39:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
+void			change_obj_focus(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
@@ -166,8 +167,6 @@ void			change_cam_pos(GtkWidget *widget, gpointer param);
 ** => Other UI event
 */
 void			chose_color(GtkWidget *widget, gpointer param, t_light *light);
-t_color			get_color_of_img(GtkWidget *img);
-void			color_widget_img(GtkWidget *img, t_color color);
 gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,

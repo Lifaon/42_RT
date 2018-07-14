@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 17:06:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:48:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
-	GtkWidget		*check_b;
 
-	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
-		return (0);
 	wid_d->pos.y = 0;
-	wid_d->f = &change_obj_focus;
-	if (!(check_b = new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
+	wid_d->f = NULL;
+	if (!(new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
 		return (0);
-	gtk_size_group_add_widget(g_ui->gp_dof_focus, check_b);
 	wid_d->pos.y = 2;
+	//wid_d->pos.x -= 1;
 	wid_d->entry_f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
@@ -54,8 +51,7 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	if (!(new_cb_type(wid_d, wid_d, obj)))
 		return (0);
 	wid_d->pos = pt_set(0, 3);
-	if (!(pxb = pixelbuf_new(pt_set(30, 30), NULL)))
-		return (0);
+	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, obj->color.c);
 	wid_d->f = &change_obj_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
@@ -69,6 +65,8 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
 	wid_d->min_max = ptdb_set(1, 200);
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
+		return (0);
 	return (construct_phase_2(wid_d, obj));
 }
 

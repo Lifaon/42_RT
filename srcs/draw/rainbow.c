@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 17:15:54 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 03:23:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 05:14:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static int	rb_sphere(t_obj obj, t_vec ray, t_inter *inter)
 static int	rb_plane(t_obj obj, t_vec ray, t_inter *inter)
 {
 	t_vec	vp;
-	int		vp_len;
+	double	vp_len;
 
 	vp = vec_add(inter->origin, vec_multiply(ray, inter->t));
 	vp = vec_substract(vp, obj.pos);
 	vp_len = get_length(vp);
-	return (vp_len % 1530);
+	return (((int)(vp_len / (obj.tex_scale * .01))) % 1530);
 }
 
 static int	rb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
@@ -47,7 +47,7 @@ static int	rb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 	vp_len = get_length(vp);
 	vp = vec_normalize(vp);
 	ret = (dot_product(obj.dir, vp) * vp_len);
-	return (abs(ret % 1530));
+	return (abs((int)(ret / (obj.tex_scale * .01))) % 1530);
 }
 
 static t_color	rainbow2(t_color ret, double len)

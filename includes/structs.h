@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 03:30:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 04:48:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct		s_obj
 	t_vec			oc;
 	t_pixelbuf		*tex;
 	t_point			tex_pos;
-	double			tex_scale;
+	int				tex_scale;
 	int				tex_repeat;
 	int				tex_limit;
 	int				tex_trans;

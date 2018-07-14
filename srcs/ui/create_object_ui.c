@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 17:06:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:43:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
 	if (!(group = add_vector_choose(wid_d, "angle rotation", obj->angle)))
 		return (0);
-	return (create_limited_object_ui(wid_d, obj));
+	return (create_object_texture_ui(wid_d, obj));
 }
 
 static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)

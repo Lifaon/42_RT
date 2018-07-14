@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 17:39:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/14 19:00:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void			change_obj_min(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_max(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
+void			change_obj_tex(GtkWidget*widget, gpointer param);
 
 /*
 ** => options event
@@ -187,4 +188,7 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
 void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
 		gpointer param);
+void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
+		GdkInterpType type);
+int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
 #endif

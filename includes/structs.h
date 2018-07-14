@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 04:48:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 19:22:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ typedef struct		s_vec
 }					t_vec;
 /*
 **	Storing 3D coordinates or 3D vectors.
-*/
-
-typedef union		u_color
-{
-	uint32_t		c;
-	struct			s_argb
-	{
-		uint8_t		r;
-		uint8_t		g;
-		uint8_t		b;
-		uint8_t		a;
-	}				argb;
-}					t_color;
-/*
-**	Usage of an union for easy color management.
 */
 
 typedef struct		s_added

@@ -6,7 +6,8 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/13 19:38:14 by mlantonn         ###   ########.fr        #
+#    Updated: 2018/07/14 19:23:13 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/14 18:50:45 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +104,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_obj.c\
 		ui/modify_obj2.c\
 		ui/modify_obj_limited.c\
+		ui/modify_obj_tex.c\
 		ui/modify_obj_type.c \
 		ui/modify_options.c\
 		ui/modify_camera.c \
@@ -123,6 +125,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/chose_color.c \
 		ui/ui_event_tools.c \
 		ui/get_double_from_entry.c \
+		ui/create_object_texture_ui.c \
 		\
 		data_init.c \
 		exit_all.c \

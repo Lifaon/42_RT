@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/06/24 17:15:44 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/14 17:35:54 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS_NAME = put_widgets_in_new_win.c \
 		pixelbuf_new.c \
 		pixelbuf_free.c \
 		pt_to_pixelbuf.c \
+		get_color_of_img.c \
+		fill_img_in_color.c \
 		fill_pixelbuf_in_color.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_NAME))

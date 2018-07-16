@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 03:13:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 01:26:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/05 04:09:27 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_vec	roll(t_vec ray, t_vec angle)
 t_vec	all_rotations(t_vec ray, t_vec angle)
 {
 	ray = pitch(ray, angle);
-	ray = yaw(ray, angle);
 	ray = roll(ray, angle);
+	ray = yaw(ray, angle);
 	return (ray);
 }
 

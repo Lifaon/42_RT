@@ -33,7 +33,7 @@
 		},
 		"cylinder" :
 		{
-			"position" : [0, 0, 1500],
+			"position" : [20, 0, 1500],
 			"color" : [255, 160, 0],
 			"radius" : 200,
 			"specular" : 0,

@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 17:47:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/05 22:29:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	t_light		*lights_new;
 	int			i;
 
-	check_ui_active(0);
 	i = -1;
 	g_data->nb_lights += 1;
 	g_data->nb_lights_on += 1;
@@ -62,7 +61,7 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	init_one_light(g_data, i);
 	create_light_tab(g_data->ui->tab_light, i);
 	gtk_widget_show_all(g_data->win);
-	check_ui_active(1);
+	g_data->ui->is_active = 1;
 }
 
 void			change_light_pos(GtkWidget *widget, gpointer param)
@@ -77,14 +76,20 @@ void			change_light_pos(GtkWidget *widget, gpointer param)
 	change_vec_from_scale(group, vec);
 }
 
-void			change_light_dir(GtkWidget *widget, gpointer param)
+void			change_light_angle(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
+	t_vec			dir;
 
 	if (g_data->ui->is_active == 0)
 		return ;
-	vec = &g_data->lights[g_data->ui->page_light].dir;
+	vec = &g_data->lights[g_data->ui->page_light].angle;
 	group = (GtkSizeGroup*)param;
 	change_vec_from_scale(group, vec);
+	dir = (t_vec){0, 0, -1};
+	dir = pitch(dir, *vec);
+	dir = yaw(dir, *vec);
+	dir = roll(dir, *vec);
+	g_data->lights[g_data->ui->page_light].dir = dir;
 }

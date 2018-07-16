@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 19:49:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/05 22:25:23 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec
 int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
-int				make_label_and_entry(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
 int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
@@ -111,7 +111,7 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 */
 void			add_one_light(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
-void			change_light_dir(GtkWidget *widget, gpointer param);
+void			change_light_angle(GtkWidget *widget, gpointer param);
 void			change_light_r(GtkWidget *widget, gpointer param);
 void			change_light_color(GtkWidget *widget, gpointer param);
 void			change_light_ambi(GtkWidget *widget, gpointer param);
@@ -133,6 +133,7 @@ void			change_obj_r(GtkWidget *widget, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
+void		modify_obj_limited_type(GtkWidget *widget, gpointer param);
 void			change_obj_min(GtkWidget *widget, gpointer param);
 void			change_obj_max(GtkWidget *widget, gpointer param);
 
@@ -142,6 +143,16 @@ void			change_obj_max(GtkWidget *widget, gpointer param);
 void	get_int_from_scale(GtkWidget *widget, gpointer param);
 void	change_aa(GtkWidget *widget, gpointer param);
 void	change_px(GtkWidget *widget, gpointer param);
+t_vec	pitch(t_vec ray, t_vec angle);
+t_vec	yaw(t_vec ray, t_vec angle);
+t_vec	roll(t_vec ray, t_vec angle);
+
+/*
+** => camera event
+*/
+void	change_left_cam(GtkWidget *widget, gpointer param);
+void	change_right_cam(GtkWidget *widget, gpointer param);
+
 
 /*
 ** => Other UI event
@@ -154,9 +165,12 @@ gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_obj(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
+void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
+		int mode_infinity, t_ptdb limits);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);//
-double			get_double_from_entry(GtkWidget *wid);
+double			get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
+void			set_child_widget_active(GtkContainer *container, gboolean status);
 #endif

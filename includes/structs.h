@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 23:43:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/06 07:29:37 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_added
 typedef struct		s_inter
 {
 	int				obj_i;
+	int				depth;
 	double			t1;
 	double			t2;
 	double			t;
@@ -93,23 +94,6 @@ typedef struct		s_camera
 **	the view plane ; fov = field of view.
 */
 
-typedef struct		s_light
-{
-	int				is_para;
-	int				disabled;
-	double			r;
-	double			ambi;
-	t_vec			pos;
-	t_vec			dir;
-	t_vec			angle;
-	t_color			color;
-	t_color			color_neg;
-}					t_light;
-/*
-**	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
-**	r = radius of the light source ; pos = position ; dir = direction.
-*/
-
 typedef struct		s_perlin
 {
 	int				x1;
@@ -144,6 +128,23 @@ typedef struct		s_perlin
 	int				grad3[16][3];
 }					t_perlin;
 
+typedef struct		s_light
+{
+	int				is_para;
+	int				disabled;
+	double			r;
+	double			ambi;
+	t_vec			pos;
+	t_vec			dir;
+	t_vec			angle;
+	t_color			color;
+	t_color			color_neg;
+}					t_light;
+/*
+**	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
+**	r = radius of the light source ; pos = position ; dir = direction.
+*/
+
 typedef struct		s_obj
 {
 	int				obj_type;
@@ -169,10 +170,9 @@ typedef struct		s_obj
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-	int				shiny;
-	double			shin_pourcentage;
-	int				trans;
-	double			refrac_index;
+	double			shiny;
+	double			trans;
+	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
@@ -209,8 +209,13 @@ typedef struct		s_data
 	int				i;
 	t_camera		cams[CAM_NB];
 	t_camera		cam;
-	int				px;
 	int				aa;
+	int				px;
+	int				cel_shading;
+	int				depth_of_field;
+	int				filter;
+	int				depth_max;
+	t_perlin		p;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);

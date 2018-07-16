@@ -32,7 +32,7 @@ static double	my_ft_atof(char const *str)
 	while (str[i] > 47 && str[i] < 58)
 	{
 		n = n * 10 + (str[i++] - 48);
-		if (str[i] == '.')
+		if (str[i] == '.' || str[i] == ',')
 			k = i++;
 	}
 	while (k != 0 && str[++k])
@@ -57,10 +57,9 @@ static char		*str_end_digit(char *str)
 		i++;
 	while (str[i])
 	{
-		ft_putendl(&str[i]);
 		if (str[i] == ',' || str[i] == '.')
 			separator++;
-		if (separator > 1 || ((str[i] != ',' && str[i] != '.') &&
+		if ((separator > 1) || ((str[i] != ',' && str[i] != '.') &&
 					(str[i] > '9' || str[i] < '0')))
 			break ;
 		i++;
@@ -69,7 +68,29 @@ static char		*str_end_digit(char *str)
 	return (str);
 }
 
-double		get_double_from_entry(GtkWidget *wid)
+int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
+{
+	if ((mode == MODE_PLUS_INF || mode == MODE_BOTH_INF) &&
+	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
+			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
+	{
+		*dst = INFINITY;
+		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
+		ft_strdel(&str);
+		return (1);
+	}
+	else if ((mode == MODE_LESS_INF || mode == MODE_BOTH_INF) &&
+	(!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF"))))
+	{
+		*dst = -INFINITY;
+		gtk_entry_set_text(GTK_ENTRY(wid), "-inf");
+		ft_strdel(&str);
+		return (1);
+	}
+	return (0);
+}
+
+double		get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max)
 {
 	char			*str;
 	char			*str2;
@@ -77,28 +98,26 @@ double		get_double_from_entry(GtkWidget *wid)
 
 	if (!(str = ft_strupper(strdup(gtk_entry_get_text(GTK_ENTRY(wid))))))
 		return (0);
-	if (!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
-			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF")))
+	if (infinity_mode != MODE_NO_INF)
+		if (get_infinity(wid, &dst, str, infinity_mode))
+			return (dst);
+	str2 = str_end_digit(str);
+	dst = my_ft_atof(str);
+	ft_strdel(&str);
+	str = ft_dbtoa(dst);
+	gtk_entry_set_text(GTK_ENTRY(wid), str);
+	ft_strdel(&str);
+	if (min != -INFINITY && dst < min)
 	{
-		dst = INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "inf");
+		str = ft_itoa(min);
+		gtk_entry_set_text(GTK_ENTRY(wid), str);
+		dst = min;
 	}
-	/*else if (!(ft_strcmp(str, "-INFINITY")) || !(ft_strcmp(str, "-INF")))
+	else if (max != INFINITY && dst > max)
 	{
-		dst = -INFINITY;
-		gtk_entry_set_text(GTK_ENTRY(wid), "-INFINITY");
-	}*/
-	else
-	{
-		str2 = str_end_digit(str);
-		ft_putstr("finale = ");
-		ft_putendl(str2);
-		gtk_entry_set_text(GTK_ENTRY(wid), str2);
-		if ((dst = my_ft_atof(str)) <= 0)
-		{
-			gtk_entry_set_text(GTK_ENTRY(wid), "0");
-			dst = 0.0;
-		}
+		str = ft_itoa(max);
+		gtk_entry_set_text(GTK_ENTRY(wid), str);
+		dst = max;
 	}
 	ft_strdel(&str);
 	return (dst);

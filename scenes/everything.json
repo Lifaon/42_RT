@@ -28,8 +28,7 @@
 			"specular" : 0,
 			"alpha" : 75,
 			"limit" : "circle",
-			"min" : [1000],
-			"max" : [8000],
+			"max" : [10000],
 		},
 		"plane" :
 		{
@@ -39,7 +38,7 @@
 			"specular" : 0,
 			"alpha" : 75,
 			"limit" : "rectangle",
-			"min" : [-8000, -8000],
+			"min" : [-8000, -12000],
 			"max" : [10000, 5000],
 		},
 		"sphere" :

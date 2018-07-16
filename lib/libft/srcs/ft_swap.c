@@ -20,3 +20,30 @@ void	ft_swap_nbr(int *a, int *b)
 	*a = *b;
 	*b = temp;
 }
+
+void	ft_swap_float(float *a, float *b)
+{
+	float temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void	ft_swap_char(char *a, char *b)
+{
+	char temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void	ft_swap_double(double *a, double *b)
+{
+	double temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}

@@ -47,6 +47,30 @@ static void		fill_color(t_color *color, uint8_t nb)
 	i++;
 }
 
+void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec, int
+					mode_infinity, t_ptdb limits)
+{
+	double		value;
+	GtkWidget	*son;
+	const char	*str;
+	GSList		*lst;
+
+	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(group));
+	while (lst)
+	{	
+		son = (GtkWidget*)lst->data;
+		if (GTK_IS_ENTRY(son))
+		{
+			str = gtk_entry_get_text(GTK_ENTRY(son));
+			value = get_double_from_entry(son, mode_infinity, limits.x, limits.y);
+			printf("value = %lf\n", value);
+			fill_vec(vec, value);
+		}
+		lst = lst->next;
+	}
+}
+
+
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec)
 {
 	double		value;

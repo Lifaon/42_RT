@@ -17,8 +17,8 @@ GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	GtkWidget		*cb;
 	char			*str;
 
-	if (!(l_new(wid_d, "Type")))
-		return (NULL);
+	//if (!(l_new(wid_d, "Type")))
+	//	return (NULL);
 	if (!(cb = gtk_combo_box_text_new()))
 		return (NULL);
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
@@ -31,9 +31,9 @@ GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	ft_strdel(&str);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(cb), "changed", G_CALLBACK(wid_d->f), param);
-	wid_d->pos.y += 1;
+	//wid_d->pos.y += 1;
 	gtk_grid_attach(GTK_GRID(wid_d->grid), cb, wid_d->pos.y, wid_d->pos.x,
-			wid_d->size.x, wid_d->size.y);
+			2, 1);
 	return (cb);
 }
 

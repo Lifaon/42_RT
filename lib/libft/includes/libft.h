@@ -41,6 +41,8 @@ void				ft_putstr_color(char *str, char *color);
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);
 void				ft_swap_nbr(int *a, int *b);
+void				ft_swap_float(float *a, float *b);
+void				ft_swap_double(double *a, double *b);
 void				ft_swap_char(char *a, char *b);
 void				ft_putnbr(int nb);
 void				ft_bzero(void *s, size_t n);

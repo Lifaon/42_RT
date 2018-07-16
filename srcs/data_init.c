@@ -6,11 +6,12 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 01:47:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/06 07:32:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "draw.h"
 #include "parse.h"
 #include "vec.h"
 
@@ -39,8 +40,16 @@ t_data		*data_init(int ac, char **av)
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
+	
+	data->p.perlin_stain = 0.1;
+	grad_tab(&data->p);
+	perlin_tab1(&data->p);
 	data->aa = 1;
 	data->px = 0;
+	data->cel_shading = 0;
+	data->depth_of_field = -1;
+	data->filter = FILTER_NONE;
+	data->depth_max = 4;
 	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;

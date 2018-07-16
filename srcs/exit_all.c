@@ -24,7 +24,10 @@ void	exit_all(t_data *data)
 	}
 	if (data->nb_lights)
 		free(data->lights);
-	ft_strdel(&data->ui->path);
-	free(data->ui);
+	if (data->ui)
+	{
+		ft_strdel(&data->ui->path);
+		free(data->ui);
+	}
 	exit(EXIT_SUCCESS);
 }

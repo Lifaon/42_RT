@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   perlin.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vtudes <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/17 00:26:13 by vtudes            #+#    #+#             */
+/*   Updated: 2018/07/17 00:26:15 by vtudes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 
 double		dot_perlin(const int *v, const double x, const double y, \
@@ -16,18 +28,18 @@ int			*get_grad(int x, int y, int z, t_perlin *p)
 
 double		quintic_poly(const double t)
 {
-	return (t * t * t * (t * (t * 6 - 15) + 10));
+	return (t * t * t * (t * (t * 6 - 14) + 7));
 }
 
-void		int_frac(double value, int *int_part, double *frac_part)
+void		int_frac(double value, int *int_part, double *frac)
 {
 	*int_part = (int)value;
 	if (value < 0)
 		int_part -= 1;
-	*frac_part = value - *int_part;
+	*frac = value - *int_part;
 }
 
 double		linear_interpolation(double a, double b, double t)
 {
-	return ((1 - t) * a + t * b);
+	return (1 - t) * a + t * b;
 }

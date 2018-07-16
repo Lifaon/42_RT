@@ -12,6 +12,19 @@
 
 #include "ui.h"
 
+void	set_child_widget_active(GtkContainer *container, gboolean status)
+{
+	GList		*lst;
+
+	lst = gtk_container_get_children(container);
+	while (lst)
+	{
+		gtk_widget_set_sensitive(GTK_WIDGET((GtkWidget*)lst->data), status);
+		lst = lst->next;
+	}
+	g_list_free(lst);
+}
+
 void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
 {
 	GSList		*lst;

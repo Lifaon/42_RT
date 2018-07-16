@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 17:36:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 18:44:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			pixelbuf_free(t_pixelbuf **pxlbuf);
 void			fill_pixelbuf_in_color(t_pixelbuf *pxlbuf, uint32_t color);
 void			put_pixelbuf_to_widget(t_pixelbuf *pxlbuf, GtkWidget *img);
 void			pt_to_pixelbuf(t_point pt, t_pixelbuf *pxbuf, uint32_t color);
-void			fill_img_in_color(GtkWidget *img, t_color color);
+void			fill_img_in_color(GtkWidget *img, uint32_t color);
 t_color			get_color_of_img(GtkWidget *img);
 
 #endif

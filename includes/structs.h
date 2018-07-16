@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 19:22:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 18:36:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct		s_ui
 	GtkSizeGroup	*gp_obj_min;
 	GtkWidget		*cb_obj_limit;
 	GtkSizeGroup	*gp_obj_max;
+	GtkSizeGroup	*gp_obj_tex;
 	GtkSizeGroup	*gp_dof_focus;
 	char			*path;
 	int				is_active;

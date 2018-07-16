@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 19:23:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 19:17:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
 GtkWidget		*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
-int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));
 
 /*
@@ -141,6 +141,13 @@ void			change_obj_min(GtkWidget *widget, GdkEvent *event,
 void			change_obj_max(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_tex(GtkWidget*widget, gpointer param);
+void			change_obj_tex_scale(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_x(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_y(GtkWidget*widget, gpointer param);
+void			switch_obj_tex_repeat(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			switch_obj_tex_trans(GtkWidget *widget, gboolean state,
+		gpointer param);
 
 /*
 ** => options event

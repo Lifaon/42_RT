@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:28:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 18:38:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ static t_ui		*ui_new(char *path)
 	ui->page_obj = 0;
 	ui->page_cam = 0;
 	ui->is_active = 0;
+	ui->gp_cam_pos = NULL;
+	ui->gp_cam_angle = NULL;
+	ui->gp_obj_min = NULL;
+	ui->gp_obj_min = NULL;
+	ui->cb_obj_limit = NULL;
 	ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
+	ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
 	chr = ft_strstr(path, "/rt");
 	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
 	//ui->path = ft_strdup(path);

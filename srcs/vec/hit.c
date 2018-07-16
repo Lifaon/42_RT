@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 03:47:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 05:57:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		first_hit(t_data *data, t_vec ray, t_inter *inter)
 	while (++i < data->nb_objects)
 	{
 		inter->oc = data->objs[i].oc;
-		if (data->objs[i].intersect(data->objs[i], ray, inter) && inter->t < t)
+		if (data->objs[i].enabled && \
+			data->objs[i].intersect(data->objs[i], ray, inter) && inter->t < t)
 		{
 			t = inter->t;
 			inter->obj_i = i;
@@ -70,7 +71,8 @@ int		other_hit(t_data *data, t_vec ray, t_inter *inter)
 	while (++i < data->nb_objects)
 	{
 		inter->oc = vec_substract(inter->origin, data->objs[i].pos);
-		if (data->objs[i].intersect(data->objs[i], ray, inter) && inter->t < t)
+		if (data->objs[i].enabled && \
+			data->objs[i].intersect(data->objs[i], ray, inter) && inter->t < t)
 		{
 			t = inter->t;
 			inter->obj_i = i;

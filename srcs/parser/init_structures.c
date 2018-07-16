@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 04:59:30 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 05:54:09 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_one_object(t_data *data, int index)
 {
 	data->objs[index].obj_type = SPHERE;
 	data->objs[index].limited = LIMIT_NONE;
+	data->objs[index].enabled = 1;
 	data->objs[index].r = 100;
 	data->objs[index].spec = 1;
 	data->objs[index].alpha = 100;

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:48:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 16:07:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:50:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,46 @@ static void		reset_button_texture(GtkWidget *button)
 
 void			change_obj_tex(GtkWidget *widget, gpointer param)
 {
-	int			cb_value;
-	GtkWidget	*button;
+	int				cb_value;
+	GtkWidget		*button;
+	GtkSizeGroup	*group;
+	GSList		*lst;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	cb_value = gtk_combo_box_get_active(GTK_COMBO_BOX(widget));
-	button = (GtkWidget*)param;
+	group = (GtkSizeGroup*)param;
+	button = NULL;
+	lst = gtk_size_group_get_widgets(group);
+	while (lst)
+	{
+		if (GTK_IS_BUTTON(lst->data))
+			button = (GtkWidget*)lst->data;
+		lst = lst->next;
+	}
 	if (cb_value == 0)
-		set_group_widget_active(g_ui->gp_obj_tex, FALSE);
+		set_group_widget_active(group, FALSE);
 	else
-		set_group_widget_active(g_ui->gp_obj_tex, TRUE);
+		set_group_widget_active(group, TRUE);
 	if (cb_value == 3)
 		gtk_widget_set_sensitive(button, TRUE);
 	else
 		reset_button_texture(button);
 }
+
 static int		check_img_file(char *path)
 {
-	char	*str;
+	char	*full_path;
 	char	*chr;
+	char	*str;
 
-	ft_putendl(path);
-	if ((str = ft_strstr(path, "textures/")))
-		ft_putendl(str);
-	chr = ft_strchr(str, '/');
-	if ((str = ft_strstr(str, "textures/")))
-		ft_putendl(str);
-	ft_putendl(g_ui->path);
+	full_path = ft_strjoin(g_data->long_path, g_data->path);
+	if ((chr = ft_strstr(path, full_path)))
+	{
+		str = ft_strsub(chr, ft_strlen(full_path), 1000);
+	}
+	else
+		printf("false %s\n", path);
 	return (1);
 }
 
@@ -91,4 +103,3 @@ void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 	}
 	gtk_widget_destroy(select);
 }
-

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 16:35:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:12:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_data		*data_init(int ac, char **av)
 {
 	t_point		size;
 	t_data		*data;
+	char		*chr;
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
@@ -52,5 +53,12 @@ t_data		*data_init(int ac, char **av)
 	init_function_ptrs(data);
 	data->img = NULL;
 	data->draw = 1;
+	chr = ft_strstr(av[0], "/rt");
+	data->path = ft_strsub(av[0], 2, ft_strlen(av[0]) - (ft_strlen(chr) + 1));
+	data->long_path = ft_strnew(1024);
+	getwd(data->long_path);
+	data->long_path = ft_strjoin_free(data->long_path, "/");
+	ft_putstr(data->path);
+	printf("path = %s\nchr = %s\ndata->path = %s\n data->path_long = %s\n", av[0], chr, data->path, data->long_path);
 	return (data);
 }

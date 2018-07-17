@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 16:04:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:51:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct		s_obj
 	int				tex_trans;
 	int				checkerboard;
 	int				rainbow;
+	char			*tex_filename;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
@@ -158,8 +159,6 @@ typedef struct		s_ui
 	GtkSizeGroup	*gp_obj_max;
 	GtkSizeGroup	*gp_obj_tex;
 	GtkSizeGroup	*gp_dof_focus;
-	char			*path;
-	char			*long_path;
 	int				is_active;
 	int				page_light;
 	int				page_cam;
@@ -188,6 +187,8 @@ typedef struct		s_data
 	void			*win;
 	t_pixelbuf		*img;
 	int				draw;//
+	char			*path;
+	char			*long_path;
 }					t_data;
 /*
 **	Struct used to store objects, light sources, and the 4 possible cameras, in

@@ -6,17 +6,16 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 16:07:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 19:31:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "events.h"
 
-static t_ui		*ui_new(char *path)
+static t_ui		*ui_new(void)
 {
 	t_ui	*ui;
-	char	*chr;
 
 	if (!(ui = (t_ui*)malloc(sizeof(t_ui))))
 		return (NULL);
@@ -30,15 +29,10 @@ static t_ui		*ui_new(char *path)
 	ui->gp_obj_min = NULL;
 	ui->gp_obj_max = NULL;
 	ui->cb_obj_limit = NULL;
-	if (!(ui->long_path = ft_strdup(path)))
-		return (NULL);
 	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);
 	if (!(ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);
-	chr = ft_strstr(path, "/rt");
-	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
-	printf("path = %s\nchr = %s\nui->path = %s\n", path, chr, ui->path);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);
@@ -94,7 +88,7 @@ static int      create_renderer(void)
 	return (1);
 }
 
-int				create_ui(char *path)
+int				create_ui(void)
 {
 	GtkWidget		*win;
 	GtkWidget		*v_box;
@@ -102,12 +96,12 @@ int				create_ui(char *path)
 
 	if (!(win = (void*)gtk_window_new(GTK_WINDOW_TOPLEVEL)))
 		return (0);
-
+	g_data->win = win;
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-	if (!(g_ui = ui_new(path)))
+	if (!(g_ui = ui_new()))
 		return (0);
 	create_renderer();
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab), TRUE);
@@ -123,6 +117,5 @@ int				create_ui(char *path)
 	//gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
 	gtk_widget_show_all(win);
-	g_data->win = win;
 	return (1);
 }

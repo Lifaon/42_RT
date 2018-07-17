@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 04:26:11 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 02:15:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/17 18:43:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static char	*get_file_name(char *str, int *index)
 void		parse_texture(t_obj *obj, char *str, int *index)
 {
 	char	*file_name;
+	char	*path_file;
 	int		i;
 
 	i = -1;
@@ -75,9 +76,13 @@ void		parse_texture(t_obj *obj, char *str, int *index)
 	*index += ++i;
 	if (!(file_name = get_file_name(str + i, index)))
 		return ;
-	if (!(obj->tex = pixelbuf_new_from_file(file_name)))
+	if (!(path_file = ft_strjoin(g_data->path, file_name)))
+		return ;
+	printf("parser filename = %s\n total path = %s\n", file_name, path_file);
+	if (!(obj->tex = pixelbuf_new_from_file(path_file)))
 		return ;
 	if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))
 		pixelbuf_free(&obj->tex);
 	free(file_name);
+	free(path_file);
 }

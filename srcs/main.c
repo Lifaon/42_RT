@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 21:51:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/17 19:38:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			get_time(void)
 				 (tmptime.tv_nsec - last.tv_nsec)) * pow(10, -9));
 	}
 	time++;
-}
+}//
 
 static int ft_exit(void)
 {
@@ -47,7 +47,7 @@ int		main(int ac, char **av)
 	gtk_init(&ac, &av);
 	parse(g_data, av[1]);
 	get_oc();
-	if (create_ui(av[0]) == 0)
+	if (create_ui() == 0)
 		return (0);
 	put_gdk_image();
 	ft_event(g_data);

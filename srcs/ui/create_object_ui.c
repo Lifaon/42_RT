@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 18:43:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 16:21:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
 	if (!(group = add_vector_choose(wid_d, "angle rotation", obj->angle)))
 		return (0);
+	ft_putstr("phase 2\n");
 	return (create_object_texture_ui(wid_d, obj));
 }
 
@@ -69,6 +70,7 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
 	wid_d->min_max = ptdb_set(1, 200);
+	ft_putstr("phase 1\n");
 	return (construct_phase_2(wid_d, obj));
 }
 
@@ -101,6 +103,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	char			*str;
 	GtkWidget 		*sbar;
 
+	ft_putstr("here\n");
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(-180, 180))))
 		return (0);
 	if (!(str = join_int("Object ", index + 1)))
@@ -113,9 +116,14 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 			l_title)) < 0)
 		return (0);
 	gtk_widget_show_all(tab_obj);
+	ft_putstr("there\n");
 	while (g_ui->page_obj < index)
+	{
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
-	gtk_widget_show_all(tab_obj);
+		gtk_widget_show_all(tab_obj);
+		printf("index = %d page = %d\n", index, g_ui->page_obj);
+	}
+	ft_putstr("patatrac\n");
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
 		return (0);
 	ft_strdel(&str);

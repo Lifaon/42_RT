@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:48:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/16 19:39:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 16:07:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,43 @@ void			change_obj_tex(GtkWidget *widget, gpointer param)
 	else
 		reset_button_texture(button);
 }
-
-void				change_obj_tex_scale(GtkWidget *widget, gpointer param)
+static int		check_img_file(char *path)
 {
-	double			value;
+	char	*str;
+	char	*chr;
+
+	ft_putendl(path);
+	if ((str = ft_strstr(path, "textures/")))
+		ft_putendl(str);
+	chr = ft_strchr(str, '/');
+	if ((str = ft_strstr(str, "textures/")))
+		ft_putendl(str);
+	ft_putendl(g_ui->path);
+	return (1);
+}
+
+void			change_obj_tex_file(GtkWidget *widget, gpointer param)
+{
+	GtkWidget	*select;
+	gint		response;
+	t_list		*lst;
+	gchar		*path;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
-	value = gtk_range_get_value(GTK_RANGE(widget));
-	g_data->objs[g_ui->page_obj].tex_scale = value;
+	select = gtk_file_chooser_dialog_new("chose a file",
+			GTK_WINDOW(g_data->win),
+			GTK_FILE_CHOOSER_ACTION_OPEN, "load texture", GTK_RESPONSE_ACCEPT, NULL);
+	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
+	response = gtk_dialog_run(GTK_DIALOG(select));
+	if (response == GTK_RESPONSE_ACCEPT)
+	{
+		path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select));
+		if (check_img_file(path) < 1)
+			return (file_error(select));
+		//if (open_json(path) < 1)
+		//	exit_all(g_data);
+	}
+	gtk_widget_destroy(select);
 }
 
-void				change_obj_tex_pos_x(GtkWidget *widget, gpointer param)
-{
-	double			value;
-
-	if (g_ui->is_active == 0 || (!widget && !param))
-		return ;
-	value = get_double_from_entry(widget, MODE_NO_INF, -50000, 50000);
-	g_data->objs[g_ui->page_obj].tex_pos.x = (int)value;
-}
-
-void				change_obj_tex_pos_y(GtkWidget *widget, gpointer param)
-{
-	double			value;
-
-	if (g_ui->is_active == 0 || (!widget && !param))
-		return ;
-	value = get_double_from_entry(widget, MODE_NO_INF, -50000, 50000);
-	g_data->objs[g_ui->page_obj].tex_pos.y = (int)value;
-}

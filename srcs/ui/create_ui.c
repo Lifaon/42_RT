@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/16 18:38:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 16:07:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ static t_ui		*ui_new(char *path)
 	ui->gp_cam_pos = NULL;
 	ui->gp_cam_angle = NULL;
 	ui->gp_obj_min = NULL;
-	ui->gp_obj_min = NULL;
+	ui->gp_obj_max = NULL;
 	ui->cb_obj_limit = NULL;
-	ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
-	ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
+	if (!(ui->long_path = ft_strdup(path)))
+		return (NULL);
+	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (NULL);
+	if (!(ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (NULL);
 	chr = ft_strstr(path, "/rt");
 	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
-	//ui->path = ft_strdup(path);
+	printf("path = %s\nchr = %s\nui->path = %s\n", path, chr, ui->path);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);
@@ -55,10 +59,10 @@ int				make_grid(t_wid_data *wid_d)
 	return (1);
 }
 
-void            focus_me(GtkWidget  *widget, gpointer data)
+void			focus_me(GtkWidget  *widget, gpointer data)
 {
-    gtk_widget_grab_focus(widget);
-    gtk_widget_grab_default(widget);
+	gtk_widget_grab_focus(widget);
+	gtk_widget_grab_default(widget);
 }
 
 static int      create_renderer(void)
@@ -87,7 +91,7 @@ static int      create_renderer(void)
 	  //      G_CALLBACK(&focus_me), g_data);
 	//g_signal_connect(G_OBJECT(ev_box), "clicked",
 	//			G_CALLBACK(&focus_me), g_data);
-    return(1);
+	return (1);
 }
 
 int				create_ui(char *path)

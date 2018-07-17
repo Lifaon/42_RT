@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/16 18:36:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 16:04:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct		s_ui
 	GtkSizeGroup	*gp_obj_tex;
 	GtkSizeGroup	*gp_dof_focus;
 	char			*path;
+	char			*long_path;
 	int				is_active;
 	int				page_light;
 	int				page_cam;

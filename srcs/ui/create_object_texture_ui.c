@@ -6,23 +6,36 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:18:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/16 19:45:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 13:59:32 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
-		GdkInterpType type)
+static int	phase_3(t_wid_data *wid_d, t_obj *obj, GtkWidget *cb,
+		gpointer button)
 {
-	g_object_unref(dst->buf);
-	dst->buf = gdk_pixbuf_scale_simple(src->buf, new_size.x, new_size.y, type);
-	dst->size = new_size;
-	dst->pxl = (uint32_t*)gdk_pixbuf_get_pixels(dst->buf);
-	gtk_image_set_from_pixbuf(GTK_IMAGE(dst->widget), (GdkPixbuf*)dst->buf);
+	GtkWidget		*w;
+
+	wid_d->pos = pt_set(wid_d->pos.x - 2, 2);
+	wid_d->f = &change_obj_tex_pos_x;
+	if (!(w = make_label_and_entry(wid_d, "X position", (double)obj->tex_pos.x,
+					NULL)))
+		return (0);
+	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
+	wid_d->f = &change_obj_tex_pos_y;
+	if (!(w = make_label_and_entry(wid_d, "Y position", (double)obj->tex_pos.y,
+					NULL)))
+		return (0);
+	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
+	g_ui->is_active = 1;
+	change_obj_tex(cb, button);
+	g_ui->is_active = 0;
+	return (1);
 }
 
-static int	phase_2(t_wid_data *wid_d, t_obj *obj)
+static int	phase_2(t_wid_data *wid_d, t_obj *obj, GtkWidget *cb,
+		gpointer button)
 {
 	gboolean		repeat;
 	gboolean		tex_trans;
@@ -46,19 +59,7 @@ static int	phase_2(t_wid_data *wid_d, t_obj *obj)
 			&switch_obj_tex_trans)))
 		return (0);
 	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
-	wid_d->pos = pt_set(wid_d->pos.x - 2, 2);
-	wid_d->f = &change_obj_tex_pos_x;
-	if (!(w = make_label_and_entry(wid_d, "X position", (double)obj->tex_pos.x,
-					NULL)))
-		return (0);
-	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
-	wid_d->f = &change_obj_tex_pos_y;
-	if (!(w = make_label_and_entry(wid_d, "Y position", (double)obj->tex_pos.y,
-					NULL)))
-		return (0);
-	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
-	
-	return (1);
+	return (phase_3(wid_d, obj, cb, button));
 }
 
 int			get_cb_tex_value(t_obj *obj)
@@ -76,14 +77,10 @@ static int	phase_1(t_wid_data *wid_d, t_obj *obj)
 	GtkWidget		*w;
 
 	tex_value = get_cb_tex_value(obj);
-	wid_d->f = NULL;
-	wid_d->pos.y = 1;
-	wid_d->size = pt_set(1, 2);
-	//wid_d->f = &change_obj_file_tex;
 	if (!(pxb = pixelbuf_new(pt_set(60, 60), NULL)))
 		return (0);
 	if (obj->tex)
-		scale_img(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
+		scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, (GtkWidget*)pxb->widget)))
 		return (0);
 	gtk_size_group_add_widget(g_ui->gp_obj_tex, w);
@@ -94,13 +91,9 @@ static int	phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos.y = 0;
 	if (!(w = make_label_and_cb(wid_d, NULL, tex_value, txt)))
 		return (0);
-	g_ui->is_active = 1;
-	change_obj_tex(w, wid_d->param);
-	g_ui->is_active = 0;
-	wid_d->pos.x += 1;
-	wid_d->pos.y = 2;
-	wid_d->param = NULL;
-	return (phase_2(wid_d, obj));
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 2);
+	return (phase_2(wid_d, obj, w, wid_d->param));
+	return (1);
 }
 
 int		create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
@@ -114,6 +107,9 @@ int		create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(frame = gtk_frame_new("Textures")))
 		return (0);
 	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
+	frame_d.pos.y = 1;
+	frame_d.size = pt_set(1, 2);
+	frame_d.f = &change_obj_tex_file;
 	if (!(phase_1(&frame_d, obj)))
 		return (0);
 	gtk_container_add(GTK_CONTAINER(frame), frame_d.grid);

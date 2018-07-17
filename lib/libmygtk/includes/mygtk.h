@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/16 18:44:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 13:55:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ void			put_pixelbuf_to_widget(t_pixelbuf *pxlbuf, GtkWidget *img);
 void			pt_to_pixelbuf(t_point pt, t_pixelbuf *pxbuf, uint32_t color);
 void			fill_img_in_color(GtkWidget *img, uint32_t color);
 t_color			get_color_of_img(GtkWidget *img);
+void			scale_pxb(const t_pixelbuf *src, t_pixelbuf *dst,
+		t_point new_size, GdkInterpType type);
 
 #endif

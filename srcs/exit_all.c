@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 16:37:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 16:04:09 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	exit_all(t_data *data)
 	if (g_ui)
 	{
 		ft_strdel(&g_ui->path);
+		ft_strdel(&g_ui->long_path);
 		free(g_ui);
 		g_ui = NULL;
 	}

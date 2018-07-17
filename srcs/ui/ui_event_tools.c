@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/14 17:37:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 13:08:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ void			set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
 		ft_strdel(&str[i]);
 }
 
-void	set_child_widget_active(GtkContainer *container, gboolean status)
+void			file_error(GtkWidget *select)
+{
+	ft_putstr("error : invalid file\n");
+	gtk_widget_destroy(select);
+}
+
+void			set_child_widget_active(GtkContainer *container, gboolean status)
 {
 	GList		*lst;
 
@@ -54,7 +60,7 @@ void	set_child_widget_active(GtkContainer *container, gboolean status)
 	g_list_free(lst);
 }
 
-void	set_group_widget_active(GtkSizeGroup *group, gboolean status)
+void			set_group_widget_active(GtkSizeGroup *group, gboolean status)
 {
 	GSList		*lst;
 

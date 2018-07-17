@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 16:35:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 05:09:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_data		*data_init(int ac, char **av)
 	data->px = 0;
 	data->cel_shading = 0;
 	data->depth_of_field = -1;
+	data->dof_coeff = 0.8;
 	data->filter = FILTER_NONE;
 	data->depth_max = 4;
 	data->i = 0;

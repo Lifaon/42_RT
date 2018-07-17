@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 04:48:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/17 04:53:25 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ typedef struct		s_data
 	int				px;
 	int				cel_shading;
 	int				depth_of_field;
+	double			dof_coeff;
 	int				filter;
 	int				depth_max;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);

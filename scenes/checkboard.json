@@ -1,0 +1,63 @@
+{
+	"cameras" :
+	[
+		{
+			"position" : [0, 0, 2000],
+			"fov" : 20,
+			"angle" : [0, 0, 0]
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [-2000, 0, 0],
+			"ambient" : 0.2
+		}
+	],
+	"objects" :
+	{
+		"plane" :
+		{
+			"position" : [0, 0, 5700],
+			"angle" : [90, 0, 0],
+			"color" : [120, 0, 0, 255],
+			"color2" : [180, 140, 0, 255],
+			"specular" : 0,
+			"checkerboard" : 1,
+			"tex_scale" : 50
+		},
+		"sphere" :
+		{
+			"position" : [0, -100, 5000],
+			"radius" : 200,
+			"angle" : [0, 0, 0],
+			"color" : [160, 0, 160, 255],
+			"color2" : [255, 0, 60, 255],
+			"specular" : 1,
+			"checkerboard" : 1,
+			"tex_scale" : 20
+		},
+		"cone" :
+		{
+			"position" : [400, 0, 5000],
+			"radius" : 20,
+			"angle" : [0, 0, 0],
+			"color" : [143,131,255],
+			"color2" : [214,156,255],
+			"specular" : 1,
+			"checkerboard" : 1,
+			"tex_scale" : 20
+		},
+		"cylinder" :
+		{
+			"position" : [-400, 100, 5000],
+			"radius" : 150,
+			"angle" : [0, 0, -5],
+			"color" : [0, 0, 0, 255],
+			"color2" : [255, 255, 255, 255],
+			"specular" : 1,
+			"checkerboard" : 1,
+			"tex_scale" : 20
+		},
+	}
+}

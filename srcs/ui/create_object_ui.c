@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/05 20:26:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:48:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,26 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
-	wid_d->pos = pt_set(5, 0);
-	wid_d->f = &change_obj_angle;
-	vec = obj->angle;
-	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
-	if (!(group = add_vector_choose(wid_d, "angle rotation", vec, NULL)))
-		return (0);
-	wid_d->pos = pt_set(5, 2);
-	vec = obj->pos;
-	wid_d->f = &change_obj_pos;
-	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
-	if (!(add_vector_choose(wid_d, "position", vec, NULL)))
-		return (0);
-	wid_d->f = change_obj_r;
 	wid_d->pos.y = 0;
+	wid_d->f = NULL;
+	if (!(new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
+		return (0);
+	wid_d->pos.y = 2;
+	//wid_d->pos.x -= 1;
+	wid_d->entry_f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
 	wid_d->pos.x += 1;
+	wid_d->pos = pt_set(5, 0);
+	wid_d->f = &change_obj_pos;
+	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));
+	if (!(add_vector_choose(wid_d, "position", obj->pos)))
+		return (0);
+	wid_d->f = &change_obj_angle;
+	wid_d->pos = pt_set(5, 2);
+	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
+	if (!(group = add_vector_choose(wid_d, "angle rotation", obj->angle)))
+		return (0);
 	return (create_limited_object_ui(wid_d, obj));
 }
 
@@ -79,7 +82,8 @@ static GtkWidget 	*create_scrollable(GtkWidget *child)
 		return (NULL);
 	if (!(sbar = gtk_scrolled_window_new(NULL, v_adj)))
 		return (NULL);
-	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar), g_data->img->size.y - 200);
+	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar),
+			g_data->img->size.y - 200);
 	gtk_scrolled_window_set_overlay_scrolling(GTK_SCROLLED_WINDOW(sbar), FALSE);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sbar),
                                 GTK_POLICY_NEVER,
@@ -107,7 +111,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 			l_title)) < 0)
 		return (0);
 	gtk_widget_show_all(tab_obj);
-	while (g_data->ui->page_obj < index)
+	while (g_ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
 	gtk_widget_show_all(tab_obj);
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
@@ -120,27 +124,26 @@ int				create_object_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	GtkWidget		*box;
-		GtkWidget	*button;
+	GtkWidget		*but;
 	int				i;
 
-	if (!(g_data->ui->tab_objs = gtk_notebook_new()))
+	if (!(g_ui->tab_objs = gtk_notebook_new()))
 		return (0);
-	g_signal_connect(G_OBJECT(g_data->ui->tab_objs), "switch-page",
+	g_signal_connect(G_OBJECT(g_ui->tab_objs), "switch-page",
 			G_CALLBACK(change_page_obj), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-	if (!(button = gtk_button_new_with_label("add object")))
+	if (!(but = gtk_button_new_with_label("add object")))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
-	g_signal_connect(G_OBJECT(button), "clicked",
-			G_CALLBACK(add_one_obj), NULL);
-	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_data->ui->tab_objs), TRUE);
+	gtk_box_pack_start(GTK_BOX(box), but, FALSE, FALSE, 10);
+	g_signal_connect(G_OBJECT(but), "clicked", G_CALLBACK(add_one_obj), NULL);
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_objs), TRUE);
 	i = -1;
 	while (++i < g_data->nb_objects)
-		if (!(create_object_tab(g_data->ui->tab_objs, i)))
+		if (!(create_object_tab(g_ui->tab_objs, i)))
 			return (0);
 	if (!(l_title = gtk_label_new("Object")))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), g_data->ui->tab_objs, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), g_ui->tab_objs, FALSE, FALSE, 0);
 	if (gtk_notebook_append_page(GTK_NOTEBOOK(tab), box, l_title) < 0)
 		return (0);
 	return (1);

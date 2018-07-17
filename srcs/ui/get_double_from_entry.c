@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/28 20:44:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 12:30:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
 	return (0);
 }
 
-double		get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max)
+double		get_double_from_entry(GtkWidget *wid, int infinity_mode,
+		double min, double max)
 {
 	char			*str;
 	char			*str2;

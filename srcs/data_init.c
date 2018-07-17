@@ -6,12 +6,11 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 07:32:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:35:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include "draw.h"
 #include "parse.h"
 #include "vec.h"
 
@@ -40,10 +39,6 @@ t_data		*data_init(int ac, char **av)
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
-	
-	data->p.perlin_stain = 0.1;
-	grad_tab(&data->p);
-	perlin_tab1(&data->p);
 	data->aa = 1;
 	data->px = 0;
 	data->cel_shading = 0;
@@ -53,7 +48,6 @@ t_data		*data_init(int ac, char **av)
 	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;
-	data->ui = NULL;
 	init_cameras(data);
 	init_function_ptrs(data);
 	data->img = NULL;

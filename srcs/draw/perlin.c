@@ -1,45 +1,83 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   perlin.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/17 00:26:13 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/17 02:51:08 by vtudes           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "draw.h"
 
-double		dot_perlin(const int *v, const double x, const double y, \
-			const double z)
+static int perm[B + B +2];
+static float grad3[B + B + 2][3];
+static int grad_start = 1;
+
+static void		normalize3(float v[3])
 {
-	return (v[0] * x + v[1] * y + v[2] * z);
+	float s;
+
+	s = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+	v[0] = v[0] / s;
+	v[1] = v[1] / s;
+	v[2] = v[2] / s;
 }
 
-int			*get_grad(int x, int y, int z, t_perlin *p)
+static int		shuffle(int i)
 {
-	int rand_value;
+	int k;
+	int j;
 
-	rand_value = p->perm[z + p->perm[y + p->perm[x]]];
-	return (p->grad3[rand_value & 15]);
+	while (--i)
+	{
+		k = perm[i];
+		j = random() % B;
+		perm[i] = perm[j];
+		perm[j] = k;
+	}
+	return (i);
 }
 
-double		quintic_poly(const double t)
+static void		initialisation(void)
 {
-	return (t * t * t * (t * (t * 6 - 14) + 7));
+	int i;
+	int j;
+	int k;
+
+	i = -1;
+	while (++i < B)
+	{
+		perm[i] = i;
+		j = -1;
+		while (++j < 3)
+			grad3[i][j] = (float)((random() % (B + B)) - B) / B;
+		normalize3(grad3[i]);
+	}
+	i = shuffle(i);
+	while(++i < B + 2)
+	{
+		perm[B + i] = perm[i];
+		j = -1;
+		while (++j < 3)
+			grad3[B + i][j] = grad3[i][j];
+	}
+	grad_start = 0;
 }
 
-void		int_frac(double value, int *int_part, double *frac)
+float		noise(float vec[3])
 {
-	*int_part = (int)value;
-	if (value < 0)
-		int_part -= 1;
-	*frac = value - *int_part;
-}
+	t_perlin	p;
+	int			i;
+	int			j;
 
-double		linear_interpolation(double a, double b, double t)
-{
-	return (1 - t) * a + t * b;
+	if (grad_start)
+		initialisation();
+	setup_x(&p, vec);
+	setup_y(&p, vec);
+	setup_z(&p, vec);
+	i = perm[p.bx0];
+	j = perm[p.bx1];
+	p.b00 = perm[i + p.by0];
+	p.b10 = perm[j + p.by0];
+	p.b01 = perm[i + p.by1];
+	p.b11 = perm[j + p.by1];
+	p.t = CURVE(p.rx0);
+	p.sy = CURVE(p.ry0);
+	p.sz = CURVE(p.rz0);
+	get_a(&p, 1, grad3);
+	get_a(&p, 2, grad3);
+	get_c(&p, grad3);
+	get_d(&p, grad3);
+	return (LERP(p.sz, p.c, p.d));
 }

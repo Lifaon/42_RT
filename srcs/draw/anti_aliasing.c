@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:36:34 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 01:10:59 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/12 04:15:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_color			anti_aliasing(t_data *data, t_vec vp)
 			vp2.x = vp.x + (double)px.x / (double)data->aa;
 			r = compute_ray(vp2);
 			inter.depth = 0;
+			inter.in_object = 0;
 			if (first_hit(data, r, &inter))
 				colors[px.x + (px.y * data->aa)] = get_px_color(data, r, inter);
 			else

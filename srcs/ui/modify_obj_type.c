@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/23 17:34:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:30:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,24 @@ char	*get_str_obj_type(int type)
 void	modify_obj_type(GtkWidget *widget, gpointer param)
 {
 	const char	*str;
+	int			prev_type;
 	int			type;
 	t_obj		*obj;
 
 	if (!param && !widget)
 		param = NULL;
 	str = gtk_combo_box_get_active_id(GTK_COMBO_BOX(widget));
-	obj = &g_data->objs[g_data->ui->page_obj];
+	obj = &g_data->objs[g_ui->page_obj];
 	if ((type = get_int_obj_type(str)) < 0)
 		return ;
+	prev_type = obj->obj_type;
 	obj->obj_type = type;
 	obj->intersect = g_data->intersect[type];
 	obj->get_normal = g_data->get_normal[type];
+	if (prev_type != PLANE && type == PLANE)
+		gtk_combo_box_text_insert_text(
+				GTK_COMBO_BOX_TEXT(g_ui->cb_obj_limit), 2, "circle");
+	if (prev_type == PLANE && type != PLANE)
+		gtk_combo_box_text_remove(
+				GTK_COMBO_BOX_TEXT(g_ui->cb_obj_limit), 2);
 }

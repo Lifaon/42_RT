@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 07:29:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 04:48:51 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,50 @@ typedef struct		s_added
 **	To add colors.
 */
 
+typedef struct	s_perlin
+{
+	int			bx0;
+	int			bx1;
+	int			by0;
+	int			by1;
+	int			bz0;
+	int			bz1;
+	int			b00;
+	int			b01;
+	int			b11;
+	int			b10;
+	float		rx0;
+	float		rx1;
+	float		ry0;
+	float		ry1;
+	float		rz0;
+	float		rz1;
+	float		*q;
+	float		sy;
+	float		sz;
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	float		t;
+	float		u;
+	float		v;
+}				t_perlin;
+
 typedef struct		s_inter
 {
 	int				obj_i;
 	int				depth;
+	int				in_object;
 	double			t1;
 	double			t2;
 	double			t;
 	double			delta;
 	double			min_dist;
+	double			trans_at_ip;
 	t_point			uv;
 	t_color			color;
+	t_color			shadow;
 	t_color			spec;
 	t_vec			ip;
 	t_vec			normal;
@@ -94,40 +127,6 @@ typedef struct		s_camera
 **	the view plane ; fov = field of view.
 */
 
-typedef struct		s_perlin
-{
-	int				x1;
-	int				y1;
-	int				z1;
-	double			x;
-	double			y;
-	double			z;
-	double			x_pos;
-	double			y_pos;
-	double			z_pos;
-	double			g000;
-	double			g001;
-	double			g010;
-	double			g011;
-	double			g100;
-	double			g101;
-	double			g110;
-	double			g111;
-	double			u;
-	double			v;
-	double			w;
-	double			x00;
-	double			x10;
-	double			x01;
-	double			x11;
-	double			xy0;
-	double			xy1;
-	double			xyz;
-	double			perlin_stain;
-	unsigned char	perm[298];
-	int				grad3[16][3];
-}					t_perlin;
-
 typedef struct		s_light
 {
 	int				is_para;
@@ -153,7 +152,11 @@ typedef struct		s_obj
 	double			r;
 	double			spec;
 	double			alpha;
+	double			shiny;
+	double			trans;
+	double			ior;
 	t_color			color;
+	t_color			color2;
 	t_vec			pos;
 	t_vec			dir;
 	t_vec			y_dir;
@@ -164,15 +167,15 @@ typedef struct		s_obj
 	t_vec			oc;
 	t_pixelbuf		*tex;
 	t_point			tex_pos;
-	double			tex_scale;
+	int				tex_scale;
 	int				tex_repeat;
 	int				tex_limit;
+	int				tex_trans;
+	int				checkerboard;
+	int				rainbow;
 	int				(*intersect)(struct s_obj, t_vec, t_inter *);
 	int				(*limit)(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal)(struct s_obj, t_inter);
-	double			shiny;
-	double			trans;
-	double			ior;
 }					t_obj;
 /*
 **	Object structure -> r = radius ; spec = specular coefficent for Phong
@@ -186,17 +189,24 @@ typedef struct		s_obj
 
 typedef struct		s_ui
 {
-	GtkWidget	*tab;
-	t_list		*to_free;//
-	GtkWidget	*tab_light;
-	GtkWidget	*tab_cams;
-	GtkWidget	*tab_objs;
-	GtkWidget	*ev_box;
-	char		*path;
-	int			is_active;
-	int			page_light;
-	int			page_cam;
-	int			page_obj;
+	GtkWidget		*tab;
+	t_list			*to_free;//
+	GtkWidget		*tab_light;
+	GtkWidget		*tab_cams;
+	GtkWidget		*tab_objs;
+	GtkWidget		*ev_box;
+	GtkWidget		*sc_fov;
+	GtkSizeGroup	*gp_cam_pos;
+	GtkSizeGroup	*gp_cam_angle;
+	GtkSizeGroup	*gp_obj_min;
+	GtkWidget		*cb_obj_limit;
+	GtkSizeGroup	*gp_obj_max;
+	GtkSizeGroup	*gp_dof_focus;
+	char			*path;
+	int				is_active;
+	int				page_light;
+	int				page_cam;
+	int				page_obj;
 }					t_ui;
 
 typedef struct		s_data
@@ -215,13 +225,11 @@ typedef struct		s_data
 	int				depth_of_field;
 	int				filter;
 	int				depth_max;
-	t_perlin		p;
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
 	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	void			*win;
 	t_pixelbuf		*img;
-	t_ui			*ui;
 	int				draw;//
 }					t_data;
 /*
@@ -230,6 +238,7 @@ typedef struct		s_data
 */
 
 t_data				*g_data;
+t_ui				*g_ui;
 /*
 **	Global variable of the data structure.
 */
@@ -250,7 +259,9 @@ typedef struct		s_wid_data
 	t_ptdb			min_max;
 	double			step;
 	GtkWidget		*grid;
+	gpointer		param;
 	void			(*f)(GtkWidget*, gpointer);
+	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;
 /*
 ** This structure is used to make widget, position it to a grid

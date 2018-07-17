@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/06 00:14:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/14 03:37:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->r = fabs(parse_nb(str + *index, index));
 	else if (read_quotes(str + *index, "\"color\"", index))
 		object->color = parse_color(str + *index, index);
+	else if (read_quotes(str + *index, "\"color2\"", index))
+		object->color2 = parse_color(str + *index, index);
 	else if (read_quotes(str + *index, "\"angle\"", index))
 		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))
@@ -67,6 +69,12 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->tex_repeat = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"tex_limit\"", index))
 		object->tex_limit = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"tex_trans\"", index))
+		object->tex_trans = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"checkerboard\"", index))
+		object->checkerboard = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"rainbow\"", index))
+		object->rainbow = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"shiny\"", index))
 		object->shiny = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"trans\"", index))

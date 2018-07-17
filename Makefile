@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/27 20:09:47 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/07/13 19:38:14 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/blur.c \
 		draw/cel_shading.c \
+		draw/checkerboard.c \
 		draw/colors.c \
 		draw/depth_of_field.c \
 		draw/draw_image.c \
@@ -35,13 +36,13 @@ SRCS  = draw/anti_aliasing.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		draw/put_gdk_image.c \
+		draw/rainbow.c \
 		draw/reflec_refract.c \
-		draw/perlin_distrib.c \
-		draw/perlin_setup1.c \
-		draw/perlin_setup2.c \
-		draw/perlin_setup3.c \
+		draw/shadows.c \
 		draw/perlin.c \
-		draw/grad_init.c \
+		draw/noise.c \
+		draw/get_grad.c \
+		draw/perlin_setup.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
@@ -100,6 +101,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/create_options_ui.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
+		ui/create_widgets2.c \
 		ui/modify_light.c\
 		ui/modify_light2.c\
 		ui/modify_obj.c\

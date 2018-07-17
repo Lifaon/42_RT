@@ -72,9 +72,9 @@ float		noise(float vec[3])
 	p.b10 = perm[j + p.by0];
 	p.b01 = perm[i + p.by1];
 	p.b11 = perm[j + p.by1];
-	p.t = CURVE(p.rx0);
-	p.sy = CURVE(p.ry0);
-	p.sz = CURVE(p.rz0);
+	p.t = curve(p.rx0);
+	p.sy = curve(p.ry0);
+	p.sz = curve(p.rz0);
 	get_a(&p, 1, grad3);
 	get_a(&p, 2, grad3);
 	get_c(&p, grad3);

@@ -19,10 +19,6 @@
 # define BM 0xff
 # define N 0x1000
 # define NM 0xfff
-# define CURVE(t) ( t * t * t * (t * (t * 6 - 15) + 8) )
-# define LERP(t, a, b) ( (1 - t) * a + t * b )
-# define AT3(rx,ry,rz) ( rx * p.q[0] + ry * pn.q[1] + rz * p.q[2] )
-# define AT3_POINT(rx,ry,rz) ( rx * p->q[0] + ry * p->q[1] + rz * p->q[2] )
 
 /*
 **	Drawing functions.
@@ -63,6 +59,9 @@ void	sepia(t_data *data);
 void	black_and_white(t_data *data);
 
 
+double		LERP(double t, double a, double b);
+double		curve(const double t);
+double		AT3(const float *v, const double x, const double y, const double z);
 float		noise(float vec[3]);
 void		get_d(t_perlin *p, float grad3[B +B + 2][3]);
 void		get_c(t_perlin *p, float grad3[B +B + 2][3]);

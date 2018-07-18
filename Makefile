@@ -43,6 +43,7 @@ SRCS  = draw/anti_aliasing.c \
 		draw/noise.c \
 		draw/get_grad.c \
 		draw/perlin_setup.c \
+		draw/perlin_calcs.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \

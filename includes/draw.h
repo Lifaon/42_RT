@@ -58,7 +58,7 @@ void	blur(t_data *data);
 void	sepia(t_data *data);
 void	black_and_white(t_data *data);
 
-
+t_color		color_mod(double coef, t_obj obj);
 double		LERP(double t, double a, double b);
 double		curve(const double t);
 double		AT3(const float *v, const double x, const double y, const double z);
@@ -70,7 +70,6 @@ void		setup_x(t_perlin *p, float vec3[3]);
 void		setup_y(t_perlin *p, float vec[3]);
 void		setup_z(t_perlin *p, float vec[3]);
 void		ft_perlin(t_data *data, t_color *color, t_inter *inter);
-
 
 /*
 **	Functions used for color management.

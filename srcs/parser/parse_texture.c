@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "parse.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
-static int	add_alpha(t_obj *obj)
+int			add_alpha(t_obj *obj)
 {
 	uint8_t		*tmp;
 	GtkWidget	*img;
@@ -60,6 +62,29 @@ static char	*get_file_name(char *str, int *index)
 	return (ret);
 }
 
+int			check_img_file(char *path, t_obj *obj)
+{
+	char			*full_path;
+	char			*chr;
+	char			*str;
+	struct stat 	file_info;
+	int				ret;
+
+	ret = 0;
+	full_path = ft_strjoin(g_data->long_path, g_data->path);
+	if ((chr = ft_strstr(path, full_path)))
+		str = ft_strsub(chr, ft_strlen(full_path), 1000);
+	else
+		str = ft_strdup(path);
+	lstat(path, &file_info);
+	if (S_ISREG(file_info.st_mode))
+		ret = 1;
+	ft_strdel(&full_path);
+	if (ret)
+		obj->tex_filename = str;
+	return (ret);
+}
+
 void		parse_texture(t_obj *obj, char *str, int *index)
 {
 	char	*file_name;
@@ -78,11 +103,14 @@ void		parse_texture(t_obj *obj, char *str, int *index)
 		return ;
 	if (!(path_file = ft_strjoin(g_data->path, file_name)))
 		return ;
-	printf("parser filename = %s\n total path = %s\n", file_name, path_file);
-	if (!(obj->tex = pixelbuf_new_from_file(path_file)))
-		return ;
-	if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))
-		pixelbuf_free(&obj->tex);
+	if (check_img_file(path_file, obj))
+	{
+		printf("parser filename = %s\n total path = %s\n", file_name, path_file);
+		if (!(obj->tex = pixelbuf_new_from_file(path_file)))
+			return ;
+		if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))
+			pixelbuf_free(&obj->tex);
+	}
 	free(file_name);
 	free(path_file);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ui.h"
+#include "parse.h"
 
 static void		reset_button_texture(GtkWidget *button)
 {
@@ -63,21 +64,34 @@ void			change_obj_tex(GtkWidget *widget, gpointer param)
 		reset_button_texture(button);
 }
 
-static int		check_img_file(char *path)
+static void load_texture(t_obj *obj, char *path)
 {
-	char	*full_path;
-	char	*chr;
-	char	*str;
+	t_pixelbuf		*pxb;
 
-	full_path = ft_strjoin(g_data->long_path, g_data->path);
-	if ((chr = ft_strstr(path, full_path)))
+	ft_putstr("un\n");
+	if (check_img_file(path, obj))
 	{
-		str = ft_strsub(chr, ft_strlen(full_path), 1000);
+			ft_putstr("deux\n");
+		pxb = obj->tex;
+		if (!(obj->tex = pixelbuf_new_from_file(path)))
+		{
+			ft_putstr("ahah\n");
+			obj->tex = pxb;
+			return ;
+		}
+		if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))
+		{
+			pixelbuf_free(&obj->tex);
+			obj->tex = pxb;
+			ft_putstr("pouet\n");
+		}
+		if (obj->tex)
+			scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
 	}
-	else
-		printf("false %s\n", path);
-	return (1);
 }
+/*
+** the add_alpha function is in parse_texture.c
+*/
 
 void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 {
@@ -85,6 +99,7 @@ void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 	gint		response;
 	t_list		*lst;
 	gchar		*path;
+	t_obj		*obj;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
@@ -93,13 +108,11 @@ void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 			GTK_FILE_CHOOSER_ACTION_OPEN, "load texture", GTK_RESPONSE_ACCEPT, NULL);
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
 	response = gtk_dialog_run(GTK_DIALOG(select));
+	obj = &g_data->objs[g_ui->page_obj];
 	if (response == GTK_RESPONSE_ACCEPT)
 	{
 		path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select));
-		if (check_img_file(path) < 1)
-			return (file_error(select));
-		//if (open_json(path) < 1)
-		//	exit_all(g_data);
+		load_texture(obj, path);
 	}
 	gtk_widget_destroy(select);
 }

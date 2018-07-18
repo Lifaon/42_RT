@@ -13,8 +13,8 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 900
+# define WIN_H 700
 /*
 **	Size of the window created.
 */

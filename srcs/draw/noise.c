@@ -17,7 +17,7 @@ void	ft_perlin(t_data *data, t_color *color, t_inter *inter)
 	{
 		coef += (1.0 / level) * fabs(noise(vec));
 	}
-	coef = 0.25 * cos((inter->ip.x + inter->ip.y + inter->ip.z) * 0.05 + coef) + 0.9;
+	coef = 0.3 * cos((inter->ip.x + inter->ip.y + inter->ip.z) * 0.05 + coef) + 0.9;
 	if (coef < 0)
 		coef = 0;
 	else if (coef > 1)

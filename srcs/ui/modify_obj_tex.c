@@ -64,29 +64,30 @@ void			change_obj_tex(GtkWidget *widget, gpointer param)
 		reset_button_texture(button);
 }
 
-static void load_texture(t_obj *obj, char *path)
+static void load_texture(t_obj *obj, char *path, GtkWidget *img)
 {
-	t_pixelbuf		*pxb;
+	t_pixelbuf		*old_tex;
+	t_pixelbuf		*button_pxb;
 
-	ft_putstr("un\n");
+	if (!(button_pxb = pixelbuf_new_from_img(img)))
+		if (!(button_pxb = pixelbuf_new(pt_set(60, 60), img)))
+			return ;
 	if (check_img_file(path, obj))
 	{
-			ft_putstr("deux\n");
-		pxb = obj->tex;
+		old_tex = obj->tex;
 		if (!(obj->tex = pixelbuf_new_from_file(path)))
 		{
-			ft_putstr("ahah\n");
-			obj->tex = pxb;
+			obj->tex = old_tex;
 			return ;
 		}
 		if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))
 		{
 			pixelbuf_free(&obj->tex);
-			obj->tex = pxb;
+			obj->tex = old_tex;
 			ft_putstr("pouet\n");
 		}
 		if (obj->tex)
-			scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
+			scale_pxb(obj->tex, button_pxb, button_pxb->size, GDK_INTERP_BILINEAR);
 	}
 }
 /*
@@ -96,10 +97,10 @@ static void load_texture(t_obj *obj, char *path)
 void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 {
 	GtkWidget	*select;
-	gint		response;
-	t_list		*lst;
+	GList		*lst;
 	gchar		*path;
 	t_obj		*obj;
+	GtkWidget 	*w;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
@@ -107,12 +108,22 @@ void			change_obj_tex_file(GtkWidget *widget, gpointer param)
 			GTK_WINDOW(g_data->win),
 			GTK_FILE_CHOOSER_ACTION_OPEN, "load texture", GTK_RESPONSE_ACCEPT, NULL);
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
-	response = gtk_dialog_run(GTK_DIALOG(select));
 	obj = &g_data->objs[g_ui->page_obj];
-	if (response == GTK_RESPONSE_ACCEPT)
+	if ((lst = gtk_container_get_children(GTK_CONTAINER(widget))))
+	{
+		w = lst->data;
+		g_list_free(lst);
+		lst = gtk_container_get_children(GTK_CONTAINER(w));
+	 }
+	if (lst)
+	{
+		w = (GtkWidget*)lst->data;
+		g_list_free(lst);
+	}
+	if (gtk_dialog_run(GTK_DIALOG(select)) == GTK_RESPONSE_ACCEPT)
 	{
 		path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select));
-		load_texture(obj, path);
+		load_texture(obj, path, w);
 	}
 	gtk_widget_destroy(select);
 }

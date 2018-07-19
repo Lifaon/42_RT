@@ -53,7 +53,7 @@ t_pixelbuf		*pixelbuf_new_from_file(char *filename)
 {
 	t_pixelbuf	*pxbuf;
 	GtkWidget	*img;
-
+	
 	if (!(img = gtk_image_new_from_file(filename)))
 		return (NULL);
 	if (!(pxbuf = (t_pixelbuf*)malloc(sizeof(t_pixelbuf))))

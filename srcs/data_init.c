@@ -58,7 +58,5 @@ t_data		*data_init(int ac, char **av)
 	data->long_path = ft_strnew(1024);
 	getwd(data->long_path);
 	data->long_path = ft_strjoin_free(data->long_path, "/");
-	ft_putstr(data->path);
-	printf("path = %s\nchr = %s\ndata->path = %s\n data->path_long = %s\n", av[0], chr, data->path, data->long_path);
 	return (data);
 }

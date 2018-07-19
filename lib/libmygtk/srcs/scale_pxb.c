@@ -15,7 +15,8 @@
 void		scale_pxb(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
 		GdkInterpType type)
 {
-	g_object_unref(dst->buf);
+	if (dst->buf)
+		g_object_unref(dst->buf);
 	dst->buf = gdk_pixbuf_scale_simple(src->buf, new_size.x, new_size.y, type);
 	dst->size = new_size;
 	dst->pxl = (uint32_t*)gdk_pixbuf_get_pixels(dst->buf);

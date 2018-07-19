@@ -105,7 +105,6 @@ void		parse_texture(t_obj *obj, char *str, int *index)
 		return ;
 	if (check_img_file(path_file, obj))
 	{
-		printf("parser filename = %s\n total path = %s\n", file_name, path_file);
 		if (!(obj->tex = pixelbuf_new_from_file(path_file)))
 			return ;
 		if (gdk_pixbuf_get_has_alpha(obj->tex->buf) == FALSE && add_alpha(obj))

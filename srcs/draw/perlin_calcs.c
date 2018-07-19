@@ -7,7 +7,7 @@ double	LERP(double t, double a, double b)
 
 double	curve(const double t)
 {
-	return (t * t * t * (t * (t * 6 - 15) + 8));
+	return (t * t * (3.0 - 2.0 * t));
 }
 
 double	AT3(const float *v, const double x, const double y, \

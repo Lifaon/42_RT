@@ -55,7 +55,7 @@ static void		initialisation(void)
 	grad_start = 0;
 }
 
-float		noise(float vec[3])
+float		noise(float vecx, float vecy, float vecz)
 {
 	t_perlin	p;
 	int			i;
@@ -63,9 +63,9 @@ float		noise(float vec[3])
 
 	if (grad_start)
 		initialisation();
-	setup_x(&p, vec);
-	setup_y(&p, vec);
-	setup_z(&p, vec);
+	setup_x(&p, vecx);
+	setup_y(&p, vecy);
+	setup_z(&p, vecz);
 	i = perm[p.bx0];
 	j = perm[p.bx1];
 	p.b00 = perm[i + p.by0];
@@ -76,8 +76,13 @@ float		noise(float vec[3])
 	p.sy = curve(p.ry0);
 	p.sz = curve(p.rz0);
 	get_a(&p, 1, grad3);
-	get_a(&p, 2, grad3);
 	get_c(&p, grad3);
+	get_a(&p, 2, grad3);
 	get_d(&p, grad3);
 	return (LERP(p.sz, p.c, p.d));
+}
+
+float		noise_vec(float vec[3])
+{
+	return (noise(vec[0], vec[1], vec[2]));
 }

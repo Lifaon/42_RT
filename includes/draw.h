@@ -45,6 +45,9 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter);
 */
 void	depth_of_field();
 
+//t_vec		bump_mapping(t_inter inter);
+
+
 /*
 **	Checkerboard algorithm
 */
@@ -62,13 +65,14 @@ t_color		color_mod(double coef, t_obj obj);
 double		LERP(double t, double a, double b);
 double		curve(const double t);
 double		AT3(const float *v, const double x, const double y, const double z);
-float		noise(float vec[3]);
+float		noise(float vecx, float vecy, float vecz);
+float		noise_vec(float vec[3]);
 void		get_d(t_perlin *p, float grad3[B +B + 2][3]);
 void		get_c(t_perlin *p, float grad3[B +B + 2][3]);
 void		get_a(t_perlin *p, int i, float grad3[B + B +2][3]);
-void		setup_x(t_perlin *p, float vec3[3]);
-void		setup_y(t_perlin *p, float vec[3]);
-void		setup_z(t_perlin *p, float vec[3]);
+void		setup_x(t_perlin *p, float vecx);
+void		setup_y(t_perlin *p, float vecy);
+void		setup_z(t_perlin *p, float vecz);
 void		ft_perlin(t_data *data, t_color *color, t_inter *inter);
 
 /*

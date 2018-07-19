@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/19 07:44:48 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/19 22:45:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ typedef struct		s_data
 	void			*win;
 	t_pixelbuf		*img;
 	t_photon		*photon_map;
+	int				nb_photons;
 	int				draw;//
 }					t_data;
 /*

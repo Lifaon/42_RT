@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/19 07:49:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 00:26:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,34 @@ static t_color	refra_refrec(t_data *data, t_inter inter, t_color ret, t_vec r)
 static t_color	add_caustics(t_inter inter, t_color ret)
 {
 	t_color	caust;
+	t_added	added;
 	double	len;
 	int		i;
+	int		nb;
 
-	if (!g_data->photon_map)
+	if (!g_data->photon_map || g_data->px > 1)
 		return (ret);
-	i = -1;
 	caust.c = 0xFF000000;
-	while (++i < 100000 * g_data->nb_lights_on)
-		if (g_data->photon_map[i].color.c)// && g_data->photon_map[i].obj_i \
-			== inter.obj_i)
+	added = (t_added){0, 0, 0, 0};
+	nb = 0;
+	i = -1;
+	while (++i < g_data->nb_photons)
+	{
+		len = get_length(vec_substract(inter.ip, g_data->photon_map[i].pos));
+		if (len < 20.)
 		{
-			// printf("test\n");
-			len = get_length(vec_substract(inter.ip, g_data->photon_map[i].pos));
-			if (len < 10.)
-				caust = add_colors(caust, \
-					col_multiply(g_data->photon_map[i].color, 1. - len / 10.));
+			caust = col_multiply(g_data->photon_map[i].color, 1. - len / 20.);
+			added.r += caust.argb.r;
+			added.g += caust.argb.g;
+			added.b += caust.argb.b;
+			nb++;
 		}
-	// return (caust);
+	}
+	if (!nb)
+		return (ret);
+	caust.argb.r = (added.r / nb) < 255 ? added.r / nb : 255;
+	caust.argb.g = (added.g / nb) < 255 ? added.g / nb : 255;
+	caust.argb.b = (added.b / nb) < 255 ? added.b / nb : 255;
 	return (add_colors(ret, caust));
 }
 

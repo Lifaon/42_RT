@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:31:52 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 13:29:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,15 @@ static void		destroy_tabs(GtkWidget *tab)
 	g_list_free(list);
 }
 
-static void		file_error(GtkWidget *select)
-{
-	ft_putstr("error : invalid file\n");
-	gtk_widget_destroy(select);
-}
-
 void			click_open(GtkWidget *widget, gpointer data)
 {
 	GtkWidget	*select;
 	gint		response;
-	t_ui		*ui;
 	t_list		*lst;
 	gchar		*path;
 
 	if (!widget && !data)
 		return ;
-	ui = (t_ui*)data;
 	select = gtk_file_chooser_dialog_new("chose a file",
 			GTK_WINDOW(g_data->win),
 			GTK_FILE_CHOOSER_ACTION_OPEN, "load", GTK_RESPONSE_ACCEPT, NULL);
@@ -90,7 +82,7 @@ void			click_open(GtkWidget *widget, gpointer data)
 		path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select));
 		if (check_file(path) < 1)
 			return (file_error(select));
-		destroy_tabs(ui->tab);
+		destroy_tabs(g_ui->tab);
 		if (open_json(path) < 1)
 			exit_all(g_data);
 	}

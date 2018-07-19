@@ -73,6 +73,9 @@ t_point	parse_point(char *str, int *index);
 t_vec	parse_vec(char *str, int *index);
 t_color	parse_color(char *str, int *index);
 void	parse_texture(t_obj *obj, char *str, int *index);
+int		check_img_file(char *path, t_obj *obj);
+int		add_alpha(t_obj *obj);
+
 /*
 **	parse_nb(), parse_vec() and parse_color() take a string and return either
 **	a double, a t_vec, or a t_color that matches what is written in the string.

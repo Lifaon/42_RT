@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 20:12:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/17 19:20:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*
 ** Parent functions
  */
-int				create_ui(char *path);
+int				create_ui(void);
 int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
@@ -69,7 +69,7 @@ GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
 GtkWidget		*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
-int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));
 
 /*
@@ -129,6 +129,7 @@ void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
+void			change_obj_focus(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
@@ -138,6 +139,15 @@ void			modify_obj_limited_type(GtkWidget *widget, gpointer param);
 void			change_obj_min(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_max(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			change_obj_tex(GtkWidget*widget, gpointer param);
+void			change_obj_tex_file(GtkWidget *widget, gpointer param);
+void			change_obj_tex_scale(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_x(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_y(GtkWidget*widget, gpointer param);
+void			switch_obj_tex_repeat(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			switch_obj_tex_trans(GtkWidget *widget, gboolean state,
 		gpointer param);
 
 /*
@@ -167,8 +177,6 @@ void			change_cam_pos(GtkWidget *widget, gpointer param);
 ** => Other UI event
 */
 void			chose_color(GtkWidget *widget, gpointer param, t_light *light);
-t_color			get_color_of_img(GtkWidget *img);
-void			color_widget_img(GtkWidget *img, t_color color);
 gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
@@ -189,4 +197,8 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
 void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
 		gpointer param);
+void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
+		GdkInterpType type);
+int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
+void			file_error(GtkWidget *select);
 #endif

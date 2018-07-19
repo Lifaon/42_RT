@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:32:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 19:15:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ GtkWidget			*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 GtkWidget			*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param)
 {
-	GtkWidget 	*scale;
+	GtkWidget	*scale;
+
 	if (!(l_new(wid_d, txt)))
 		return (NULL);
 	wid_d->pos.y += 1;
@@ -100,14 +101,16 @@ GtkWidget			*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 	return (scale);
 }
 
-int					make_label_and_switch(t_wid_data *wid_d, const char *txt,
+GtkWidget			*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer))
 {
+	GtkWidget 	*sw;
+
 	if (!(l_new(wid_d, txt)))
-		return (0);
+		return (NULL);
 	wid_d->pos.y += 1;
-	if (!(switch_new(wid_d, wid_d, value, f)))
-		return (0);
+	if (!(sw = switch_new(wid_d, wid_d, value, f)))
+		return (NULL);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
-	return (1);
+	return (sw);
 }

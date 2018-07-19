@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 16:48:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 18:52:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/16 16:29:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
 	GtkWidget		*cb;
 	char			*str;
 	int				i;
-
-	if (!(l_new(wid_d, label)))
-		return (NULL);
+	if (label)
+		if (!(l_new(wid_d, label)))
+			return (NULL);
 	if (!(cb = gtk_combo_box_text_new()))
 		return (NULL);
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
@@ -44,7 +44,8 @@ GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(cb), "changed", G_CALLBACK(wid_d->f),
 				wid_d->param);
-	wid_d->pos.y += 1;
+	if (label)
+		wid_d->pos.y += 1;
 	gtk_grid_attach(GTK_GRID(wid_d->grid), cb, wid_d->pos.y, wid_d->pos.x,
 			wid_d->size.x, wid_d->size.y);
 	return (cb);

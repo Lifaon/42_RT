@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:48:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 18:17:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
+	GtkWidget		*check_b;
 
-	wid_d->pos.y = 0;
-	wid_d->f = NULL;
-	if (!(new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
 		return (0);
+	wid_d->pos.y = 0;
+	wid_d->f = &change_obj_focus;
+	if (!(check_b = new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
+		return (0);
+	gtk_size_group_add_widget(g_ui->gp_dof_focus, check_b);
 	wid_d->pos.y = 2;
-	//wid_d->pos.x -= 1;
 	wid_d->entry_f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
@@ -37,7 +40,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	set_wid_data_scale(wid_d, 10, ptdb_set(-180, 180));
 	if (!(group = add_vector_choose(wid_d, "angle rotation", obj->angle)))
 		return (0);
-	return (create_limited_object_ui(wid_d, obj));
+	return (create_object_texture_ui(wid_d, obj));
 }
 
 static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
@@ -51,7 +54,8 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	if (!(new_cb_type(wid_d, wid_d, obj)))
 		return (0);
 	wid_d->pos = pt_set(0, 3);
-	pxb = pixelbuf_new(pt_set(30, 30), NULL);
+	if (!(pxb = pixelbuf_new(pt_set(30, 30), NULL)))
+		return (0);
 	fill_pixelbuf_in_color(pxb, obj->color.c);
 	wid_d->f = &change_obj_color;
 	if (!(b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
@@ -65,8 +69,6 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
 	wid_d->min_max = ptdb_set(1, 200);
-	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
-		return (0);
 	return (construct_phase_2(wid_d, obj));
 }
 
@@ -113,7 +115,6 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	gtk_widget_show_all(tab_obj);
 	while (g_ui->page_obj < index)
 		gtk_notebook_next_page(GTK_NOTEBOOK(tab_obj));
-	gtk_widget_show_all(tab_obj);
 	if (!(construct_phase_1(&wid_d, &g_data->objs[index])))
 		return (0);
 	ft_strdel(&str);
@@ -135,7 +136,7 @@ int				create_object_ui(GtkWidget *tab)
 	if (!(but = gtk_button_new_with_label("add object")))
 		return (0);
 	gtk_box_pack_start(GTK_BOX(box), but, FALSE, FALSE, 10);
-	g_signal_connect(G_OBJECT(but), "clicked", G_CALLBACK(add_one_obj), NULL);
+	g_signal_connect(G_OBJECT(but), "clicked", G_CALLBACK(add_one_obj), box);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_objs), TRUE);
 	i = -1;
 	while (++i < g_data->nb_objects)

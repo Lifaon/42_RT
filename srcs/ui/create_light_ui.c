@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 17:43:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:32:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	t_pixelbuf		*pxb;
 	gboolean		para;
 
-	wid_d->pos.y = 0;
-	wid_d->entry_f = change_light_r;
-	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
-	if (!(make_label_and_entry(wid_d, "radius", light->r, light)))
-		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
@@ -42,6 +37,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 		para = TRUE;
 	if (!(switch_new(wid_d, (gpointer)group, para, &switch_parallel_light)))
 		return (0);
+	set_group_widget_active(group, para);
 	return (1);
 }
 
@@ -50,9 +46,6 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	GtkSizeGroup	*group;
 	t_vec			vec;
 
-	/*if (!(l_new(wid_d, "light")))
-		return (0);
-	//wid_d->pos = pt_set(0, 1);*/
 	if (!(make_label_and_switch(wid_d, "light", TRUE, &switch_light)))
 		return (0);
 	wid_d->pos = pt_set(0, 2);
@@ -68,6 +61,11 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	vec = light->angle;
 	wid_d->min_max = ptdb_set(-180, 180);
 	if (!(group = add_vector_choose(wid_d, "direction", vec)))
+		return (0);
+	wid_d->pos.y = 0;
+	wid_d->entry_f = change_light_r;
+	set_wid_data_scale(wid_d, 0.01, ptdb_set(0.0, 1.0));
+	if (!(make_label_and_entry(wid_d, "radius", light->r, light)))
 		return (0);
 	return (construct_phase_2(wid_d, light, group));
 }

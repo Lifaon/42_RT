@@ -6,17 +6,16 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:28:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/17 19:31:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "events.h"
 
-static t_ui		*ui_new(char *path)
+static t_ui		*ui_new(void)
 {
 	t_ui	*ui;
-	char	*chr;
 
 	if (!(ui = (t_ui*)malloc(sizeof(t_ui))))
 		return (NULL);
@@ -25,10 +24,15 @@ static t_ui		*ui_new(char *path)
 	ui->page_obj = 0;
 	ui->page_cam = 0;
 	ui->is_active = 0;
-	ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
-	chr = ft_strstr(path, "/rt");
-	ui->path = ft_strsub(path, 0, ft_strlen(path) - ft_strlen(chr));
-	//ui->path = ft_strdup(path);
+	ui->gp_cam_pos = NULL;
+	ui->gp_cam_angle = NULL;
+	ui->gp_obj_min = NULL;
+	ui->gp_obj_max = NULL;
+	ui->cb_obj_limit = NULL;
+	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (NULL);
+	if (!(ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (NULL);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	return (ui);
@@ -49,10 +53,10 @@ int				make_grid(t_wid_data *wid_d)
 	return (1);
 }
 
-void            focus_me(GtkWidget  *widget, gpointer data)
+void			focus_me(GtkWidget  *widget, gpointer data)
 {
-    gtk_widget_grab_focus(widget);
-    gtk_widget_grab_default(widget);
+	gtk_widget_grab_focus(widget);
+	gtk_widget_grab_default(widget);
 }
 
 static int      create_renderer(void)
@@ -81,10 +85,10 @@ static int      create_renderer(void)
 	  //      G_CALLBACK(&focus_me), g_data);
 	//g_signal_connect(G_OBJECT(ev_box), "clicked",
 	//			G_CALLBACK(&focus_me), g_data);
-    return(1);
+	return (1);
 }
 
-int				create_ui(char *path)
+int				create_ui(void)
 {
 	GtkWidget		*win;
 	GtkWidget		*v_box;
@@ -92,12 +96,12 @@ int				create_ui(char *path)
 
 	if (!(win = (void*)gtk_window_new(GTK_WINDOW_TOPLEVEL)))
 		return (0);
-
+	g_data->win = win;
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
 	v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-	if (!(g_ui = ui_new(path)))
+	if (!(g_ui = ui_new()))
 		return (0);
 	create_renderer();
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab), TRUE);
@@ -113,6 +117,5 @@ int				create_ui(char *path)
 	//gtk_box_pack_start(GTK_BOX(h_box), g_data->img->widget, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(win), h_box);
 	gtk_widget_show_all(win);
-	g_data->win = win;
 	return (1);
 }

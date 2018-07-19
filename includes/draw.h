@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 19:37:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/18 22:42:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 */
 void	draw_image(void);
 void	draw_pixelated_image(t_data *data);
-void	cel_shading(void);
+void	get_photon_map(void);
 t_color	get_px_color(t_data *data, t_vec ray, t_inter inter);
 t_color	shadow(t_light light, t_inter inter, t_vec ray, double len);
 t_color	anti_aliasing(t_data *data, t_vec vp);
@@ -50,9 +50,10 @@ t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 /*
 **	Filters.
 */
-void	blur(t_data *data);
+void	cel_shading(void);
 void	sepia(t_data *data);
 void	black_and_white(t_data *data);
+void	blur(t_data *data);
 
 /*
 **	Functions used for color management.

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 04:53:25 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/19 07:44:48 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,13 @@ typedef struct		s_obj
 **	for each intersection.
 */
 
+typedef struct		s_photon
+{
+	t_vec			pos;
+	t_color			color;
+	int				obj_i;
+}					t_photon;
+
 typedef struct		s_ui
 {
 	GtkWidget		*tab;
@@ -201,6 +208,7 @@ typedef struct		s_data
 	t_vec			(*get_normal[4])(struct s_obj, t_inter);
 	void			*win;
 	t_pixelbuf		*img;
+	t_photon		*photon_map;
 	int				draw;//
 }					t_data;
 /*
@@ -211,7 +219,7 @@ typedef struct		s_data
 t_data				*g_data;
 t_ui				*g_ui;
 /*
-**	Global variable of the data structure.
+**	Global variables of the data and ui structures.
 */
 
 typedef struct		s_funar_keyb

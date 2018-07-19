@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 21:51:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/19 05:28:05 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int ft_exit(void)
 	return (0);
 }
 
+void		get_photon_map(void);
+
 int		main(int ac, char **av)
 {
 	if (ac != 2 || ft_strlen(av[1]) < 1)
@@ -49,6 +51,7 @@ int		main(int ac, char **av)
 	get_oc();
 	if (create_ui(av[0]) == 0)
 		return (0);
+	get_photon_map();
 	put_gdk_image();
 	ft_event(g_data);
 	return (0);

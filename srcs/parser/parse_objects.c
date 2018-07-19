@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 03:37:10 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 00:59:03 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->color = parse_color(str + *index, index);
 	else if (read_quotes(str + *index, "\"color2\"", index))
 		object->color2 = parse_color(str + *index, index);
+	else if (read_quotes(str + *index, "\"color_scale\"", index))
+		object->color_scale = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"angle\"", index))
 		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))

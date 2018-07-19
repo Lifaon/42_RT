@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:12:55 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 05:54:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 00:59:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_one_object(t_data *data, int index)
 	data->objs[index].alpha = 100;
 	data->objs[index].color.c = 0xFFA600A6;
 	data->objs[index].color2.c = 0xFFFFFFFF;
+	data->objs[index].color_scale = 100;
 	data->objs[index].pos = (t_vec){0, 0, 1500};
 	data->objs[index].dir = (t_vec){0, 1, 0};
 	data->objs[index].angle = (t_vec){0, 0, 0};

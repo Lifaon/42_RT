@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 20:51:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/20 00:58:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct		s_obj
 	double			ior;
 	t_color			color;
 	t_color			color2;
+	int				color_scale;
 	t_vec			pos;
 	t_vec			dir;
 	t_vec			y_dir;

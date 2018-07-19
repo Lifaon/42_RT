@@ -24,7 +24,7 @@
 			"color2" : [180, 140, 0, 255],
 			"specular" : 0,
 			"checkerboard" : 1,
-			"tex_scale" : 50
+			"color_scale" : 50
 		},
 		"sphere" :
 		{
@@ -35,7 +35,7 @@
 			"color2" : [255, 0, 60, 255],
 			"specular" : 1,
 			"checkerboard" : 1,
-			"tex_scale" : 20
+			"color_scale" : 20
 		},
 		"cone" :
 		{
@@ -46,7 +46,7 @@
 			"color2" : [214,156,255],
 			"specular" : 1,
 			"checkerboard" : 1,
-			"tex_scale" : 20
+			"color_scale" : 20
 		},
 		"cylinder" :
 		{
@@ -57,7 +57,7 @@
 			"color2" : [255, 255, 255, 255],
 			"specular" : 1,
 			"checkerboard" : 1,
-			"tex_scale" : 20
+			"color_scale" : 20
 		},
 	}
 }

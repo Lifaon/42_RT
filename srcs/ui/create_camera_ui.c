@@ -22,6 +22,7 @@ int 			phase_1(t_wid_data *wid_d)
 		"Field Of Vision", g_data->cams[0].fov, NULL)))
 		return (0);
 	wid_d->f = change_cam_pos;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	x = wid_d->pos.x;
 	wid_d->min_max = ptdb_set(-50000, 50000);
 	if (!(g_ui->gp_cam_pos = add_vector_choose(wid_d, 

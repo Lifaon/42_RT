@@ -14,11 +14,13 @@
 
 static int		get_cb_limit_value_from_obj(t_obj *obj)
 {
-	if (obj->limited == LIMIT_AXE || obj->limited == LIMIT_NONE)
+	if (obj->tex_limit == 1)
 		return (0);
+	if (obj->limited == LIMIT_AXE || obj->limited == LIMIT_NONE)
+		return (1);
 	if (obj->obj_type == PLANE && obj->limited == LIMIT_CIRCLE)
-		return (2);
-	return (1);
+		return (3);
+	return (2);
 }
 
 GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
@@ -59,17 +61,16 @@ GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	if (!(cb = gtk_combo_box_text_new()))
 		return (NULL);
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "define by texture");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "principal axe");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "revolution axe");
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "define by texture");
 	if (obj->obj_type == PLANE)
 		gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "circle");
-	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 0);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 1);
 	id = get_cb_limit_value_from_obj(obj);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), id);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(cb), "changed", G_CALLBACK(wid_d->f), param);
-	//wid_d->pos.y += 1;
 	gtk_grid_attach(GTK_GRID(wid_d->grid), cb, wid_d->pos.y, wid_d->pos.x,
 			2, 1);
 	return (cb);

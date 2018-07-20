@@ -16,13 +16,14 @@ static int		phase_3(t_wid_data *wid_d, t_obj *obj, GtkSizeGroup *group)
 {
 	GtkWidget		*w;
 
-	wid_d->pos = pt_set(wid_d->pos.x - 2, 2);
+	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_obj_tex_pos_x;
 	if (!(w = make_label_and_entry(wid_d, "X position", (double)obj->tex_pos.x,
 					NULL)))
 		return (0);
 	gtk_size_group_add_widget(group, w);
 	wid_d->f = &change_obj_tex_pos_y;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 2);
 	if (!(w = make_label_and_entry(wid_d, "Y position", (double)obj->tex_pos.y,
 					NULL)))
 		return (0);
@@ -41,12 +42,13 @@ static int		phase_2(t_wid_data *wid_d, t_obj *obj, GtkSizeGroup *group)
 	if (!(w = make_label_and_scale(wid_d, "scale",
 					(double)obj->tex_scale, NULL)))
 		return (0);
-	wid_d->pos.y = 0;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	gtk_size_group_add_widget(group, w);
 	repeat = (obj->tex_repeat == 1) ? TRUE : FALSE;
 	if (!(w = make_label_and_switch(wid_d, "repeat", repeat,
 					&switch_obj_tex_repeat)))
 		return (0);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	gtk_size_group_add_widget(group, w);
 	tex_trans = (obj->tex_trans == 1) ? TRUE : FALSE;
 	if (!(w = make_label_and_switch(wid_d,

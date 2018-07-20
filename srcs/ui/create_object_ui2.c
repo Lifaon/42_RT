@@ -1,9 +1,11 @@
+#include "ui.h"
+
 static int		construct_phase_3(t_wid_data *wid_d, t_obj *obj)
 {
 	return (create_object_texture_ui(wid_d, obj));
 }
 
-int				construct_phase_2(t_wid_data *wid_d, t_obj *obj)
+int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
@@ -11,7 +13,7 @@ int				construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 
 	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
 		return (0);
-	wid_d->pos.y = 0;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_obj_focus;
 	if (!(check_b = new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus)))
 		return (0);
@@ -20,7 +22,6 @@ int				construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	wid_d->entry_f = change_obj_r;
 	if (!(make_label_and_entry(wid_d, "Radius", obj->r, obj)))
 		return (0);
-	wid_d->pos.x += 1;
 	wid_d->pos = pt_set(5, 0);
 	wid_d->f = &change_obj_pos;
 	set_wid_data_scale(wid_d, 10, ptdb_set(-30000, 30000));

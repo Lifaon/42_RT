@@ -94,6 +94,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/create_light_ui.c \
 		ui/create_camera_ui.c \
 		ui/create_object_ui.c \
+		ui/create_object_ui2.c \
 		ui/create_limited_object_ui.c \
 		ui/create_options_ui.c \
 		ui/set_wid_data.c \

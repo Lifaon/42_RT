@@ -45,6 +45,7 @@ GtkWidget	*make_label_and_entry_group(t_wid_data *wid_d, const char *txt,
 
 	if (!(entry = make_label_and_entry(wid_d, txt, value, (gpointer)group)))
 		return (NULL);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y -1);
 	gtk_size_group_add_widget(group, entry);
 	return (entry);
 

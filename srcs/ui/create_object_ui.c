@@ -39,7 +39,7 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	wid_d->pos = pt_set(3, 2);
 	wid_d->f = change_obj_alpha;
 	wid_d->min_max = ptdb_set(1, 200);
-	return (construct_phase_2(wid_d, obj));
+	return (obj_construct_phase_2(wid_d, obj));
 }
 
 static GtkWidget 	*create_scrollable(GtkWidget *child)

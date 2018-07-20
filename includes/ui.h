@@ -29,6 +29,7 @@ int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
+int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj);
 int				create_limited_object_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_camera_ui(GtkWidget *main_tab);
 int				create_options_ui(GtkWidget *main_tab);

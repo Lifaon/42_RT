@@ -53,7 +53,8 @@ GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkWidget		*new_check_button(t_wid_data *wid_d, char *txt, gpointer param);
+GtkWidget		*new_check_button(t_wid_data *wid_d, char *txt, gpointer param, 
+		GtkSizeGroup *group);
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
 GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
 		int set_value, char **txt);
@@ -134,6 +135,7 @@ void			change_obj_focus(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
+void			change_obj_color2(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
 void			modify_obj_limited_type(GtkWidget *widget, gpointer param);
@@ -141,7 +143,7 @@ void			change_obj_min(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			change_obj_max(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
-void			change_obj_tex(GtkWidget*widget, gpointer param);
+void			check_tex_file(GtkWidget *widget, gpointer param);
 void			change_obj_tex_file(GtkWidget *widget, gpointer param);
 void			change_obj_tex_scale(GtkWidget*widget, gpointer param);
 void			change_obj_tex_pos_x(GtkWidget*widget, gpointer param);
@@ -150,6 +152,11 @@ void			switch_obj_tex_repeat(GtkWidget *widget, gboolean state,
 		gpointer param);
 void			switch_obj_tex_trans(GtkWidget *widget, gboolean state,
 		gpointer param);
+void			change_color_scale(GtkWidget *widget, gpointer param);
+void			check_rainbow(GtkWidget *widget, gpointer param);
+void			check_checkboard(GtkWidget *widget, gpointer param);
+void			check_perlin(GtkWidget *widget, gpointer param);
+
 
 /*
 ** => options event

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 05:25:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 03:39:15 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int		uv_mapping(t_obj obj, t_vec ray, t_inter *inter)
 	if (inter->uv.x >= 0 && inter->uv.x < obj.tex->size.x \
 		&& inter->uv.y >= 0 && inter->uv.y < obj.tex->size.y)
 		return (obj.tex->pxl[inter->uv.x + (inter->uv.y * obj.tex->size.x)]);
-	else if (obj.checkerboard)
+	else if (obj.color_type == COLOR_CHECKERBOARD)
 		return (checkerboard(obj, ray, inter).c);
-	else if (obj.rainbow)
+	else if (obj.color_type == COLOR_RAINBOW)
 		return (rainbow(obj, ray, inter).c);
 	return (obj.color.c);
 }

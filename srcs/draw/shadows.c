@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 02:09:32 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 04:08:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 03:14:24 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ static t_color	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 		inter->trans_at_ip = 1 - (ret.argb.a / 255.);
 	else
 		inter->trans_at_ip = obj.trans;
-	if (obj.tex && inter->trans_at_ip)
-		ret.c = uv_mapping(obj, ray, inter);
-	else if (obj.checkerboard && inter->trans_at_ip)
-		ret = checkerboard(obj, ray, inter);
-	else if (obj.rainbow && inter->trans_at_ip)
-		ret = rainbow(obj, ray, inter);
+	if (inter->trans_at_ip)
+	{
+		if (obj.tex)
+			ret.c = uv_mapping(obj, ray, inter);
+		else if (obj.color_type == COLOR_CHECKERBOARD)
+			ret = checkerboard(obj, ray, inter);
+		else if (obj.color_type == COLOR_RAINBOW)
+			ret = rainbow(obj, ray, inter);
+		else
+			ret = obj.color;
+	}
 	else
 		ret = inter->color;
 	ret.argb.a = 255;

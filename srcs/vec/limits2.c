@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 22:56:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:06:54 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:56:29 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		limit_tex(t_obj obj, t_vec ray, t_inter *inter)
 
 int		obj_limit(t_obj obj, t_vec ray, t_inter *inter)
 {
-	if (obj.limited == LIMIT_NONE)
+	if (obj.limited == LIMIT_NONE || (obj.tex_limit && obj.tex))
 		return (1);
 	if (obj.limit(obj, ray, inter))
 		return (1);

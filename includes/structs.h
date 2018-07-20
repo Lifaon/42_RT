@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/20 00:58:11 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 03:17:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,133 +17,108 @@
 # include "defines.h"
 # include "mygtk.h"
 
+/*
+**	Storing 3D coordinates or 3D vectors.
+*/
 typedef struct		s_vec
 {
 	double			x;
 	double			y;
 	double			z;
 }					t_vec;
-/*
-**	Storing 3D coordinates or 3D vectors.
-*/
 
-typedef struct		s_added
-{
-	int				r;
-	int				g;
-	int				b;
-	int				a;
-}					t_added;
 /*
-**	To add colors.
+**	Intersection structure. Called in stack for every ray management
 */
-
 typedef struct		s_inter
 {
-	int				obj_i;
-	int				depth;
-	int				in_object;
-	double			t1;
-	double			t2;
-	double			t;
-	double			delta;
-	double			min_dist;
-	double			trans_at_ip;
-	t_point			uv;
-	t_color			color;
-	t_color			shadow;
-	t_color			spec;
-	t_vec			ip;
-	t_vec			normal;
-	t_vec			oc;
-	t_vec			origin;
+	int				obj_i;		// index of the intersected object
+	int				depth;		// depth flag for bouncing rays
+	int				in_object;		// flag to know if in object (refraction)
+	double			min_dist;	// minimum distance between origin and ip
+	double			t1;		// first quadratic equation solution
+	double			t2;		// second quadratic equation solution
+	double			t;		// smallest result > min_dist between t1 & t2
+	double			delta;		// discriminant of quadratic equation
+	t_vec			origin;		// origin of current ray
+	t_vec			oc;		// inter.origin to obj.pos vector
+	t_vec			ip;		// intersection point
+	t_vec			normal;		// normal at ip
+	t_color			color;		// color at ip
+	t_color			shadow;		// shadow color at ip
+	t_color			spec;		// specular color at ip
+	double			trans_at_ip;	// transparency at ip
+	t_point			uv;		// UV mapping vector lengths
 }					t_inter;
-/*
-**	Intersection structure -> obj_i is the object index used to know which
-**	object was intersected ; t1, t2 and delta are used for equations of degree
-**	two, and t is the smallest positive number between t1 and t2 ; min_dist =
-**	minimum distance before we consider there is an intersection ; spec =
-**	specular shading at the intersection point ; ip = intersection point ;
-**	normal = the normal of the object at 'ip' ; oc = vector between origin of
-**	the current ray and center of the current object.
-*/
 
+/*
+**	Camera structure. Used as an array in the data structure
+*/
 typedef struct		s_camera
 {
-	t_vec			pos;
-	t_vec			angle;
-	t_vec			vp_up_left;
-	double			vp_dist;
-	double			fov;
+	double			fov;	// field of fiew, changes vp_up_left, 1 to 180
+	t_vec			pos;	// position
+	t_vec			angle;		// angle of the direction, in degrees
+	t_vec			vp_up_left;		// view plane, call get_vp_up_left(cam)
 }					t_camera;
-/*
-**	Cam struct -> pos = position ; angle = angle of vue ; vp_up_left = point at
-**	the top left of the view_place ; vp_dist = distance between the camera and
-**	the view plane ; fov = field of view.
-*/
 
+/*
+**	Object structure. Used as an array in the data structure
+*/
 typedef struct		s_light
 {
-	int				is_para;
-	int				disabled;
-	double			r;
-	double			ambi;
-	t_vec			pos;
-	t_vec			dir;
-	t_vec			angle;
-	t_color			color;
-	t_color			color_neg;
+	int				is_para;	// defines if the light is parallel or not
+	int				disabled;	// defines if the light is on or not
+	double			ambi;		// ambient coefficient, 0 to 1
+	double			r;		// radius of the light source. Not (yet) implemented
+	t_vec			pos;	// position
+	t_vec			dir;	// direction
+	t_vec			angle;		// angle of the direction, in degrees
+	t_color			color;		// color of the light
+	t_color			color_neg;		// 0xFFFFFF - light.color
 }					t_light;
-/*
-**	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
-**	r = radius of the light source ; pos = position ; dir = direction.
-*/
 
+/*
+**	Object structure. Used as an array in the data structure
+*/
 typedef struct		s_obj
 {
-	int				obj_type;
-	int				limited;
-	int				enabled;
-	double			r;
-	double			spec;
-	double			alpha;
-	double			shiny;
-	double			trans;
-	double			ior;
-	t_color			color;
-	t_color			color2;
-	int				color_scale;
-	t_vec			pos;
-	t_vec			dir;
-	t_vec			y_dir;
-	t_vec			z_dir;
-	t_vec			angle;
-	t_vec			min;
-	t_vec			max;
-	t_vec			oc;
-	t_pixelbuf		*tex;
-	t_point			tex_pos;
-	int				tex_scale;
-	int				tex_repeat;
-	int				tex_limit;
-	int				tex_trans;
-	int				checkerboard;
-	int				rainbow;
-	char			*tex_filename;
-	int				(*intersect)(struct s_obj, t_vec, t_inter *);
-	int				(*limit)(struct s_obj, t_vec, t_inter *);
-	t_vec			(*get_normal)(struct s_obj, t_inter);
+	int				obj_type;	// sphere, plane, cone, cylinder : defines.h
+	int				limited;	// type of limit : defines.h
+	int				enabled;	// defines if the object exists or not
+	double			r;		// radius
+	double			spec;		// specular coefficient, 0 to 1
+	double			alpha;		// alpha for specular calcul, 1 to inf
+	double			shiny;		// reflexion coeffient, 0 to 1
+	double			trans;		// transparency coeffient, 0 to 1
+	double			ior;	// refractive index, 1 in the air
+	t_color			color;		// main color component
+	t_color			color2;		// second color component, for checkerboards
+	int				color_type;		// type of basic color : defines.h
+	int				color_scale;	// scaling for checkerboards and others
+	t_vec			pos;	// position
+	t_vec			dir;	// directional axe
+	t_vec			angle;		// angle of the direction, in degrees
+	t_vec			y_dir;		// call get_dir() if you change obj.angle
+	t_vec			z_dir;		// call get_dir() if you change obj.angle
+	t_vec			min;	// minimum values for limited objects
+	t_vec			max;	// maximum values for limited objects
+	t_vec			oc;		// obj.pos to cam.pos vector, call get_oc();
+	t_pixelbuf		*tex;		// texture structure : lib/libmygtk/includes
+	t_point			tex_pos;	// texture position, centered by default
+	int				tex_scale;		// scaling for textures
+	int				tex_repeat;		// the texture repeats itself
+	int				tex_limit;		// the texture defines the limits
+	int				tex_trans;		// the texture defines the transparency
+	char			*tex_filename;		// path to the texture
+	int				(*intersect)(struct s_obj, t_vec, t_inter *); 	// fct ptr
+	int				(*limit)(struct s_obj, t_vec, t_inter *); 	// fct ptr
+	t_vec			(*get_normal)(struct s_obj, t_inter); 	// fct ptr
 }					t_obj;
-/*
-**	Object structure -> r = radius ; spec = specular coefficent for Phong
-**	shading ; pos = position which defines the object ; dir = direction in
-**	case it has one ; oc = vector between the current camera and 'pos' ;
-**	normal = surface normal in case it's constant (e.g. plane) ; limits, with
-**	min and max lengths either on the directional axis or the primary axis
-**	y_dir and z_dir are vectors stored to avoid having to calculate them
-**	for each intersection.
-*/
 
+/*
+**	UI strucure. Used as a global : g_ui
+*/
 typedef struct		s_ui
 {
 	GtkWidget		*tab;
@@ -165,52 +140,61 @@ typedef struct		s_ui
 	int				page_cam;
 	int				page_obj;
 }					t_ui;
+t_ui				*g_ui;
 
+/*
+**	Data strucure. Used as a global : g_data
+*/
 typedef struct		s_data
 {
-	int				nb_objects;
-	t_obj			*objs;
-	int				nb_lights;
-	int				nb_lights_on;
-	t_light			*lights;
-	int				i;
-	t_camera		cams[CAM_NB];
-	t_camera		cam;
-	int				aa;
-	int				px;
-	int				cel_shading;
-	int				depth_of_field;
-	double			dof_coeff;
-	int				filter;
-	int				depth_max;
-	int				(*intersect[4])(struct s_obj, t_vec, t_inter *);
-	int				(*limit[6])(struct s_obj, t_vec, t_inter *);
-	t_vec			(*get_normal[4])(struct s_obj, t_inter);
-	void			*win;
-	t_pixelbuf		*img;
-	int				draw;//
-	char			*path;
-	char			*long_path;
+	t_obj			*objs;		// object array
+	int				nb_objects;		// number of objects in data.objs
+	t_light			*lights;	// light array
+	int				nb_lights;		// number of lights data.lights
+	int				nb_lights_on;	// number of lights that are switched on
+	t_camera		cams[CAM_NB];	// camera array. CAM_NB : defines.h
+	int				i;		// index of the current camera
+	t_camera		cam;	// data.cam = data.objs[data.i]
+	int				aa;		// anti-aliasing variable. SSAA*aa
+	int				px;		// pixelation variable
+	int				depth_of_field;		// index of the object to focus
+	double			dof_coeff;		// depth of field coefficient, 0.1 to 3~
+	int				cel_shading;	// defines if cel_shading is on
+	int				filter;		// defines if a filter is on : defines.h
+	int				depth_max;		// defines the maximum value of inter.depth
+	void			*win;		//
+	t_pixelbuf		*img;		//
+	int				draw;//		//
+	char			*path;		//
+	char			*long_path;		//
+	int				(*intersect[4])(struct s_obj, t_vec, t_inter *); //defines.h
+	int				(*limit[6])(struct s_obj, t_vec, t_inter *); //	defines.h
+	t_vec			(*get_normal[4])(struct s_obj, t_inter);	//	defines.h
 }					t_data;
-/*
-**	Struct used to store objects, light sources, and the 4 possible cameras, in
-**	addition with the mlx struct;
-*/
-
 t_data				*g_data;
-t_ui				*g_ui;
-/*
-**	Global variable of the data structure.
-*/
 
+/*
+**	To add colors
+*/
+typedef struct		s_added
+{
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+}					t_added;
+
+/*
+**	To handle keyboard events
+*/
 typedef struct		s_funar_keyb
 {
-	int				key;
-	void			(*f)(t_data*);
+	int				key;	// key index
+	void			(*f)(t_data*);	// function to call when key is pushed
 }					t_funar_keyb;
+
 /*
-** This structure is used to handle the keyboard event
-** fill f with the function you want to use when the key is pushed
+**	To make widgets for UI usage
 */
 typedef struct		s_wid_data
 {
@@ -223,14 +207,14 @@ typedef struct		s_wid_data
 	void			(*f)(GtkWidget*, gpointer);
 	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;
-/*
-** This structure is used to make widget, position it to a grid
-** and link to function
-*/
 
+/*
+** Yes
+*/
 typedef struct		s_widget_vec
 {
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 }					t_widget_vec;
+
 #endif

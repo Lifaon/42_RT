@@ -61,6 +61,7 @@ GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "principal axe");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "revolution axe");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "define by texture");
 	if (obj->obj_type == PLANE)
 		gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "circle");
 	gtk_combo_box_set_active(GTK_COMBO_BOX(cb), 0);

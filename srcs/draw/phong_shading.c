@@ -36,10 +36,8 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter)
 	t_vec	r;
 	t_vec	v;
 	double	dot;
-	//t_vec bm;
 
 
-	//bm = bump_mapping(inter);
 	ret = col_multiply(color, obj.spec);
 	r = vec_normalize(vec_substract(\
 			vec_multiply(inter.normal, dot_product(inter.normal, light) * 2.0),\

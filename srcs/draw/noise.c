@@ -30,16 +30,21 @@ void	ft_perlin(t_data *data, t_color *color, t_inter *inter)
 
 
 
-// t_vec	bump_mapping(t_inter inter)
-// {
-// 	t_vec vec;
-// 	t_vec ret;
+t_vec	bump_mapping(t_inter inter, t_vec normal)
+{
+	t_vec vec;
+	t_vec ret;
 
-// 	vec.x = inter.normal.x + inter.ip.x;
-// 	vec.y = 50 * inter.normal.y + 100 * inter.ip.y;
-// 	vec.z = inter.normal.z + inter.ip.z;
-// 	ret.x = noise(vec.x - 0.001, vec.y, vec.z) - noise(vec.x + 0.001, vec.y, vec.z);
-// 	ret.y = noise(vec.x, vec.y - 0.001, vec.z) - noise(vec.x, vec.y + 0.001, vec.z);
-// 	ret.z = noise(vec.x, vec.y, vec.z - 0.001) - noise(vec.x, vec.y, vec.z + 0.001);
-// 	return (ret);
-// }
+	vec.x = vec.x + inter.ip.x;
+	vec.y = 50 * vec.y + 100 * inter.ip.y;
+	vec.z = vec.z + inter.ip.z;
+	//printf("x : %f \n y : %f \n z : %f \n", inter.ip.x, inter.ip.y, inter.ip.z);
+	ret.x = noise(vec.x - 0.001f, vec.y, vec.z) - noise(vec.x + 0.001f, vec.y, vec.z);
+	ret.y = noise(vec.x, vec.y - 0.001f, vec.z) - noise(vec.x, vec.y + 0.001f, vec.z);
+	ret.z = noise(vec.x, vec.y, vec.z - 0.001f) - noise(vec.x, vec.y, vec.z + 0.001f);
+	normal.x = normal.x + ret.x;
+	normal.y = normal.y + ret.y;
+	normal.z = normal.z + ret.z;
+	vec_normalize(normal);
+	return (normal);
+}

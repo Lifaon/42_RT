@@ -45,8 +45,6 @@ t_color	specular_shading(t_obj obj, t_color color, t_vec light, t_inter inter);
 */
 void	depth_of_field();
 
-//t_vec		bump_mapping(t_inter inter);
-
 
 /*
 **	Checkerboard algorithm

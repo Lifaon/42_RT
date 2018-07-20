@@ -90,4 +90,7 @@ void	get_oc(void);
 t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
 t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 
+t_vec	bump_mapping(t_inter inter, t_vec normal);
+
+
 #endif

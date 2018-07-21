@@ -81,9 +81,9 @@ GtkWidget			*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 		str = ft_dbtoa(value);
 	if (!(entry = entry_new(wid_d, param, str)))
 		return (NULL);
+	wid_d->pos.y -= 1;
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 10);
 	ft_strdel(&str);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
 	return (entry);
 }
 
@@ -97,7 +97,7 @@ GtkWidget			*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 	wid_d->pos.y += 1;
 	if (!(scale = scale_new(wid_d, param, value)))
 		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
+	wid_d->pos.y -= 1;
 	return (scale);
 }
 
@@ -111,6 +111,6 @@ GtkWidget			*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 	wid_d->pos.y += 1;
 	if (!(sw = switch_new(wid_d, wid_d, value, f)))
 		return (NULL);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, wid_d->pos.y - 1);
+	wid_d->pos.y -= 1;
 	return (sw);
 }

@@ -12,7 +12,8 @@
 
 #include "ui.h"
 
-GtkWidget	*new_check_button(t_wid_data *wid_d, char *txt, gpointer param)
+GtkWidget	*new_check_button(t_wid_data *wid_d, char *txt, gpointer param, 
+	GtkSizeGroup *group)
 {
 	GtkWidget	*checkb;
 
@@ -24,5 +25,7 @@ GtkWidget	*new_check_button(t_wid_data *wid_d, char *txt, gpointer param)
 		g_signal_connect(G_OBJECT(checkb), "toggled", G_CALLBACK(wid_d->f), param);
 	gtk_grid_attach(GTK_GRID(wid_d->grid), checkb, wid_d->pos.y,
 				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
+	if (group)
+		gtk_size_group_add_widget(group, checkb);
 	return (checkb);
 }

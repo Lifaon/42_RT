@@ -50,6 +50,7 @@
 # define LIMIT_CIRCLE 3
 # define LIMIT_CYLINDER 4
 # define LIMIT_CONE 5
+# define LIMIT_DEFINED_BY_TEX 6
 
 /*
 **	g_data.filter

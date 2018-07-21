@@ -13,6 +13,7 @@
 #include "rtv1.h"
 #include "parse.h"
 #include "vec.h"
+#include <limits.h>
 
 void	init_function_ptrs(t_data *data)
 {
@@ -59,8 +60,8 @@ t_data		*data_init(int ac, char **av)
 	data->draw = 1;
 	chr = ft_strstr(av[0], "/rt");
 	data->path = ft_strsub(av[0], 2, ft_strlen(av[0]) - (ft_strlen(chr) + 1));
-	data->long_path = ft_strnew(1024);
-	getwd(data->long_path);
+	data->long_path = ft_strnew(PATH_MAX);
+	getcwd(data->long_path, PATH_MAX);
 	data->long_path = ft_strjoin_free(data->long_path, "/");
 	return (data);
 }

@@ -35,32 +35,27 @@ static void		reset_button_texture(GtkWidget *button)
 	gtk_widget_set_sensitive(button, FALSE);
 }
 
-void			change_obj_tex(GtkWidget *widget, gpointer param)
+void			check_tex_file(GtkWidget *widget, gpointer param)
 {
-	int				cb_value;
+	gboolean		state;
 	GtkWidget		*button;
 	GtkSizeGroup	*group;
-	GSList		*lst;
+	GSList			*lst;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
-	cb_value = gtk_combo_box_get_active(GTK_COMBO_BOX(widget));
 	group = (GtkSizeGroup*)param;
 	button = NULL;
 	lst = gtk_size_group_get_widgets(group);
+	state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 	while (lst)
 	{
-		if (GTK_IS_BUTTON(lst->data))
+		if (GTK_IS_BUTTON(lst->data) && !GTK_IS_CHECK_BUTTON(lst->data))
 			button = (GtkWidget*)lst->data;
 		lst = lst->next;
 	}
-	if (cb_value == 0)
-		set_group_widget_active(group, FALSE);
-	else
-		set_group_widget_active(group, TRUE);
-	if (cb_value == 3)
-		gtk_widget_set_sensitive(button, TRUE);
-	else
+	set_group_widget_active(group, state);
+	if (state == FALSE)
 		reset_button_texture(button);
 }
 

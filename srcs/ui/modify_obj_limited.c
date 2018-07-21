@@ -14,9 +14,9 @@
 
 static int			get_limited_obj_type(t_obj *obj, int axe)
 {
-	if (axe == 0)
-		return (LIMIT_AXE);
 	if (axe == 1)
+		return (LIMIT_AXE);
+	if (axe == 2)
 	{
 		if (obj->obj_type == SPHERE)
 			return (LIMIT_SPHERE);
@@ -27,7 +27,7 @@ static int			get_limited_obj_type(t_obj *obj, int axe)
 		if (obj->obj_type == PLANE)
 			return (LIMIT_RECTANGLE);
 	}
-	if (axe == 2 && obj->obj_type == PLANE)
+	if (axe == 3 && obj->obj_type == PLANE)
 		return (LIMIT_CIRCLE);
 	return (-1);
 }
@@ -57,10 +57,16 @@ void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
 		param = NULL;
 	axe = gtk_combo_box_get_active(GTK_COMBO_BOX(widget));
 	obj = &g_data->objs[g_ui->page_obj];
-	if ((type = get_limited_obj_type(obj, axe)) < 0)
-		return ;
-	obj->limited = type;
-	obj->limit = g_data->limit[type];
+	if (axe == 0)
+		obj->tex_limit = 1;
+	else
+	{
+		if ((type = get_limited_obj_type(obj, axe)) < 0)
+			return ;
+		obj->limited = type;
+		obj->limit = g_data->limit[type];
+		obj->tex_limit = 0;
+	}
 }
 
 void		change_obj_min(GtkWidget *widget, GdkEvent *event, gpointer param)

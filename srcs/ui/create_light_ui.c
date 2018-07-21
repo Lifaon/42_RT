@@ -18,11 +18,12 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	t_pixelbuf		*pxb;
 	gboolean		para;
 
-	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
+	wid_d->pos.y += 1;// = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi, light)))
 		return (0);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	pxb = pixelbuf_new(pt_set(30, 30), NULL);
 	fill_pixelbuf_in_color(pxb, light->color.c);
 	wid_d->f = &change_light_color;

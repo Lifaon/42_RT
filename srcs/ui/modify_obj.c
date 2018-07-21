@@ -78,3 +78,15 @@ void	change_obj_color(GtkWidget *widget, gpointer param)
 	color = (gpointer)&g_data->objs[g_ui->page_obj].color;
 	chose_color((GtkWidget*)param, color, NULL);
 }
+
+void	change_obj_color2(GtkWidget *widget, gpointer param)
+{
+	gpointer	color;
+
+	if (!param && !widget)
+		return ;
+	if (g_ui->is_active == 0)
+		return ;
+	color = (gpointer)&g_data->objs[g_ui->page_obj].color2;
+	chose_color((GtkWidget*)param, color, NULL);
+}

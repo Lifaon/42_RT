@@ -29,7 +29,7 @@
 			"position" : [-300, 200, 1000],
 			"radius" : 100,
 			"specular" : 0,
-			"texture" : "textures/world.jpg"
+			"texture" : "textures/world.jpg",
 		},
 		"cylinder" :
 		{

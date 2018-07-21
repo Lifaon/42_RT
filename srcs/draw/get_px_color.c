@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 07:22:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:02:52 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,12 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	t_added		added;
 	int			i;
 
+	add_colors(ret, inter.spec);
 	if (!data->nb_lights || !data->nb_lights_on)
 		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
 	added = (t_added){0, 0, 0, 0};
 	i = -1;
+
 	inter.spec.c = 0;
 	while (++i < data->nb_lights)
 	{
@@ -130,5 +132,6 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	ret.argb.a = added.a / data->nb_lights_on;
 	ret = add_colors(ret, inter.spec);
 	ret = add_caustics(inter, ret);
+	ft_perlin(data, &ret, &inter);
 	return (refra_refrec(data, inter, ret, ray));
 }

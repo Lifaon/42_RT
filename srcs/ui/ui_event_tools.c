@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_event_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 13:08:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:01:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,8 @@ void			set_group_widget_active(GtkSizeGroup *group, gboolean status)
 		lst = lst->next;
 	}
 }
+
+/*
+** Here we use free instead of pixelbuf_free because the widget still need
+** the pixbuf.
+*/

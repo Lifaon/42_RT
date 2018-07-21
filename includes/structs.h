@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:32:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:48:47 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,39 @@ typedef struct		s_photon
 	t_color			color;
 	int				obj_i;
 }					t_photon;
+
+/*
+**	Perlin structure
+*/
+typedef struct	s_perlin
+{
+	int			bx0;
+	int			bx1;
+	int			by0;
+	int			by1;
+	int			bz0;
+	int			bz1;
+	int			b00;
+	int			b01;
+	int			b11;
+	int			b10;
+	float		rx0;
+	float		rx1;
+	float		ry0;
+	float		ry1;
+	float		rz0;
+	float		rz1;
+	float		*q;
+	float		sy;
+	float		sz;
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	float		t;
+	float		u;
+	float		v;
+}				t_perlin;
 
 /*
 **	Intersection structure. Called in stack for every ray management

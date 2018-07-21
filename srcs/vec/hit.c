@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/20 03:12:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:02:07 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		first_hit(t_data *data, t_vec ray, t_inter *inter)
 		inter->ip = vec_add(inter->origin, vec_multiply(ray, inter->t));
 		inter->normal = get_normal(ray, data->objs[inter->obj_i], *inter);
 		inter->color.c = get_color_at_ip(data->objs[inter->obj_i], ray, inter);
+		//printf("x : %f \n y : %f \n z : %f \n", inter->ip.x, inter->ip.y, inter->ip.z);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 19:20:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:50:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,4 +201,5 @@ void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
 		GdkInterpType type);
 int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
 void			file_error(GtkWidget *select);
+
 #endif

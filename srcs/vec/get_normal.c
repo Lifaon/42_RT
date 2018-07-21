@@ -63,6 +63,6 @@ t_vec	get_normal(t_vec ray, t_obj obj, t_inter inter)
 	normal = obj.get_normal(obj, inter);
 	dot = dot_product(ray, normal);
 	normal = dot <= 0 ? normal : vec_multiply(normal, -1);
-	// normal = bump_mapping(inter, normal);
+	normal = bump_mapping(inter, normal);
 	return (normal);
 }

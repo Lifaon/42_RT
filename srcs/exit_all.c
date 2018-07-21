@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 19:34:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:33:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	exit_all(t_data *data)
 		}
 		if (data && data->nb_lights)
 			free(data->lights);
+		if (data->photon_map)
+			free(data->photon_map);
 		ft_strdel(&g_data->path);
 		ft_strdel(&g_data->long_path);
 		free(data);

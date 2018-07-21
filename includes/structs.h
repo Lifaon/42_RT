@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/20 03:17:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:32:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ typedef struct		s_vec
 	double			y;
 	double			z;
 }					t_vec;
+
+/*
+**	Photon strucure. Used for photon mapping and caustics
+*/
+typedef struct		s_photon
+{
+	t_vec			pos;
+	t_color			color;
+	int				obj_i;
+}					t_photon;
 
 /*
 **	Intersection structure. Called in stack for every ray management
@@ -162,6 +172,11 @@ typedef struct		s_data
 	int				cel_shading;	// defines if cel_shading is on
 	int				filter;		// defines if a filter is on : defines.h
 	int				depth_max;		// defines the maximum value of inter.depth
+	t_photon		*photon_map;	// to store photons, if == NULL no caustics
+	int				photon_total;	// total of photons emitted
+	int				photon_hit;		// total of photons that bounced once or +
+	int				photon_ppx;		// number of photons max per pixel
+	double			photon_size;	// size of the photon area
 	void			*win;		//
 	t_pixelbuf		*img;		//
 	int				draw;//		//

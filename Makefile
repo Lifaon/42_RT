@@ -6,8 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/16 19:17:32 by fchevrey         ###   ########.fr        #
-#    Updated: 2018/07/14 18:50:45 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/21 08:25:14 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +26,7 @@ EOC = \033[37m
 SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/blur.c \
+		draw/caustic.c \
 		draw/cel_shading.c \
 		draw/checkerboard.c \
 		draw/colors.c \

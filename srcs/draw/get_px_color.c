@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/14 03:39:11 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 07:22:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		blocked(t_light light, t_inter *inter, t_vec *vec, double *dot)
 	*dot = dot_product(inter->normal, *vec);
 	inter_tmp.origin = inter->origin;
 	inter_tmp.min_dist = 0.01;
-	if (*dot <= 0)
+	if (*dot < 0)
 	{
 		if (inter->trans_at_ip != 0)
 			inter->shadow = shadow(light, *inter, *vec, len);
@@ -67,6 +67,42 @@ static t_color	refra_refrec(t_data *data, t_inter inter, t_color ret, t_vec r)
 	return (ret);
 }
 
+static t_color	add_caustics(t_inter inter, t_color ret)
+{
+	t_color	caust;
+	t_added	added;
+	double	len;
+	int		i;
+	int		nb;
+
+	if (!g_data->photon_map || g_data->px > 1)
+		return (ret);
+	caust.c = 0xFF000000;
+	added = (t_added){0, 0, 0, 0};
+	nb = 0;
+	i = -1;
+	while (++i < g_data->photon_hit)
+	{
+		len = get_length(vec_substract(inter.ip, g_data->photon_map[i].pos));
+		if (len < g_data->photon_size)
+		{
+			added.r += g_data->photon_map[i].color.argb.r;
+			added.g += g_data->photon_map[i].color.argb.g;
+			added.b += g_data->photon_map[i].color.argb.b;
+			nb++;
+		}
+	}
+	if (!nb)
+		return (ret);
+	caust.argb.r = (added.r / nb) < 255 ? added.r / nb : 255;
+	caust.argb.g = (added.g / nb) < 255 ? added.g / nb : 255;
+	caust.argb.b = (added.b / nb) < 255 ? added.b / nb : 255;
+	if (nb > g_data->photon_ppx)
+		nb = g_data->photon_ppx;
+	caust = col_multiply(caust, (double)nb / (double)g_data->photon_ppx);
+	return (add_colors(ret, caust));
+}
+
 t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 {
 	t_color		ret;
@@ -93,5 +129,6 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	ret.argb.b = added.b / data->nb_lights_on;
 	ret.argb.a = added.a / data->nb_lights_on;
 	ret = add_colors(ret, inter.spec);
+	ret = add_caustics(inter, ret);
 	return (refra_refrec(data, inter, ret, ray));
 }

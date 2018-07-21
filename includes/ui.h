@@ -30,6 +30,8 @@ int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
 int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj);
+int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
+int				create_object_file_tex_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_limited_object_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_camera_ui(GtkWidget *main_tab);
 int				create_options_ui(GtkWidget *main_tab);
@@ -156,6 +158,9 @@ void			change_color_scale(GtkWidget *widget, gpointer param);
 void			check_rainbow(GtkWidget *widget, gpointer param);
 void			check_checkboard(GtkWidget *widget, gpointer param);
 void			check_perlin(GtkWidget *widget, gpointer param);
+void			check_perlin_cosine(GtkWidget *widget, gpointer param);
+void			change_perlin_scale(GtkWidget *widget, gpointer param);
+void			change_perlin_opacity(GtkWidget *widget, gpointer param);
 
 
 /*
@@ -207,7 +212,6 @@ void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
 		gpointer param);
 void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
 		GdkInterpType type);
-int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
 void			file_error(GtkWidget *select);
 
 #endif

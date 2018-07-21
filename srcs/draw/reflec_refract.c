@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/12 04:58:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/20 20:31:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 {
 	t_vec		r;
 	double		coeff;
-	double		n_i = 1.0f;
-	double		n_t = data->objs[inter->obj_i].ior;
-	double		angle_i;
-	double		angle_t;
 	double		dot;
 	double		eta;
 	double		k;
@@ -54,17 +50,17 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	coeff = inter->trans_at_ip;
 	dot = dot_product(ray, data->objs[inter->obj_i].get_normal(\
 		data->objs[inter->obj_i], *inter));
-	if (!inter->in_object) // on est dans en dehors de l'objet //
+	eta = 1. / data->objs[inter->obj_i].ior;
+	if (dot < 0.)	// in object
 		dot = -dot;
-	else // on est dans l'objet //
-		ft_swap_double(&n_i, &n_t);
-	inter->in_object = inter->in_object ? 0 : 1;
-	eta = n_i / n_t;
+	else	// out of object
+		eta = data->objs[inter->obj_i].ior;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
-	if (k < 0.0f) // no refraction car full reflection interne
-		return (ret);
-	angle_i = acos(dot);
-	angle_t = asin((n_i * sin(angle_i)) / n_t);
+	if (k < 0.)
+	{
+		eta = 1.;
+		k = 1.0f - dot * dot;
+	}
 	r = vec_normalize(vec_add(vec_multiply(ray, eta), \
 		vec_multiply(inter->normal, eta * dot - sqrt(k))));
 	inter->origin = vec_add(inter->ip, vec_multiply(r, 0.3));

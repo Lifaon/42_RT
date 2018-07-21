@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/20 00:26:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 07:22:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,14 @@ static t_color	add_caustics(t_inter inter, t_color ret)
 	added = (t_added){0, 0, 0, 0};
 	nb = 0;
 	i = -1;
-	while (++i < g_data->nb_photons)
+	while (++i < g_data->photon_hit)
 	{
 		len = get_length(vec_substract(inter.ip, g_data->photon_map[i].pos));
-		if (len < 20.)
+		if (len < g_data->photon_size)
 		{
-			caust = col_multiply(g_data->photon_map[i].color, 1. - len / 20.);
-			added.r += caust.argb.r;
-			added.g += caust.argb.g;
-			added.b += caust.argb.b;
+			added.r += g_data->photon_map[i].color.argb.r;
+			added.g += g_data->photon_map[i].color.argb.g;
+			added.b += g_data->photon_map[i].color.argb.b;
 			nb++;
 		}
 	}
@@ -98,6 +97,9 @@ static t_color	add_caustics(t_inter inter, t_color ret)
 	caust.argb.r = (added.r / nb) < 255 ? added.r / nb : 255;
 	caust.argb.g = (added.g / nb) < 255 ? added.g / nb : 255;
 	caust.argb.b = (added.b / nb) < 255 ? added.b / nb : 255;
+	if (nb > g_data->photon_ppx)
+		nb = g_data->photon_ppx;
+	caust = col_multiply(caust, (double)nb / (double)g_data->photon_ppx);
 	return (add_colors(ret, caust));
 }
 

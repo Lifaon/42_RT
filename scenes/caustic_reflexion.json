@@ -1,0 +1,55 @@
+{
+	"cameras" :
+	[
+		{
+			"position" : [0.0, 400, 550],
+			"angle" : [40, 0, 0],
+			"fov" : 20.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [1000, 1000, 0],
+			"ambiant" : 0.3
+		}
+	],
+	"objects" :
+	{
+		"cylinder" :
+		{
+			"position" : [0, 0, 1000],
+			"color" : [255, 160, 0],
+			"radius" : 100,
+			"limit" : "cylinder",
+			"max" : [50, 5000, 5000],
+			"angle" : [0, 0, 0],
+			"specular" : 1,
+			"shiny" : 0.7
+		},
+		"plane" :
+		{
+			"position" : [0.0, 0, 400],
+			"color" : [60, 60, 60, 255],
+			"alpha" : 100.0,
+			"angle" : [0.0, 0.0, 0.0],
+			"specular" : 0.0,
+			"texture" : "textures/rocks.png",
+			"tex_repeat" : 1,
+			"tex_scale" : 50,
+			"tex_pos" : [75, 25]
+		}
+	}
+}

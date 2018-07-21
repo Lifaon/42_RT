@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 19:58:29 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:20:33 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_function_ptrs(t_data *data)
 
 t_data		*data_init(int ac, char **av)
 {
-	t_point		size;
 	t_data		*data;
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
@@ -50,6 +49,9 @@ t_data		*data_init(int ac, char **av)
 	data->nb_objects = 0;
 	data->nb_lights = 0;
 	data->photon_map = NULL;
+	data->photon_total = 5000000;
+	data->photon_ppx = 20;
+	data->photon_size = 2.5;
 	init_cameras(data);
 	init_function_ptrs(data);
 	data->img = NULL;

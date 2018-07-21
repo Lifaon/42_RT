@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/19 22:45:29 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 07:23:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,12 @@ typedef struct		s_photon
 	int				obj_i;
 }					t_photon;
 
+typedef struct		s_refra
+{
+	double			i;
+	double			t;
+}					t_refra;
+
 typedef struct		s_ui
 {
 	GtkWidget		*tab;
@@ -209,7 +215,10 @@ typedef struct		s_data
 	void			*win;
 	t_pixelbuf		*img;
 	t_photon		*photon_map;
-	int				nb_photons;
+	int				photon_total;
+	int				photon_hit;
+	int				photon_ppx;
+	double			photon_size;
 	int				draw;//
 }					t_data;
 /*

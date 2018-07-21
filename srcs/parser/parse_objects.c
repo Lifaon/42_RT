@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:58:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 10:14:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->color_type = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"color_scale\"", index))
 		object->color_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_scale\"", index))
+		object->perl_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_type\"", index))
+		object->perl_type = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_opacity\"", index))
+		object->perl_opacity = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"angle\"", index))
 		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))
@@ -106,6 +112,8 @@ static void	parse_object(t_obj *object, char *str, int *index)
 		object->shiny = object->shiny > 1 ? 1 : 0;
 	if (object->trans > 1 || object->trans < 0)
 		object->trans = object->trans > 1 ? 1 : 0;
+	if (object->tex_scale < 1)
+		object->tex_scale = 1;
 	get_dir(object);
 	*index += i;
 }

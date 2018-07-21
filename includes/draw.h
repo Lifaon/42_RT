@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:50:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:37:34 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,22 @@ void	sepia(t_data *data);
 void	black_and_white(t_data *data);
 void	blur(t_data *data);
 
-t_color		color_mod(double coef, t_obj obj);
-double		LERP(double t, double a, double b);
-double		curve(const double t);
-double		AT3(const float *v, const double x, const double y, const double z);
-float		noise(float vecx, float vecy, float vecz);
-float		noise_vec(float vec[3]);
-void		get_d(t_perlin *p, float grad3[B +B + 2][3]);
-void		get_c(t_perlin *p, float grad3[B +B + 2][3]);
-void		get_a(t_perlin *p, int i, float grad3[B + B +2][3]);
-void		setup_x(t_perlin *p, float vecx);
-void		setup_y(t_perlin *p, float vecy);
-void		setup_z(t_perlin *p, float vecz);
-void		ft_perlin(t_data *data, t_color *color, t_inter *inter);
+/*
+**	Perlin
+*/
+t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter);
+t_color	color_mod(double coef, t_obj obj);
+double	LERP(double t, double a, double b);
+double	curve(const double t);
+double	AT3(const float *v, const double x, const double y, const double z);
+float	noise(float vecx, float vecy, float vecz);
+float	noise_vec(float vec[3]);
+void	get_d(t_perlin *p, float grad3[B +B + 2][3]);
+void	get_c(t_perlin *p, float grad3[B +B + 2][3]);
+void	get_a(t_perlin *p, int i, float grad3[B + B +2][3]);
+void	setup_x(t_perlin *p, float vecx);
+void	setup_y(t_perlin *p, float vecy);
+void	setup_z(t_perlin *p, float vecz);
 
 /*
 **	Functions used for color management.

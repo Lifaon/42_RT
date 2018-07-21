@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:49:46 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:57:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@
 # define COLOR_SIMPLE 0
 # define COLOR_CHECKERBOARD 1
 # define COLOR_RAINBOW 2
+
+/*
+**	obj.perl_type
+*/
+# define PERLIN_NONE 0
+# define PERLIN_CLASSIC 1
+# define PERLIN_COSINE 2
 
 /*
 **	Used to know what infinite value is acceptable for GtkEntry before

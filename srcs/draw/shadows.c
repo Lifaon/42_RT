@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 02:09:32 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:57:05 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 10:21:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static t_color	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 			ret = rainbow(obj, ray, inter);
 		else
 			ret = obj.color;
+		if (obj.perl_type != PERLIN_NONE)
+			ret = ft_perlin(obj, ret, inter);
 	}
 	else
 		ret = inter->color;

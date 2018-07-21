@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:48:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 10:05:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ typedef struct		s_obj
 	t_color			color2;		// second color component, for checkerboards
 	int				color_type;		// type of basic color : defines.h
 	int				color_scale;	// scaling for checkerboards and others
+	int				perl_scale;		// scaling for perlin noise
+	int				perl_type;		// on/off, types of perlin, : defines.h
+	double			perl_opacity;	// opacity coeff for perlin, 0 to 1
 	t_vec			pos;	// position
 	t_vec			dir;	// directional axe
 	t_vec			angle;		// angle of the direction, in degrees

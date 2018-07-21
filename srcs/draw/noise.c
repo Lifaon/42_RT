@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   noise.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/21 09:36:28 by vtudes            #+#    #+#             */
+/*   Updated: 2018/07/21 10:17:51 by mlantonn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 
-
-void	ft_perlin(t_data *data, t_color *color, t_inter *inter)
+t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter)
 {
 	double	coef;
 	int		level;
@@ -14,21 +25,18 @@ void	ft_perlin(t_data *data, t_color *color, t_inter *inter)
 	vec[2] = inter->ip.z * 0.05;
 	level = 1;
 	while (++level < 40)
-	{
 		coef += (1.0 / level) * fabs(noise_vec(vec));
-	}
-	coef = 0.2 * cos((inter->ip.x + inter->ip.y + inter->ip.z) * 0.05 + coef) + 0.9;
-	//coef = 0.42 * coef + 0.8;
+	if (obj.perl_type == PERLIN_CLASSIC)
+		coef = (double)obj.perl_scale * 0.01 * coef + 1. - obj.perl_opacity;
+	else
+		coef = obj.perl_opacity * cos((inter->ip.x + inter->ip.y + inter->ip.z)\
+			* ((double)obj.perl_scale * .0005) + coef) + 0.9;
 	if (coef < 0)
 		coef = 0;
 	else if (coef > 1)
 		coef = 1;
-	color->argb.r *= coef;
-	color->argb.g *= coef;
-	color->argb.b *= coef;
+	return (col_multiply(obj.color, coef));
 }
-
-
 
 t_vec	bump_mapping(t_inter inter, t_vec normal)
 {

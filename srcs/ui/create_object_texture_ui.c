@@ -12,129 +12,124 @@
 
 #include "ui.h"
 
+static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj, 
+	GtkSizeGroup *gp_filetex, GtkSizeGroup *gp_check)
+{
+	t_pixelbuf		*pxb;
+	GtkWidget		*w;
+	
+	g_ui->is_active = 1;
+	wid_d->pos = pt_set(0, 0);
+	wid_d->f = &check_rainbow;
+	if (!(w = new_check_button(wid_d, "Rainbow", gp_check, gp_check)))
+		return (0);
+	wid_d->pos.x++;
+	if (obj->color_type == COLOR_RAINBOW)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	wid_d->f = &check_checkboard;
+	wid_d->pos.x++;
+	if (!(w = new_check_button(wid_d, "Checkboard", gp_check, gp_check)))
+		return (0);
+	if (obj->color_type == COLOR_CHECKERBOARD)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	wid_d->f = &check_perlin;
+	wid_d->pos.x++;
+	if (!(w = new_check_button(wid_d, "Perlin", gp_check, gp_check)))
+		return (0);
+	//if (obj->perlin == 1)
+	//	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	g_ui->is_active = 0;
+	return (1);
+}
+
 static int		phase_3(t_wid_data *wid_d, t_obj *obj, 
 	GtkSizeGroup *gp_filetex, GtkSizeGroup *gp_check)
 {
 	GtkWidget		*w;
 
-	wid_d->pos = pt_set(wid_d->pos.x - 1, 2);
+	wid_d->pos = pt_set(4, 2);
+	wid_d->f = &change_obj_tex_scale;
+	if (!(w = make_label_and_scale(wid_d, "scale",
+					(double)obj->tex_scale, NULL)))
+		return (0);
+	gtk_size_group_add_widget(gp_filetex, w);
+	wid_d->pos.x++;
 	wid_d->f = &change_obj_tex_pos_x;
 	if (!(w = make_label_and_entry(wid_d, "X position", (double)obj->tex_pos.x,
 				NULL)))
 		return (0);
 	gtk_size_group_add_widget(gp_filetex, w);
 	wid_d->f = &change_obj_tex_pos_y;
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 2);
+	wid_d->pos.x++;
 	if (!(w = make_label_and_entry(wid_d, "Y position", (double)obj->tex_pos.y,
 				NULL)))
 		return (0);
 	gtk_size_group_add_widget(gp_filetex, w);
-	return (1);
+	wid_d->pos = pt_set(4, 0);
+	wid_d->f = &check_tex_file;
+	if (!(w = new_check_button(wid_d, "texture from file", gp_filetex, gp_check)))
+		return (0);
+	if (obj->tex)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	else
+		set_group_widget_active(gp_filetex, FALSE);
+	return (add_checks_buttons(wid_d, obj, gp_filetex, gp_check));
 }
 
 static int		phase_2(t_wid_data *wid_d, t_obj *obj, 
 	GtkSizeGroup *gp_filetex, GtkSizeGroup *gp_check)
 {
-	gboolean		repeat;
-	gboolean		tex_trans;
+	gboolean		state;
 	GtkWidget		*w;
 
-	wid_d->f = &change_obj_tex_scale;
-	if (!(w = make_label_and_scale(wid_d, "scale",
-					(double)obj->tex_scale, NULL)))
-		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	gtk_size_group_add_widget(gp_filetex, w);
-	repeat = (obj->tex_repeat == 1) ? TRUE : FALSE;
-	if (!(w = make_label_and_switch(wid_d, "repeat", repeat,
+	wid_d->pos = pt_set(5, 0);
+	state = (obj->tex_repeat == 1) ? TRUE : FALSE;
+	if (!(w = make_label_and_switch(wid_d, "repeat", state,
 					&switch_obj_tex_repeat)))
 		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	gtk_size_group_add_widget(gp_filetex, w);
-	tex_trans = (obj->tex_trans == 1) ? TRUE : FALSE;
+	state = (obj->tex_trans == 1) ? TRUE : FALSE;
 	if (!(w = make_label_and_switch(wid_d,
-			"transparency define\nby the texture", tex_trans,
+			"transparency define\nby the texture", state,
 			&switch_obj_tex_trans)))
 		return (0);
 	gtk_size_group_add_widget(gp_filetex, w);
 	return (phase_3(wid_d, obj, gp_filetex, gp_check));
 }
 
-static void		texture_widget_set_sensitive(GtkWidget *widget, gpointer param)//
-{
-	g_ui->is_active = 1;
-	//change_obj_tex(widget, param);
-	g_ui->is_active = 0;
-}
 
 static int		phase_1(t_wid_data *wid_d, t_obj *obj, 
 	GtkSizeGroup *gp_filetex, GtkSizeGroup *gp_check)
 {
 	t_pixelbuf		*pxb;
-	int				tex_value;
 	GtkWidget		*w;
 
-	wid_d->f = &check_checkboard;
-	wid_d->pos = pt_set(0, 0);
-	if (!(new_check_button(wid_d, "Checkboard", gp_check, gp_check)))
-		return (0);
-	wid_d->pos.y++;
 	if (!(pxb = pixelbuf_new(pt_set(30, 30), NULL)))
 		return (0);
 	fill_pixelbuf_in_color(pxb, obj->color2.c);
-	wid_d->f = &change_obj_color2;
-	wid_d->size.y = 2;
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
-	wid_d->size.y = 2;
 	free(pxb);
 	gtk_size_group_add_widget(gp_check, w);
-	wid_d->pos = pt_set(1, 2);
-	wid_d->f = &change_color_scale;
-	set_wid_data_scale(wid_d, 10, ptdb_set(10, 1000));
-	if (!(w = make_label_and_scale(wid_d, "color scale",
-				(double)obj->color_scale, w)))
-		return (0);
-	gtk_size_group_add_widget(gp_check, w);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	wid_d->f = &check_rainbow;
-	if (!(w = new_check_button(wid_d, "Rainbow", gp_check, gp_check)))
-		return (0);
-	g_ui->is_active = 1;
-	if (obj->color_type == COLOR_RAINBOW)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
-	g_ui->is_active = 0;
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	wid_d->f = &check_perlin;
-	if (!(new_check_button(wid_d, "Perlin", gp_check, gp_check)))
-		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	wid_d->f = &check_tex_file;
-	if (!(new_check_button(wid_d, "texture from file", gp_filetex, gp_check)))
-		return (0);
-	wid_d->pos.y++;
-	//ex_value = get_cb_tex_value(obj);
 	if (!(pxb = pixelbuf_new(pt_set(60, 60), NULL)))
 		return (0);
 	if (obj->tex)
 		scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
-	wid_d->size.y = 2;
 	wid_d->f = &change_obj_tex_file;
+	wid_d->pos = pt_set(3, 1);
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, (GtkWidget*)pxb->widget)))
 		return (0);
 	wid_d->size.y = 1;
+	free(pxb);
 	gtk_size_group_add_widget(gp_filetex, w);
-	//wid_d->f = &change_obj_tex;
-	//wid_d->param = (gpointer)gp_filetex;
-	wid_d->size = pt_set(1, 1);
-	wid_d->pos.y = 0;
-//	if (!(w[1] = make_label_and_cb(wid_d, NULL, tex_value, txt)))
-//		return (0);
-	wid_d->pos = pt_set(wid_d->pos.x + 1, 2);
-	if (phase_2(wid_d, obj, gp_filetex, gp_check) == 0)
+	wid_d->pos = pt_set(1, 2);
+	wid_d->f = &change_color_scale;
+	if (!(w = make_label_and_scale(wid_d, "color scale",
+				(double)obj->color_scale, w)))
 		return (0);
-	//texture_widget_set_sensitive(w[1], (gpointer)gp_filetex);
-	return (1);
+	gtk_size_group_add_widget(gp_check, w);
+	return (phase_2(wid_d, obj, gp_filetex, gp_check));
 }
 
 int			create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
@@ -142,19 +137,21 @@ int			create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
 	gboolean		is_limited;
 	GtkWidget 		*frame;
 	t_wid_data		frame_d;
-	GtkSizeGroup	*group;	
+	GtkSizeGroup	*gp_filetex;	
 	GtkSizeGroup	*gp_check;
 
-	gp_check = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
 	if (!(frame = gtk_frame_new("Textures")))
 		return (0);
-	group = gtk_size_group_new(GTK_SIZE_GROUP_NONE);
-	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
+	if (!(gp_check = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (0);
+	if (!(gp_filetex = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
+		return (0);
+	init_wid_data(&frame_d, 10, ptdb_set(10, 1000));
 	frame_d.pos.y = 1;
 	frame_d.size = pt_set(1, 2);
-	frame_d.f = &change_obj_tex_file;
+	wid_d->f = &change_obj_color2;
 	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
-	if (!(phase_1(&frame_d, obj, group, gp_check)))
+	if (!(phase_1(&frame_d, obj, gp_filetex, gp_check)))
 		return (0);
 	gtk_container_add(GTK_CONTAINER(frame), frame_d.grid);
 	gtk_grid_attach(GTK_GRID(wid_d->grid), frame, 0, wid_d->pos.x, 4, 7);

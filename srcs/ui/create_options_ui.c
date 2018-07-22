@@ -12,6 +12,23 @@
 
 #include "ui.h"
 
+static int		construct_phase_2(t_wid_data *wid_d)
+{
+	wid_d->param = NULL;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	wid_d->f = &change_depth_max;
+	if (!(make_label_and_scale(wid_d, "max number\nof reflexion", 
+			(double)g_data->depth_max, &g_data->depth_max)))
+		return (0);
+	set_wid_data_scale(wid_d, 0.1, ptdb_set(0.1, 3));
+	wid_d->f = &change_dof_coeff;
+	wid_d->pos.y += 2;
+	if (!(make_label_and_scale(wid_d, "Depth of field \nintensity", 
+			(double)g_data->dof_coeff, &g_data->dof_coeff)))
+		return (0);	
+	return (1);
+}
+
 static int		construct_phase_1(t_wid_data *wid_d)
 {
 	t_pixelbuf		*pxb;
@@ -36,7 +53,7 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	txt = ft_strsplit("-- None --\fBlack & white\fSepia", '\f');
 	if (!(make_label_and_cb(wid_d, "filters", 0, txt)))
 		return (0);
-	return (1);
+	return (construct_phase_2(wid_d));
 }
 
 int				create_options_ui(GtkWidget *tab)

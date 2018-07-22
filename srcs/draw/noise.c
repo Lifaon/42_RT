@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 09:36:28 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/21 10:17:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 21:22:09 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter)
 		coef = 0;
 	else if (coef > 1)
 		coef = 1;
-	return (col_multiply(obj.color, coef));
+	return (col_multiply(color, coef));
 }
 
 t_vec	bump_mapping(t_inter inter, t_vec normal)

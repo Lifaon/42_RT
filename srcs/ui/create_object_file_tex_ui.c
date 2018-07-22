@@ -26,7 +26,7 @@ static int		phase_3(t_wid_data *wid_d, t_obj *obj,
 	gtk_size_group_add_widget(gp_filetex, w);
 	wid_d->pos = pt_set(6, 0);
 	wid_d->f = &check_tex_file;
-	if (!(w = new_check_button(wid_d, "texture from file", gp_filetex, NULL)))
+	if (!(w = new_check_button(wid_d, "texture from\nfile", gp_filetex, NULL)))
 		return (0);
 	if (obj->tex)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);

@@ -48,7 +48,7 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	if (!(make_label_and_switch(wid_d, "cel shading", FALSE, &switch_cel_shading)))
 		return (0);
 	wid_d->f = &change_filter;
-	wid_d->param = pxb;
+	wid_d->param = (gpointer)pxb;
 	wid_d->pos = pt_set(1, 2);
 	txt = ft_strsplit("-- None --\fBlack & white\fSepia", '\f');
 	if (!(make_label_and_cb(wid_d, "filters", 0, txt)))

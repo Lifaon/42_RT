@@ -167,6 +167,10 @@ void			check_perlin(GtkWidget *widget, gpointer param);
 void			check_perlin_cosine(GtkWidget *widget, gpointer param);
 void			change_perlin_scale(GtkWidget *widget, gpointer param);
 void			change_perlin_opacity(GtkWidget *widget, gpointer param);
+void			check_bump(GtkWidget *widget, gpointer param);
+void			change_bump_coeff(GtkWidget *widget, gpointer param);
+void			change_bump_noise(GtkWidget *widget, gpointer param);
+
 
 
 /*

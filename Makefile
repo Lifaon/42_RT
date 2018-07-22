@@ -116,6 +116,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_obj_tex.c\
 		ui/modify_obj_tex2.c\
 		ui/modify_obj_tex_perlin.c\
+		ui/modify_obj_tex_bump.c\
 		ui/modify_obj_tex_preset.c\
 		ui/modify_obj_type.c \
 		ui/modify_options.c\

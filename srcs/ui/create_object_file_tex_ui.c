@@ -5,7 +5,7 @@ static int		phase_3(t_wid_data *wid_d, t_obj *obj,
 {
 	GtkWidget		*w;
 
-	wid_d->pos = pt_set(5, 2);
+	wid_d->pos = pt_set(6, 2);
 	wid_d->f = &change_obj_tex_scale;
 	set_wid_data_scale(wid_d, 10, ptdb_set(10, 1000));
 	if (!(w = make_label_and_scale(wid_d, "scale",
@@ -24,7 +24,7 @@ static int		phase_3(t_wid_data *wid_d, t_obj *obj,
 				NULL)))
 		return (0);
 	gtk_size_group_add_widget(gp_filetex, w);
-	wid_d->pos = pt_set(4, 0);
+	wid_d->pos = pt_set(6, 0);
 	wid_d->f = &check_tex_file;
 	if (!(w = new_check_button(wid_d, "texture from file", gp_filetex, NULL)))
 		return (0);
@@ -41,7 +41,8 @@ static int		phase_2(t_wid_data *wid_d, t_obj *obj,
 	gboolean		state;
 	GtkWidget		*w;
 
-	wid_d->pos = pt_set(6, 0);
+	wid_d->pos = pt_set(8, 0);
+	//wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	state = (obj->tex_repeat == 1) ? TRUE : FALSE;
 	if (!(w = make_label_and_switch(wid_d, "repeat", state,
 					&switch_obj_tex_repeat)))
@@ -71,7 +72,8 @@ int		create_object_file_tex_ui(t_wid_data *wid_d, t_obj *obj)
 		scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
 	wid_d->f = &change_obj_tex_file;
 	wid_d->size.y = 2;
-	wid_d->pos = pt_set(5, 1);
+	wid_d->pos = pt_set(6, 1);
+	//wid_d->pos = pt_set(wid_d->pos.x + 1, 1);
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, (GtkWidget*)pxb->widget)))
 		return (0);
 	wid_d->size.y = 1;

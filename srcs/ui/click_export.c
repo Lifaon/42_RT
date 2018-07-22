@@ -18,7 +18,6 @@ static void			export_png(char *name)
 
 	error = NULL;
 	gdk_pixbuf_save((GdkPixbuf*)g_data->img->buf, name, "png", &error, NULL);
-	ft_putstr("pouet\n");
 	if (error && error->message)
 		ft_putstr(error->message);
 }

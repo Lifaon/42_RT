@@ -61,3 +61,15 @@ void	change_filter(GtkWidget *widget, gpointer param)
 	if (filter >= 0)
 		g_data->filter = filter;
 }
+
+void	change_dof_coeff(GtkWidget *widget, gpointer param)
+{
+	int			value;
+
+	if (!param && !widget)
+		return ;
+	if (g_ui->is_active == 0)
+		return ;
+	value = gtk_range_get_value(GTK_RANGE(widget));
+	g_data->dof_coeff = value;
+}

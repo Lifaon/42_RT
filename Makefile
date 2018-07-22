@@ -119,6 +119,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_obj_tex_preset.c\
 		ui/modify_obj_type.c \
 		ui/modify_options.c\
+		ui/modify_options2.c\
 		ui/modify_camera.c \
 		ui/entry_change_scale.c \
 		ui/click_open.c \

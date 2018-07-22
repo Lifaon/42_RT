@@ -60,6 +60,14 @@ static int		phase_2(t_wid_data *wid_d, t_obj *obj,
 	if (!(w = new_check_button(wid_d, "Cosine", gp_perlin, gp_perlin)))
 		return (0);
 	gtk_size_group_add_widget(gp_perlin, w);
+	wid_d->f = NULL;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	if (!(w = new_check_button(wid_d, "Bump mapping", w, NULL)))
+		return (0);
+	wid_d->pos.y += 2;
+	if (!(make_label_and_scale(wid_d, "coefficient",
+				obj->perl_opacity, w)))//virer perl opacity
+		return (0);
 	return (add_checks_buttons(wid_d, obj, gp_perlin, gp_check));
 }
 

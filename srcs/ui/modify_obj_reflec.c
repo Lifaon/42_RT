@@ -8,7 +8,7 @@ void			change_obj_ior(GtkWidget *widget, gpointer param)
 		return ;
 	if (g_ui->is_active == 0)
 		return ;
-	value = gtk_range_get_value(GTK_RANGE(widget)) / 100;
+	value = gtk_range_get_value(GTK_RANGE(widget));
 	g_data->objs[g_ui->page_obj].ior = value;
 }
 

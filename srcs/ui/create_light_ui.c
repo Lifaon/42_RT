@@ -46,8 +46,9 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 {
 	GtkSizeGroup	*group;
 	t_vec			vec;
+	GtkWidget 		*w;
 
-	if (!(make_label_and_switch(wid_d, "light", TRUE, &switch_light)))
+	if (!(w = make_label_and_switch(wid_d, "light", TRUE, &switch_light)))
 		return (0);
 	wid_d->pos = pt_set(0, 2);
 	if (!(l_new(wid_d, "parrallele light")))
@@ -71,15 +72,40 @@ static int		construct_phase_1(t_wid_data *wid_d, t_light *light)
 	return (construct_phase_2(wid_d, light, group));
 }
 
-static int		create_light_button(GtkWidget *box)
+static int		create_light_button(GtkWidget *box, GtkSizeGroup *gp)
 {
-	GtkWidget		*button;
+	GtkWidget		*w;
+	t_wid_data		wid_d;
 
-	if (!(button = gtk_button_new_with_label("add new light")))
+	if (!(init_wid_data(&wid_d, 1, ptdb_set(1, 200))))
 		return (0);
-	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 10);
-	g_signal_connect(G_OBJECT(button), "clicked",
-			G_CALLBACK(add_one_light), NULL);
+	wid_d.size.x = 2;
+	wid_d.f = &add_one_light;
+	if (!(w = b_new(&wid_d, NULL, "add new light", NULL)))
+		return (0);	
+	wid_d.size.x = 1;
+	wid_d.pos.y += 2;
+	//if (!(w = gtk_button_new_with_label("add new light")))
+		//return (0);
+	//gtk_box_pack_start(GTK_BOX(box), w, FALSE, FALSE, 10);
+	//g_signal_connect(G_OBJECT(w), "clicked",
+	//		G_CALLBACK(add_one_light), NULL);
+	wid_d.f = check_caustic;
+	if (!(new_check_button(&wid_d, "caustic", gp, NULL)))
+		return (0);
+	wid_d.f = change_photon_size;
+	wid_d.pos = pt_set(wid_d.pos.x + 1, 0);
+	if (!(w = make_label_and_scale(&wid_d, "photon size",
+				(double)g_data->photon_size, gp)))
+		return (0);
+	wid_d.f = change_photon_intensity;
+	wid_d.pos.y += 2;
+	gtk_size_group_add_widget(gp, w);
+	if (!(w = make_label_and_scale(&wid_d, "photon intensity",
+				(double)g_data->photon_ppx, gp)))
+		return (0);
+	gtk_size_group_add_widget(gp, w);
+	gtk_box_pack_start(GTK_BOX(box), wid_d.grid, FALSE, FALSE, 10);
 	return (1);
 }
 
@@ -112,13 +138,17 @@ int				create_light_ui(GtkWidget *tab)
 	GtkWidget		*l_title;
 	GtkWidget		*box;
 	int				i;
+	GtkSizeGroup	*gp_caustic;
 
 	if (!(g_ui->tab_light = gtk_notebook_new()))
+		return (0);
+	if (!(gp_caustic = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (0);
 	g_signal_connect(G_OBJECT(g_ui->tab_light), "switch-page",
 			G_CALLBACK(change_page_light), NULL);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-	create_light_button(box);
+	if (!(create_light_button(box, gp_caustic)))
+		return (0);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab_light), TRUE);
 	i = -1;
 	while (++i < g_data->nb_lights)

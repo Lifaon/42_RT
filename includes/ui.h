@@ -113,6 +113,9 @@ char			*fill_str_json(size_t size);
 ** => light event
 */
 void			add_one_light(GtkWidget *widget, gpointer param);
+void			check_caustic(GtkWidget *widget, gpointer param);
+void			change_photon_size(GtkWidget *widget, gpointer param);
+void			change_photon_intensity(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
 void			change_light_angle(GtkWidget *widget, gpointer param);
 void			change_light_r(GtkWidget *widget, GdkEvent *event,

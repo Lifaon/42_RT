@@ -71,7 +71,7 @@ int		create_object_file_tex_ui(t_wid_data *wid_d, t_obj *obj)
 		scale_pxb(obj->tex, pxb, pxb->size, GDK_INTERP_BILINEAR);
 	wid_d->f = &change_obj_tex_file;
 	wid_d->size.y = 2;
-	wid_d->pos = pt_set(4, 1);
+	wid_d->pos = pt_set(5, 1);
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, (GtkWidget*)pxb->widget)))
 		return (0);
 	wid_d->size.y = 1;

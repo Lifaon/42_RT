@@ -91,6 +91,5 @@ t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
 t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter);
 
-t_vec	bump_mapping(t_inter inter);
-
+t_vec	bump_mapping(t_obj obj,t_inter inter);
 #endif

@@ -38,26 +38,22 @@ t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter)
 	return (col_multiply(obj.color, coef));
 }
 
-t_vec	bump_mapping(t_inter inter)
+t_vec	bump_mapping(t_obj obj,t_inter inter)
 {
 	float x;
 	float y;
 	float z;
-	float bump_coef;
-	float noise_scale;
 	t_vec temp;
 
 
-	bump_coef = 0.5;
-	noise_scale = 0.1;
-
-	x = noise(noise_scale * inter.ip.x, noise_scale * inter.ip.y, noise_scale * inter.ip.z);
-	y = noise(noise_scale * inter.ip.y, noise_scale * inter.ip.z, noise_scale * inter.ip.x);
-	z = noise(noise_scale * inter.ip.z, noise_scale * inter.ip.x, noise_scale * inter.ip.y);
-
-	inter.normal.x = (1.0 - bump_coef) * inter.normal.x + bump_coef * x;
-	inter.normal.y = (1.0 - bump_coef)* inter.normal.y + bump_coef * y;
-	inter.normal.z = (1.0 - bump_coef) * inter.normal.z + bump_coef * z;
+	obj.bump_coef = 0.2;
+	obj.noise_scale = 0.01;
+	x = noise(obj.noise_scale * inter.ip.x, obj.noise_scale * inter.ip.y, obj.noise_scale * inter.ip.z);
+	y = noise(obj.noise_scale * inter.ip.y, obj.noise_scale * inter.ip.z, obj.noise_scale * inter.ip.x);
+	z = noise(obj.noise_scale * inter.ip.z, obj.noise_scale * inter.ip.x, obj.noise_scale * inter.ip.y);
+	inter.normal.x = (1.0 - obj.bump_coef) * inter.normal.x + obj.bump_coef * x;
+	inter.normal.y = (1.0 - obj.bump_coef)* inter.normal.y + obj.bump_coef * y;
+	inter.normal.z = (1.0 - obj.bump_coef) * inter.normal.z + obj.bump_coef * z;
 	inter.normal = vec_normalize(inter.normal);
 	return (inter.normal);
 }

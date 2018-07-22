@@ -142,6 +142,8 @@ typedef struct		s_obj
 	int				perl_scale;		// scaling for perlin noise
 	int				perl_type;		// on/off, types of perlin, : defines.h
 	double			perl_opacity;	// opacity coeff for perlin, 0 to 1
+	float			bump_coef;
+	float 			noise_scale;
 	t_vec			pos;	// position
 	t_vec			dir;	// directional axe
 	t_vec			angle;		// angle of the direction, in degrees

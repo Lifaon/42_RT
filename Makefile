@@ -110,6 +110,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/modify_light2.c\
 		ui/modify_obj.c\
 		ui/modify_obj2.c\
+		ui/modify_obj_reflec.c\
 		ui/modify_obj_limited.c\
 		ui/modify_obj_tex.c\
 		ui/modify_obj_tex2.c\

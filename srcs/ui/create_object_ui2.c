@@ -2,6 +2,21 @@
 
 static int		construct_phase_3(t_wid_data *wid_d, t_obj *obj)
 {
+	wid_d->f = &change_obj_reflex;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
+	if (!(make_label_and_scale(wid_d, "Reflexion", obj->shiny , obj)))
+		return (0);
+	wid_d->pos.y += 2;
+	wid_d->f = &change_obj_trans;
+	if (!(make_label_and_scale(wid_d, "Transparency", obj->trans , obj)))
+		return (0);
+	wid_d->f = &change_obj_ior;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
+	set_wid_data_scale(wid_d, 0.1, ptdb_set(1.0, 2.0));
+	if (!(make_label_and_scale(wid_d, "Refraction", obj->ior , obj)))
+		return (0);
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	return (create_object_texture_ui(wid_d, obj));
 }
 

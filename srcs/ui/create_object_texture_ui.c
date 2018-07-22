@@ -74,6 +74,7 @@ static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 	fill_pixelbuf_in_color(pxb, obj->color2.c);
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
+	gtk_widget_set_sensitive(w, FALSE);
 	free(pxb);
 	wid_d->size.y = 1;
 	gtk_size_group_add_widget(gp_check, w);
@@ -82,6 +83,7 @@ static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 	if (!(w = make_label_and_scale(wid_d, "color scale",
 				(double)obj->color_scale, w)))
 		return (0);
+	gtk_widget_set_sensitive(w, FALSE);
 	gtk_size_group_add_widget(gp_check, w);
 	wid_d->pos = pt_set(2, 2);
 	wid_d->f = &change_perlin_scale;

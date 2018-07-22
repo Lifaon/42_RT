@@ -136,6 +136,9 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param);
 void			change_obj_focus(GtkWidget *widget, gpointer param);
 void			change_obj_r(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
+void			change_obj_trans(GtkWidget *widget, gpointer param);
+void			change_obj_ior(GtkWidget *widget, gpointer param);
+void			change_obj_reflex(GtkWidget *widget, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
 void			change_obj_color2(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,

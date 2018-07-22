@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   depth_of_field.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 22:57:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:55:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:50:59 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	fill_color_tabs(t_data *data, t_vec pt, t_color *color_tabs[81])
 	uint32_t	*ptr;
 	t_vec		angle;
 	int			i;
-	int 		j;
+	int			j;
 
 	ptr = data->img->pxl;
 	i = -1;
@@ -84,7 +84,7 @@ static void	blend(t_pixelbuf *img, t_color *color_tabs[81], int size)
 	}
 }
 
-void		depth_of_field()
+void		depth_of_field(void)
 {
 	t_color	*color_tabs[81];
 	t_vec	point;

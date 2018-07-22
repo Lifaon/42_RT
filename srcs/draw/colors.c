@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 17:13:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 02:57:31 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:49:50 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_color	substract_colors(t_color col1, t_color col2)
 	ret.argb.a = 255;
 	return (ret);
 }
-
 
 t_color	blend_colors(t_color col1, t_color col2)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_shading.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:34:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:56:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:54:23 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_color	diffuse_shading(t_color color, t_light light, double dot)
 	if (g_data->cel_shading && g_data->px < 2)
 	{
 		if (dot >= 0.5)
-			return (substract_colors(col_multiply(color, 0.8), light.color_neg));
+			return (substract_colors(col_multiply(color, 0.8),
+			light.color_neg));
 		else
 			dot = (double)(int)((dot + 0.2) * 10) / 10;
 	}

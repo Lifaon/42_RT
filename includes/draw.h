@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 09:37:34 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:45:05 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	blur(t_data *data);
 */
 t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter);
 t_color	color_mod(double coef, t_obj obj);
-double	LERP(double t, double a, double b);
+double	lerp(double t, double a, double b);
 double	curve(const double t);
-double	AT3(const float *v, const double x, const double y, const double z);
+double	at3(const float *v, const double x, const double y,\
+		const double z);	
 float	noise(float vecx, float vecy, float vecz);
 float	noise_vec(float vec[3]);
 void	get_d(t_perlin *p, float grad3[B +B + 2][3]);

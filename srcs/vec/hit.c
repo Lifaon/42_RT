@@ -33,7 +33,7 @@ static int	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 	return (ret.c);
 }
 
-int		first_hit(t_data *data, t_vec ray, t_inter *inter)
+int			first_hit(t_data *data, t_vec ray, t_inter *inter)
 {
 	double	t;
 	int		i;
@@ -63,7 +63,7 @@ int		first_hit(t_data *data, t_vec ray, t_inter *inter)
 	return (0);
 }
 
-int		other_hit(t_data *data, t_vec ray, t_inter *inter)
+int			other_hit(t_data *data, t_vec ray, t_inter *inter)
 {
 	double	t;
 	int		i;

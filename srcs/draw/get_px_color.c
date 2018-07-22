@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_px_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 09:14:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:56:18 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
 	added = (t_added){0, 0, 0, 0};
 	i = -1;
-
 	inter.spec.c = 0;
 	while (++i < data->nb_lights)
 	{

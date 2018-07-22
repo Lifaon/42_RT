@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pixelated_image.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/12 04:16:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:54:01 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
+static void		draw_pixels(t_data *data, t_vec vp, t_point crd)
 {
 	t_inter		inter;
 	t_vec		ray;
-	t_point 	px;
+	t_point		px;
 	t_color		color;
 
 	ray = compute_ray(vp);
@@ -36,14 +36,14 @@ static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
 	}
 }
 
-static void	*draw_pixelated_thread(void *thr)
+static void		*draw_pixelated_thread(void *thr)
 {
 	t_point		crd;
 	t_vec		vp;
 	int			i;
 	int			ymax;
 
-	i = *((int *) thr);
+	i = *((int *)thr);
 	vp = g_data->cam.vp_up_left;
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
@@ -53,7 +53,8 @@ static void	*draw_pixelated_thread(void *thr)
 		vp.y = g_data->cam.vp_up_left.y - ((g_data->px * 0.5) + (double)crd.y);
 		while (crd.x < WIN_W)
 		{
-			vp.x = g_data->cam.vp_up_left.x + ((g_data->px * 0.5) + (double)crd.x);
+			vp.x = g_data->cam.vp_up_left.x +
+			((g_data->px * 0.5) + (double)crd.x);
 			draw_pixels(g_data, vp, crd);
 			crd.x += g_data->px;
 		}
@@ -62,7 +63,7 @@ static void	*draw_pixelated_thread(void *thr)
 	pthread_exit(NULL);
 }
 
-void		draw_pixelated_image(t_data *data)
+void			draw_pixelated_image(t_data *data)
 {
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];

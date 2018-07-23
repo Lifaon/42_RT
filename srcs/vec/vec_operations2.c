@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 03:04:14 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/05 20:23:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 07:13:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ double	get_length(t_vec u)
 double	dot_product(t_vec u, t_vec v)
 {
 	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
+}
+
+t_vec	vec_cross_product2(t_vec u, t_vec v)
+{
+	t_vec res;
+
+	res.x = u.y * v.z + u.z * v.y;
+	res.y = u.z * v.x + u.x * v.z;
+	res.z = u.x * v.y + u.y * v.x;
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 10:14:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 06:22:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->perl_type = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"perl_opacity\"", index))
 		object->perl_opacity = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_flag\"", index))
+		object->bump_flag = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_intensity\"", index))
+		object->bump_intensity = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_scale\"", index))
+		object->bump_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_scale\"", index))
+		object->perl_scale = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"angle\"", index))
 		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))

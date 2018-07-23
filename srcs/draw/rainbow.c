@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   rainbow.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 17:15:54 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:56:28 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:55:29 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec.h"
 
-static int	rb_sphere(t_obj obj, t_vec ray, t_inter *inter)
+static int		rb_sphere(t_obj obj, t_vec ray, t_inter *inter)
 {
-	t_vec	vp;
-	double	phi;
-	double	u;
+	t_vec		vp;
+	double		phi;
+	double		u;
 
 	vp = vec_add(inter->origin, vec_multiply(ray, inter->t));
 	vp = vec_normalize(vec_substract(vp, obj.pos));
@@ -25,10 +25,10 @@ static int	rb_sphere(t_obj obj, t_vec ray, t_inter *inter)
 	return (u * 1530);
 }
 
-static int	rb_plane(t_obj obj, t_vec ray, t_inter *inter)
+static int		rb_plane(t_obj obj, t_vec ray, t_inter *inter)
 {
-	t_vec	vp;
-	double	vp_len;
+	t_vec		vp;
+	double		vp_len;
 
 	vp = vec_add(inter->origin, vec_multiply(ray, inter->t));
 	vp = vec_substract(vp, obj.pos);
@@ -36,11 +36,11 @@ static int	rb_plane(t_obj obj, t_vec ray, t_inter *inter)
 	return (((int)(vp_len / (obj.color_scale * .01))) % 1530);
 }
 
-static int	rb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
+static int		rb_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 {
-	t_vec	vp;
-	double	vp_len;
-	int		ret;
+	t_vec		vp;
+	double		vp_len;
+	int			ret;
 
 	vp = vec_add(inter->origin, vec_multiply(ray, inter->t));
 	vp = vec_substract(vp, obj.pos);
@@ -79,10 +79,10 @@ static t_color	rainbow2(t_color ret, double len)
 	return (ret);
 }
 
-t_color		rainbow(t_obj obj, t_vec ray, t_inter *inter)
+t_color			rainbow(t_obj obj, t_vec ray, t_inter *inter)
 {
-	t_color ret;
-	int		len;
+	t_color		ret;
+	int			len;
 
 	if (obj.obj_type == SPHERE)
 		len = rb_sphere(obj, ray, inter);

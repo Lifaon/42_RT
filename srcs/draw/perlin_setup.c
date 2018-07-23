@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   perlin_setup.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/22 16:40:27 by vtudes            #+#    #+#             */
+/*   Updated: 2018/07/22 16:40:36 by vtudes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
 
 void	setup_z(t_perlin *p, float vecx)
@@ -9,7 +21,7 @@ void	setup_z(t_perlin *p, float vecx)
 	p->rz1 = p->rz0 - 1;
 }
 
-void		setup_y(t_perlin *p, float vecy)
+void	setup_y(t_perlin *p, float vecy)
 {
 	p->t = vecy + N;
 	p->by0 = ((int)p->t) & BM;
@@ -18,7 +30,7 @@ void		setup_y(t_perlin *p, float vecy)
 	p->ry1 = p->ry0 - 1;
 }
 
-void		setup_x(t_perlin *p, float vecz)
+void	setup_x(t_perlin *p, float vecz)
 {
 	p->t = vecz + N;
 	p->bx0 = ((int)p->t) & BM;

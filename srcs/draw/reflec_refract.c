@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflec_refract.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/21 08:56:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 17:03:12 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	dot = dot_product(ray, data->objs[inter->obj_i].get_normal(\
 		data->objs[inter->obj_i], *inter));
 	eta = 1. / data->objs[inter->obj_i].ior;
-	if (dot < 0.)	// in object
+	if (dot < 0.)
 		dot = -dot;
-	else	// out of object
+	else
 		eta = data->objs[inter->obj_i].ior;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
 	if (k < 0.)

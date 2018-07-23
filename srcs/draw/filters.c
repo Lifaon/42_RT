@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 00:19:15 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/13 03:54:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 16:52:34 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events.h"
 
-void	black_and_white(t_data *data)
+void		black_and_white(t_data *data)
 {
 	t_color	color;
 	int		added;
@@ -32,14 +32,14 @@ void	black_and_white(t_data *data)
 	}
 }
 
-void	sepia(t_data *data)
+void		sepia(t_data *data)
 {
 	t_color	color;
 	t_added	sepia;
 	int		i;
 	int		size;
 
- 	i = -1;
+	i = -1;
 	size = data->img->size.x * data->img->size.y;
 	while (++i < size)
 	{

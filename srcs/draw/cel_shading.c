@@ -41,7 +41,7 @@ static void	*draw_edge_thread(void *thr)
 	int			ymax;
 
 	vp = g_data->cam.vp_up_left;
-	i = *((int *) thr);
+	i = *((int *)thr);
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
 	while (++crd.y < ymax)

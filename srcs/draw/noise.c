@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 09:36:28 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/22 21:22:09 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 06:29:26 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,25 @@ t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter)
 	return (col_multiply(color, coef));
 }
 
-t_vec	bump_mapping(t_inter inter, t_vec normal)
+t_vec	bump_mapping(t_obj obj, t_inter inter)
 {
-	t_vec vec;
-	t_vec ret;
+	float x;
+	float y;
+	float z;
+	float coef;
+	t_vec temp;
 
-	vec.x = vec.x + inter.ip.x;
-	vec.y = 50 * vec.y + 100 * inter.ip.y;
-	vec.z = vec.z + inter.ip.z;
-	//printf("x : %f \n y : %f \n z : %f \n", inter.ip.x, inter.ip.y, inter.ip.z);
-	ret.x = noise(vec.x - 0.001f, vec.y, vec.z) - noise(vec.x + 0.001f, vec.y, vec.z);
-	ret.y = noise(vec.x, vec.y - 0.001f, vec.z) - noise(vec.x, vec.y + 0.001f, vec.z);
-	ret.z = noise(vec.x, vec.y, vec.z - 0.001f) - noise(vec.x, vec.y, vec.z + 0.001f);
-	normal.x = normal.x + ret.x;
-	normal.y = normal.y + ret.y;
-	normal.z = normal.z + ret.z;
-	vec_normalize(normal);
-	return (normal);
+	coef = obj.obj_type == PLANE ? obj.bump_scale * .1 : obj.bump_scale;
+	coef *= 0.001;
+	x = noise(coef * inter.ip.x, coef * inter.ip.y, coef * inter.ip.z);
+	y = noise(coef * inter.ip.y, coef * inter.ip.z, coef * inter.ip.x);
+	z = noise(coef * inter.ip.z, coef * inter.ip.x, coef * inter.ip.y);
+	inter.normal.x = (1.0 - obj.bump_intensity) * inter.normal.x \
+		+ obj.bump_intensity * x;
+	inter.normal.y = (1.0 - obj.bump_intensity) * inter.normal.y \
+		+ obj.bump_intensity * y;
+	inter.normal.z = (1.0 - obj.bump_intensity) * inter.normal.z \
+		+ obj.bump_intensity * z;
+	inter.normal = vec_normalize(inter.normal);
+	return (inter.normal);
 }

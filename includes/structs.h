@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 10:05:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 06:14:01 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ typedef struct		s_obj
 	int				perl_scale;		// scaling for perlin noise
 	int				perl_type;		// on/off, types of perlin, : defines.h
 	double			perl_opacity;	// opacity coeff for perlin, 0 to 1
+	int				bump_flag;		// switches on and off bump mapping
+	double			bump_intensity;		// bump intensity coefficient, 0 to 1
+	int				bump_scale;		// scaling for bump mapping
 	t_vec			pos;	// position
 	t_vec			dir;	// directional axe
 	t_vec			angle;		// angle of the direction, in degrees

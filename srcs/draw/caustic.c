@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   caustic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:01:48 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:00:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/22 17:04:36 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-int		reflec(t_inter *inter, t_vec ray, t_photon *photon)
+int				reflec(t_inter *inter, t_vec ray, t_photon *photon)
 {
 	t_vec	r;
 
@@ -37,7 +37,7 @@ int		reflec(t_inter *inter, t_vec ray, t_photon *photon)
 	return (1);
 }
 
-int		refract(t_inter *inter, t_vec ray, t_photon *photon)
+int				refract(t_inter *inter, t_vec ray, t_photon *photon)
 {
 	t_vec		r;
 	double		dot;
@@ -77,10 +77,10 @@ int		refract(t_inter *inter, t_vec ray, t_photon *photon)
 	return (1);
 }
 
-t_vec		get_random_direction(void)
+t_vec			get_random_direction(void)
 {
-	t_vec	dir;
-	t_vec	angle;
+	t_vec		dir;
+	t_vec		angle;
 
 	dir = (t_vec){0, -1, 0};
 	angle.x = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
@@ -90,7 +90,7 @@ t_vec		get_random_direction(void)
 	return (dir);
 }
 
-int		add_photon(t_photon *photon, t_light light)
+int				add_photon(t_photon *photon, t_light light)
 {
 	t_photon	new;
 	t_inter		inter;
@@ -118,11 +118,11 @@ int		add_photon(t_photon *photon, t_light light)
 	return (1);
 }
 
-void		get_photon_map(void)
+void			get_photon_map(void)
 {
-	int i;
-	int	j;
-	int	index;
+	int			i;
+	int			j;
+	int			index;
 
 	if (!g_data->nb_lights || !g_data->nb_lights_on || !g_data->nb_objects)
 		return ;

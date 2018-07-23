@@ -13,20 +13,18 @@ void		check_perlin(GtkWidget *widget, gpointer param)
 	state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 	set_group_widget_active(group, state);
 	if (state == FALSE)
+	{
 		g_data->objs[g_ui->page_obj].perl_type = PERLIN_NONE;
-	if (state == FALSE)
 		return ;
+	}
 	g_data->objs[g_ui->page_obj].perl_type = PERLIN_CLASSIC;
 	lst = gtk_size_group_get_widgets(group);
 	while (lst)
 	{
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_CHECK_BUTTON(son))
-		{
-			state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(son));
-			if (state == TRUE)
+			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(son)) == TRUE)
 				g_data->objs[g_ui->page_obj].perl_type = PERLIN_COSINE;
-		}
 		lst = lst->next;
 	}
 }

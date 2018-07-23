@@ -28,7 +28,8 @@
 			"specular" : 0,
 			"alpha" : 75,
 			"limit" : "circle",
-			"max" : [10000],
+			"min" : ["-inf", "-inf", "-inf"],
+			"max" : [10000, "inf", "inf"],
 		},
 		"plane" :
 		{
@@ -38,8 +39,8 @@
 			"specular" : 0,
 			"alpha" : 75,
 			"limit" : "rectangle",
-			"min" : [-8000, -12000],
-			"max" : [10000, 5000],
+			"min" : [-8000, -12000, "-inf"],
+			"max" : [10000, 5000, "inf"],
 		},
 		"sphere" :
 		{
@@ -127,7 +128,7 @@
 			"specular" : 0.4,
 			"alpha" : 10,
 			"limit" : "cylinder",
-			"min" : [600, -5000, -170],
+			"min" : [600, "-inf", -170],
 			"max" : [2000, 200, 170],
 		},
 		"cylinder" :
@@ -140,7 +141,7 @@
 			"alpha" : 10,
 			"limit" : "cylinder",
 			"min" : [-500, -200, -170],
-			"max" : [1000, 10000, 200],
+			"max" : [1000, "inf", 200],
 		},
 		"cone" :
 		{
@@ -151,8 +152,8 @@
 			"specular" : 0.6,
 			"alpha" : 10,
 			"limit" : "cone",
-			"min" : [-0, -5000, -5000],
-			"max" : [5000, 10000, 10000],
+			"min" : [-0, "-infinity", "-inf"],
+			"max" : [5000, "infinity", "inf"],
 		}
 	}
 }

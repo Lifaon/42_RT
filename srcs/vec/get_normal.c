@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 12:59:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 09:04:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 06:20:40 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_vec	get_normal(t_vec ray, t_obj obj, t_inter inter)
 	double	dot;
 
 	inter.normal = obj.get_normal(obj, inter);
-	inter.normal = bump_mapping(obj, inter);
+	if (obj.bump_flag)
+		inter.normal = bump_mapping(obj, inter);
 	dot = dot_product(ray, inter.normal);
 	normal = dot <= 0 ? inter.normal : vec_multiply(inter.normal, -1);
 	return (normal);

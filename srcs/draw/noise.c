@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 09:36:28 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/22 16:37:04 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/23 06:09:46 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,20 @@ t_vec	bump_mapping(t_obj obj, t_inter inter)
 	float x;
 	float y;
 	float z;
+	float coef;
 	t_vec temp;
 
-	obj.bump_coef = 0.2;
-	obj.noise_scale = 0.01;
-	x = noise(obj.noise_scale * inter.ip.x, obj.noise_scale * inter.ip.y,
-		obj.noise_scale * inter.ip.z);
-	y = noise(obj.noise_scale * inter.ip.y, obj.noise_scale * inter.ip.z,
-		obj.noise_scale * inter.ip.x);
-	z = noise(obj.noise_scale * inter.ip.z, obj.noise_scale * inter.ip.x,
-		obj.noise_scale * inter.ip.y);
-	inter.normal.x = (1.0 - obj.bump_coef) * inter.normal.x + obj.bump_coef * x;
-	inter.normal.y = (1.0 - obj.bump_coef) * inter.normal.y + obj.bump_coef * y;
-	inter.normal.z = (1.0 - obj.bump_coef) * inter.normal.z + obj.bump_coef * z;
+	coef = obj.obj_type == PLANE ? obj.bump_scale * .1 : obj.bump_scale;
+	coef *= 0.001;
+	x = noise(coef * inter.ip.x, coef * inter.ip.y, coef * inter.ip.z);
+	y = noise(coef * inter.ip.y, coef * inter.ip.z, coef * inter.ip.x);
+	z = noise(coef * inter.ip.z, coef * inter.ip.x, coef * inter.ip.y);
+	inter.normal.x = (1.0 - obj.bump_intensity) * inter.normal.x \
+		+ obj.bump_intensity * x;
+	inter.normal.y = (1.0 - obj.bump_intensity) * inter.normal.y \
+		+ obj.bump_intensity * y;
+	inter.normal.z = (1.0 - obj.bump_intensity) * inter.normal.z \
+		+ obj.bump_intensity * z;
 	inter.normal = vec_normalize(inter.normal);
 	return (inter.normal);
 }

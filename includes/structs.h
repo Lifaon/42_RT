@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 06:14:01 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 08:32:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,8 @@ typedef struct		s_data
 	int				photon_hit;		// total of photons that bounced once or +
 	int				photon_ppx;		// number of photons max per pixel
 	double			photon_size;	// size of the photon area
+	int				stereo_flag;	// on/off switch for stereoscopy
+	int				stereo_scale;	// scaling for stereoscopy, 1 to 100
 	void			*win;		//
 	t_pixelbuf		*img;		//
 	int				draw;//		//

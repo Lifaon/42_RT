@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 22:38:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:56:17 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 08:33:58 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	put_gdk_image(void)
 	else if (g_data->depth_of_field >= 0 \
 		&& g_data->depth_of_field < g_data->nb_objects)
 		depth_of_field();
+	else if (g_data->stereo_flag)
+		get_stereo();
 	else
 		draw_image();
 	if (g_data->filter == FILTER_BNW)

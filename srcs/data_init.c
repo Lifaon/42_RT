@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:54:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 08:38:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_data		*data_init(int ac, char **av)
 	data->photon_total = 5000000;
 	data->photon_ppx = 20;
 	data->photon_size = 2.5;
+	data->stereo_flag = 0;
+	data->stereo_scale = 10;
 	init_cameras(data);
 	init_function_ptrs(data);
 	data->img = NULL;

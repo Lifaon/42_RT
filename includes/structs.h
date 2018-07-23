@@ -164,7 +164,7 @@ typedef struct		s_obj
 	int				(*limit)(struct s_obj, t_vec, t_inter *); 	// fct ptr
 	t_vec			(*get_normal)(struct s_obj, t_inter); 	// fct ptr
 }					t_obj;
-
+  
 /*
 **	UI strucure. Used as a global : g_ui
 */

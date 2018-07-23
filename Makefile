@@ -90,10 +90,12 @@ SRCS  = draw/anti_aliasing.c \
 		ui/json/fill_str_json.c \
 		ui/json/color_toa.c \
 		ui/json/my_strcopy.c \
+		ui/json/strcpy_int.c \
 		ui/json/strcpy_db.c \
 		ui/json/strcpy_vec.c \
 		ui/json/size_of_object_json.c \
-		ui/json/fill_object_json.c \
+		ui/json/fill_object_spe_json.c \
+		ui/json/fill_object_common_json.c \
 		ui/create_ui.c \
 		ui/create_sub_notebook.c \
 		ui/toolbar.c \

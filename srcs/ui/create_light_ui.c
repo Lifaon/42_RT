@@ -18,7 +18,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	t_pixelbuf		*pxb;
 	gboolean		para;
 
-	wid_d->pos.y += 1;// = pt_set(wid_d->pos.x - 1, 2);
+	wid_d->pos.y += 2;// = pt_set(wid_d->pos.x - 1, 2);
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi, light)))

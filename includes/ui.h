@@ -94,6 +94,7 @@ size_t			size_of_str_json(void);
 char			*my_strcopy(char *dest, char const *src);
 char			*strcpy_db(char *str, double n);
 char			*strcpy_vec(char *str, t_vec vec);
+char			*strcpy_int(char *str, int n);
 char			*color_toa(char *str, t_color color);
 
 /*

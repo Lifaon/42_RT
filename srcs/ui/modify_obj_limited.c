@@ -34,17 +34,27 @@ static int			get_limited_obj_type(t_obj *obj, int axe)
 
 void		switch_obj_limited(GtkWidget *widget,
 		gboolean state, gpointer param)
-{
-	if (!widget)
+{	
+	GList		*lst;
+	GtkWidget 	*son;
+	
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
-	if (state == FALSE)
-		g_data->objs[g_ui->page_obj].limited = LIMIT_NONE;
-	if (state == TRUE)
+	lst = gtk_container_get_children(GTK_CONTAINER(param));
+	while (lst)
 	{
-		g_data->objs[g_ui->page_obj].limited = LIMIT_AXE;
-		gtk_combo_box_set_active(GTK_COMBO_BOX(g_ui->cb_obj_limit), 0);
+		son = (GtkWidget*)lst->data;
+		gtk_widget_set_sensitive(son, state);
+		if (state == TRUE && GTK_IS_COMBO_BOX(son) == TRUE)
+			gtk_combo_box_set_active(GTK_COMBO_BOX(son), 1);
+		lst = lst->next;
 	}
-	set_child_widget_active(GTK_CONTAINER(param), state);
+	g_list_free(lst);
+	if (state == TRUE)
+		g_data->objs[g_ui->page_obj].limited = LIMIT_AXE;
+	else if (state == FALSE)
+		g_data->objs[g_ui->page_obj].limited = LIMIT_NONE;
+	//set_child_widget_active(GTK_CONTAINER(param), state);
 }
 
 void		modify_obj_limited_type(GtkWidget *widget, gpointer param)

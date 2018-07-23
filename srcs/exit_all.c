@@ -21,7 +21,7 @@ void	exit_all(t_data *data)
 		{
 			while (data->nb_objects--)
 				if (data->objs[data->nb_objects].tex)
-					free(data->objs[data->nb_objects].tex);
+					pixelbuf_free(&data->objs[data->nb_objects].tex);
 			free(data->objs);
 		}
 		if (data && data->nb_lights)

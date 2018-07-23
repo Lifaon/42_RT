@@ -179,10 +179,6 @@ typedef struct		s_ui
 	GtkWidget		*sc_fov;
 	GtkSizeGroup	*gp_cam_pos;
 	GtkSizeGroup	*gp_cam_angle;
-	GtkSizeGroup	*gp_obj_min;
-	GtkWidget		*cb_obj_limit;
-	GtkSizeGroup	*gp_obj_max;
-	GtkSizeGroup	*gp_obj_tex;
 	GtkSizeGroup	*gp_dof_focus;
 	int				is_active;
 	int				page_light;

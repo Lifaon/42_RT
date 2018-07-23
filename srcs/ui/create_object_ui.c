@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 
 #include "ui.h"
-
+/*
+** because object type and object limited type are linked
+** the combobox obj_type is create during the creation of obj_limited
+*/
 
 static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 {
 	t_pixelbuf		*pxb;
 
 	if (!(switch_new(wid_d, wid_d, TRUE, &switch_obj)))
-		return (0);
-	wid_d->pos = pt_set(0, 1);
-	wid_d->f = &modify_obj_type;
-	if (!(new_cb_type(wid_d, wid_d, obj)))
 		return (0);
 	wid_d->pos = pt_set(0, 3);
 	if (!(pxb = pixelbuf_new(pt_set(30, 30), NULL)))

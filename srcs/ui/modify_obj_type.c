@@ -46,6 +46,7 @@ void	modify_obj_type(GtkWidget *widget, gpointer param)
 	int			prev_type;
 	int			type;
 	t_obj		*obj;
+	GtkWidget 	*cb_lim;
 
 	if (!param && !widget)
 		param = NULL;
@@ -53,14 +54,15 @@ void	modify_obj_type(GtkWidget *widget, gpointer param)
 	obj = &g_data->objs[g_ui->page_obj];
 	if ((type = get_int_obj_type(str)) < 0)
 		return ;
+	cb_lim = (GtkWidget*)param;
 	prev_type = obj->obj_type;
 	obj->obj_type = type;
 	obj->intersect = g_data->intersect[type];
 	obj->get_normal = g_data->get_normal[type];
 	if (prev_type != PLANE && type == PLANE)
 		gtk_combo_box_text_insert_text(
-				GTK_COMBO_BOX_TEXT(g_ui->cb_obj_limit), 2, "circle");
+			GTK_COMBO_BOX_TEXT(cb_lim), 3, "circle");
 	if (prev_type == PLANE && type != PLANE)
 		gtk_combo_box_text_remove(
-				GTK_COMBO_BOX_TEXT(g_ui->cb_obj_limit), 2);
+				GTK_COMBO_BOX_TEXT(cb_lim), 3);
 }

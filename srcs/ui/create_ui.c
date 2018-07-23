@@ -26,12 +26,7 @@ static t_ui		*ui_new(void)
 	ui->is_active = 0;
 	ui->gp_cam_pos = NULL;
 	ui->gp_cam_angle = NULL;
-	ui->gp_obj_min = NULL;
-	ui->gp_obj_max = NULL;
-	ui->cb_obj_limit = NULL;
 	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
-		return (NULL);
-	if (!(ui->gp_obj_tex = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
@@ -40,29 +35,28 @@ static t_ui		*ui_new(void)
 
 int				make_grid(t_wid_data *wid_d)
 {
-	if (!(wid_d->grid = gtk_grid_new()))
-		return (0);
-	wid_d->pos = pt_set(0, 1);
-	wid_d->size = pt_set(1, 1);
-	wid_d->f = NULL;
+	//if (!(wid_d->grid = gtk_grid_new()))
+	//	return (0);
+	//wid_d->pos = pt_set(0, 1);
+	//wid_d->size = pt_set(1, 1);
+	//wid_d->f = NULL;
+	set_wid_data(wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
 	gtk_grid_set_row_spacing(GTK_GRID(wid_d->grid), 5);
 	gtk_grid_set_column_spacing(GTK_GRID(wid_d->grid), 5);
 	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
 	gtk_grid_set_column_homogeneous(GTK_GRID(wid_d->grid), TRUE);
-	set_wid_data(wid_d, pt_set(0, 0), pt_set(1, 1), NULL);
 	return (1);
 }
 
-void			focus_me(GtkWidget  *widget, gpointer data)
+/*void			focus_me(GtkWidget  *widget, gpointer data)
 {
 	gtk_widget_grab_focus(widget);
 	gtk_widget_grab_default(widget);
-}
+}*/
 
 static int      create_renderer(void)
 {
 	GtkWidget	*wid;
-	GtkWidget	*ev_box;
 
 	if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
 		return (0);
@@ -71,16 +65,15 @@ static int      create_renderer(void)
 	gtk_widget_set_can_default(wid, TRUE);
 	if (!(g_ui->ev_box = gtk_event_box_new()))
 		return (0);
-	ev_box = g_ui->ev_box;
-	gtk_container_add(GTK_CONTAINER(ev_box), wid);
-	gtk_widget_set_can_focus(ev_box, TRUE);
-	gtk_widget_set_can_default(ev_box, TRUE);
-	gtk_widget_add_events(ev_box, GDK_KEY_PRESS);
+	gtk_container_add(GTK_CONTAINER(g_ui->ev_box), wid);
+	gtk_widget_set_can_focus(g_ui->ev_box, TRUE);
+	gtk_widget_set_can_default(g_ui->ev_box, TRUE);
+	gtk_widget_add_events(g_ui->ev_box, GDK_KEY_PRESS);
 	//g_signal_connect(G_OBJECT(g_data->win), "key_press_event",
 	//			G_CALLBACK(ft_keyboard), data);
-	g_signal_connect(G_OBJECT(ev_box), "key_press_event",
+	g_signal_connect(G_OBJECT(g_ui->ev_box), "key_press_event",
 				G_CALLBACK(ft_keyboard), g_data);
-	gtk_event_box_set_above_child(GTK_EVENT_BOX(ev_box), TRUE);
+	gtk_event_box_set_above_child(GTK_EVENT_BOX(g_ui->ev_box), TRUE);
 	//g_signal_connect(G_OBJECT(wid), "clicked",
 	  //      G_CALLBACK(&focus_me), g_data);
 	//g_signal_connect(G_OBJECT(ev_box), "clicked",

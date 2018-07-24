@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 19:34:28 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:01:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vec.h"
 #include <limits.h>
 
-void			init_function_ptrs(t_data *data)
+static void		init_function_ptrs(t_data *data)
 {
 	data->intersect[0] = intersect_sphere;
 	data->intersect[1] = intersect_plane;
@@ -33,10 +33,24 @@ void			init_function_ptrs(t_data *data)
 	data->limit[5] = &limit_cone;
 }
 
+static void		data_init2(t_data *data, char **av)
+{
+	char	*chr;
+
+	init_cameras(data);
+	init_function_ptrs(data);
+	data->img = NULL;
+	data->draw = 1;
+	chr = ft_strstr(av[0], "/rt");
+	data->path = ft_strsub(av[0], 2, ft_strlen(av[0]) - (ft_strlen(chr) + 1));
+	data->long_path = ft_strnew(PATH_MAX);
+	getcwd(data->long_path, PATH_MAX);
+	data->long_path = ft_strjoin_free(data->long_path, "/");
+}
+
 t_data			*data_init(char **av)
 {
-	t_data		*data;
-	char		*chr;
+	t_data	*data;
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
@@ -55,14 +69,6 @@ t_data			*data_init(char **av)
 	data->photon_ppx = 20;
 	data->photon_size = 2.5;
 	data->stereo_scale = 10;
-	init_cameras(data);
-	init_function_ptrs(data);
-	data->img = NULL;
-	data->draw = 1;
-	chr = ft_strstr(av[0], "/rt");
-	data->path = ft_strsub(av[0], 2, ft_strlen(av[0]) - (ft_strlen(chr) + 1));
-	data->long_path = ft_strnew(PATH_MAX);
-	getcwd(data->long_path, PATH_MAX);
-	data->long_path = ft_strjoin_free(data->long_path, "/");
+	data_init2(data, av);
 	return (data);
 }

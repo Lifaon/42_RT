@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:42:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 17:01:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:01:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static size_t		size_of_tex_file_json(t_obj *obj)
 	size_t		size;
 
 	size = ft_strlen(",\n\t\t\t\"texture\" : \"");
-	size += ft_strlen("\"");
 	size += ft_strlen(obj->tex_filename);
+	size += ft_strlen("\"");
 	size += ft_strlen(",\n\t\t\t\"tex_pos\" : ");
 	size += size_pt(obj->tex_pos);
 	size += ft_strlen(",\n\t\t\t\"tex_scale\" : ");
@@ -85,7 +85,7 @@ static size_t		size_of_textures_json(t_obj *obj)
 	size = 0;
 	if (obj->color_type != COLOR_SIMPLE)
 	{
-		size = ft_strlen(",\n\t\t\t\"color2\" : ");
+		size += ft_strlen(",\n\t\t\t\"color2\" : ");
 		size += size_color(obj->color2);
 		size += ft_strlen(",\n\t\t\t\"color_type\" : ");
 		size += size_int(obj->color_type);
@@ -111,8 +111,10 @@ size_t			size_of_object_common_json(t_obj *obj)
 {
 	size_t		size;
 
-	size = ft_strlen("\t\t\t\"position\" : ");
+	size = ft_strlen(",\n\t\t\t\"position\" : ");
 	size += size_vec(obj->pos);
+	size += ft_strlen("\t\t\t\"specular\" : ");
+	size += size_double(obj->spec);
 	size += ft_strlen(",\n\t\t\t\"color\" : ");
 	size += size_color(obj->color);
 	size += ft_strlen(",\n\t\t\t\"alpha\" : ");

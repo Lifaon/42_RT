@@ -87,8 +87,10 @@ static char		*fill_textures_json(char *str, t_obj *obj)
 
 char			*fill_object_common_json(char *str, t_obj *obj)
 {
-	str = my_strcopy(str, "\t\t\t\"position\" : ");
+	str = my_strcopy(str, ",\n\t\t\t\"position\" : ");
 	str = strcpy_vec(str, obj->pos);
+	str = my_strcopy(str, ",\n\t\t\t\"specular\" : ");
+	str = strcpy_db(str, obj->spec);
 	str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
 	str = strcpy_color(str, obj->color);
 	str = my_strcopy(str, ",\n\t\t\t\"alpha\" : ");

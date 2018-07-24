@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 18:16:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:52:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static size_t	size_of_cams(void)
 		size += size_vec(g_data->cams[i].pos) + 2;
 		size += ft_strlen("\t\t\t\"fov\" : ");
 		size += size_double(g_data->cams[i].fov) + 1;
+		size += ft_strlen("\t\t\t\"angle\" : ");
+		size += size_vec(g_data->cams[i].angle) + 2;
 		size += ft_strlen("\t\t},\n");
 		i++;
 	}
@@ -48,10 +50,10 @@ static size_t	size_one_light(t_light *light)
 	size += size_vec(light->angle) + 2;
 	size += ft_strlen("\t\t\t\"is_para\" : ");
 	size += size_int(light->is_para) + 2;
-	size += ft_strlen("\t\t\t\"radius\" : ");
-	size += size_double(light->r) + 2;
 	size += ft_strlen("\t\t\t\"ambiant\" : ");
 	size += size_double(light->ambi) + 2;
+	size += ft_strlen("\t\t\t\"radius\" : ");
+	size += size_double(light->r) + 2;
 	size += ft_strlen("\t\t\t\"color\" : ");
 	size += size_color(light->color) + 1;
 	size += ft_strlen("\t\t},\n");

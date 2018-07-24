@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 22:19:44 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 23:08:14 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ static void			recv_data(int sock)
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
 	size_json = buf_to_int(tmp);
-	if (!(json = (char*)malloc(sizeof(char) * size_json)))
+	if (!(json = (char*)malloc(sizeof(char) * (size_json + 1))))
 		exit_cause("malloc error");
+	json[size_json] = '\0';
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
+	ft_putendl(json);
 	parse_for_client(g_data, json);
 	if (recv(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
 		exit_cause("recv fail");
@@ -87,7 +89,7 @@ void			client_work(void)
 	int			ret;
 	int			size;
 
-	size = WIN_W * (WIN_H);
+	size = WIN_W * (WIN_H) + 1;
 	if(!(g_data->cimg = (uint32_t*)ft_memalloc(sizeof(uint32_t) * size)))
 		exit_cause("malloc error");
 	while (1)

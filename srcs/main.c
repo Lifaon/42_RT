@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 22:18:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 22:49:30 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int							main(int ac, char **av)
 	if (ac == 1)
 		return (ft_exit());
 	g_data = data_init(av);
-	g_data->filter = FILTER_STEREO;
 	while(++i < ac)
 	{
 		if (ft_strstr(av[i], ".json"))

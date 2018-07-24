@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 22:42:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 22:56:43 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parse_for_client(t_data *data, char *str)
 {
 	int			i;
 
-//	remove_white_spaces(&str);
+	remove_white_spaces(&str);
 //	check_error(data, str);
 	i = -1;
 	while (str[++i])

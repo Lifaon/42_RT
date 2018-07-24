@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 19:19:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 20:21:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:48:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void			change_cam_fov(GtkWidget *widget, gpointer param)
 {
 	double			value;
 
-	if (!param && !widget)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	value = gtk_range_get_value(GTK_RANGE(widget));
 	g_data->cams[g_data->i].fov = value;
@@ -32,7 +30,7 @@ void			change_cam_angle(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->cams[g_data->i].angle;
 	group = (GtkSizeGroup*)param;
@@ -48,7 +46,7 @@ void			change_cam_pos(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->cams[g_data->i].pos;
 	group = (GtkSizeGroup*)param;
@@ -64,7 +62,7 @@ void			change_left_cam(GtkWidget *widget, gpointer param)
 	GtkWidget		*label;
 	char			*str;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	label = (GtkWidget*)param;
 	if (g_data->i <= 0)
@@ -89,7 +87,7 @@ void			change_right_cam(GtkWidget *widget, gpointer param)
 	GtkWidget		*label;
 	char			*str;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	label = (GtkWidget*)param;
 	if (g_data->i >= CAM_NB - 1)

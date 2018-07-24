@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:00:19 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:12:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int 			add_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	return (1);
 }
 
-static GtkWidget	*phase_1(t_wid_data *wid_d, t_obj *obj, gboolean is_limited)
+static GtkWidget	*phase_1(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkWidget		*cb;
 	GtkSizeGroup	*group[2];
@@ -59,7 +59,7 @@ int					create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 	if (!(frame = gtk_frame_new(NULL)))
 		return (0);
 	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
-	if (!(cb_lim = phase_1(&frame_d, obj, is_limited)))
+	if (!(cb_lim = phase_1(&frame_d, obj)))
 		return (0);
 	wid_d->pos.y = 1;
 	g_ui->is_active = 1;

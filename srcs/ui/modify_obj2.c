@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:01:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:45:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void			switch_obj(GtkWidget *widget, gboolean state, gpointer param)
 {
-	if (!widget && !param)
-		param = NULL;
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	if (state == TRUE)
 		g_data->objs[g_ui->page_obj].enabled = 1;
 	else
@@ -28,6 +28,8 @@ void			add_one_obj(GtkWidget *widget, gpointer param)
 	t_obj		*objs_new;
 	int			i;
 
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	i = -1;
 	g_data->nb_objects += 1;
 	objs_new = (t_obj*)malloc(sizeof(t_obj) * g_data->nb_objects);
@@ -46,9 +48,7 @@ void			change_obj_spec(GtkWidget *widget, gpointer param)
 {
 	double			value;
 
-	if (!param && !widget)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	value = gtk_range_get_value(GTK_RANGE(widget)) / 100;
 	g_data->objs[g_ui->page_obj].spec = value;
@@ -58,9 +58,7 @@ void			change_obj_alpha(GtkWidget *widget, gpointer param)
 {
 	double			value;
 
-	if (!param && !widget)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	value = gtk_range_get_value(GTK_RANGE(widget));
 	g_data->objs[g_ui->page_obj].alpha = value;
@@ -71,9 +69,7 @@ void			change_obj_r(GtkWidget *widget, GdkEvent *event,
 {
 	double		value;
 
-	if (!param && !widget && !event)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param && !event))
 		return ;
 	value = get_double_from_entry(widget, MODE_PLUS_INF, 0, INFINITY);
 	g_data->objs[g_ui->page_obj].r = value;

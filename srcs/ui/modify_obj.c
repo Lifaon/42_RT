@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 19:26:36 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:01:26 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:44:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			change_obj_pos(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->objs[g_ui->page_obj].pos;
 	group = (GtkSizeGroup*)param;
@@ -32,7 +32,7 @@ void			change_obj_angle(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->objs[g_ui->page_obj].angle;
 	group = (GtkSizeGroup*)param;
@@ -46,7 +46,7 @@ void			change_obj_focus(GtkWidget *widget, gpointer param)
 	gboolean		status;
 	GSList			*lst;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	group = (GtkSizeGroup*)param;
 	status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
@@ -71,9 +71,7 @@ void	change_obj_color(GtkWidget *widget, gpointer param)
 {
 	gpointer	color;
 
-	if (!param && !widget)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	color = (gpointer)&g_data->objs[g_ui->page_obj].color;
 	chose_color((GtkWidget*)param, color, NULL);
@@ -83,9 +81,7 @@ void	change_obj_color2(GtkWidget *widget, gpointer param)
 {
 	gpointer	color;
 
-	if (!param && !widget)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	color = (gpointer)&g_data->objs[g_ui->page_obj].color2;
 	chose_color((GtkWidget*)param, color, NULL);

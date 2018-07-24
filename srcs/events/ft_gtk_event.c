@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_event.c                                         :+:      :+:    :+:   */
+/*   ft_gtk_event.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 18:27:24 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/15 20:12:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:56:15 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fractol.h"
-gboolean		mouse2(GtkWidget *widget, GdkEventMotion *event, gpointer param)
-{
-	t_param				*par;
-	GdkEventKey			key_event;
 
-	//motion = (GdkEventMotion*)event;
+gboolean			mouse2(GtkWidget *widget,
+							GdkEventMotion *event, gpointer param)
+{
+	t_param			*par;
+	GdkEventKey		key_event;
+
 	key_event.keyval = 2;
 	if (!widget && !event && !param)
 		param = NULL;
@@ -32,7 +32,8 @@ gboolean		mouse2(GtkWidget *widget, GdkEventMotion *event, gpointer param)
 	return (0);
 }
 
-gboolean		wheel(GtkWidget *widget, GdkEventScroll *event, gpointer param)
+gboolean			wheel(GtkWidget *widget,
+							GdkEventScroll *event, gpointer param)
 {
 	if (!widget && !event && !param)
 		param = NULL;
@@ -40,10 +41,10 @@ gboolean		wheel(GtkWidget *widget, GdkEventScroll *event, gpointer param)
 	return (0);
 }
 
-void	ft_event(void *param)
+void				ft_event(void *param)
 {
-	int			quit;
-	t_param		*par;
+	int				quit;
+	t_param			*par;
 
 	par = (t_param*)param;
 	quit = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   toolbar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:52:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/27 20:06:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:01:39 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static GtkToolItem	*create_item(char *img_name, char *b_text, char *tooltip)
 	GtkWidget		*img;
 	char			*str;
 
-	if (!(str = ft_strjoin(g_data->ui->path, "/srcs/ui/assets/")))
+	if (!(str = ft_strjoin(g_data->path, "srcs/ui/assets/")))
 		return (NULL);
 	str = ft_strjoin_free(str, img_name);
 	if (!(img = gtk_image_new_from_file(str)))

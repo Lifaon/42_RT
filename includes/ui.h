@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/05 22:25:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 08:50:50 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@
 /*
 ** Parent functions
  */
-int				create_ui(char *path);
-int				create_sub_notebook(t_ui *ui, int do_param);
+int				create_ui(void);
+int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
 int				create_object_ui(GtkWidget *main_tab);
+int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj);
+int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
+int				create_object_file_tex_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_limited_object_ui(t_wid_data *wid_d, t_obj *obj);
 int				create_camera_ui(GtkWidget *main_tab);
 int				create_options_ui(GtkWidget *main_tab);
@@ -42,7 +45,7 @@ void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 void			set_wid_data_scale(t_wid_data *wid_d, double step,
 		t_ptdb min_max);
 int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max);
-t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);
+t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);//to suppress
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
@@ -52,22 +55,25 @@ GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec,
+GtkWidget		*new_check_button(t_wid_data *wid_d, char *txt, gpointer param, 
 		GtkSizeGroup *group);
+GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
+GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
+		int set_value, char **txt);
+GtkSizeGroup	*add_vector_choose(t_wid_data *wid_d, char *label, t_vec vec);
 GtkSizeGroup	*add_color_choose(t_wid_data *wid_d, t_color color);
+GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label,
+		t_vec vec);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
-GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label, t_vec vec,
-		GtkSizeGroup *group);
 int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
-int				make_label_and_scale(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 			gdouble value, gpointer param);
-int				make_label_and_switch(t_wid_data *wid_d, const char *txt,
+GtkWidget		*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer));
 
 /*
@@ -88,6 +94,7 @@ size_t			size_of_str_json(void);
 char			*my_strcopy(char *dest, char const *src);
 char			*strcpy_db(char *str, double n);
 char			*strcpy_vec(char *str, t_vec vec);
+char			*strcpy_int(char *str, int n);
 char			*color_toa(char *str, t_color color);
 
 /*
@@ -98,21 +105,22 @@ void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
 void			click_redraw(GtkWidget *widget, gpointer param);
-void			entry_change_scale(GtkWidget *widget, gpointer param);
 size_t			size_of_str_json(void);
 char			*fill_object_json(char *str, int type, int i);
 int				size_of_object_json(int size, int type, int i);
 char			*fill_str_json(size_t size);
-int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
-		t_vec *vec);
 
 /*
 ** => light event
 */
 void			add_one_light(GtkWidget *widget, gpointer param);
+void			check_caustic(GtkWidget *widget, gpointer param);
+void			change_photon_size(GtkWidget *widget, gpointer param);
+void			change_photon_intensity(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);
 void			change_light_angle(GtkWidget *widget, gpointer param);
-void			change_light_r(GtkWidget *widget, gpointer param);
+void			change_light_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
 void			change_light_color(GtkWidget *widget, gpointer param);
 void			change_light_ambi(GtkWidget *widget, gpointer param);
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param);
@@ -129,36 +137,72 @@ void			switch_obj(GtkWidget *widget, gboolean state, gpointer param);
 void			modify_obj_type(GtkWidget *widget, gpointer param);
 void			change_obj_spec(GtkWidget *widget, gpointer param);
 void			change_obj_alpha(GtkWidget *widget, gpointer param);
-void			change_obj_r(GtkWidget *widget, gpointer param);
+void			change_obj_focus(GtkWidget *widget, gpointer param);
+void			change_obj_r(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			change_obj_trans(GtkWidget *widget, gpointer param);
+void			change_obj_ior(GtkWidget *widget, gpointer param);
+void			change_obj_reflex(GtkWidget *widget, gpointer param);
 void			change_obj_color(GtkWidget *widget, gpointer param);
+void			change_obj_color2(GtkWidget *widget, gpointer param);
 void			switch_obj_limited(GtkWidget *widget, gboolean state,
 		gpointer param);
-void		modify_obj_limited_type(GtkWidget *widget, gpointer param);
-void			change_obj_min(GtkWidget *widget, gpointer param);
-void			change_obj_max(GtkWidget *widget, gpointer param);
+void			modify_obj_limited_type(GtkWidget *widget, gpointer param);
+void			change_obj_min(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			change_obj_max(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			check_tex_file(GtkWidget *widget, gpointer param);
+void			change_obj_tex_file(GtkWidget *widget, gpointer param);
+void			change_obj_tex_scale(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_x(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_y(GtkWidget*widget, gpointer param);
+void			switch_obj_tex_repeat(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			switch_obj_tex_trans(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			change_color_scale(GtkWidget *widget, gpointer param);
+void			check_rainbow(GtkWidget *widget, gpointer param);
+void			check_checkboard(GtkWidget *widget, gpointer param);
+void			check_perlin(GtkWidget *widget, gpointer param);
+void			check_perlin_cosine(GtkWidget *widget, gpointer param);
+void			change_perlin_scale(GtkWidget *widget, gpointer param);
+void			change_perlin_opacity(GtkWidget *widget, gpointer param);
+void			check_bump(GtkWidget *widget, gpointer param);
+void			change_bump_scale(GtkWidget *widget, gpointer param);
+void			change_bump_noise(GtkWidget *widget, gpointer param);
+
+
 
 /*
 ** => options event
 */
-void	get_int_from_scale(GtkWidget *widget, gpointer param);
-void	change_aa(GtkWidget *widget, gpointer param);
-void	change_px(GtkWidget *widget, gpointer param);
-t_vec	pitch(t_vec ray, t_vec angle);
-t_vec	yaw(t_vec ray, t_vec angle);
-t_vec	roll(t_vec ray, t_vec angle);
+void			get_int_from_scale(GtkWidget *widget, gpointer param);
+void			change_aa(GtkWidget *widget, gpointer param);
+void			change_px(GtkWidget *widget, gpointer param);
+void			switch_cel_shading(GtkWidget *widget, gboolean state,
+		gpointer param);
+void			change_filter(GtkWidget *widget, gpointer param);
+t_vec			pitch(t_vec ray, t_vec angle);
+t_vec			yaw(t_vec ray, t_vec angle);
+t_vec			roll(t_vec ray, t_vec angle);
+void			change_depth_max(GtkWidget *widget, gpointer param);
+void			change_dof_coeff(GtkWidget *widget, gpointer param);
+void			get_vp_up_left(t_camera *cam);
 
 /*
 ** => camera event
 */
-void	change_left_cam(GtkWidget *widget, gpointer param);
-void	change_right_cam(GtkWidget *widget, gpointer param);
-
+void			change_left_cam(GtkWidget *widget, gpointer param);
+void			change_right_cam(GtkWidget *widget, gpointer param);
+void			change_cam_fov(GtkWidget *widget, gpointer param);
+void			change_cam_angle(GtkWidget *widget, gpointer param);
+void			change_cam_pos(GtkWidget *widget, gpointer param);
 
 /*
 ** => Other UI event
 */
-void			chose_color(GtkWidget *widget, gpointer useless);
-void            color_widget_img(GtkWidget *img, t_color color);
+void			chose_color(GtkWidget *widget, gpointer param, t_light *light);
 gboolean		change_page_light(GtkNotebook *notebook, GtkWidget *page,
 		gint arg1, gpointer data);
 gboolean		change_page_cam(GtkNotebook *notebook, GtkWidget *page,
@@ -173,4 +217,14 @@ void			free_to_free(void *content);//
 double			get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 void			set_child_widget_active(GtkContainer *container, gboolean status);
+void			set_entry_and_scale_from_vector(GtkSizeGroup *group,
+		t_vec vec);
+int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
+		t_vec *vec);
+void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
+		gpointer param);
+void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
+		GdkInterpType type);
+void			file_error(GtkWidget *select);
+
 #endif

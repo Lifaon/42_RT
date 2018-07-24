@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 14:29:48 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 20:02:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:31:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void		check_ui_active(int start)
 	static int		i = 0;
 
 	if (i == 0 && start == 0)
-		status = g_data->ui->is_active;
+		status = g_ui->is_active;
 	else if (start == 1 && i == 1)
-		g_data->ui->is_active = status;
+		g_ui->is_active = status;
 	if (start == 0)
 	{
-		g_data->ui->is_active = 0;
+		g_ui->is_active = 0;
 		i++;
 	}
 	if (start == 1 && i > 0)

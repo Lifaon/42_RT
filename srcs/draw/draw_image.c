@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   draw_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
 /*   Updated: 2018/07/24 17:06:12 by pmiceli          ###   ########.fr       */
@@ -19,29 +19,23 @@ static t_color	draw_pixel(t_data *data, t_vec vp)
 	t_inter		inter;
 	t_vec		ray;
 	t_color		ret;
-	int			i;
 
-	i = -1;
+	inter.in_object = 0;
 	if (data->aa <= 1)
 	{
+		inter.depth = 0;
 		ret.c = 0xFF000000;
 		ray = compute_ray(vp);
 		inter.min_dist = 0.01;
 		if (first_hit(data, ray, &inter))
-		{
-			ret = get_px_color(data, inter);
-			if (data->objs[inter.obj_i].shiny == 1)
-				ret = draw_reflec(data, inter, ray, 0, ret);
-			if (data->objs[inter.obj_i].trans == 1)
-				ret = draw_refract(data, inter, ray, ret, 0);
-		}
+			ret = get_px_color(data, ray, inter);
 		return (ret);
 	}
 	else
 		return (anti_aliasing(data, vp));
 }
 
-static void	*draw_thread(void *thr)
+static void		*draw_thread(void *thr)
 {
 	t_point		crd;
 	t_vec		vp;
@@ -50,7 +44,7 @@ static void	*draw_thread(void *thr)
 	int			xmax;
 
 	vp = g_data->cam.vp_up_left;
-	i = *((int *) thr);
+	i = *((int *)thr);
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
 	xmax = (WIN_W / (g_data->nb_client + 1)) * (g_data->x + 1) + 0.5;
@@ -72,7 +66,7 @@ static void	*draw_thread(void *thr)
 	pthread_exit(NULL);
 }
 
-void		draw_image(void)
+void			draw_image(void)
 {
 	ft_putendl_color("in draw_image", "orange");
 

@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:36 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 16:32:52 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 18:49:36 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ int		send_data(int sock)
 		exit_cause("send fail");
 	if (send_int(sock, size_json, 0) < 0)
 		exit_cause("send fail");
+	printf("--%lu--\n", size_json);
 	if (send(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("send fail");
+	ft_putendl(json);
 	buff[0] = g_data->aa;
 	buff[1] = g_data->cel_shading;
 	buff[2] = g_data->px;

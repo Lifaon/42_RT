@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pixelated_image.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
 /*   Updated: 2018/07/23 19:10:03 by pmiceli          ###   ########.fr       */
@@ -12,16 +12,18 @@
 
 #include "draw.h"
 
-static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
+static void		draw_pixels(t_data *data, t_vec vp, t_point crd)
 {
 	t_inter		inter;
-	t_vec			ray;
-	t_point 	px;
+	t_vec		ray;
+	t_point		px;
 	t_color		color;
 
 	ray = compute_ray(vp);
+	inter.depth = 0;
+	inter.in_object = 0;
 	if (first_hit(data, ray, &inter))
-		color = get_px_color(data, inter);
+		color = get_px_color(data, ray, inter);
 	else
 		color.c = 0xFF000000;
 	px.y = -1;
@@ -34,7 +36,7 @@ static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
 	}
 }
 
-static void	*draw_pixelated_thread(void *thr)
+static void		*draw_pixelated_thread(void *thr)
 {
 	t_point		crd;
 	t_vec		vp;
@@ -42,7 +44,7 @@ static void	*draw_pixelated_thread(void *thr)
 	int			ymax;
 	int			xmax;
 
-	i = *((int *) thr);
+	i = *((int *)thr);
 	vp = g_data->cam.vp_up_left;
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
@@ -52,7 +54,8 @@ static void	*draw_pixelated_thread(void *thr)
 		vp.y = g_data->cam.vp_up_left.y - ((g_data->px * 0.5) + (double)crd.y);
 		while (crd.x < WIN_H)
 		{
-			vp.x = g_data->cam.vp_up_left.x + ((g_data->px * 0.5) + (double)crd.x);
+			vp.x = g_data->cam.vp_up_left.x +
+			((g_data->px * 0.5) + (double)crd.x);
 			draw_pixels(g_data, vp, crd);
 			crd.x += g_data->px;
 		}
@@ -61,7 +64,7 @@ static void	*draw_pixelated_thread(void *thr)
 	pthread_exit(NULL);
 }
 
-void		draw_pixelated_image(t_data *data)
+void			draw_pixelated_image(t_data *data)
 {
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];

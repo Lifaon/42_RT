@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
 /*   Updated: 2018/07/24 17:22:46 by pmiceli          ###   ########.fr       */
@@ -15,21 +15,20 @@
 #include <time.h>//
 #include "clust.h"
 
-void			get_time(void)
+void						get_time(void)
 {
-	static int						time;
-	static struct timespec			last;
-	struct timespec					tmptime;
+	static int				time;
+	static struct timespec	last;
+	struct timespec			tmptime;
 
 	if (!last.tv_nsec)
 		clock_gettime(CLOCK_MONOTONIC_RAW, &last);
-
 	clock_gettime(CLOCK_MONOTONIC_RAW, &tmptime);
 	if (time != 0)
 	{
 		printf("temps de calcul : %f seconde\n", \
-				((tmptime.tv_sec - last.tv_sec) * 1000000000 + \
-				 (tmptime.tv_nsec - last.tv_nsec)) * pow(10, -9));
+			((tmptime.tv_sec - last.tv_sec) * 1000000000 + \
+				(tmptime.tv_nsec - last.tv_nsec)) * pow(10, -9));
 	}
 	time++;
 }
@@ -87,7 +86,7 @@ static int ft_exit(void)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int							main(int ac, char **av)
 {
 	int		i;
 
@@ -95,7 +94,6 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		return (ft_exit());
 	g_data = data_init(ac, av);
-	g_data->depth_of_field = 3;
 	while(++i < ac)
 	{
 		if (ft_strstr(av[i], ".json"))
@@ -108,7 +106,7 @@ int		main(int ac, char **av)
 	{
 		get_oc();
 		gtk_init(&ac, &av);
-		if (create_ui(av[0]) == 0)
+		if (create_ui() == 0)
 			return (0);
 		if (g_data->clust_i == CLUST_HOST)
 			host_work(0);

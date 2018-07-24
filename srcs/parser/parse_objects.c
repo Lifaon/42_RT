@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/02 21:50:17 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/23 06:22:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->r = fabs(parse_nb(str + *index, index));
 	else if (read_quotes(str + *index, "\"color\"", index))
 		object->color = parse_color(str + *index, index);
+	else if (read_quotes(str + *index, "\"color2\"", index))
+		object->color2 = parse_color(str + *index, index);
+	else if (read_quotes(str + *index, "\"color_type\"", index))
+		object->color_type = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"color_scale\"", index))
+		object->color_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_scale\"", index))
+		object->perl_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_type\"", index))
+		object->perl_type = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_opacity\"", index))
+		object->perl_opacity = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_flag\"", index))
+		object->bump_flag = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_intensity\"", index))
+		object->bump_intensity = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"bump_scale\"", index))
+		object->bump_scale = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"perl_scale\"", index))
+		object->perl_scale = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"angle\"", index))
 		object->angle = parse_vec(str + *index, index);
 	else if (read_quotes(str + *index, "\"specular\"", index))
@@ -67,16 +87,12 @@ static void	which_object_variable(t_obj *object, char *str, int *index)
 		object->tex_repeat = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"tex_limit\"", index))
 		object->tex_limit = parse_nb(str + *index, index);
-	else if (read_quotes(str + *index, "\"reflection's pourcentage\"", index))
-	{
-		object->shiny = 1;
-		object->shin_pourcentage = parse_nb(str + *index, index) / 100.00;
-	}
-	else if (read_quotes(str + *index, "\"refraction's pourcentage\"", index))
-	{
-		object->trans = 1;
-		object->trans_pourcentage = parse_nb(str + *index, index) / 100.00;
-	}
+	else if (read_quotes(str + *index, "\"tex_trans\"", index))
+		object->tex_trans = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"shiny\"", index))
+		object->shiny = parse_nb(str + *index, index);
+	else if (read_quotes(str + *index, "\"trans\"", index))
+		object->trans = parse_nb(str + *index, index);
 	else if (read_quotes(str + *index, "\"ior\"", index))
 		object->ior = parse_nb(str + *index, index);
 }
@@ -100,6 +116,12 @@ static void	parse_object(t_obj *object, char *str, int *index)
 		object->spec = object->spec > 1 ? 1 : 0;
 	if (object->alpha < 1)
 		object->alpha = 1;
+	if (object->shiny > 1 || object->shiny < 0)
+		object->shiny = object->shiny > 1 ? 1 : 0;
+	if (object->trans > 1 || object->trans < 0)
+		object->trans = object->trans > 1 ? 1 : 0;
+	if (object->tex_scale < 1)
+		object->tex_scale = 1;
 	get_dir(object);
 	*index += i;
 }

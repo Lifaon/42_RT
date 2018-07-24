@@ -3,18 +3,18 @@
 	[
 		{
 			"fov" : 20,
-			"position" : [0, 0, -3000],
-			"angle" : [0, 0, 0]
+			"position" : [0, 100, -1000],
+			"angle" : [5, 0, 0]
 		}
 	],
 	"lights" :
 	[
 		{
-			"position" : [-800, 500, 500],
+			"position" : [-800, 500, -500],
 			"ambient" : 0.4
 		},
 		{
-			"position" : [-700, 600, 500],
+			"position" : [-700, 600, -500],
 			"ambient" : 0.4
 		}
 	],
@@ -22,30 +22,26 @@
 	{
 		"sphere" :
 		{
-			"position" : [0, 0, 1500],
+			"position" : [0, 0, 500],
 			"radius" : 100,
-			"refraction's pourcentage" : 80,
-			"ior" : 1.3
+			"color" : [0, 0, 200, 255],
+			"trans" : 0.7,
+			"ior" : 1.6
 		},
 		"sphere" :
 		{
-			"position" : [-100, 0, 2000],
+			"position" : [-100, 0, 1000],
 			"color" : [66, 37, 16],
-			"radius" : 75
+			"radius" : 75,
+			"specular" : 0,
+			"texture" : "textures/world.jpg"
 		},
 		"plane" :
 		{
 			"position" : [0, -200, 0],
-			"angle" : [0, 90, 0],
+			"angle" : [0, 0, 0],
 			"color" : [0, 180, 180],
 			"specular" : 0
 		},
-		"plane" :
-		{
-			"position" : [0, 0, 5000],
-			"angle" : [90, 0, 0],
-			"color" : [229, 244, 66],
-			"specular" : 0
-		}
 	}
 }

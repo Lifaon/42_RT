@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/06/27 20:09:47 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/07/23 07:19:16 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ EOC = \033[37m
 SRCS_DIR = ./srcs
 SRCS  = draw/anti_aliasing.c \
 		draw/blur.c \
+		draw/caustic.c \
 		draw/cel_shading.c \
+		draw/checkerboard.c \
 		draw/colors.c \
 		draw/depth_of_field.c \
 		draw/draw_image.c \
@@ -35,7 +37,15 @@ SRCS  = draw/anti_aliasing.c \
 		draw/get_px_color.c \
 		draw/phong_shading.c \
 		draw/put_gdk_image.c \
+		draw/rainbow.c \
 		draw/reflec_refract.c \
+		draw/shadows.c \
+		draw/perlin.c \
+		draw/noise.c \
+		draw/get_grad.c \
+		draw/perlin_setup.c \
+		draw/perlin_calcs.c \
+		draw/stereoscopy.c \
 		\
 		events/ft_event.c \
 		events/ft_keyboard.c \
@@ -80,27 +90,40 @@ SRCS  = draw/anti_aliasing.c \
 		ui/json/fill_str_json.c \
 		ui/json/color_toa.c \
 		ui/json/my_strcopy.c \
+		ui/json/strcpy_int.c \
 		ui/json/strcpy_db.c \
 		ui/json/strcpy_vec.c \
 		ui/json/size_of_object_json.c \
-		ui/json/fill_object_json.c \
+		ui/json/fill_object_spe_json.c \
+		ui/json/fill_object_common_json.c \
 		ui/create_ui.c \
 		ui/create_sub_notebook.c \
 		ui/toolbar.c \
 		ui/create_light_ui.c \
 		ui/create_camera_ui.c \
 		ui/create_object_ui.c \
+		ui/create_object_ui2.c \
+		ui/create_object_file_tex_ui.c \
 		ui/create_limited_object_ui.c \
 		ui/create_options_ui.c \
 		ui/set_wid_data.c \
 		ui/create_widgets.c \
+		ui/create_widgets2.c \
 		ui/modify_light.c\
 		ui/modify_light2.c\
+		ui/modify_light_caustic.c\
 		ui/modify_obj.c\
 		ui/modify_obj2.c\
+		ui/modify_obj_reflec.c\
 		ui/modify_obj_limited.c\
+		ui/modify_obj_tex.c\
+		ui/modify_obj_tex2.c\
+		ui/modify_obj_tex_perlin.c\
+		ui/modify_obj_tex_bump.c\
+		ui/modify_obj_tex_preset.c\
 		ui/modify_obj_type.c \
 		ui/modify_options.c\
+		ui/modify_options2.c\
 		ui/modify_camera.c \
 		ui/entry_change_scale.c \
 		ui/click_open.c \
@@ -119,6 +142,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/chose_color.c \
 		ui/ui_event_tools.c \
 		ui/get_double_from_entry.c \
+		ui/create_object_texture_ui.c \
 		\
 		clustering/init_host.c \
 		clustering/init_client.c \

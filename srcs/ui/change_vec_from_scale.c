@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:36:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 20:02:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/11 15:41:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec, int
 		{
 			str = gtk_entry_get_text(GTK_ENTRY(son));
 			value = get_double_from_entry(son, mode_infinity, limits.x, limits.y);
-			printf("value = %lf\n", value);
 			fill_vec(vec, value);
 		}
 		lst = lst->next;

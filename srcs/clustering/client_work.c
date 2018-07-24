@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 16:53:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 18:06:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ static void			recv_data(int sock)
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
 	size_json = buf_to_int(tmp);
+	printf("--%d--\n", size_json);
 	if (!(json = (char*)malloc(sizeof(char) * size_json)))
 		exit_cause("malloc error");
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
+	ft_putendl(json);
 	parse_for_client(g_data, json);
 	if (recv(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
 		exit_cause("recv fail");

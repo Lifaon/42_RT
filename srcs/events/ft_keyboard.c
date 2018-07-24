@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_keyboard.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 17:53:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/19 22:46:24 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:54:45 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int		do_event(int key, t_data *param)
 	return (0);
 }
 
-gboolean		ft_keyboard(GtkWidget *widget, GdkEventKey *event, gpointer param)
+gboolean		ft_keyboard(GtkWidget *widget,
+							GdkEventKey *event, gpointer param)
 {
 	int					ret;
 	t_data				*par;
@@ -55,6 +56,5 @@ gboolean		ft_keyboard(GtkWidget *widget, GdkEventKey *event, gpointer param)
 		put_gdk_image();
 	if (ret == -1)
 		exit_all(par);
-    //gtk_widget_grab_default(g_data->ui->ev_box);
 	return (0);
 }

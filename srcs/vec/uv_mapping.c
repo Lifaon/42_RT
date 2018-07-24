@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:00 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 19:59:54 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/21 09:02:14 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	uv_mapping_plane(t_obj obj, t_vec ray, t_inter *inter)
 	vp = vec_substract(vp, obj.pos);
 	vp_len = get_length(vp);
 	vp = vec_normalize(vp);
-	inter->uv.x = (int)(dot_product(vp, obj.y_dir) * vp_len * obj.tex_scale) \
-		+ (obj.tex->size.x / 2) - obj.tex_pos.x;
-	inter->uv.y = (int)(dot_product(vp, obj.z_dir) * vp_len * obj.tex_scale) \
-		+ (obj.tex->size.y / 2) + obj.tex_pos.y;
+	inter->uv.x = (int)(dot_product(vp, obj.y_dir) * vp_len \
+		/ (obj.tex_scale * .01)) + (obj.tex->size.x / 2) - obj.tex_pos.x;
+	inter->uv.y = (int)(dot_product(vp, obj.z_dir) * vp_len \
+		/ (obj.tex_scale * .01)) + (obj.tex->size.y / 2) + obj.tex_pos.y;
 	if (obj.tex_repeat)
 	{
 		inter->uv.x %= obj.tex->size.x;
@@ -69,7 +69,7 @@ void	uv_mapping_cyl_cone(t_obj obj, t_vec ray, t_inter *inter)
 	if (dot_product(obj.z_dir, vp) < 0)
 		u = 1 - u;
 	inter->uv.y = (obj.tex->size.y / 2) - (int)(dot_product(obj.dir, vp) \
-		* vp_len * obj.tex_scale) + obj.tex_pos.x;
+		* vp_len / (obj.tex_scale * .01)) + obj.tex_pos.x;
 	if (obj.tex_repeat)
 	{
 		inter->uv.y %= obj.tex->size.y;
@@ -92,5 +92,9 @@ int		uv_mapping(t_obj obj, t_vec ray, t_inter *inter)
 	if (inter->uv.x >= 0 && inter->uv.x < obj.tex->size.x \
 		&& inter->uv.y >= 0 && inter->uv.y < obj.tex->size.y)
 		return (obj.tex->pxl[inter->uv.x + (inter->uv.y * obj.tex->size.x)]);
+	else if (obj.color_type == COLOR_CHECKERBOARD)
+		return (checkerboard(obj, ray, inter).c);
+	else if (obj.color_type == COLOR_RAINBOW)
+		return (rainbow(obj, ray, inter).c);
 	return (obj.color.c);
 }

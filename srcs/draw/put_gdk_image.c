@@ -32,6 +32,8 @@ void	put_gdk_image(void)
 			black_and_white(g_data);
 		else if (g_data->filter == FILTER_SEPIA)
 			sepia(g_data);
+		else if (g_data->filter == FILTER_STEREO)
+			get_stereo();
 	}
 	put_pixelbuf_to_widget(g_data->img, NULL);
 	gtk_widget_show_all(g_data->win);

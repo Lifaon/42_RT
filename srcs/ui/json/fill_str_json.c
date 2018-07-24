@@ -25,6 +25,8 @@ static char		*str_cams(char *str)
 		str = strcpy_vec(str, g_data->cams[i].pos);
 		str = my_strcopy(str, ",\n\t\t\t\"fov\" : ");
 		str = strcpy_db(str, g_data->cams[i].fov);
+		str = my_strcopy(str, ",\n\t\t\t\"angle\" : ");
+		str = strcpy_vec(str, g_data->cams[i].angle);
 		i++;
 		if (i == CAM_NB)
 			str = my_strcopy(str, "\n\t\t}\n");
@@ -51,6 +53,10 @@ static char		*str_lights(char *str)
 		str = strcpy_vec(str, g_data->lights[i].pos);
 		str = my_strcopy(str, ",\n\t\t\t\"ambiant\" : ");
 		str = strcpy_db(str, g_data->lights[i].ambi);
+		str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
+		str = strcpy_db(str, g_data->lights[i].r);
+		str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
+		str = color_toa(str, g_data->lights[i].color);
 		i++;
 		if (i == g_data->nb_lights)
 			str = my_strcopy(str, "\n\t\t}\n");
@@ -88,14 +94,9 @@ static char		*str_objects(char *str)
 	while (i < g_data->nb_objects)
 	{
 		str = str_obj_type(str, g_data->objs[i].obj_type);
-		str = my_strcopy(str, "\t\t{\n");
-		str = my_strcopy(str, "\t\t\t\"position\" : ");
-		str = strcpy_vec(str, g_data->objs[i].pos);
-		str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
-		str = color_toa(str, g_data->objs[i].color);
-		str = my_strcopy(str, ",\n\t\t\t\"alpha\" : ");
-		str = strcpy_db(str, g_data->objs[i].alpha);
-		str = fill_object_json(str, g_data->objs[i].obj_type, i);
+		//str = my_strcopy(str, "\t\t{\n");
+		/*str = fill_object_common_json(str, &g_data->objs[i]);
+		str = fill_object_spe_json(str, &g_data->objs[i]);*/
 		i++;
 		if (i == g_data->nb_objects)
 			str = my_strcopy(str, "\n\t\t}\n");

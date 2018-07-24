@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/05 03:22:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:02:39 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "parse.h"
 #include "vec.h"
+#include <limits.h>
 
-void	init_function_ptrs(t_data *data)
+void			init_function_ptrs(t_data *data)
 {
 	data->intersect[0] = intersect_sphere;
 	data->intersect[1] = intersect_plane;
@@ -32,10 +33,10 @@ void	init_function_ptrs(t_data *data)
 	data->limit[5] = &limit_cone;
 }
 
-t_data		*data_init(int ac, char **av)
+t_data			*data_init(int ac, char **av)
 {
-	t_point		size;
 	t_data		*data;
+	char		*chr;
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
@@ -43,14 +44,25 @@ t_data		*data_init(int ac, char **av)
 	data->px = 0;
 	data->cel_shading = 0;
 	data->depth_of_field = -1;
+	data->dof_coeff = 0.8;
 	data->filter = FILTER_NONE;
+	data->depth_max = 4;
 	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;
-	data->ui = NULL;
+	data->photon_map = NULL;
+	data->photon_total = 5000000;
+	data->photon_ppx = 20;
+	data->photon_size = 2.5;
+	data->stereo_scale = 10;
 	init_cameras(data);
 	init_function_ptrs(data);
 	data->img = NULL;
 	data->draw = 1;
+	chr = ft_strstr(av[0], "/rt");
+	data->path = ft_strsub(av[0], 2, ft_strlen(av[0]) - (ft_strlen(chr) + 1));
+	data->long_path = ft_strnew(PATH_MAX);
+	getcwd(data->long_path, PATH_MAX);
+	data->long_path = ft_strjoin_free(data->long_path, "/");
 	return (data);
 }

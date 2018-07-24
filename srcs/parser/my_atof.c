@@ -6,13 +6,32 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 13:57:43 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/04 13:03:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 19:02:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-double	my_atof(char const *str)
+static double	my_atof_inf(char *str)
+{
+	double	ret;
+	int		i;
+
+	i = 0;
+	if (read_quotes(str, "\"inf\"", &i))
+		ret = INFINITY;
+	else if (read_quotes(str, "\"infinity\"", &i))
+		ret = INFINITY;
+	else if (read_quotes(str, "\"-inf\"", &i))
+		ret = -INFINITY;
+	else if (read_quotes(str, "\"-infinity\"", &i))
+		ret = -INFINITY;
+	else
+		ret = 0;
+	return (ret);
+}
+
+double			my_atof(char *str)
 {
 	double	ret;
 	int		coeff;
@@ -20,6 +39,8 @@ double	my_atof(char const *str)
 	int		sign;
 
 	i = 0;
+	if (str[i] == '\"')
+		return (my_atof_inf(str));
 	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == ' '))
 		++i;
 	sign = (str[i] == '-' ? -1 : 1);

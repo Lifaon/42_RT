@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 03:38:24 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/05 02:10:51 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:25:49 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	draw_edge_image(char *edges, uint32_t *pxl, t_point size)
 	i = -1;
 	while (++i < NB_THR)
 		pthread_join(thread[i], NULL);
-	fill_edges(edges, g_data->img->pxl, size);
+	fill_edges(edges, pxl, size);
 }
 
 void		cel_shading(void)

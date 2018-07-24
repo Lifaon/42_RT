@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_vector_choose.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:28:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:41:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label,
 	GtkSizeGroup	*group;
 	t_wid_data		frame_d;
 	GtkWidget		*frame;
-	GtkWidget		*entry;
 
 	if (!(group = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);

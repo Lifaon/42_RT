@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 02:09:32 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 10:21:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:20:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_color			shadow(t_light light, t_inter inter, t_vec ray, double len)
 		len -= inter.t;
 		inter.origin = inter.ip;
 		tmp = substract_colors(light.color, tmp);
-		tmp = col_multiply(tmp, inter.trans_at_ip);
+		tmp = col_multiply(tmp, 1 - inter.trans_at_ip);
 		shadow = substract_colors(shadow, tmp);
 	}
 	return (blend(light, base, shadow, trans));

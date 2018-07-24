@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strcpy_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 14:33:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 14:33:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:28:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ char			*strcpy_color(char *str, t_color color)
 {
 	size_t			size;
 	size_t			cpy_size;
-	unsigned int	nb;
-	char			*dst;
 
 	size = size_color(color);
 	cpy_size = size;

@@ -1,0 +1,74 @@
+{
+	"cameras" :
+	[
+		{
+			"position" : [200.0, 0.0, -3000.0],
+			"fov" : 20.0,
+			"angle" : [0.0, 0.0, 0.0]
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0,
+			"angle" : [0.0, 0.0, 0.0]
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0,
+			"angle" : [0.0, 0.0, 0.0]
+		},
+		{
+			"position" : [0.0, 0.0, 0.0],
+			"fov" : 70.0,
+			"angle" : [0.0, 0.0, 0.0]
+		}
+	],
+	"lights" :
+	[
+		{
+			"position" : [-800.0, 500.0, 500.0],
+			"angle" : [30.0, -30.0, 0.0],
+			"is_para" : 1,
+			"ambiant" : 0.4,
+			"radius" : 1.0,
+			"color" : [255, 255, 255, 255]
+		}
+	],
+	"objects" :
+	{
+		"plane" :
+		{
+			"angle" : [90.0, 0.0, 0.0],
+			"specular" : 0.0,
+			"position" : [0.0, 0.0, 1750.0],
+			"color" : [255, 255, 255, 255],
+			"alpha" : 100.0,
+			"trans" : 0.0,
+			"shiny" : 0.0,
+			"ior" : 1.0,
+			"limit" : "none",
+			"texture" : "textures/rocks.png",
+			"tex_pos" : [0, 0],
+			"tex_scale" : 200.0,
+			"tex_repeat" : 1,
+			"tex_limit" : 1,
+			"tex_trans" : 0.0
+		},
+		"sphere" :
+		{
+			"radius" : 300.0,
+			"position" : [0.0, 0.0, 1000.0],
+			"color" : [0, 145, 208, 255],
+			"alpha" : 100.0,
+			"trans" : 0.59,
+			"shiny" : 0.0,
+			"ior" : 1.5,
+			"limit" : "none",
+			"color2" : [0, 83, 186, 255],
+			"color_type" : 1,
+			"color_scale" : 10,
+			"bump_flag" : 1,
+			"bump_scale" : 49,
+			"bump_intensity" : 0.31
+		}
+	}
+}

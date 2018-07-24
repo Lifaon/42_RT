@@ -23,14 +23,13 @@ static int		construct_phase_3(t_wid_data *wid_d, t_obj *obj)
 int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 {
 	GtkSizeGroup	*group;
-	t_vec			vec;
 	GtkWidget		*check_b;
 
 	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
 		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_obj_focus;
-	if (!(check_b = new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus, 
+	if (!(check_b = new_check_button(wid_d, "DOF Focus", g_ui->gp_dof_focus,
 		g_ui->gp_dof_focus)))
 		return (0);
 	wid_d->pos.y = 2;

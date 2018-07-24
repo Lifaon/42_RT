@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 17:17:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 10:03:07 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 22:03:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int			first_hit(t_data *data, t_vec ray, t_inter *inter)
 	int		i;
 
 	t = INFINITY;
-	inter->min_dist = 0.01;
 	inter->origin = data->cam.pos;
 	i = -1;
 	while (++i < data->nb_objects)

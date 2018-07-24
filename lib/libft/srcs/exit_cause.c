@@ -15,5 +15,5 @@
 void		exit_cause(char *cause)
 {
 	ft_putendl_color(cause, "red");
-	exit(1);
+	exit(0);
 }

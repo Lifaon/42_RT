@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/10 00:09:49 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 17:24:11 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,37 @@
 # include <stdint.h>
 # include "defines.h"
 # include "mygtk.h"
+# include "clust.h"
+
+typedef int SOCKET;
+typedef struct sockaddr_in SOCKADDR_IN;
+typedef struct sockaddr SOCKADDR;
+
+typedef struct			s_client
+{
+	int					x;
+	int					nb_client;
+	SOCKET				csock;
+	struct sockaddr_in	csin;
+	int					working;
+	pthread_t			thread;
+	struct s_client		*next;
+}						t_client;
+
+typedef struct			s_clust
+{
+	SOCKET				sock;
+	struct sockaddr_in	sin;
+	struct s_client		*client_l;
+}						t_clust;
+
+typedef struct			s_sockaddr_in
+{
+	short				sin_family;
+	unsigned short		sin_port;
+	struct in_addr		sin_addr;
+	char				sin_zero[8];
+}						t_sockaddr_in;
 
 typedef struct		s_vec
 {
@@ -24,8 +55,8 @@ typedef struct		s_vec
 	double			z;
 }					t_vec;
 /*
-**	Storing 3D coordinates or 3D vectors.
-*/
+ **	Storing 3D coordinates or 3D vectors.
+ */
 
 typedef union		u_color
 {
@@ -39,8 +70,8 @@ typedef union		u_color
 	}				argb;
 }					t_color;
 /*
-**	Usage of an union for easy color management.
-*/
+ **	Usage of an union for easy color management.
+ */
 
 typedef struct		s_added
 {
@@ -50,8 +81,8 @@ typedef struct		s_added
 	int				a;
 }					t_added;
 /*
-**	To add colors.
-*/
+ **	To add colors.
+ */
 
 typedef struct		s_inter
 {
@@ -70,14 +101,14 @@ typedef struct		s_inter
 	t_vec			origin;
 }					t_inter;
 /*
-**	Intersection structure -> obj_i is the object index used to know which
-**	object was intersected ; t1, t2 and delta are used for equations of degree
-**	two, and t is the smallest positive number between t1 and t2 ; min_dist =
-**	minimum distance before we consider there is an intersection ; spec =
-**	specular shading at the intersection point ; ip = intersection point ;
-**	normal = the normal of the object at 'ip' ; oc = vector between origin of
-**	the current ray and center of the current object.
-*/
+ **	Intersection structure -> obj_i is the object index used to know which
+ **	object was intersected ; t1, t2 and delta are used for equations of degree
+ **	two, and t is the smallest positive number between t1 and t2 ; min_dist =
+ **	minimum distance before we consider there is an intersection ; spec =
+ **	specular shading at the intersection point ; ip = intersection point ;
+ **	normal = the normal of the object at 'ip' ; oc = vector between origin of
+ **	the current ray and center of the current object.
+ */
 
 typedef struct		s_camera
 {
@@ -88,10 +119,10 @@ typedef struct		s_camera
 	double			fov;
 }					t_camera;
 /*
-**	Cam struct -> pos = position ; angle = angle of vue ; vp_up_left = point at
-**	the top left of the view_place ; vp_dist = distance between the camera and
-**	the view plane ; fov = field of view.
-*/
+ **	Cam struct -> pos = position ; angle = angle of vue ; vp_up_left = point at
+ **	the top left of the view_place ; vp_dist = distance between the camera and
+ **	the view plane ; fov = field of view.
+ */
 
 typedef struct		s_light
 {
@@ -106,9 +137,9 @@ typedef struct		s_light
 	t_color			color_neg;
 }					t_light;
 /*
-**	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
-**	r = radius of the light source ; pos = position ; dir = direction.
-*/
+ **	light struct -> is_para = 0 or 1 wether the light source is parallel or not ;
+ **	r = radius of the light source ; pos = position ; dir = direction.
+ */
 
 typedef struct		s_obj
 {
@@ -142,14 +173,14 @@ typedef struct		s_obj
 	double			ior;
 }					t_obj;
 /*
-**	Object structure -> r = radius ; spec = specular coefficent for Phong
-**	shading ; pos = position which defines the object ; dir = direction in
-**	case it has one ; oc = vector between the current camera and 'pos' ;
-**	normal = surface normal in case it's constant (e.g. plane) ; limits, with
-**	min and max lengths either on the directional axis or the primary axis
-**	y_dir and z_dir are vectors stored to avoid having to calculate them
-**	for each intersection.
-*/
+ **	Object structure -> r = radius ; spec = specular coefficent for Phong
+ **	shading ; pos = position which defines the object ; dir = direction in
+ **	case it has one ; oc = vector between the current camera and 'pos' ;
+ **	normal = surface normal in case it's constant (e.g. plane) ; limits, with
+ **	min and max lengths either on the directional axis or the primary axis
+ **	y_dir and z_dir are vectors stored to avoid having to calculate them
+ **	for each intersection.
+ */
 
 typedef struct		s_ui
 {
@@ -187,22 +218,23 @@ typedef struct		s_data
 	void			*win;
 	t_pixelbuf		*img;
 	t_ui			*ui;
-	int				draw;//
-	int				clust;
+	int				draw;
+	int				clust_i;
+	t_clust			clust;
 	int				x;
 	int				nb_client;
 	int				test;
-	uint32_t		*img_clus;
+	uint32_t		*cimg;
 }					t_data;
 /*
-**	Struct used to store objects, light sources, and the 4 possible cameras, in
-**	addition with the mlx struct;
-*/
+ **	Struct used to store objects, light sources, and the 4 possible cameras, in
+ **	addition with the mlx struct;
+ */
 
 t_data				*g_data;
 /*
-**	Global variable of the data structure.
-*/
+ **	Global variable of the data structure.
+ */
 
 typedef struct		s_funar_keyb
 {
@@ -210,9 +242,9 @@ typedef struct		s_funar_keyb
 	void			(*f)(t_data*);
 }					t_funar_keyb;
 /*
-** This structure is used to handle the keyboard event
-** fill f with the function you want to use when the key is pushed
-*/
+ ** This structure is used to handle the keyboard event
+ ** fill f with the function you want to use when the key is pushed
+ */
 typedef struct		s_wid_data
 {
 	t_point			pos;
@@ -223,9 +255,9 @@ typedef struct		s_wid_data
 	void			(*f)(GtkWidget*, gpointer);
 }					t_wid_data;
 /*
-** This structure is used to make widget, position it to a grid
-** and link to function
-*/
+ ** This structure is used to make widget, position it to a grid
+ ** and link to function
+ */
 
 typedef struct		s_widget_vec
 {

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/27 20:19:41 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 17:17:08 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,10 @@
 # define FILTER_NONE 0
 # define FILTER_BNW 1
 # define FILTER_SEPIA 2
+
+# define CLUST_NONE 0
+# define CLUST_HOST 1
+# define CLUST_CLIENT 2
+# define NB_CLIENT_MAX 5
 
 #endif

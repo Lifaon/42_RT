@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 18:49:37 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 19:10:03 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	draw_pixels(t_data *data, t_vec vp, t_point crd)
 		px.x = -1;
 		while (++px.x < g_data->px)
 			pt_to_pixelbuf(\
-				(t_point){crd.x + px.x, crd.y + px.y}, data->img, color.c);
+			(t_point){crd.x + px.x, crd.y + px.y}, data->img, color.c);
 	}
 }
 
@@ -40,6 +40,7 @@ static void	*draw_pixelated_thread(void *thr)
 	t_vec		vp;
 	int			i;
 	int			ymax;
+	int			xmax;
 
 	i = *((int *) thr);
 	vp = g_data->cam.vp_up_left;
@@ -49,7 +50,7 @@ static void	*draw_pixelated_thread(void *thr)
 	{
 		crd.x = 0;
 		vp.y = g_data->cam.vp_up_left.y - ((g_data->px * 0.5) + (double)crd.y);
-		while (crd.x < WIN_W)
+		while (crd.x < WIN_H)
 		{
 			vp.x = g_data->cam.vp_up_left.x + ((g_data->px * 0.5) + (double)crd.x);
 			draw_pixels(g_data, vp, crd);

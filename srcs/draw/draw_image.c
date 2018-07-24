@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/09 21:13:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 17:06:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,26 @@ static void	*draw_thread(void *thr)
 	t_vec		vp;
 	int			i;
 	int			ymax;
+	int			xmax;
 
 	vp = g_data->cam.vp_up_left;
 	i = *((int *) thr);
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
+	xmax = (WIN_W / (g_data->nb_client + 1)) * (g_data->x + 1) + 0.5;
+	printf("xmax = %d\n", xmax);
 	while (++crd.y < ymax)
 	{
-		crd.x = (g_data->x / g_data->nb_client) * WIN_W;
 		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
-		while (++crd.x < (((g_data->x + 1) / g_data->nb_client) *  WIN_W))
+		crd.x = ((WIN_W / (g_data->nb_client + 1)) * g_data->x);
+		while (crd.x < xmax + 1)
 		{
 			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
-			if (g_data->clust == 0)
-				pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
+			if (g_data->clust_i == CLUST_CLIENT)
+				g_data->cimg[crd.x + (crd.y * WIN_W)] = draw_pixel(g_data, vp).c;
 			else
-				g_data->img_clus[crd.x + (crd.y * (((g_data->x + 1) / g_data->nb_client) * WIN_W))] = draw_pixel(g_data, vp).c;
+				pt_to_pixelbuf(crd, g_data->img, draw_pixel(g_data, vp).c);
+			crd.x++;
 		}
 	}
 	pthread_exit(NULL);
@@ -70,6 +74,8 @@ static void	*draw_thread(void *thr)
 
 void		draw_image(void)
 {
+	ft_putendl_color("in draw_image", "orange");
+
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];
 	int			i;

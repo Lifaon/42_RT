@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 22:38:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 17:20:38 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 20:06:45 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	put_gdk_image(void)
 		else if (g_data->filter == FILTER_STEREO)
 			get_stereo();
 	}
-	put_pixelbuf_to_widget(g_data->img, NULL);
-	gtk_widget_show_all(g_data->win);
+	if (g_data->clust_i == CLUST_NONE)
+	{
+		put_pixelbuf_to_widget(g_data->img, NULL);
+		gtk_widget_show_all(g_data->win);
+	}
 }

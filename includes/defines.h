@@ -22,7 +22,7 @@
 /*
 **	Number of threads used
 */
-# define NB_THR 8
+# define NB_THR 16
 
 /*
 **	Number of cameras used

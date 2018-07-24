@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcpy_int.c                                       :+:      :+:    :+:   */
+/*   size_pt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/24 13:41:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 13:42:03 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/07/24 13:53:34 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/07/24 13:53:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-char	*strcpy_int(char *str, int n)
-{
-	size_t			size;
-	size_t			cpy_size;
-	unsigned int	nb;
+/*
+** min size is because the vector is put that way : [2, 5]
+** so if we add '[' + ']' + ' ' +  ',' = 4
+*/
 
-	size = size_int(n);
-	cpy_size = size;
-	if (n == 0)
-		str[--size] = '0';
-	nb = (n < 0) ? -n : n;	
-	while (--size > 0 && nb)
-	{
-		str[size] = '0' + (nb % 10);
-		nb /= 10;
-	}
-	str[0] = '0' + nb;
-	if (n < 0)
-		str[0] = '-';
-	str += cpy_size;
-	return (str);
+size_t		size_pt(t_point pt)
+{
+	return (4 + size_int(pt.x) + size_double(pt.y));
 }

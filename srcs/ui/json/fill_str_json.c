@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:21:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:20:13 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ static char		*str_cams(char *str)
 	return (str);
 }
 
+static char		*str_one_light(char *str, t_light *light)
+{
+	str = my_strcopy(str, "\t\t{\n");
+	str = my_strcopy(str, "\t\t\t\"position\" : ");
+	str = strcpy_vec(str, light->pos);
+	str = my_strcopy(str, "\t\t\t\"angle\" : ");
+	str = strcpy_vec(str, light->angle);
+	str = my_strcopy(str, ",\n\t\t\t\"is_para\" : ");
+	str = strcpy_int(str, light->is_para);
+	str = my_strcopy(str, ",\n\t\t\t\"ambiant\" : ");
+	str = strcpy_db(str, light->ambi);
+	str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
+	str = strcpy_db(str, light->r);
+	str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
+	str = strcpy_color(str, light->color);
+	return (str);
+}
+
 static char		*str_lights(char *str)
 {
 	int			i;
@@ -48,15 +66,7 @@ static char		*str_lights(char *str)
 	str = my_strcopy(str, "\t\"lights\" :\n\t[\n");
 	while (i < g_data->nb_lights)
 	{
-		str = my_strcopy(str, "\t\t{\n");
-		str = my_strcopy(str, "\t\t\t\"position\" : ");
-		str = strcpy_vec(str, g_data->lights[i].pos);
-		str = my_strcopy(str, ",\n\t\t\t\"ambiant\" : ");
-		str = strcpy_db(str, g_data->lights[i].ambi);
-		str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
-		str = strcpy_db(str, g_data->lights[i].r);
-		str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
-		str = color_toa(str, g_data->lights[i].color);
+		str = str_one_light(str, &g_data->lights[i]);
 		i++;
 		if (i == g_data->nb_lights)
 			str = my_strcopy(str, "\n\t\t}\n");
@@ -70,43 +80,6 @@ static char		*str_lights(char *str)
 	return (str);
 }
 
-static char		*str_obj_type(char *str, int type)
-{
-	str = my_strcopy(str, "\t\t\"");
-	if (type == SPHERE)
-		str = my_strcopy(str, "sphere");
-	else if (type == PLANE)
-		str = my_strcopy(str, "plane");
-	else if (type == CYLINDER)
-		str = my_strcopy(str, "cylinder");
-	else if (type == CONE)
-		str = my_strcopy(str, "cone");
-	str = my_strcopy(str, "\" :\n");
-	return (str);
-}
-
-static char		*str_objects(char *str)
-{
-	int			i;
-
-	i = 0;
-	str = my_strcopy(str, "\t\"objects\" :\n\t{\n");
-	while (i < g_data->nb_objects)
-	{
-		str = str_obj_type(str, g_data->objs[i].obj_type);
-		//str = my_strcopy(str, "\t\t{\n");
-		/*str = fill_object_common_json(str, &g_data->objs[i]);
-		str = fill_object_spe_json(str, &g_data->objs[i]);*/
-		i++;
-		if (i == g_data->nb_objects)
-			str = my_strcopy(str, "\n\t\t}\n");
-		else
-			str = my_strcopy(str, "\n\t\t},\n");
-	}
-	str = my_strcopy(str, "\t}\n}");
-	return (str);
-}
-
 char			*fill_str_json(size_t size)
 {
 	char	*str;
@@ -116,7 +89,7 @@ char			*fill_str_json(size_t size)
 	dst = str;
 	str = str_cams(str);
 	str = str_lights(str);
-	str = str_objects(str);
+	str = fill_objects_json(str);
 	str[0] = '\0';
 	return (dst);
 }

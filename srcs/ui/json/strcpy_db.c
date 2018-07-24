@@ -6,12 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:51:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/05/29 17:01:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 14:40:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "ui.h"
 
 static size_t	get_size_integer(double n, long *integer)
 {
@@ -71,6 +70,10 @@ char			*strcpy_db(char *str, double n)
 	size_t		size;
 	size_t		cpy_size;
 
+	if (n == INFINITY)
+		return (my_strcopy(str, "\"inf\""));
+	if (n == -INFINITY)
+		return (my_strcopy(str, "\"-inf\""));
 	size = get_size(n, &integer, &decimal);
 	if (n < 0)
 		size++;

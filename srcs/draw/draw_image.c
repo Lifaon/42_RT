@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:16:23 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 17:06:12 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 18:55:28 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void		*draw_thread(void *thr)
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
 	xmax = (WIN_W / (g_data->nb_client + 1)) * (g_data->x + 1) + 0.5;
-	printf("xmax = %d\n", xmax);
 	while (++crd.y < ymax)
 	{
 		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
@@ -68,8 +67,6 @@ static void		*draw_thread(void *thr)
 
 void			draw_image(void)
 {
-	ft_putendl_color("in draw_image", "orange");
-
 	pthread_t	thread[NB_THR];
 	int			arr[NB_THR];
 	int			i;

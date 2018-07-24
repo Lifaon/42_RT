@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_toa.c                                        :+:      :+:    :+:   */
+/*   strcpy_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 22:32:46 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:12:19 by fchevrey         ###   ########.fr       */
+/*   Created: 2018/07/24 14:33:03 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/07/24 14:33:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char		*write_uint8(char *str, uint8_t nb, size_t *index)
 	return (str);
 }
 
-char			*color_toa(char *str, t_color color)
+char			*strcpy_color(char *str, t_color color)
 {
 	size_t			size;
 	size_t			cpy_size;

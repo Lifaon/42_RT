@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 22:57:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/22 16:50:59 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 20:51:20 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	fill_color_tabs(t_data *data, t_vec pt, t_color *color_tabs[81])
 	int			i;
 	int			j;
 
-	ptr = data->img->pxl;
+	ptr = data->clust_i == CLUST_CLIENT ? data->cimg : data->img->pxl;
 	i = -1;
 	angle.z = 0;
 	while (++i < 9)
@@ -50,15 +50,21 @@ static void	fill_color_tabs(t_data *data, t_vec pt, t_color *color_tabs[81])
 			angle.x = -data->dof_coeff + (data->dof_coeff * 0.25 * j);
 			data->cam = data->cams[data->i];
 			rotate_around_point(data, pt, angle);
-			data->img->pxl = (uint32_t *)color_tabs[i * 9 + j];
+			if (data->clust_i == CLUST_CLIENT)
+				data->cimg = (uint32_t*)color_tabs[i * 9 + j];
+			else
+				data->img->pxl = (uint32_t *)color_tabs[i * 9 + j];
 			draw_image();
 		}
 	}
 	ft_putstr("\rDepth_of_field : %100\n");
-	data->img->pxl = ptr;
+	if (data->clust_i == CLUST_CLIENT)
+		data->cimg = ptr;
+	else
+		data->img->pxl = ptr;
 }
 
-static void	blend(t_pixelbuf *img, t_color *color_tabs[81], int size)
+static void	blend(uint32_t *img, t_color *color_tabs[81], int size)
 {
 	t_added	added;
 	float	coeff;
@@ -78,7 +84,7 @@ static void	blend(t_pixelbuf *img, t_color *color_tabs[81], int size)
 			added.b += color_tabs[j][i].argb.b;
 			added.a += color_tabs[j][i].argb.a;
 		}
-		img->pxl[i] = (t_color){.argb.r = added.r / coeff, \
+		img[i] = (t_color){.argb.r = added.r / coeff, \
 			.argb.g = added.g / coeff, .argb.b = added.b / coeff, \
 			.argb.a = added.a / coeff}.c;
 	}
@@ -90,10 +96,21 @@ void		depth_of_field(void)
 	t_vec	point;
 	int		i;
 
+	static int h = 0;
+	TESTS(++h);
 	point = g_data->objs[g_data->depth_of_field].pos;
+
+	TESTS(++h);
 	malloc_tabs(g_data, color_tabs);
+
+	TESTS(++h);
 	fill_color_tabs(g_data, point, color_tabs);
-	blend(g_data->img, color_tabs, WIN_W * WIN_H);
+
+	TESTS(++h);
+	blend(g_data->clust_i == CLUST_CLIENT ? g_data->cimg : g_data->img->pxl, \
+			color_tabs, WIN_W * WIN_H);
+
+	TESTS(++h);
 	i = -1;
 	while (++i < 81)
 		free(color_tabs[i]);

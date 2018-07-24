@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 08:50:50 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 18:22:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,26 @@ int				get_int_obj_type(const char *type);
 char			*get_str_obj_type(int type);
 
 /*
-** Simple function to handle number and string for specific matters
+** Simple function to handle number and string for json editor
 */
 char			*join_int(char const *s1, int n);
 size_t			size_int(int n);
 size_t			size_double(double n);
+size_t			size_pt(t_point pt);
 size_t			size_vec(t_vec vec);
 size_t			size_color(t_color color);
 size_t			size_of_str_json(void);
+size_t			size_of_objects_json(void);
+size_t			size_of_object_common_json(t_obj *obj);
 char			*my_strcopy(char *dest, char const *src);
 char			*strcpy_db(char *str, double n);
 char			*strcpy_vec(char *str, t_vec vec);
 char			*strcpy_int(char *str, int n);
-char			*color_toa(char *str, t_color color);
+char			*strcpy_pt(char *str, t_point pt);
+char			*strcpy_color(char *str, t_color color);
+char			*fill_object_common_json(char *str, t_obj *obj);
+char			*fill_objects_json(char *str);
+char			*fill_str_json(size_t size);
 
 /*
 ** function for handle user interface event :
@@ -105,10 +112,6 @@ void			click_open(GtkWidget *widget, gpointer param);
 void			click_save(GtkWidget *widget, gpointer param);
 void			click_export(GtkWidget *widget, gpointer param);
 void			click_redraw(GtkWidget *widget, gpointer param);
-size_t			size_of_str_json(void);
-char			*fill_object_json(char *str, int type, int i);
-int				size_of_object_json(int size, int type, int i);
-char			*fill_str_json(size_t size);
 
 /*
 ** => light event
@@ -214,7 +217,8 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
 void			free_to_free(void *content);//
-double			get_double_from_entry(GtkWidget *wid, int infinity_mode, double min, double max);
+double			get_double_from_entry(GtkWidget *wid, int infinity_mode,
+		double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
 void			set_child_widget_active(GtkContainer *container, gboolean status);
 void			set_entry_and_scale_from_vector(GtkSizeGroup *group,
@@ -223,8 +227,8 @@ int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
 void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
 		gpointer param);
-void		scale_img(const t_pixelbuf *src, t_pixelbuf *dst, t_point new_size,
-		GdkInterpType type);
+void			scale_img(const t_pixelbuf *src, t_pixelbuf *dst,
+		t_point new_size, GdkInterpType type);
 void			file_error(GtkWidget *select);
 
 #endif

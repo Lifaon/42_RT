@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:18:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 16:57:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 18:37:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 static int		add_bump(t_wid_data *wid_d, t_obj *obj, 
 	GtkSizeGroup *gp_bump)
 {
-	GtkWidget		*w;
+	GtkWidget		*w[2];
 
 	wid_d->f = check_bump;
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
-	if (!(w = new_check_button(wid_d, "Bump\nmapping", gp_bump, NULL)))
+	if (!(w[1] = new_check_button(wid_d, "Bump\nmapping", gp_bump, NULL)))
 		return (0);
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = change_bump_noise;
-	if (!(w = make_label_and_scale(wid_d, "noise",
-				obj->bump_intensity * 100, w)))
+	if (!(w[0] = make_label_and_scale(wid_d, "noise",
+				obj->bump_intensity * 100, w[0])))
 		return (0);
 	wid_d->pos.y += 2;
 	wid_d->f = change_bump_scale;
-	gtk_size_group_add_widget(gp_bump, w);
+	gtk_size_group_add_widget(gp_bump, w[0]);
 	wid_d->min_max = ptdb_set(10, 1000);
-	if (!(w = make_label_and_scale(wid_d, "bump scale",
-				obj->bump_scale, w)))
+	if (!(w[0] = make_label_and_scale(wid_d, "bump scale",
+				obj->bump_scale, w[0])))
 		return (0);
-	gtk_size_group_add_widget(gp_bump, w);
+	gtk_size_group_add_widget(gp_bump, w[0]);
 	if (obj->bump_flag)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w[1]), TRUE);
 	else
 		set_group_widget_active(gp_bump, FALSE);
 	return (1);
@@ -46,28 +46,28 @@ static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj,
 	GtkSizeGroup *gp_perlin, GtkSizeGroup *gp_check)
 {
 	t_pixelbuf		*pxb;
-	GtkWidget		*w;
+	GtkWidget		*w[2];
 	
 	g_ui->is_active = 1;
 	wid_d->pos = pt_set(0, 0);
 	wid_d->f = &check_rainbow;
-	if (!(w = new_check_button(wid_d, "Rainbow", gp_check, gp_check)))
+	if (!(w[0] = new_check_button(wid_d, "Rainbow", gp_check, gp_check)))
 		return (0);
 	wid_d->pos.x++;
-	if (obj->color_type == COLOR_RAINBOW)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
 	wid_d->f = &check_checkboard;
-	if (!(w = new_check_button(wid_d, "Checkboard", gp_check, gp_check)))
+	if (!(w[1] = new_check_button(wid_d, "Checkboard", gp_check, gp_check)))
 		return (0);
-	if (obj->color_type == COLOR_CHECKERBOARD)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	if (obj->color_type == COLOR_RAINBOW)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w[0]), TRUE);
+	else if (obj->color_type == COLOR_CHECKERBOARD)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w[1]), TRUE);
 	wid_d->f = &check_perlin;
 	wid_d->pos.x++;
-	if (!(w = new_check_button(wid_d, "Perlin", gp_perlin, gp_check)))
+	if (!(w[0] = new_check_button(wid_d, "Perlin", gp_perlin, gp_check)))
 		return (0);
 	g_ui->is_active = 0;
 	if (obj->perl_type != PERLIN_NONE)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w[0]), TRUE);
 	else
 		set_group_widget_active(gp_perlin, FALSE);
 	return (1);

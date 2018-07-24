@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:50:23 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:00:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:12:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light,
 	t_pixelbuf		*pxb;
 	gboolean		para;
 
-	wid_d->pos.y += 2;// = pt_set(wid_d->pos.x - 1, 2);
+	wid_d->pos.y += 2;
 	wid_d->f = &change_light_ambi;
 	set_wid_data_scale(wid_d, 1, ptdb_set(0, 100));
 	if (!(make_label_and_scale(wid_d, "ambiante", light->ambi, light)))

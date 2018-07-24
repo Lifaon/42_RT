@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:36:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 15:41:23 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:11:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void		fill_color(t_color *color, uint8_t nb)
 	i++;
 }
 
-void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec, int
-					mode_infinity, t_ptdb limits)
+void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
+		int mode_infinity, t_ptdb limits)
 {
 	double		value;
 	GtkWidget	*son;
@@ -57,18 +57,18 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec, int
 
 	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(group));
 	while (lst)
-	{	
+	{
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_ENTRY(son))
 		{
 			str = gtk_entry_get_text(GTK_ENTRY(son));
-			value = get_double_from_entry(son, mode_infinity, limits.x, limits.y);
+			value = get_double_from_entry(son, mode_infinity, limits.x,
+					limits.y);
 			fill_vec(vec, value);
 		}
 		lst = lst->next;
 	}
 }
-
 
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec)
 {

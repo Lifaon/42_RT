@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:12:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:16:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int					create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 		return (0);
 	wid_d->pos.y = 1;
 	g_ui->is_active = 1;
-	if (!(sw = switch_new(wid_d, (gpointer)frame_d.grid, is_limited, &switch_obj_limited)))
+	if (!(sw = switch_new(wid_d, (gpointer)frame_d.grid, TRUE, &switch_obj_limited)))
 		return (0);
-	if (is_limited == FALSE)
+	if (is_limited == FALSE && obj->tex_limit == 0)
 		switch_obj_limited(sw, FALSE, (gpointer)frame_d.grid);
 	g_ui->is_active = 0;
 	if (!(add_cb_type(wid_d, (gpointer)cb_lim, obj)))

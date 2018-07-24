@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:18:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 18:37:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:54:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int		add_bump(t_wid_data *wid_d, t_obj *obj,
 static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj, 
 	GtkSizeGroup *gp_perlin, GtkSizeGroup *gp_check)
 {
-	t_pixelbuf		*pxb;
 	GtkWidget		*w[2];
 	
 	g_ui->is_active = 1;
@@ -83,7 +82,7 @@ static int		phase_2(t_wid_data *wid_d, t_obj *obj,
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_perlin_scale;
 	if (!(w = make_label_and_scale(wid_d, "perlin scale",
-				(double)obj->perl_scale, w)))
+				(double)obj->perl_scale, wid_d)))
 		return (0);
 	gtk_size_group_add_widget(gp_perlin, w);
 	wid_d->f = &change_perlin_opacity;
@@ -137,7 +136,6 @@ static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 
 int			create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
 {
-	gboolean		is_limited;
 	GtkWidget 		*frame;
 	t_wid_data		frame_d;
 	GtkSizeGroup	*gp_perlin;	

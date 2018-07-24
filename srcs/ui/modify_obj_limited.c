@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:30:52 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:47:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void		switch_obj_limited(GtkWidget *widget,
 	g_list_free(lst);
 	if (state == TRUE)
 		g_data->objs[g_ui->page_obj].limited = LIMIT_AXE;
-	else if (state == FALSE)
+	else
+	{
 		g_data->objs[g_ui->page_obj].limited = LIMIT_NONE;
-	//set_child_widget_active(GTK_CONTAINER(param), state);
+		g_data->objs[g_ui->page_obj].tex_limit = 0;
+	}
 }
 
 void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
@@ -63,8 +65,8 @@ void		modify_obj_limited_type(GtkWidget *widget, gpointer param)
 	t_obj		*obj;
 	int			type;
 
-	if (!param && !widget)
-		param = NULL;
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	axe = gtk_combo_box_get_active(GTK_COMBO_BOX(widget));
 	obj = &g_data->objs[g_ui->page_obj];
 	if (axe == 0)
@@ -84,9 +86,7 @@ void		change_obj_min(GtkWidget *widget, GdkEvent *event, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (!param && !widget && !event)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param && !event))
 		return ;
 	vec = &g_data->objs[g_ui->page_obj].min;
 	group = (GtkSizeGroup*)param;
@@ -99,9 +99,7 @@ void		change_obj_max(GtkWidget *widget, GdkEvent *event, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (!param && !widget && !event)
-		return ;
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param && !event))
 		return ;
 	vec = &g_data->objs[g_ui->page_obj].max;
 	group = (GtkSizeGroup*)param;

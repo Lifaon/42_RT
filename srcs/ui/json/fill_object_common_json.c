@@ -45,9 +45,11 @@ static char	*fill_textures_json(char *str, t_obj *obj)
 	str = my_strcopy(str, ",\n\t\t\t\"bump_intensity\" : ");
 	str = strcpy_db(str, obj->bump_intensity);
 	str = my_strcopy(str, ",\n\t\t\t\"texture\" : ");
-	str = my_strcpy(str, obj->tex_filename);
+	str = my_strcopy(str, obj->tex_filename);
 	str = my_strcopy(str, ",\n\t\t\t\"tex_pos\" : ");
-	str = strcpy_db(str, obj->tex_pos);
+	str = strcpy_int(str, obj->tex_pos.x);
+	str = my_strcopy(str, ", ");
+	str = strcpy_int(str, obj->tex_pos.y);
 	str = my_strcopy(str, ",\n\t\t\t\"tex_scale\" : ");
 	str = strcpy_db(str, obj->tex_scale);
 	str = my_strcopy(str, ",\n\t\t\t\"tex_repeat\" : ");
@@ -61,8 +63,8 @@ static char	*fill_textures_json(char *str, t_obj *obj)
 
 char 	*fill_object_common_json(char *str, t_obj *obj)
 {
-	str = str_obj_type(str, obj->.obj_type);
-	str = my_strcopy(str, "\t\t{\n");
+	//str = str_obj_type(str, obj->obj_type);
+	//str = my_strcopy(str, "\t\t{\n");
 	str = my_strcopy(str, "\t\t\t\"position\" : ");
 	str = strcpy_vec(str, obj->pos);
 	str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
@@ -77,5 +79,5 @@ char 	*fill_object_common_json(char *str, t_obj *obj)
 	str = strcpy_db(str, obj->ior);
 	str = fill_limits_json(str, obj);
 	str = fill_textures_json(str, obj);
-	return (phase_2(str));
+	return (str);
 }

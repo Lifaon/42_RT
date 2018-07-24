@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#include "ui.h"
 
 char	*strcpy_int(char *str, int n)
 {

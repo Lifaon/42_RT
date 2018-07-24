@@ -56,7 +56,7 @@ static char		*str_lights(char *str)
 		str = my_strcopy(str, ",\n\t\t\t\"radius\" : ");
 		str = strcpy_db(str, g_data->lights[i].r);
 		str = my_strcopy(str, ",\n\t\t\t\"color\" : ");
-		str = color_toa(str, g_data->lights[i].ambi);
+		str = color_toa(str, g_data->lights[i].color);
 		i++;
 		if (i == g_data->nb_lights)
 			str = my_strcopy(str, "\n\t\t}\n");
@@ -94,8 +94,9 @@ static char		*str_objects(char *str)
 	while (i < g_data->nb_objects)
 	{
 		str = str_obj_type(str, g_data->objs[i].obj_type);
-		str = fill_object_common_json(str, &g_data->objs[i]);
-		str = fill_object_spe_json(str, &g_data->objs[i]);
+		//str = my_strcopy(str, "\t\t{\n");
+		/*str = fill_object_common_json(str, &g_data->objs[i]);
+		str = fill_object_spe_json(str, &g_data->objs[i]);*/
 		i++;
 		if (i == g_data->nb_objects)
 			str = my_strcopy(str, "\n\t\t}\n");

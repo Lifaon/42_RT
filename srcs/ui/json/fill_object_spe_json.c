@@ -48,6 +48,9 @@ static char		*fill_cone_json(char *str, t_obj *obj)
 
 char			*fill_object_spe_json(char *str, t_obj *obj)
 {
+	int		type;
+
+	type = obj->obj_type;
 	if (type == SPHERE)
 		str = fill_sphere_json(str, obj);
 	else if (type == PLANE)

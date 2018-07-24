@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 16:59:13 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 20:21:02 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void		parse_lights(t_data *data, char *str, int *index)
 	int in_braces;
 	int i;
 
-	i = -1;
-	while (str[++i] != '[');
+	i = 0;
+	while (str[i] != '[')
+		++i;
 	in_braces = 1;
 	if (!(data->nb_lights = get_nb_lights(str + i)))
 		return ;
 	data->nb_lights_on = data->nb_lights;
 	if (init_lights(data, data->nb_lights))
 	{
-		data->nb_lights = 0;
 		free(str);
 		exit_all(data);
 	}

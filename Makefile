@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/24 18:25:04 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/24 20:44:32 by mlantonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS  = draw/anti_aliasing.c \
 		parser/check_error.c \
 		parser/get_full_read_file.c \
 		parser/get_nb_of_structs.c \
+		parser/init_objects.c \
 		parser/init_structures.c \
 		parser/my_atof.c \
 		parser/parse_cameras.c \
@@ -70,6 +71,7 @@ SRCS  = draw/anti_aliasing.c \
 		parser/read_quotes.c \
 		parser/remove_white_spaces.c \
 		parser/tools.c \
+		parser/which_object_variable.c \
 		\
 		vec/compute_ray.c \
 		vec/get_normal.c \
@@ -99,6 +101,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/json/strcpy_vec.c \
 		ui/json/fill_objects_json.c \
 		ui/json/fill_object_common_json.c \
+		\
 		ui/create_ui.c \
 		ui/create_sub_notebook.c \
 		ui/toolbar.c \

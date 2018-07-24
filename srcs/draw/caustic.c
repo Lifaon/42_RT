@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:01:48 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/22 17:04:36 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 16:50:31 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int				refract(t_inter *inter, t_vec ray, t_photon *photon)
 	dot = dot_product(ray, g_data->objs[inter->obj_i].get_normal(\
 		g_data->objs[inter->obj_i], *inter));
 	eta = 1. / g_data->objs[inter->obj_i].ior;
-	if (dot < 0.)	// in object
+	if (dot < 0.)
 		dot = -dot;
-	else	// out of object
+	else
 		eta = g_data->objs[inter->obj_i].ior;
 	k = 1.0f - eta * eta * (1.0f - dot * dot);
 	if (k < 0.)

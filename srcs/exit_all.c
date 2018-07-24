@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:57:15 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:03:05 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
 
 void	exit_all(t_data *data)
 {

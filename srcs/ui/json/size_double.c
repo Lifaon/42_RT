@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/20 20:11:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 14:22:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ size_t			size_double(double n)
 	long		integer;
 	long		decimal;
 
+	if (n == INFINITY)
+		return (ft_strlen("\"inf\""));
+	if (n == -INFINITY)
+		return (ft_strlen("\"-inf\""));
 	size = get_size_integer(n, &integer);
 	multiply = set_multiply(size);
 	if (n < 0)

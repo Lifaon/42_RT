@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 17:41:56 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:16:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*
 **	Number of threads used
 */
-# define NB_THR 8
+# define NB_THR 16
 
 /*
 **	Number of cameras used

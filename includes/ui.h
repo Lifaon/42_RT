@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 18:22:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 23:00:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				create_ui(void);
 int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
 int				create_light_ui(GtkWidget *main_tab);
+int				create_light_caustic_ui(GtkWidget *box);
 int				create_object_ui(GtkWidget *main_tab);
 int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj);
 int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj);
@@ -39,16 +40,13 @@ int				create_options_ui(GtkWidget *main_tab);
 /*
 ** tool used to create widget or group of widget
 */
-void			check_ui_active(int start);
 void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 				void (*f)(GtkWidget*, gpointer));
 void			set_wid_data_scale(t_wid_data *wid_d, double step,
 		t_ptdb min_max);
 int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max);
-t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);//to suppress
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
-GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
 GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, gdouble value);
 GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
 GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
@@ -66,7 +64,6 @@ GtkSizeGroup	*add_vector_choose_no_scale(t_wid_data *w_d, char *label,
 		t_vec vec);
 int				create_light_tab(GtkWidget *tab_light, int index);
 int				create_object_tab(GtkWidget *tab_light, int index);
-int				make_grid(t_wid_data *wid_d);
 int				make_entry_and_scale(t_wid_data *wid_d, const char *txt,
 			GtkSizeGroup *group, gdouble value);
 GtkWidget		*make_label_and_entry(t_wid_data *wid_d, const char *txt,
@@ -216,7 +213,6 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
 		int mode_infinity, t_ptdb limits);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
-void			free_to_free(void *content);//
 double			get_double_from_entry(GtkWidget *wid, int infinity_mode,
 		double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);

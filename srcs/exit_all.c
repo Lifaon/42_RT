@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 17:03:05 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 22:49:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	exit_all(t_data *data)
 			free(data->photon_map);
 		ft_strdel(&g_data->path);
 		ft_strdel(&g_data->long_path);
+		gtk_widget_destroy(g_data->win);
 		free(data);
 	}
 	if (g_ui)

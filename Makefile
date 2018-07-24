@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/24 20:57:02 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/24 23:00:09 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ SRCS  = draw/anti_aliasing.c \
 		ui/create_sub_notebook.c \
 		ui/toolbar.c \
 		ui/create_light_ui.c \
+		ui/create_light_caustic_ui.c \
 		ui/create_camera_ui.c \
 		ui/create_object_ui.c \
 		ui/create_object_ui2.c \
@@ -139,11 +140,8 @@ SRCS  = draw/anti_aliasing.c \
 		ui/join_int.c \
 		ui/change_page.c \
 		ui/make_two_widget.c \
-		ui/wid_vec_new.c \
-		ui/free_to_free.c \
 		ui/add_vector_choose.c \
 		ui/change_vec_from_scale.c \
-		ui/check_ui_active.c \
 		ui/combobox.c \
 		ui/chose_color.c \
 		ui/ui_event_tools.c \

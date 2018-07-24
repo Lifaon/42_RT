@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:40:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 22:58:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void		destroy_tabs(GtkWidget *tab)
 		gtk_widget_destroy(tab_son);
 		cpy = cpy->next;
 	}
-	ft_lstdel(&g_ui->to_free, free_to_free);
 	g_list_free(list);
 }
 

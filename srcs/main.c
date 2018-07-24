@@ -3,46 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 08:57:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:08:05 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "ui.h"
-#include <time.h>//
+#include <time.h>
 
-void			get_time(void)
+void						get_time(void)
 {
-	static int						time;
-	static struct timespec			last;
-	struct timespec					tmptime;
+	static int				time;
+	static struct timespec	last;
+	struct timespec			tmptime;
 
 	if (!last.tv_nsec)
 		clock_gettime(CLOCK_MONOTONIC_RAW, &last);
-
 	clock_gettime(CLOCK_MONOTONIC_RAW, &tmptime);
 	if (time != 0)
 	{
 		printf("temps de calcul : %f seconde\n", \
-				((tmptime.tv_sec - last.tv_sec) * 1000000000 + \
-				 (tmptime.tv_nsec - last.tv_nsec)) * pow(10, -9));
+			((tmptime.tv_sec - last.tv_sec) * 1000000000 + \
+				(tmptime.tv_nsec - last.tv_nsec)) * pow(10, -9));
 	}
 	time++;
-}//
+}
 
-static int ft_exit(void)
+static int					ft_exit(void)
 {
 	ft_putendl("Usage : ./rt \'file_name\'");
 	return (0);
 }
 
-//	à retirer une fois que la fonction est mise proprement dans l'interface
-void		get_photon_map(void);
-
-int		main(int ac, char **av)
+int							main(int ac, char **av)
 {
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
@@ -52,7 +48,6 @@ int		main(int ac, char **av)
 	get_oc();
 	if (create_ui() == 0)
 		return (0);
-	// get_photon_map();
 	put_gdk_image();
 	ft_event(g_data);
 	return (0);

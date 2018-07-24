@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 17:47:45 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:02:39 by vtudes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vec.h"
 #include <limits.h>
 
-void	init_function_ptrs(t_data *data)
+void			init_function_ptrs(t_data *data)
 {
 	data->intersect[0] = intersect_sphere;
 	data->intersect[1] = intersect_plane;
@@ -33,7 +33,7 @@ void	init_function_ptrs(t_data *data)
 	data->limit[5] = &limit_cone;
 }
 
-t_data		*data_init(int ac, char **av)
+t_data			*data_init(int ac, char **av)
 {
 	t_data		*data;
 	char		*chr;

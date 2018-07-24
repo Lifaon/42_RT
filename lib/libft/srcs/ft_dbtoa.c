@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_dbtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 10:55:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/24 19:15:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:53:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				get_nb_of_zero(double n, long integer, char *str, size_t i)
 	cpy = (cpy < 0) ? cpy * -1 : cpy;
 	if (cpy == 0)
 		return (0);
-	while((cpy = cpy * 10) < 1.0)
+	while ((cpy = cpy * 10) < 1.0)
 	{
 		if (str)
 			str[i--] = '0';

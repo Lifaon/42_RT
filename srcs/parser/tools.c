@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:46:20 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/04 01:28:13 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:28:13 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_vec	parse_vec(char *str, int *index)
 	int		i;
 
 	i = -1;
+	ret = (t_vec){0, 0, 0};
 	while (str[++i] && str[i] != '[');
 	if (!str[i])
 		return (ret);

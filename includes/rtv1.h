@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:44:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/20 20:07:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:34:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			parse(t_data *data, char *file_name);
 /*
 **	Functions used to initialize the different structures.
 */
-t_data			*data_init(int ac, char **av);
+t_data			*data_init(char **av);
 void			get_oc(void);
 
 /*

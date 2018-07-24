@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/22 16:40:54 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/22 16:46:11 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 19:27:21 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void		initialisation(void)
 {
 	int			i;
 	int			j;
-	int			k;
 
 	i = -1;
 	while (++i < B)

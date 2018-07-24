@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_px_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/22 16:56:18 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 19:26:53 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		blocked(t_light light, t_inter *inter, t_vec *vec, double *dot)
 	return (0);
 }
 
-static t_color	shade(t_data *data, t_vec ray, t_inter *inter, t_light light)
+static t_color	shade(t_data *data, t_inter *inter, t_light light)
 {
 	t_color	color;
 	t_color	ret;
@@ -109,7 +109,6 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	t_added		added;
 	int			i;
 
-	add_colors(ret, inter.spec);
 	if (!data->nb_lights || !data->nb_lights_on)
 		return (col_multiply(data->objs[inter.obj_i].color, 0.3));
 	added = (t_added){0, 0, 0, 0};
@@ -119,7 +118,7 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	{
 		if (data->lights[i].disabled)
 			continue ;
-		ret = shade(data, ray, &inter, data->lights[i]);
+		ret = shade(data, &inter, data->lights[i]);
 		added.r += ret.argb.r;
 		added.g += ret.argb.g;
 		added.b += ret.argb.b;

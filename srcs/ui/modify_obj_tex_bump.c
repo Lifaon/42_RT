@@ -3,10 +3,8 @@
 void		check_bump(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
-	gboolean		state;	
-	GSList			*lst;
-	GtkWidget 		*son;
-	
+	gboolean		state;
+
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	group = (GtkSizeGroup*)param;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 17:08:05 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 19:35:08 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int							main(int ac, char **av)
 {
 	if (ac != 2 || ft_strlen(av[1]) < 1)
 		return (ft_exit());
-	g_data = data_init(ac, av);
+	g_data = data_init(av);
 	gtk_init(&ac, &av);
 	parse(g_data, av[1]);
 	get_oc();

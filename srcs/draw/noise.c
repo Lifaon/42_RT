@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 09:36:28 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/23 06:29:26 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:27:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter)
 	double	coef;
 	int		level;
 	float	vec[3];
-	t_color ret;
 
 	coef = 0;
 	vec[0] = inter->ip.x * 0.05;
@@ -44,7 +43,6 @@ t_vec	bump_mapping(t_obj obj, t_inter inter)
 	float y;
 	float z;
 	float coef;
-	t_vec temp;
 
 	coef = obj.obj_type == PLANE ? obj.bump_scale * .1 : obj.bump_scale;
 	coef *= 0.001;

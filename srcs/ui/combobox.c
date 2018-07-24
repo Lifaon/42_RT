@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 16:48:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:04:23 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:43:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
 		int set_value, char **txt)
 {
 	GtkWidget		*cb;
-	char			*str;
 	int				i;
 	if (label)
 		if (!(l_new(wid_d, label)))

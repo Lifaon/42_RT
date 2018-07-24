@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_options.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 19:31:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:31:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:39:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	change_px(GtkWidget *widget, gpointer param)
 
 void	change_filter(GtkWidget *widget, gpointer param)
 {
-	t_obj		*obj;
 	int			filter;
 
 	if (!param && !widget)

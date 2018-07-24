@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pixelated_image.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/22 16:54:01 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 19:26:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void			draw_pixelated_image(t_data *data)
 	int			i;
 	int			j;
 
-	if (g_data->draw == 0)
+	if (data->draw == 0)
 		return ;
 	i = -1;
 	while (++i < NB_THR)
@@ -81,7 +81,7 @@ void			draw_pixelated_image(t_data *data)
 			j = -1;
 			while (++j < i)
 				pthread_cancel(thread[j]);
-			exit_all(g_data);
+			exit_all(data);
 		}
 	}
 	i = -1;

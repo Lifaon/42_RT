@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:09:47 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/21 09:57:30 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 17:41:56 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define FILTER_NONE 0
 # define FILTER_BNW 1
 # define FILTER_SEPIA 2
+# define FILTER_STEREO 3
 
 /*
 **	obj.color_type

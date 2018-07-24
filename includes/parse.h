@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/03 23:54:52 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/23 19:02:42 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		add_alpha(t_obj *obj);
 **	a double, a t_vec, or a t_color that matches what is written in the string.
 */
 
-double	my_atof(const char *str);
+double	my_atof(char *str);
 /*
 **	my_atof() is a reproduction of the atof() function which we are not allowed
 **	to use in this school project. It is used to parse floating point numbers.

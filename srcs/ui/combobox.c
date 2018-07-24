@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 16:48:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:43:18 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:29:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
 {
 	GtkWidget		*cb;
 	int				i;
+
 	if (label)
 		if (!(l_new(wid_d, label)))
 			return (NULL);
@@ -60,7 +61,8 @@ GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj)
 	if (!(cb = gtk_combo_box_text_new()))
 		return (NULL);
 	gtk_combo_box_set_id_column(GTK_COMBO_BOX(cb), 0);
-	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "define by texture");
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL,
+			"define by texture");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "principal axe");
 	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(cb), NULL, "revolution axe");
 	if (obj->obj_type == PLANE)

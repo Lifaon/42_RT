@@ -6,13 +6,13 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 21:08:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:23:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-GtkSizeGroup		*add_vector_choose(t_wid_data *w_d, char *label, t_vec vec)
+GtkSizeGroup	*add_vector_choose(t_wid_data *w_d, char *label, t_vec vec)
 {
 	GtkSizeGroup	*group;
 	t_wid_data		frame_d;

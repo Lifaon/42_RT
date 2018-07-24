@@ -6,12 +6,13 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:31:19 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 08:59:33 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:28:10 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "draw.h"
+
 /*
 ** Theses global variable are only accessible by function on this file
 */

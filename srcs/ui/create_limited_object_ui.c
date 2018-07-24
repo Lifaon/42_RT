@@ -6,13 +6,13 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:49:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 21:16:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:36:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int 			add_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj)
+static int			add_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj)
 {
 	t_point			crd;
 
@@ -49,13 +49,11 @@ static GtkWidget	*phase_1(t_wid_data *wid_d, t_obj *obj)
 
 int					create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 {
-	gboolean		is_limited;
-	GtkWidget 		*frame;
+	GtkWidget		*frame;
 	t_wid_data		frame_d;
-	GtkWidget 		*sw;
-	GtkWidget 		*cb_lim;
+	GtkWidget		*sw;
+	GtkWidget		*cb_lim;
 
-	is_limited = obj->limited == -1 ? FALSE : TRUE;
 	if (!(frame = gtk_frame_new(NULL)))
 		return (0);
 	init_wid_data(&frame_d, wid_d->step, wid_d->min_max);
@@ -63,9 +61,10 @@ int					create_limited_object_ui(t_wid_data *wid_d, t_obj *obj)
 		return (0);
 	wid_d->pos.y = 1;
 	g_ui->is_active = 1;
-	if (!(sw = switch_new(wid_d, (gpointer)frame_d.grid, TRUE, &switch_obj_limited)))
+	if (!(sw = switch_new(wid_d, (gpointer)frame_d.grid, TRUE,
+					&switch_obj_limited)))
 		return (0);
-	if (is_limited == FALSE && obj->tex_limit == 0)
+	if (obj->limited == LIMIT_NONE && obj->tex_limit == 0)
 		switch_obj_limited(sw, FALSE, (gpointer)frame_d.grid);
 	g_ui->is_active = 0;
 	if (!(add_cb_type(wid_d, (gpointer)cb_lim, obj)))

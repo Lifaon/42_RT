@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 18:22:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:17:09 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 /*
 ** Parent functions
- */
+*/
 int				create_ui(void);
 int				create_sub_notebook(t_ui *ui);
 int				create_toolbar(GtkWidget *v_box, t_ui *ui);
@@ -45,17 +45,16 @@ void			set_wid_data(t_wid_data *wid_d, t_point pos, t_point size,
 void			set_wid_data_scale(t_wid_data *wid_d, double step,
 		t_ptdb min_max);
 int				init_wid_data(t_wid_data *wid_d, double step, t_ptdb min_max);
-t_widget_vec	*wid_vec_new(GtkSizeGroup *group, t_vec *vec);//to suppress
 GtkWidget		*switch_new(t_wid_data *wid_d, gpointer param, gboolean state,
 		void (*f)(GtkWidget*, gboolean, gpointer));
 GtkWidget		*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt);
 GtkWidget		*scale_new(t_wid_data *wid_d, gpointer param, gdouble value);
-GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param,  const char *txt);
+GtkWidget		*entry_new(t_wid_data *wid_d, gpointer param, const char *txt);
 GtkWidget		*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 		GtkWidget *img);
 GtkWidget		*l_new(t_wid_data *wid_d, const char *txt);
 GtkWidget		*new_cb_type(t_wid_data *wid_d, gpointer param, t_obj *obj);
-GtkWidget		*new_check_button(t_wid_data *wid_d, char *txt, gpointer param, 
+GtkWidget		*new_check_button(t_wid_data *wid_d, char *txt, gpointer param,
 		GtkSizeGroup *group);
 GtkWidget		*new_cb_limited(t_wid_data *wid_d, gpointer param, t_obj *obj);
 GtkWidget		*make_label_and_cb(t_wid_data *wid_d, char *label,
@@ -175,8 +174,6 @@ void			check_bump(GtkWidget *widget, gpointer param);
 void			change_bump_scale(GtkWidget *widget, gpointer param);
 void			change_bump_noise(GtkWidget *widget, gpointer param);
 
-
-
 /*
 ** => options event
 */
@@ -216,16 +213,17 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
 		int mode_infinity, t_ptdb limits);
 void			change_vec_from_scale(GtkSizeGroup *group, t_vec *vec);
 void			change_color_from_group(GtkSizeGroup *group, t_color *color);
-void			free_to_free(void *content);//
-double			get_double_from_entry(GtkWidget *wid, int infinity_mode,
+void			free_to_free(void *content);
+double			get_double_from_entry(GtkWidget *wid, int infinity_mode, \
 		double min, double max);
 void			set_group_widget_active(GtkSizeGroup *group, gboolean status);
-void			set_child_widget_active(GtkContainer *container, gboolean status);
+void			set_child_widget_active(GtkContainer *container, \
+		gboolean status);
 void			set_entry_and_scale_from_vector(GtkSizeGroup *group,
 		t_vec vec);
 int				fill_widget_vec(t_widget_vec *dst, GtkSizeGroup *group,
 		t_vec *vec);
-void			entry_change_scale(GtkWidget *widget, GdkEvent* event,
+void			entry_change_scale(GtkWidget *widget, GdkEvent *event,
 		gpointer param);
 void			scale_img(const t_pixelbuf *src, t_pixelbuf *dst,
 		t_point new_size, GdkInterpType type);

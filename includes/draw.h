@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:06:00 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:11:22 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	depth_of_field();
 */
 t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
 t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
-
 
 /*
 **	Scene filters.

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:56:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 07:17:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:06:00 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_color	shadow(t_light light, t_inter inter, t_vec ray, double len);
 t_color	anti_aliasing(t_data *data, t_vec vp);
 t_color	draw_reflec(t_data *data, t_inter *inter, t_color ret, t_vec ray);
 t_color	draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray);
+t_vec	get_refrac_ray(t_data *data, t_inter *inter, t_vec ray);
 
 /*
 **	Phong shading.

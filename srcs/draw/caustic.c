@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   caustic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:01:48 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 16:50:31 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 20:05:36 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,10 @@ int				reflec(t_inter *inter, t_vec ray, t_photon *photon)
 
 int				refract(t_inter *inter, t_vec ray, t_photon *photon)
 {
-	t_vec		r;
-	double		dot;
-	double		eta;
-	double		k;
+	t_vec	r;
 
 	++inter->depth;
-	dot = dot_product(ray, g_data->objs[inter->obj_i].get_normal(\
-		g_data->objs[inter->obj_i], *inter));
-	eta = 1. / g_data->objs[inter->obj_i].ior;
-	if (dot < 0.)
-		dot = -dot;
-	else
-		eta = g_data->objs[inter->obj_i].ior;
-	k = 1.0f - eta * eta * (1.0f - dot * dot);
-	if (k < 0.)
-	{
-		eta = 1.;
-		k = 1.0f - dot * dot;
-	}
-	r = vec_normalize(vec_add(vec_multiply(ray, eta), \
-		vec_multiply(inter->normal, eta * dot - sqrt(k))));
+	r = get_refrac_ray(g_data, inter, ray);
 	inter->origin = vec_add(inter->ip, vec_multiply(r, 0.3));
 	if (other_hit(g_data, r, inter))
 	{

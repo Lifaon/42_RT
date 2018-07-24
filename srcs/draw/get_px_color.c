@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 05:22:06 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 19:26:53 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:00:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,49 +58,44 @@ static t_color	shade(t_data *data, t_inter *inter, t_light light)
 	return (ret);
 }
 
-static t_color	refra_refrec(t_data *data, t_inter inter, t_color ret, t_vec r)
-{
-	if (inter.depth < data->depth_max && data->objs[inter.obj_i].shiny != 0)
-		return (draw_reflec(data, &inter, ret, r));
-	if (inter.depth < data->depth_max && inter.trans_at_ip != 0)
-		return (draw_refract(data, &inter, ret, r));
-	return (ret);
-}
-
 static t_color	add_caustics(t_inter inter, t_color ret)
 {
 	t_color	caust;
 	t_added	added;
-	double	len;
 	int		i;
 	int		nb;
 
-	if (!g_data->photon_map || g_data->px > 1)
-		return (ret);
-	caust.c = 0xFF000000;
 	added = (t_added){0, 0, 0, 0};
 	nb = 0;
 	i = -1;
 	while (++i < g_data->photon_hit)
-	{
-		len = get_length(vec_substract(inter.ip, g_data->photon_map[i].pos));
-		if (len < g_data->photon_size)
+		if (get_length(vec_substract(inter.ip, g_data->photon_map[i].pos)) \
+				<= g_data->photon_size)
 		{
 			added.r += g_data->photon_map[i].color.argb.r;
 			added.g += g_data->photon_map[i].color.argb.g;
 			added.b += g_data->photon_map[i].color.argb.b;
 			nb++;
 		}
-	}
 	if (!nb)
 		return (ret);
-	caust.argb.r = (added.r / nb) < 255 ? added.r / nb : 255;
-	caust.argb.g = (added.g / nb) < 255 ? added.g / nb : 255;
-	caust.argb.b = (added.b / nb) < 255 ? added.b / nb : 255;
-	if (nb > g_data->photon_ppx)
-		nb = g_data->photon_ppx;
+	caust.argb.r = added.r / nb;
+	caust.argb.g = added.g / nb;
+	caust.argb.b = added.b / nb;
+	nb = nb > g_data->photon_ppx ? g_data->photon_ppx : nb;
 	caust = col_multiply(caust, (double)nb / (double)g_data->photon_ppx);
 	return (add_colors(ret, caust));
+}
+
+static t_color	refra_refrec(t_data *data, t_inter inter, t_color ret, t_vec r)
+{
+	if (g_data->photon_map && g_data->px <= 1)
+		ret = add_caustics(inter, ret);
+	if (inter.depth < data->depth_max && data->objs[inter.obj_i].shiny != 0)
+		return (draw_reflec(data, &inter, ret, r));
+	if (inter.depth < data->depth_max && inter.trans_at_ip != 0)
+		return (draw_refract(data, &inter, ret, r));
+	return (ret);
 }
 
 t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
@@ -129,6 +124,5 @@ t_color			get_px_color(t_data *data, t_vec ray, t_inter inter)
 	ret.argb.b = added.b / data->nb_lights_on;
 	ret.argb.a = added.a / data->nb_lights_on;
 	ret = add_colors(ret, inter.spec);
-	ret = add_caustics(inter, ret);
 	return (refra_refrec(data, inter, ret, ray));
 }

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 19:02:42 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:44:14 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		brackets(char *str);
 void	parse_cameras(t_data *data, char *str, int *index);
 void	parse_lights(t_data *data, char *str, int *index);
 void	parse_objects(t_data *data, char *str, int *index);
+void	which_object_variable(t_obj *object, char *str, int *index);
 void	get_vp_up_left(t_camera *cam);
 void	get_dir(t_obj *obj);
 /*

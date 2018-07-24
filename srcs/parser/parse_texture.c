@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 04:26:11 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/17 18:43:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:33:09 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ static char	*get_file_name(char *str, int *index)
 	int		size;
 	int		i;
 
-	size = -1;
-	while (str[++size] && str[size] != '\"');
+	size = 0;
+	while (str[size] && str[size] != '\"')
+		++size;
 	if (!size || str[size] != '\"')
 		return (NULL);
 	if (!(ret = (char *)malloc(sizeof(char) * (size + 1))))
@@ -67,7 +68,7 @@ int			check_img_file(char *path, t_obj *obj)
 	char			*full_path;
 	char			*chr;
 	char			*str;
-	struct stat 	file_info;
+	struct stat		file_info;
 	int				ret;
 
 	ret = 0;
@@ -91,11 +92,11 @@ void		parse_texture(t_obj *obj, char *str, int *index)
 	char	*path_file;
 	int		i;
 
-	i = -1;
-	while (str[++i] && str[i] != ':');
-	if (str[i] != ':')
-		return ;
-	while (str[++i] && str[i] != '\"');
+	i = 0;
+	while (str[i] && str[i] != ':')
+		++i;
+	while (str[i] && str[i] != '\"')
+		++i;
 	if (str[i] != '\"')
 		return ;
 	*index += ++i;

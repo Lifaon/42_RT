@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 17:36:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 08:59:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:40:39 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void		destroy_tabs(GtkWidget *tab)
 	GList		*list;
 	GList		*cpy;
 	GtkWidget	*tab_son;
-	int			i;
 
 	if (!(list = gtk_container_get_children(GTK_CONTAINER(tab))))
 		return ;
@@ -67,7 +66,6 @@ void			click_open(GtkWidget *widget, gpointer data)
 {
 	GtkWidget	*select;
 	gint		response;
-	t_list		*lst;
 	gchar		*path;
 
 	if (!widget && !data)

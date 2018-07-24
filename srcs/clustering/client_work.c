@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 20:56:20 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 22:19:44 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ static void			recv_data(int sock)
 	char	buf2;
 	char	buff[5];
 
+	if (g_data && g_data->nb_objects)
+		free(g_data->objs);
+	if (g_data && g_data->nb_lights)
+		free(g_data->lights);
+	g_data->nb_objects = 0;
+	g_data->nb_lights = 0;
 	if (recv(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("recv fail");
 	if (buf2 != 'a')
@@ -47,7 +53,6 @@ static void			recv_data(int sock)
 		exit_cause("malloc error");
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
-	ft_putendl(json);
 	parse_for_client(g_data, json);
 	if (recv(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
 		exit_cause("recv fail");
@@ -74,7 +79,8 @@ static void		chose_draw(void)
 	else if (g_data->filter == FILTER_SEPIA)
 		sepia(g_data);
 	else if (g_data->filter == FILTER_STEREO)
-		get_stereo();}
+		get_stereo();
+}
 
 void			client_work(void)
 {

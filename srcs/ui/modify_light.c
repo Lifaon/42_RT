@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 18:59:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:30:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:15:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void			switch_light(GtkWidget *widget, gboolean state, gpointer param)
 {
-	if (!widget && !param)
-		param = NULL;
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	if (state == TRUE)
 	{
 		g_data->lights[g_ui->page_light].disabled = 0;
@@ -35,8 +35,8 @@ void			switch_parallel_light(GtkWidget *widget, gboolean state,
 {
 	int			i;
 
-	if (!widget && !param)
-		param = NULL;
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	i = g_ui->page_light;
 	if (gtk_switch_get_active(GTK_SWITCH(widget)) == FALSE)
 		g_data->lights[i].is_para = 0;
@@ -50,6 +50,8 @@ void			add_one_light(GtkWidget *widget, gpointer param)
 	t_light		*lights_new;
 	int			i;
 
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	i = -1;
 	g_data->nb_lights += 1;
 	g_data->nb_lights_on += 1;
@@ -69,7 +71,7 @@ void			change_light_pos(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	t_vec			*vec;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->lights[g_ui->page_light].pos;
 	group = (GtkSizeGroup*)param;
@@ -82,7 +84,7 @@ void			change_light_angle(GtkWidget *widget, gpointer param)
 	t_vec			*vec;
 	t_vec			dir;
 
-	if (g_ui->is_active == 0)
+	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	vec = &g_data->lights[g_ui->page_light].angle;
 	group = (GtkSizeGroup*)param;

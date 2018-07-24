@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:48:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:30:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:19:09 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	modify_obj_type(GtkWidget *widget, gpointer param)
 	t_obj		*obj;
 	GtkWidget 	*cb_lim;
 
-	if (!param && !widget)
-		param = NULL;
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
 	str = gtk_combo_box_get_active_id(GTK_COMBO_BOX(widget));
 	obj = &g_data->objs[g_ui->page_obj];
 	if ((type = get_int_obj_type(str)) < 0)

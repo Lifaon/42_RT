@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   modify_obj_tex_preset.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/24 19:38:58 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/07/24 19:39:39 by mlantonn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ui.h"
 
-static int			get_state_of_scale(const char *str, GtkWidget *widget)		
+static int			get_state_of_scale(const char *str, GtkWidget *widget)
 {
 	int		 	dst;
-	gboolean	state;
 
 	dst = -1;
 	if ((ft_strcmp(str, "Rainbow") == 0 ) || (ft_strcmp(str, "Checkboard") == 0))
@@ -14,7 +25,7 @@ static int			get_state_of_scale(const char *str, GtkWidget *widget)
 	return (dst);
 }
 
-static void			check_textures(GtkSizeGroup *group, const char *label, 
+static void			check_textures(GtkSizeGroup *group, const char *label,
 	gboolean label_state)
 {
 	GtkWidget		*button;
@@ -85,7 +96,7 @@ void		check_rainbow(GtkWidget *widget, gpointer param)
 	state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 	if (state == TRUE)
 	{
-		check_textures(group, "Checkboard", FALSE);	
+		check_textures(group, "Checkboard", FALSE);
 		g_data->objs[g_ui->page_obj].color_type = COLOR_RAINBOW;
 	}
 	else

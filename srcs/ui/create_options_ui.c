@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/12 16:32:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 20:14:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ static int		construct_phase_2(t_wid_data *wid_d)
 	wid_d->pos.y += 2;
 	if (!(make_label_and_scale(wid_d, "Depth of field \nintensity", 
 			(double)g_data->dof_coeff, &g_data->dof_coeff)))
-		return (0);	
+		return (0);
 	return (1);
 }
 
 static int		construct_phase_1(t_wid_data *wid_d)
 {
-	t_pixelbuf		*pxb;
 	char			**txt;
 
 	wid_d->f = &change_px;
@@ -48,9 +47,9 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	if (!(make_label_and_switch(wid_d, "cel shading", FALSE, &switch_cel_shading)))
 		return (0);
 	wid_d->f = &change_filter;
-	wid_d->param = (gpointer)pxb;
+	wid_d->param = (gpointer)wid_d;
 	wid_d->pos = pt_set(1, 2);
-	txt = ft_strsplit("-- None --\fBlack & white\fSepia", '\f');
+	txt = ft_strsplit("-- None --\fBlack & white\fSepia\fstereoscopy", '\f');
 	if (!(make_label_and_cb(wid_d, "filters", 0, txt)))
 		return (0);
 	return (construct_phase_2(wid_d));

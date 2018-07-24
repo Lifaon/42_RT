@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 01:28:22 by vtudes            #+#    #+#             */
-/*   Updated: 2018/07/24 20:32:04 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 22:21:20 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void			get_stereo(void)
 			tab, WIN_W * WIN_H);
 	free(tab[0]);
 	free(tab[1]);
+	ft_putendl_color("fin stero", "red");
 }

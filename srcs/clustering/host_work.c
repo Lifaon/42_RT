@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 20:41:47 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 22:25:07 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			*host_draw(void *arg)
 	{
 //		draw_image();
 		get_stereo();
-		}
+	}
 	return (arg);
 }
 
@@ -74,8 +74,13 @@ void			host_work(int send)
 	i = -1;
 	if (send == 1)
 		send_data_to_client();
-	if (pthread_create(&thread, NULL, host_draw, g_data))
-		exit_cause("error: pthread_create(): Failed");
+	if (g_data->filter != FILTER_STEREO)
+	{
+		if (pthread_create(&thread, NULL, host_draw, g_data))
+			exit_cause("error: pthread_create(): Failed");
+	}
+	else
+		get_stereo();
 	while (++i < g_data->nb_client)
 		if (pthread_create(&g_data->clust.client_l[i].thread, NULL, recv_work, \
 					&g_data->clust.client_l[i]))
@@ -84,8 +89,9 @@ void			host_work(int send)
 	while (++i < g_data->nb_client)
 		if (pthread_join(g_data->clust.client_l[i].thread, NULL))
 			exit_cause("error: pthread_join(): Failed");
-	if (pthread_join(thread, NULL))
-		exit_cause("error: pthread_join(): Failed");
+	if (g_data->filter != FILTER_STEREO)
+		if (pthread_join(thread, NULL))
+			exit_cause("error: pthread_join(): Failed");
 	put_pixelbuf_to_widget(g_data->img, NULL);
 	gtk_widget_show_all(g_data->win);
 }

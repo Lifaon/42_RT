@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:20:13 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/24 19:07:04 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char		*str_one_light(char *str, t_light *light)
 	str = my_strcopy(str, "\t\t{\n");
 	str = my_strcopy(str, "\t\t\t\"position\" : ");
 	str = strcpy_vec(str, light->pos);
-	str = my_strcopy(str, "\t\t\t\"angle\" : ");
+	str = my_strcopy(str, ",\n\t\t\t\"angle\" : ");
 	str = strcpy_vec(str, light->angle);
 	str = my_strcopy(str, ",\n\t\t\t\"is_para\" : ");
 	str = strcpy_int(str, light->is_para);

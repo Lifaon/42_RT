@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflec_refract.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 19:11:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/22 17:03:12 by vtudes           ###   ########.fr       */
+/*   Updated: 2018/07/24 20:03:31 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,13 @@ t_color		draw_reflec(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	return (blend_coeff(ret, (t_color){.c = 0xFF000000}, coeff));
 }
 
-t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
+t_vec		get_refrac_ray(t_data *data, t_inter *inter, t_vec ray)
 {
-	t_vec		r;
-	double		coeff;
-	double		dot;
-	double		eta;
-	double		k;
+	t_vec	r;
+	double	dot;
+	double	eta;
+	double	k;
 
-	++inter->depth;
-	coeff = inter->trans_at_ip;
 	dot = dot_product(ray, data->objs[inter->obj_i].get_normal(\
 		data->objs[inter->obj_i], *inter));
 	eta = 1. / data->objs[inter->obj_i].ior;
@@ -63,6 +60,17 @@ t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
 	}
 	r = vec_normalize(vec_add(vec_multiply(ray, eta), \
 		vec_multiply(inter->normal, eta * dot - sqrt(k))));
+	return (r);
+}
+
+t_color		draw_refract(t_data *data, t_inter *inter, t_color ret, t_vec ray)
+{
+	t_vec	r;
+	double	coeff;
+
+	++inter->depth;
+	coeff = inter->trans_at_ip;
+	r = get_refrac_ray(data, inter, ray);
 	inter->origin = vec_add(inter->ip, vec_multiply(r, 0.3));
 	if (other_hit(data, r, inter))
 		return (blend_coeff(ret, get_px_color(data, r, *inter), coeff));

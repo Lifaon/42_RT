@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:30:41 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:21:02 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:50:38 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		parse_lights(t_data *data, char *str, int *index)
 	int i;
 
 	i = 0;
-	while (str[i] != '[')
+	while (str[i] && str[i] != '[')
 		++i;
 	in_braces = 1;
 	if (!(data->nb_lights = get_nb_lights(str + i)))
@@ -69,9 +69,9 @@ void		parse_lights(t_data *data, char *str, int *index)
 		exit_all(data);
 	}
 	light_index = 0;
-	while (in_braces)
+	while (str[++i] && in_braces)
 	{
-		if (str[++i] == '{' && light_index < data->nb_lights)
+		if (str[i] == '{' && light_index < data->nb_lights)
 			parse_light(&data->lights[light_index++], str + i, &i);
 		else if (str[i] == '[' || str[i] == ']')
 			in_braces += (str[i] == '[' ? 1 : -1);

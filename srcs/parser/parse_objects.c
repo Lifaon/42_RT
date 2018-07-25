@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:02:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:40:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:49:26 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	which_object(t_data *data, char *str, int *index, int *object_index)
 		obj_type = CONE;
 	else
 		return ;
-	while (str[i] != '{')
+	while (str[i] && str[i] != '{')
 		++i;
 	data->objs[*object_index].obj_type = obj_type;
 	data->objs[*object_index].intersect = data->intersect[obj_type];
@@ -77,7 +77,7 @@ void		parse_objects(t_data *data, char *str, int *index)
 	int i;
 
 	i = 0;
-	while (str[i] != '{')
+	while (str[i] && str[i] != '{')
 		++i;
 	if (!(data->nb_objects = get_nb_objects(str + i + 1)))
 		return ;
@@ -89,9 +89,9 @@ void		parse_objects(t_data *data, char *str, int *index)
 	}
 	in_braces = 1;
 	object_index = 0;
-	while (in_braces)
+	while (str[++i] && in_braces)
 	{
-		if (str[++i] == '\"' && object_index < data->nb_objects)
+		if (str[i] == '\"' && object_index < data->nb_objects)
 			which_object(data, str + i, &i, &object_index);
 		else if (str[i] == '{' || str[i] == '}')
 			in_braces += (str[i] == '{' ? 1 : -1);

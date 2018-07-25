@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:15:42 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/06/24 01:12:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:48:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void		parse_cameras(t_data *data, char *str, int *index)
 	int i;
 
 	i = 0;
-	while (str[i] != '[')
+	while (str[i] && str[i] != '[')
 		++i;
+	if (!str[i])
+		return ;
 	in_braces = 1;
 	cam_index = 0;
-	while (in_braces)
+	while (str[i] && in_braces)
 	{
 		++i;
 		if (str[i] == '{' && cam_index < CAM_NB)

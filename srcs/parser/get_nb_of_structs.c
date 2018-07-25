@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 18:22:22 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/05/22 14:05:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:51:45 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		get_nb_lights(char *str)
 	i = -1;
 	in_brace = 0;
 	nb_lights = 0;
-	while (str[++i] != ']' || in_brace)
+	while (str[++i] && (str[i] != ']' || in_brace))
 	{
 		if (str[i] == '{')
 		{
@@ -44,9 +44,8 @@ int		get_nb_objects(char *str)
 	i = -1;
 	in_braces = 1;
 	nb_objects = 0;
-	while (in_braces)
+	while (str[++i] && in_braces)
 	{
-		++i;
 		if (in_braces == 1 && str[i] == '\"' && (\
 			read_quotes(str + i, "\"sphere\"", &i) || \
 			read_quotes(str + i, "\"plane\"", &i) || \

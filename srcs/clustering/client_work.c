@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 23:08:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:23:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ static void			recv_data(int sock)
 		exit_cause("recv fail");
 	if (buf2 != 'a')
 		exit_all(g_data);
+	buf2 = 'A';
+	if (send(sock, &buf2, sizeof(char) * 1, 0) < 0)
+		exit_cause("send fail");
+	printf("send alive");
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
 	size_json = buf_to_int(tmp);

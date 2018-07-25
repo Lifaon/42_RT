@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:36 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 22:18:38 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:24:30 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,16 @@ int		send_data(int sock)
 	char		buff[5];
 	char		buf2;
 
-
 	size_json = size_of_str_json();
 	json = fill_str_json(size_json);
 	size_json = ft_strlen(json);
 	buf2 = 'a';
 	if (send(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("send fail");
+	if (recv(sock, &buf2, sizeof(char) * 1, 0) < 0)
+		exit_cause("recv error");
+	if (buf2 != 'A')
+		printf("client off");
 	if (send_int(sock, size_json, 0) < 0)
 		exit_cause("send fail");
 	if (send(sock, (char*)json, sizeof(char) * size_json, 0) < 0)

@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/24 22:25:07 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:18:22 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ void			*host_draw(void *arg)
 	else if (g_data->filter == FILTER_SEPIA)
 		sepia(g_data);
 	else if (g_data->filter == FILTER_STEREO)
-	{
-//		draw_image();
 		get_stereo();
-	}
 	return (arg);
 }
 

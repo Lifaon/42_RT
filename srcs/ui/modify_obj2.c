@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:03:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:45:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 18:37:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,14 @@ void			add_one_obj(GtkWidget *widget, gpointer param)
 	i = -1;
 	g_data->nb_objects += 1;
 	objs_new = (t_obj*)malloc(sizeof(t_obj) * g_data->nb_objects);
-	while (++i < (g_data->nb_objects - 1))
-		objs_new[i] = g_data->objs[i];
-	free(g_data->objs);
+	if (g_data->nb_objects != 1)
+	{
+		while (++i < (g_data->nb_objects - 1))
+			objs_new[i] = g_data->objs[i];
+		free(g_data->objs);
+	}
+	else
+		i++;
 	g_data->objs = objs_new;
 	init_one_object(g_data, i);
 	create_object_tab(g_ui->tab_objs, i);

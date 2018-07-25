@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 22:19:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 16:39:15 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 17:51:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int		phase_2(t_wid_data *wid_d, GtkSizeGroup *gp)
+static int		phase_2(t_wid_data *wid_d, GtkSizeGroup *gp, GtkWidget *check)
 {
 	GtkWidget		*w;
 
@@ -30,12 +30,17 @@ static int		phase_2(t_wid_data *wid_d, GtkSizeGroup *gp)
 				(double)g_data->photon_ppx, gp)))
 		return (0);
 	gtk_size_group_add_widget(gp, w);
+	g_ui->is_active = 1;
+	if (!g_data->caustic_flag)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), FALSE);
+	g_ui->is_active = 0;
 	return (1);
 }
 
 static int		phase_1(t_wid_data *wid_d, GtkSizeGroup *gp)
 {
 	GtkWidget		*w;
+	GtkWidget		*check;
 
 	wid_d->pos.y = 1;
 	if (!(w = b_new(wid_d, NULL, "add new light", NULL)))
@@ -43,16 +48,17 @@ static int		phase_1(t_wid_data *wid_d, GtkSizeGroup *gp)
 	wid_d->size.x = 1;
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &check_caustic;
-	if (!(new_check_button(wid_d, "caustic", gp, NULL)))
+	if (!(check = new_check_button(wid_d, "caustic", gp, NULL)))
 		return (0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), TRUE);
 	wid_d->pos.y += 1;
 	wid_d->f = change_total_photon;
 	set_wid_data_scale(wid_d, 1, ptdb_set(1, 100));
 	if (!(w = make_label_and_scale(wid_d, "total photons\n(x5000)",
-				(double)g_data->photon_total, gp)))
+				(double)g_data->photon_total / 5000, gp)))
 		return (0);
 	gtk_size_group_add_widget(gp, w);
-	return (phase_2(wid_d, gp));
+	return (phase_2(wid_d, gp, check));
 }
 
 int				create_light_caustic_ui(GtkWidget *box)

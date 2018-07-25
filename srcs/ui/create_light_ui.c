@@ -21,6 +21,7 @@ static int		construct_phase_2(t_wid_data *wid_d, t_light *light)
 	wid_d->pos = pt_set(3, 0);
 	vec = light->pos;
 	wid_d->f = &change_light_pos;
+	wid_d->min_max = ptdb_set(-30000, 30000);
 	if (!(add_vector_choose(wid_d, "position", vec)))
 		return (0);
 	wid_d->pos = pt_set(3, 2);

@@ -43,12 +43,10 @@ void		check_perlin(GtkWidget *widget, gpointer param)
 
 void		check_perlin_cosine(GtkWidget *widget, gpointer param)
 {
-	GtkSizeGroup	*group;
 	gboolean		state;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
-	group = (GtkSizeGroup*)param;
 	state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 	if (state == TRUE)
 		g_data->objs[g_ui->page_obj].perl_type = PERLIN_COSINE;

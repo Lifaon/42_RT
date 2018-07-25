@@ -22,10 +22,8 @@ static void		init_dir(t_vec *dir)
 
 static void		blend(t_pixelbuf *img, t_color *color_tabs[2], int size)
 {
-	float	coeff;
 	int		i;
 
-	coeff = 2;
 	i = -1;
 	while (++i < size)
 	{

@@ -52,7 +52,6 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
 {
 	double		value;
 	GtkWidget	*son;
-	const char	*str;
 	GSList		*lst;
 
 	lst = gtk_size_group_get_widgets(GTK_SIZE_GROUP(group));
@@ -61,7 +60,6 @@ void			change_vec_from_entry(GtkSizeGroup *group, t_vec *vec,
 		son = (GtkWidget*)lst->data;
 		if (GTK_IS_ENTRY(son))
 		{
-			str = gtk_entry_get_text(GTK_ENTRY(son));
 			value = get_double_from_entry(son, mode_infinity, limits.x,
 					limits.y);
 			fill_vec(vec, value);

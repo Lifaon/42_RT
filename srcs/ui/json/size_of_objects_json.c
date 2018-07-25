@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:50:09 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 11:35:38 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:58:05 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ size_t			size_of_objects_json(void)
 		i++;
 	}
 	size--;
-	size += ft_strlen("\t},\n}");
+	size += ft_strlen("\t},\n");
 	return (size);
 }

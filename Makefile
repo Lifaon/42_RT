@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/24 23:00:09 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/25 15:05:06 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,11 @@ SRCS  = draw/anti_aliasing.c \
 		ui/json/size_vec.c \
 		ui/json/size_color.c \
 		ui/json/size_of_str_json.c \
+		ui/json/size_of_options_json.c \
 		ui/json/size_of_object_common_json.c \
 		ui/json/size_of_objects_json.c \
 		ui/json/fill_str_json.c \
+		ui/json/fill_options_json.c \
 		ui/json/strcpy_color.c \
 		ui/json/my_strcopy.c \
 		ui/json/strcpy_int.c \

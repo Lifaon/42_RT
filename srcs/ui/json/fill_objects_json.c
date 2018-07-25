@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:02:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 11:35:16 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:57:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ char			*fill_objects_json(char *str)
 		else
 			str = my_strcopy(str, "\n\t\t},\n");
 	}
-	str = my_strcopy(str, "\t}\n}");
+	str = my_strcopy(str, "\t},\n");
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 12:40:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:04:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ size_t			size_pt(t_point pt);
 size_t			size_vec(t_vec vec);
 size_t			size_color(t_color color);
 size_t			size_of_str_json(void);
+size_t			size_of_options_json(void);
 size_t			size_of_objects_json(void);
 size_t			size_of_object_common_json(t_obj *obj);
 char			*my_strcopy(char *dest, char const *src);
@@ -100,6 +101,7 @@ char			*strcpy_color(char *str, t_color color);
 char			*fill_object_common_json(char *str, t_obj *obj);
 char			*fill_objects_json(char *str);
 char			*fill_str_json(size_t size);
+char			*fill_options_json(char *str);
 
 /*
 ** function for handle user interface event :

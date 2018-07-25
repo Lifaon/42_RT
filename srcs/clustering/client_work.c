@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:56:29 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:57:50 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void		check_host_status(int sock)
 	buf = '0';
 	if (recv(sock, &buf, sizeof(char), 0) < 0)
 		exit_cause("recv error");
+	printf("--%c--\n", buf);
 	if (buf != 'a')
 		exit_all(g_data);
 }

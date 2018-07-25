@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 19:38:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 12:06:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:04:10 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int			get_state_of_scale(const char *label, GtkWidget *button,
 	str = gtk_button_get_label(GTK_BUTTON(button));
 	if (label && ft_strcmp(str, label) == 0)
 		gtk_widget_set_sensitive(button, label_state);
-	if ((ft_strcmp(str, "Rainbow") == 0 ) ||
+	if ((ft_strcmp(str, "Rainbow") == 0) ||
 		(ft_strcmp(str, "Checkboard") == 0))
 	{
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == TRUE)
@@ -62,7 +62,7 @@ void				check_checkboard(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	gboolean		state;
-	GtkWidget 		*son;
+	GtkWidget		*son;
 	GSList			*lst;
 
 	if (g_ui->is_active == 0 || (!widget && !param))

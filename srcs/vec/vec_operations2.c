@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 03:04:14 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 14:24:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:01:11 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vec	vec_cross_product2(t_vec u, t_vec v)
 	return (res);
 }
 
-t_vec			get_random_direction(void)
+t_vec	get_random_direction(void)
 {
 	t_vec		dir;
 	t_vec		angle;

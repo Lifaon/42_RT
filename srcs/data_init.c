@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 14:35:29 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 21:01:55 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:59:59 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ t_data			*data_init(char **av)
 	data->i = 0;
 	data->nb_objects = 0;
 	data->nb_lights = 0;
+	data->caustic_flag = 0;
 	data->photon_map = NULL;
-	data->photon_total = 5000000;
+	data->photon_total = 5000;
 	data->photon_ppx = 20;
 	data->photon_size = 2.5;
 	data->stereo_scale = 10;

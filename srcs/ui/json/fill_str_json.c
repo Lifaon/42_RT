@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:07:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:06:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char			*fill_str_json(size_t size)
 	str = str_cams(str);
 	str = str_lights(str);
 	str = fill_objects_json(str);
+	str = fill_options_json(str);
 	str[0] = '\0';
 	return (dst);
 }

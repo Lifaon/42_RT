@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:18:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 23:14:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:34:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj,
 		return (0);
 	wid_d->pos.x++;
 	wid_d->f = &check_checkboard;
-	if (!(w[1] = new_check_button(wid_d, "Checkboard", gp_check, gp_check)))
+	if (!(w[1] = new_check_button(wid_d, "Checkerboard", gp_check, gp_check)))
 		return (0);
 	if (obj->color_type == COLOR_RAINBOW)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w[0]), TRUE);

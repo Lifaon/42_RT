@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 19:09:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:52:12 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:06:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ static size_t	size_of_lights(void)
 
 size_t			size_of_str_json(void)
 {
-	return (size_of_cams() + size_of_lights() + size_of_objects_json());
+	return (size_of_cams() + size_of_lights() + size_of_objects_json()
+			+ size_of_options_json());
 }

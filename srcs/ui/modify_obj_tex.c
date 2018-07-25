@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:48:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 12:34:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:00:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void			reset_button_texture(GtkWidget *button)
 {
 	GList		*lst;
 	GtkWidget	*box;
+	t_obj		*obj;
 
 	if ((lst = gtk_container_get_children(GTK_CONTAINER(button))))
 	{
@@ -29,9 +30,11 @@ static void			reset_button_texture(GtkWidget *button)
 		fill_img_in_color((GtkWidget*)lst->data, 0x000000);
 		g_list_free(lst);
 	}
-	if (g_data->objs[g_ui->page_obj].tex)
-		pixelbuf_free(&g_data->objs[g_ui->page_obj].tex);
-	g_data->objs[g_ui->page_obj].tex = NULL;
+	obj = &g_data->objs[g_ui->page_obj];
+	if (obj->tex)
+		pixelbuf_free(&obj->tex);
+	obj->tex = NULL;
+	ft_strdel(&obj->tex_filename);
 	gtk_widget_set_sensitive(button, FALSE);
 }
 

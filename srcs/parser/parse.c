@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:31:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 22:56:43 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 13:48:02 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	parse(t_data *data, char *file_name)
 			else if (read_quotes(str + i, "\"objects\"", &i) && \
 				!data->nb_objects)
 				parse_objects(data, str + i, &i);
+			else if (read_quotes(str + i, "\"options\"", &i))
+				parse_options(data, str + i, &i);
 		}
 	data->cam = data->cams[data->i];
 	free(str);

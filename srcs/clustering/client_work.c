@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 14:57:56 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 15:50:15 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void			recv_data(int sock)
 	int		size_json;
 	char	tmp[4];
 	char	buf2;
-	char	buff[5];
 	char	buf3[2];
 
 	if (g_data && g_data->nb_objects)
@@ -65,13 +64,6 @@ static void			recv_data(int sock)
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
 	parse_for_client(g_data, json);
-	if (recv(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
-		exit_cause("recv fail");
-	g_data->aa = buff[0];
-	g_data->cel_shading = buff[1];
-	g_data->px = buff[2];
-	g_data->filter = buff[3];
-	g_data->depth_of_field = buff[4];
 }
 
 static void		chose_draw(void)

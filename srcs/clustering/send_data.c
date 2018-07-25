@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 15:25:36 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 15:49:51 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int		send_data(int sock, int i)
 	char		*json;
 	size_t		size_json;
 	int			ret;
-	char		buff[5];
 	char		buf2;
 	char		buf3[2];
 
@@ -108,13 +107,6 @@ int		send_data(int sock, int i)
 		exit_cause("send fail");
 	if (send(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("send fail");
-	buff[0] = g_data->aa;
-	buff[1] = g_data->cel_shading;
-	buff[2] = g_data->px;
-	buff[3] = g_data->filter;
-	buff[4] = g_data->depth_of_field;
-	if (send(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
-		exit_cause("send fail");
 	free(json);
 	return (g_data->nb_client);
 }
@@ -124,7 +116,6 @@ int		send_data_to_client(void)
 	int			i;
 
 	i = 0;
-	//faire le check pour les clients
 	while (i < g_data->nb_client)
 	{
 		send_data(g_data->clust.client_l[i].csock, i);

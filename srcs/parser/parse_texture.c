@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 04:26:11 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 13:30:25 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:03:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ int			check_img_file(char *path, t_obj *obj)
 		ret = 1;
 	ft_strdel(&full_path);
 	if (ret)
+	{
+		ft_strdel(&obj->tex_filename);
 		obj->tex_filename = str;
+	}
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 22:38:19 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 14:42:24 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:51:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	put_gdk_image(void)
 		host_work(1);
 	else
 	{
+		if (g_data->caustic_flag && !g_data->photon_map)
+			get_photon_map();
+		else if (!g_data->caustic_flag && g_data->photon_map)
+		{
+			free(g_data->photon_map);
+			g_data->photon_map = NULL;
+		}
 		if (g_data->px > 1)
 			draw_pixelated_image(g_data);
 		else if (g_data->cel_shading)

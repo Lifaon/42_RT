@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:16:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 11:16:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:48:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ void		check_caustic(GtkWidget *widget, gpointer param)
 	state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 	set_group_widget_active(group, state);
 	if (state == TRUE)
-		get_photon_map();
+		g_data->caustic_flag = 1;
 	else
-	{
-		free(g_data->photon_map);
-		g_data->photon_map = NULL;
-	}
+		g_data->caustic_flag = 0;
 }
 
 void		change_photon_size(GtkWidget *widget, gpointer param)

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:17:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 15:18:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:06:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static size_t	size_caustic(void)
 {
 	size_t		size;
 
-	size = ft_strlen(",\n\t\t\"depth_max\" : ");
-	size += size_int(g_data->depth_max);
+	size = ft_strlen(",\n\t\t\"caustic_flag\" : ");
+	size += size_int(g_data->caustic_flag);
 	size += ft_strlen(",\n\t\t\"photon_total\" : ");
 	size += size_int(g_data->photon_total);
 	size += ft_strlen(",\n\t\t\"photon_ppx\" : ");
@@ -32,16 +32,10 @@ static size_t	size_filters(void)
 	size_t		size;
 
 	size = 0;
-	if (g_data->cel_shading)
-	{
-		size += ft_strlen(",\n\t\t\"cel_shading\" : ");
-		size += size_int(g_data->cel_shading);
-	}
-	if (g_data->filter)
-	{
-		size += ft_strlen(",\n\t\t\"filter\" : ");
-		size += size_int(g_data->filter);
-	}
+	size += ft_strlen(",\n\t\t\"cel_shading\" : ");
+	size += size_int(g_data->cel_shading);
+	size += ft_strlen(",\n\t\t\"filter\" : ");
+	size += size_int(g_data->filter);
 	size += ft_strlen(",\n\t\t\"stereo_scale\" : ");
 	size += size_int(g_data->stereo_scale);
 	return (size);
@@ -80,7 +74,7 @@ size_t		size_of_options_json(void)
 	size += size_filters();
 	if (g_data->depth_of_field > -1)
 		size += size_dof();
-	if (g_data->photon_map)
+	if (g_data->caustic_flag == 1)
 		size += size_caustic();
 	size += ft_strlen("\n\t}\n}");
 	return (size);

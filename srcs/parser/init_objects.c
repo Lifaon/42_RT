@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 20:22:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:29:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:03:26 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_one_object2(t_data *data, int index)
 	data->objs[index].min = (t_vec){-INFINITY, -INFINITY, -INFINITY};
 	data->objs[index].max = (t_vec){INFINITY, INFINITY, INFINITY};
 	data->objs[index].tex = NULL;
+	data->objs[index].tex_filename = NULL;
 	data->objs[index].tex_pos = (t_point){0, 0};
 	data->objs[index].tex_scale = 100;
 	data->objs[index].tex_repeat = 0;

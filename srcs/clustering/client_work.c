@@ -50,11 +50,11 @@ static void			recv_data(int sock)
 	buf2 = 'A';
 	if (send(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("send fail");
-	printf("send alive");
+	printf("send alive\n");
 	if (recv(sock, (char*)buf3, sizeof(char) * 2, 0) < 0)
 		exit_cause("recv error");
-	g_data->x = buff[0];
-	g_data->nb_client = buff[1];
+	g_data->x = buf3[0];
+	g_data->nb_client = buf3[1];
 	printf("x : %d\tnb_client: %d\n", g_data->x, g_data->nb_client);
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
@@ -64,7 +64,6 @@ static void			recv_data(int sock)
 	json[size_json] = '\0';
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
-	ft_putendl(json);
 	parse_for_client(g_data, json);
 	if (recv(sock, (char*)buff, sizeof(char) * 5, 0) < 0)
 		exit_cause("recv fail");

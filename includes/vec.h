@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 07:14:15 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:17:35 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ t_color	checkerboard(t_obj obj, t_vec ray, t_inter *inter);
 t_color	rainbow(t_obj obj, t_vec ray, t_inter *inter);
 t_color	ft_perlin(t_obj obj, t_color color, t_inter *inter);
 
-t_vec	bump_mapping(t_obj obj,t_inter inter);
+t_vec	bump_mapping(t_obj obj, t_inter inter);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 19:35:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 13:55:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:56:28 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 # include "libft.h"
 # include "libpt.h"
 
-typedef union		u_color
+typedef union	u_color
 {
-	uint32_t		c;
-	struct			s_argb
+	uint32_t	c;
+	struct		s_argb
 	{
-		uint8_t		r;
-		uint8_t		g;
-		uint8_t		b;
-		uint8_t		a;
-	}				argb;
-}					t_color;
+		uint8_t	r;
+		uint8_t	g;
+		uint8_t	b;
+		uint8_t	a;
+	}			argb;
+}				t_color;
 /*
 **	Usage of an union for easy color management.
 */

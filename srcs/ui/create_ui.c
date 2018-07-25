@@ -6,35 +6,33 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 23:15:23 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:26:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "events.h"
 
-static int		create_renderer(void)
+static int			create_renderer(t_ui *ui)
 {
 	GtkWidget	*wid;
 
 	if (!(g_data->img = pixelbuf_new(pt_set(WIN_W, WIN_H), NULL)))
 		return (0);
 	wid = (GtkWidget*)g_data->img->widget;
-	gtk_widget_set_can_focus(wid, TRUE);
-	gtk_widget_set_can_default(wid, TRUE);
-	if (!(g_ui->ev_box = gtk_event_box_new()))
+	if (!(ui->ev_box = gtk_event_box_new()))
 		return (0);
-	gtk_container_add(GTK_CONTAINER(g_ui->ev_box), wid);
-	gtk_widget_set_can_focus(g_ui->ev_box, TRUE);
-	gtk_widget_set_can_default(g_ui->ev_box, TRUE);
-	gtk_widget_add_events(g_ui->ev_box, GDK_KEY_PRESS);
-	g_signal_connect(G_OBJECT(g_ui->ev_box), "key_press_event",
+	gtk_container_add(GTK_CONTAINER(ui->ev_box), wid);
+	gtk_widget_set_can_focus(ui->ev_box, TRUE);
+	gtk_widget_set_can_default(ui->ev_box, TRUE);
+	gtk_widget_add_events(ui->ev_box, GDK_KEY_PRESS);
+	g_signal_connect(G_OBJECT(ui->ev_box), "key_press_event",
 				G_CALLBACK(ft_keyboard), g_data);
-	gtk_event_box_set_above_child(GTK_EVENT_BOX(g_ui->ev_box), TRUE);
+	gtk_event_box_set_above_child(GTK_EVENT_BOX(ui->ev_box), TRUE);
 	return (1);
 }
 
-static t_ui		*ui_new(void)
+static t_ui			*ui_new(void)
 {
 	t_ui	*ui;
 
@@ -50,7 +48,7 @@ static t_ui		*ui_new(void)
 		return (NULL);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
-	if (!(create_renderer()))
+	if (!(create_renderer(ui)))
 		return (NULL);
 	return (ui);
 }
@@ -67,7 +65,7 @@ static GtkWidget	*make_window(void)
 	return (win);
 }
 
-int				create_ui(void)
+int					create_ui(void)
 {
 	GtkWidget		*win;
 	GtkWidget		*v_box;
@@ -79,6 +77,7 @@ int				create_ui(void)
 		return (0);
 	if (!(h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5)))
 		return (0);
+	ft_putstr("b4 ui\n");
 	if (!(g_ui = ui_new()))
 		return (0);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab), TRUE);

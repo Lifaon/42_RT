@@ -6,14 +6,14 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:02:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 23:01:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:15:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "ui.h"
 
-static GtkWidget		*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
+static GtkWidget	*make_entry(t_wid_data *wid_d, GtkSizeGroup *group,
 		gdouble value)
 {
 	void		(*f_swap)(GtkWidget*, GdkEvent *event, gpointer);
@@ -103,7 +103,7 @@ GtkWidget			*make_label_and_scale(t_wid_data *wid_d, const char *txt,
 GtkWidget			*make_label_and_switch(t_wid_data *wid_d, const char *txt,
 			gboolean value, void (*f)(GtkWidget*, gboolean, gpointer))
 {
-	GtkWidget 	*sw;
+	GtkWidget	*sw;
 
 	if (!(l_new(wid_d, txt)))
 		return (NULL);

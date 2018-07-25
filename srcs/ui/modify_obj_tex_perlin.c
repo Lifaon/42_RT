@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   modify_obj_tex_perlin.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/25 11:22:26 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/07/25 11:36:27 by fchevrey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ui.h"
 
 void		check_perlin(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
-	gboolean		state;	
+	gboolean		state;
 	GSList			*lst;
-	GtkWidget 		*son;
-	
+	GtkWidget		*son;
+
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	group = (GtkSizeGroup*)param;

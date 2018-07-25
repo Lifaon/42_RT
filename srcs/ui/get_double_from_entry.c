@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 23:16:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:11:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static char		*str_end_digit(char *str)
 	return (str);
 }
 
-int				get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
+int				get_infinity(GtkWidget *wid, double *dst, char *str, int mode)
 {
 	if ((mode == MODE_PLUS_INF || mode == MODE_BOTH_INF) &&
-	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
+	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY"))
 			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
 	{
 		*dst = INFINITY;

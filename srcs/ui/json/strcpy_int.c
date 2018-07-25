@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:41:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 13:42:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:35:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*strcpy_int(char *str, int n)
 	cpy_size = size;
 	if (n == 0)
 		str[--size] = '0';
-	nb = (n < 0) ? -n : n;	
+	nb = (n < 0) ? -n : n;
 	while (--size > 0 && nb)
 	{
 		str[size] = '0' + (nb % 10);

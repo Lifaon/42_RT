@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 02:09:32 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 19:20:08 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 20:15:18 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ static t_color	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 {
 	t_color	ret;
 
-	if (obj.tex && obj.tex_trans)
-		inter->trans_at_ip = 1 - (ret.argb.a / 255.);
-	else
-		inter->trans_at_ip = obj.trans;
-	if (inter->trans_at_ip)
+	inter->trans_at_ip = obj.trans;
+	if (obj.trans || (obj.tex && obj.tex_trans))
 	{
 		if (obj.tex)
+		{
 			ret.c = uv_mapping(obj, ray, inter);
+			if (obj.tex_trans)
+				inter->trans_at_ip = 1 - ((double)ret.argb.a / 255.);
+		}
 		else if (obj.color_type == COLOR_CHECKERBOARD)
 			ret = checkerboard(obj, ray, inter);
 		else if (obj.color_type == COLOR_RAINBOW)
@@ -43,7 +44,7 @@ static t_color	get_color_at_ip(t_obj obj, t_vec ray, t_inter *inter)
 		if (obj.perl_type != PERLIN_NONE)
 			ret = ft_perlin(obj, ret, inter);
 	}
-	else
+	if (inter->trans_at_ip == 0.)
 		ret = inter->color;
 	ret.argb.a = 255;
 	return (ret);

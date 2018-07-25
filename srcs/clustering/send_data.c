@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:01:01 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:36:30 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,6 @@ static char		*itoa_spe(int nb)
 	return (s);
 }
 
-static void	rm_client(int sock, int i)
-{
-	t_client	*tmp;
-
-	g_data->clust.client_l[i] = g_data->clust.client_l[g_data->nb_client];
-	closesocket(sock);
-	g_data->nb_client--;
-	printf("nb_client : %d\tx : %d\n", g_data->nb_client, g_data->x);
-}
-
 static int	send_int(int socket, int n, int flags)
 {
 	char		data[4];
@@ -82,7 +72,6 @@ int		send_data(int sock, int i)
 	size_t		size_json;
 	int			ret;
 	char		buf2;
-	char		buf3[2];
 
 	size_json = size_of_str_json();
 	json = fill_str_json(size_json);
@@ -95,17 +84,10 @@ int		send_data(int sock, int i)
 	printf("--%c--\n", buf2);
 	if (buf2 != 'A')
 	{
-		ft_putendl_color("a client died", "red");
-		rm_client(sock, i);
-		return (g_data->nb_client);
+		g_data->nb_client = 0;
+		return (0);
 	}
 	printf("i : %d\tnb_client : %d\n", i+1, g_data->nb_client);
-	g_data->clust.client_l[i].x = i + 1;
-	g_data->clust.client_l[i].nb_client = g_data->nb_client;
-	buf3[0] = i + 1;
-	buf3[1] = g_data->nb_client;
-	if (send(sock, (char*)buf3, sizeof(char) * 2, 0) < 0)
-		exit_cause("send error");
 	if (send_int(sock, size_json, 0) < 0)
 		exit_cause("send fail");
 	if (send(sock, (char*)json, sizeof(char) * size_json, 0) < 0)

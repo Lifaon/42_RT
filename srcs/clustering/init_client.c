@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:29 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 14:51:37 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:32:58 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			init_client(char *av)
 {
 	struct sockaddr_in		sin;
 	SOCKET					sock;
-//	char					buff[2];
+	char					buff[2];
 	fd_set					readfs;
 
 	sock = socket(PF_INET, SOCK_STREAM, 0);
@@ -39,8 +39,8 @@ void			init_client(char *av)
 	ft_putstr_color(inet_ntoa(sin.sin_addr), "yellow");
 	ft_putstr(" sur le port ");
 	ft_putnbr_endl(htons(sin.sin_port));
-//	recv(sock, (char*)buff, sizeof(char) * 2, 0);
-//	g_data->x = buff[0];
-//	g_data->nb_client = buff[1];
+	recv(sock, (char*)buff, sizeof(char) * 2, 0);
+	g_data->x = buff[0];
+	g_data->nb_client = buff[1];
 	g_data->clust.sock = sock;
 }

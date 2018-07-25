@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 18:57:59 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:36:07 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ static void		add_client_to_ll(char *map, int cpt)
 	ft_putstr(inet_ntoa(g_data->clust.client_l[cpt].csin.sin_addr));
 	ft_putchar(':');
 	ft_putnbr_endl(htons(g_data->clust.client_l[cpt].csin.sin_port));
+	g_data->clust.client_l[cpt].x = cpt + 1;
+	g_data->clust.client_l[cpt].nb_client = g_data->nb_client;
+	buff[0] = cpt + 1;
+	buff[1] = g_data->nb_client;
+	if (send(g_data->clust.client_l[cpt].csock, (char*)buff, sizeof(char) * 2, 0) < 0)
+		exit_cause("send error");
 	send_data(g_data->clust.client_l[cpt].csock, cpt);
 }
 

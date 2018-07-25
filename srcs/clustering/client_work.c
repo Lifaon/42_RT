@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 15:50:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:56:29 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,17 @@ static void		chose_draw(void)
 		get_stereo();
 }
 
+static void		check_host_status(int sock)
+{
+	char		buf;
+
+	buf = '0';
+	if (recv(sock, &buf, sizeof(char), 0) < 0)
+		exit_cause("recv error");
+	if (buf != 'a')
+		exit_all(g_data);
+}
+
 void			client_work(void)
 {
 	int			ret;
@@ -104,6 +115,7 @@ void			client_work(void)
 	while (1)
 	{
 		recv_data(g_data->clust.sock);
+		check_host_status(g_data->clust.sock);
 		get_oc();
 		chose_draw();
 		ret = 0;

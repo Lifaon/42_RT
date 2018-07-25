@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:36:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:53:43 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		send_data(int sock, int i)
 	if (buf2 != 'A')
 	{
 		g_data->nb_client = 0;
-		return (0);
+		return (i);
 	}
 	printf("i : %d\tnb_client : %d\n", i+1, g_data->nb_client);
 	if (send_int(sock, size_json, 0) < 0)
@@ -93,18 +93,36 @@ int		send_data(int sock, int i)
 	if (send(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("send fail");
 	free(json);
-	return (g_data->nb_client);
+	return (-1);
+}
+
+static void	send_status(int ret)
+{
+	int			i;
+	char		status;
+
+	i = 0;
+	status = ret != -1 ? 'a' : 'd';
+	while (i < g_data->nb_client)
+	{
+		if (i != ret)
+			if (send(g_data->clust.client_l[i].csock, &status, \
+						sizeof(char), 0) < 0)
+				exit_cause("send error");
+	}
 }
 
 int		send_data_to_client(void)
 {
 	int			i;
+	int			ret;
 
 	i = 0;
 	while (i < g_data->nb_client)
 	{
-		send_data(g_data->clust.client_l[i].csock, i);
+		ret = send_data(g_data->clust.client_l[i].csock, i);
 		i++;
 	}
+	send_status(ret);
 	return (g_data->nb_client);
 }

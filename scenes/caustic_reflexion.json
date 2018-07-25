@@ -63,7 +63,7 @@
 		"cel_shading" : 0,
 		"filter" : 0,
 		"depth_max" : 4,
-		"caustic_flag" : 0,
+		"caustic_flag" : 1,
 		"photon_total" : 5000,
 		"photon_ppx" : 20,
 		"photon_size" : 2,

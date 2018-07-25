@@ -14,6 +14,8 @@
 
 static int		construct_phase_2(t_wid_data *wid_d)
 {
+	gboolean	state;
+
 	wid_d->param = NULL;
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_depth_max;
@@ -22,20 +24,14 @@ static int		construct_phase_2(t_wid_data *wid_d)
 		return (0);
 	set_wid_data_scale(wid_d, 0.1, ptdb_set(0.1, 3));
 	wid_d->f = &change_dof_coeff;
-	wid_d->pos.y += 2;
+	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	if (!(make_label_and_scale(wid_d, "Depth of field \nintensity",
 			(double)g_data->dof_coeff, &g_data->dof_coeff)))
 		return (0);
-	return (1);
-}
-
-static int		construct_phase_1(t_wid_data *wid_d)
-{
-	char			**txt;
-
-	wid_d->f = &change_px;
-	if (!(make_label_and_scale(wid_d, "Pixelisation", (double)g_data->px,
-					&g_data->px)))
+	state = (g_data->cel_shading == 1) ? TRUE : FALSE;
+	wid_d->pos = pt_set(1, 0);
+	if (!(make_label_and_switch(wid_d, "cel shading", state,
+					&switch_cel_shading)))
 		return (0);
 	wid_d->pos = pt_set(0, 2);
 	wid_d->f = &change_aa;
@@ -43,15 +39,31 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	if (!(make_label_and_scale(wid_d, "Anti-aliasing", (double)g_data->aa,
 					&g_data->aa)))
 		return (0);
-	wid_d->pos = pt_set(1, 0);
-	if (!(make_label_and_switch(wid_d, "cel shading", FALSE,
-					&switch_cel_shading)))
+	return (1);
+}
+
+static int		construct_phase_1(t_wid_data *wid_d)
+{
+	char			**txt;
+	GtkWidget		*scale;
+
+	wid_d->f = &change_px;
+	if (!(make_label_and_scale(wid_d, "Pixelisation", (double)g_data->px,
+					&g_data->px)))
 		return (0);
+	wid_d->pos = pt_set(2, 2);
+	wid_d->f = &change_stereo_scale;
+	set_wid_data_scale(wid_d, 1, ptdb_set(1, 100));
+	if (!(scale = make_label_and_scale(wid_d, "stereoscopy scale",
+			(double)g_data->stereo_scale, &g_data->depth_max)))
+		return (0);
+	if (g_data->filter != FILTER_STEREO)
+		gtk_widget_set_sensitive(scale, FALSE);
 	wid_d->f = &change_filter;
-	wid_d->param = (gpointer)wid_d;
+	wid_d->param = (gpointer)scale;
 	wid_d->pos = pt_set(1, 2);
 	txt = ft_strsplit("-- None --\fBlack & white\fSepia\fstereoscopy", '\f');
-	if (!(make_label_and_cb(wid_d, "filters", 0, txt)))
+	if (!(make_label_and_cb(wid_d, "filters", g_data->filter, txt)))
 		return (0);
 	return (construct_phase_2(wid_d));
 }

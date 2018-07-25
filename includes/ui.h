@@ -192,6 +192,7 @@ t_vec			roll(t_vec ray, t_vec angle);
 void			change_depth_max(GtkWidget *widget, gpointer param);
 void			change_dof_coeff(GtkWidget *widget, gpointer param);
 void			get_vp_up_left(t_camera *cam);
+void			change_stereo_scale(GtkWidget *widget, gpointer param);
 
 /*
 ** => camera event

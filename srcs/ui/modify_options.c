@@ -49,12 +49,18 @@ void	change_px(GtkWidget *widget, gpointer param)
 void	change_filter(GtkWidget *widget, gpointer param)
 {
 	int			filter;
+	GtkWidget	*stereo_scale;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	filter = gtk_combo_box_get_active(GTK_COMBO_BOX(widget));
 	if (filter >= 0)
 		g_data->filter = filter;
+	stereo_scale = (GtkWidget*)param;
+	if (filter == FILTER_STEREO)
+		gtk_widget_set_sensitive(stereo_scale, TRUE);
+	else
+		gtk_widget_set_sensitive(stereo_scale, FALSE);
 }
 
 void	change_dof_coeff(GtkWidget *widget, gpointer param)

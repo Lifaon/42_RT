@@ -131,6 +131,11 @@ void		cel_shading(void)
 	i = -1;
 	while (++i < total_size)
 		if (edges[i])
-			g_data->img->pxl[i] = 0xFF000000;
+		{
+			if (g_data->clust_i == CLUST_CLIENT)
+				g_data->cimg[i] = 0xFF000000;
+			else
+				g_data->img->pxl[i] = 0xFF000000;
+		}
 	free(edges);
 }

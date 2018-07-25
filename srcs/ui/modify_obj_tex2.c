@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 18:21:55 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 11:20:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:07:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,28 @@ void		change_obj_tex_scale(GtkWidget *widget, gpointer param)
 	g_data->objs[g_ui->page_obj].tex_scale = value;
 }
 
-void		change_obj_tex_pos_x(GtkWidget *widget, gpointer param)
+void		change_obj_tex_pos_x(GtkWidget *widget, GdkEvent *event,
+		gpointer param)
 {
 	double			value;
+	t_obj			*obj;
 
-	if (g_ui->is_active == 0 || (!widget && !param))
+	if (g_ui->is_active == 0 || (!widget && !param && !event))
 		return ;
+	obj = &g_data->objs[g_ui->page_obj];
 	value = get_double_from_entry(widget, MODE_NO_INF, -50000, 50000);
-	g_data->objs[g_ui->page_obj].tex_pos.x = (int)value;
+	obj->tex_pos.x = (int)value;
 }
 
-void		change_obj_tex_pos_y(GtkWidget *widget, gpointer param)
+void		change_obj_tex_pos_y(GtkWidget *widget, GdkEvent *event,
+		gpointer param)
 {
 	double			value;
+	t_obj			*obj;
 
-	if (g_ui->is_active == 0 || (!widget && !param))
+	if (g_ui->is_active == 0 || (!widget && !param && !event))
 		return ;
+	obj = &g_data->objs[g_ui->page_obj];
 	value = get_double_from_entry(widget, MODE_NO_INF, -50000, 50000);
-	g_data->objs[g_ui->page_obj].tex_pos.y = (int)value;
+	obj->tex_pos.y = (int)value;
 }

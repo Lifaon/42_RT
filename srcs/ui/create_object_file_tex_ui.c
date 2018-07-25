@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 21:40:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 22:41:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:03:15 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static int		phase_3(t_wid_data *wid_d, t_obj *obj,
 	GtkWidget		*w;
 
 	wid_d->pos.x++;
-	wid_d->f = &change_obj_tex_pos_x;
+	wid_d->entry_f = &change_obj_tex_pos_x;
 	if (!(w = make_label_and_entry(wid_d, "X position", (double)obj->tex_pos.x,
 				NULL)))
 		return (0);
 	gtk_size_group_add_widget(gp_filetex, w);
-	wid_d->f = &change_obj_tex_pos_y;
+	wid_d->entry_f = &change_obj_tex_pos_y;
 	wid_d->pos.x++;
 	if (!(w = make_label_and_entry(wid_d, "Y position", (double)obj->tex_pos.y,
 				NULL)))

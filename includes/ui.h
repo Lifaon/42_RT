@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 16:23:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:06:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,10 @@ void			change_obj_max(GtkWidget *widget, GdkEvent *event,
 void			check_tex_file(GtkWidget *widget, gpointer param);
 void			change_obj_tex_file(GtkWidget *widget, gpointer param);
 void			change_obj_tex_scale(GtkWidget*widget, gpointer param);
-void			change_obj_tex_pos_x(GtkWidget*widget, gpointer param);
-void			change_obj_tex_pos_y(GtkWidget*widget, gpointer param);
+void			change_obj_tex_pos_x(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
+void			change_obj_tex_pos_y(GtkWidget *widget, GdkEvent *event,
+		gpointer param);
 void			switch_obj_tex_repeat(GtkWidget *widget, gboolean state,
 		gpointer param);
 void			switch_obj_tex_trans(GtkWidget *widget, gboolean state,

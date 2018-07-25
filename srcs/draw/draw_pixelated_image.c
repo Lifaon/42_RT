@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 21:03:44 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 22:54:33 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void		draw_pixels(t_data *data, t_vec vp, t_point crd)
 	t_vec		ray;
 	t_point		px;
 	t_color		color;
+	t_point		crdd;
 
 	ray = compute_ray(vp);
 	inter.depth = 0;
@@ -31,8 +32,17 @@ static void		draw_pixels(t_data *data, t_vec vp, t_point crd)
 	{
 		px.x = -1;
 		while (++px.x < g_data->px)
-			pt_to_pixelbuf(\
+		{
+			if (g_data->clust_i == CLUST_CLIENT)
+			{
+				if (crd.x + px.x >= 0 && crd.x + px.x < WIN_W && \
+						crd.y + px.y >= 0 && crd.y + px.y < WIN_H)
+					g_data->cimg[crd.x + px.x + (crd.y + px.y) * WIN_W] = color.c;
+			}
+			else
+				pt_to_pixelbuf(\
 			(t_point){crd.x + px.x, crd.y + px.y}, data->img, color.c);
+		}
 	}
 }
 
@@ -42,16 +52,18 @@ static void		*draw_pixelated_thread(void *thr)
 	t_vec		vp;
 	int			i;
 	int			ymax;
+	int			xmax;
 
 	i = *((int *)thr);
 	vp = g_data->cam.vp_up_left;
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
+	xmax = (WIN_W / (g_data->nb_client + 1)) * (g_data->x + 1) + 0.5;
 	while (crd.y < ymax)
 	{
-		crd.x = 0;
+		crd.x = ((WIN_W / (g_data->nb_client + 1)) * g_data->x);
 		vp.y = g_data->cam.vp_up_left.y - ((g_data->px * 0.5) + (double)crd.y);
-		while (crd.x < WIN_H)
+		while (crd.x < xmax + 1)
 		{
 			vp.x = g_data->cam.vp_up_left.x +
 			((g_data->px * 0.5) + (double)crd.x);

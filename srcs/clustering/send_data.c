@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 20:28:33 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 21:25:14 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,21 @@ int		send_data(int sock, int i)
 		exit_cause("send fail");
 
 	ret = 0;
+	printf("==%lu==\n", size_json);
+	/*
 	while (ret < sizeof(char) * size_json)
 	{
-		ret += send(sock, (char*)json + ret , sizeof(char) * size_json - ret < 1000 ? \
+		TEST;
+		ret += send(sock, (char*)json + ret, sizeof(char) * size_json - ret < 1000 ? \
 				sizeof(char) * size_json - ret : 1000, 0);
-			exit_cause("send fail");
+//		json += ret;
+		ft_putendl(json + ret);
+		ft_putnbr(ret);
 	}
+//	*/
+	if ((ret = send(sock, (char*)json, size_json, 0)) < 0)
+		exit_cause("send error");
+	printf("--%d--\n", ret);
 	free(json);
 	return (-1);
 }

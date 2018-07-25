@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 20:32:34 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 21:37:39 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,21 @@ static void			recv_data(int sock)
 	while (ret < sizeof(char) * size_json)
 	{
 		TEST;
-		ret += recv(sock, (char*)json, 1000, 0);
-		ft_putendl(json);
+		ret += recv(sock, (char*)json + ret, 1000, 0);
+//		json += ret;
+		ft_putendl(json + ret);
 		ft_putnbr(ret);
 	}
-	*/
-	while (ret < size_json)
-	{
+//	*/
+//	/*
+//	while (ret < size_json)
+//	{
+//		TEST;
 		if ((ret += recv(sock, (char*)json, size_json - ret, 0)) < 0)
 			exit_cause("recv fail");
-	}
-	ft_putendl(json);
+//	}
+//	ft_putendl(json);
+//	*/
 	printf("--%d--\n", ret);
 	parse_for_client(g_data, json);
 }

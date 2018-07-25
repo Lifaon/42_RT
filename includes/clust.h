@@ -14,7 +14,7 @@
 # define PORT 15863
 # define SOCK_BUFF 50
 
-void			init_host(char *map);
+void			init_host(void);
 void			init_client(char *ip);
 void			host_work(int send);
 void			client_work(void);

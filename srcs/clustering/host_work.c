@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 21:37:54 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:48:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,23 @@ void			*recv_work(void *arg)
 	uint32_t		*buff;
 	t_point			crd;
 	int				xmax;
+	int				ret;
 
 	if (!(buff = (uint32_t*)ft_memalloc(sizeof(uint32_t) * (WIN_W * WIN_H))))
 		exit_cause("malloc errror");
 	client = (t_client *)arg;
 	ft_putendl_color("en attente de la reception des infos", "orange");
-	int ret = 0;
-	while (ret < WIN_W * WIN_H * sizeof(int))
+	ret = 0;
+	while (ret < (int)(WIN_W * WIN_H * sizeof(int)))
 		ret += recv(client->csock, ((unsigned char *)buff) + ret, 1000, 0);
 	ft_putendl_color("reception des infos", "green");
 	crd.y = -1;
 	xmax = (WIN_W / (g_data->nb_client + 1)) * (client->x + 1) + 0.5;
 	while (++crd.y < WIN_H)
 	{
-		crd.x = (WIN_W / (client->nb_client + 1)) * client->x;
-		while (crd.x < xmax)
-		{
+		crd.x = (WIN_W / (client->nb_client + 1)) * client->x - 1;
+		while (++crd.x < xmax)
 			pt_to_pixelbuf(crd, g_data->img, buff[crd.x + (crd.y * WIN_W)]);
-			crd.x++;
-		}
 	}
 	free(buff);
 	return (arg);

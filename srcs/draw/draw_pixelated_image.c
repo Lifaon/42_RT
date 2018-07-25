@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 17:42:16 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 22:54:33 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:44:56 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		draw_pixels(t_data *data, t_vec vp, t_point crd)
 	t_vec		ray;
 	t_point		px;
 	t_color		color;
-	t_point		crdd;
 
 	ray = compute_ray(vp);
 	inter.depth = 0;

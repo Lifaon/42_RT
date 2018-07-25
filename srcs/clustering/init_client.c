@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:29 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:32:58 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:47:55 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			init_client(char *av)
 	struct sockaddr_in		sin;
 	SOCKET					sock;
 	char					buff[2];
-	fd_set					readfs;
 
 	sock = socket(PF_INET, SOCK_STREAM, 0);
 	configure_sin(&sin, av);

@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 21:25:14 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:49:49 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,6 @@
 #include "rtv1.h"
 #include "draw.h"
 #include "ui.h"
-
-static char		*itoa_spe(int nb)
-{
-	int		i;
-	char	*s;
-
-	i = 10;
-	if (!(s = (char*)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	s = (char*)ft_memset(s, 'c', 10);
-	s[i] = '\0';
-	if (nb == 0)
-	{
-		s[0] = 48;
-		return (s);
-	}
-	if (nb < 0)
-	{
-		s[0] = '-';
-		nb = -nb;
-	}
-	while (nb > 0)
-	{
-		s[--i] = 48 + (nb % 10);
-		nb = nb / 10;
-	}
-	return (s);
-}
 
 static int	send_int(int socket, int n, int flags)
 {
@@ -111,6 +83,7 @@ int		send_data(int sock, int i)
 	return (-1);
 }
 
+/*
 static void	send_status(int ret)
 {
 	int			i;
@@ -127,6 +100,7 @@ static void	send_status(int ret)
 				exit_cause("send error");
 	}
 }
+*/
 
 int		send_data_to_client(void)
 {

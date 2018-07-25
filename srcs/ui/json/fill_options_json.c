@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:45:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 16:30:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/26 00:23:16 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		*fill_dof(char *str)
 	return (str);
 }
 
-char		*fill_options_json(char *str)
+char			*fill_options_json(char *str)
 {
 	str = my_strcopy(str, "\t\"options\" :\n\t{\n");
 	str = my_strcopy(str, "\t\t\"active_cam\" : ");

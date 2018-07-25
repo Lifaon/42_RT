@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 20:24:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:46:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ static void		print_host(void)
 	freeifaddrs(ifaddr);
 }
 
-static void		add_client_to_ll(char *map, int cpt)
+static void		add_client_to_ll(int cpt)
 {
 	socklen_t		crecsize;
 	char			buff[2];
-	char			status;
+//	char			status;
 
 	crecsize = sizeof(g_data->clust.sin);
 	g_data->clust.client_l[cpt].csock = accept(g_data->clust.sock,
@@ -84,12 +84,11 @@ static void		configure_sockaddr_server(struct sockaddr_in *sin)
 	sin->sin_port = htons(PORT);
 }
 
-void			init_host(char *map)
+void			init_host(void)
 {
 	int			on;
 	socklen_t	crecsize;
 	int			cpt;
-	t_client	*tmp;
 
 	crecsize = sizeof(g_data->clust.sin);
 	g_data->clust.sock = socket(PF_INET, SOCK_STREAM, 0);
@@ -111,7 +110,7 @@ void			init_host(char *map)
 		ft_putstr("En attente que ");
 		ft_putnbr(g_data->nb_client - cpt);
 		ft_putendl(" client(s) se connecte(nt)...");
-		add_client_to_ll(map, cpt);
+		add_client_to_ll(cpt);
 		++cpt;
 	}
 }

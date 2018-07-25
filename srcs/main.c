@@ -6,14 +6,14 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 23:37:49 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 00:51:17 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "ui.h"
 
-static void	check_argv(int argc, char **argv, t_data *data, char* map)
+static void	check_argv(int argc, char **argv, char* map)
 {
 	int		i;
 
@@ -35,7 +35,7 @@ static void	check_argv(int argc, char **argv, t_data *data, char* map)
 				exit_cause("cannot have a null or negative nomber of client");
 			g_data->x = 0;
 			parse(g_data, map);
-			init_host(map);
+			init_host();
 		}
 		if (ft_strcmp(argv[i], "-client") == 0)
 		{
@@ -76,19 +76,19 @@ int			main(int ac, char **av)
 		return (ft_exit());
 	g_data = data_init(av);
 	gtk_init(&ac, &av);
-	if (create_ui() == 0)
-		exit_all(g_data);
 	while(++i < ac)
 	{
 		if (ft_strstr(av[i], ".json"))
 			break;
 	}
-	check_argv(ac, av, g_data, av[i]);
+	check_argv(ac, av, av[i]);
 	if (g_data->clust_i == CLUST_NONE)
 		parse(g_data, av[i]);
 	if (g_data->clust_i != CLUST_CLIENT)
 	{
 		get_oc();
+		if (create_ui() == 0)
+			exit_all(g_data);
 		if (g_data->clust_i == CLUST_HOST)
 			host_work(0);
 		else

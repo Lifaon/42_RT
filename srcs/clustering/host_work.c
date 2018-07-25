@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 15:22:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 16:11:40 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void			*recv_work(void *arg)
 
 void			*host_draw(void *arg)
 {
+	if (g_data->caustic_flag && !g_data->photon_map)
+		get_photon_map();
+	else if (!g_data->caustic_flag && g_data->photon_map)
+	{
+		free(g_data->photon_map);
+		g_data->photon_map = NULL;
+	}
 	if (g_data->px > 1)
 		draw_pixelated_image(g_data);
 	else if (g_data->cel_shading)

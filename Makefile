@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/25 15:05:06 by fchevrey         ###   ########.fr        #
+#    Updated: 2018/07/25 15:35:19 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS  = draw/anti_aliasing.c \
 		parser/parse_cameras.c \
 		parser/parse_lights.c \
 		parser/parse_objects.c \
+		parser/parse_options.c \
 		parser/parse_texture.c \
 		parser/parse.c \
 		parser/read_quotes.c \

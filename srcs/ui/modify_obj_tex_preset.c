@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 19:38:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 13:34:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:34:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int			get_state_of_scale(const char *label, GtkWidget *button,
 	if (label && ft_strcmp(str, label) == 0)
 		gtk_widget_set_sensitive(button, label_state);
 	if ((ft_strcmp(str, "Rainbow") == 0)
-			|| (ft_strcmp(str, "Checkboard") == 0))
+			|| (ft_strcmp(str, "Checkerboard") == 0))
 	{
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == TRUE)
 			dst = 1;

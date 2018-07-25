@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 17:01:48 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:05:36 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:39:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,6 @@ int				refract(t_inter *inter, t_vec ray, t_photon *photon)
 	return (1);
 }
 
-t_vec			get_random_direction(void)
-{
-	t_vec		dir;
-	t_vec		angle;
-
-	dir = (t_vec){0, -1, 0};
-	angle.x = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
-	angle.y = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
-	angle.z = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
-	dir = all_rotations(dir, angle);
-	return (dir);
-}
-
 int				add_photon(t_photon *photon, t_light light)
 {
 	t_photon	new;
@@ -101,28 +88,48 @@ int				add_photon(t_photon *photon, t_light light)
 	return (1);
 }
 
-void			get_photon_map(void)
+int				init_map(void)
 {
-	int			i;
-	int			j;
-	int			index;
+	int		i;
+	int		j;
 
 	if (!g_data->nb_lights || !g_data->nb_lights_on || !g_data->nb_objects)
-		return ;
-	if (!(g_data->photon_map = (t_photon *)malloc(sizeof(t_photon) \
-		* g_data->nb_lights_on * g_data->photon_total)))
-		return ;
-	index = 0;
+		return (-1);
 	i = -1;
+	j = 0;
+	while (++i < g_data->nb_lights)
+		if (g_data->lights[i].is_para && !g_data->lights[i].disabled)
+			++j;
+	if (j >= g_data->nb_lights_on)
+		return (-1);
+	if (!(g_data->photon_map = (t_photon *)malloc(sizeof(t_photon) \
+		* (g_data->nb_lights_on - j) * g_data->photon_total)))
+		return (-1);
+	return (0);
+}
+
+void			get_photon_map(void)
+{
+	int		i;
+	int		j;
+	int		index;
+
+	if (init_map())
+		return ;
+	i = -1;
+	index = 0;
 	while (++i < g_data->nb_lights)
 	{
 		if (g_data->lights[i].disabled || g_data->lights[i].is_para)
+		{
+			++index;
 			continue ;
-		j = -1;
-		while (++j < g_data->photon_total)
-			if (add_photon(&g_data->photon_map[index], g_data->lights[i]))
-				++index;
+		}
+		j = 0;
+		while (j < g_data->photon_total)
+			if (add_photon(&g_data->photon_map[j \
+				+ ((i - index) * g_data->photon_total)], g_data->lights[i]))
+				++j;
 	}
-	g_data->photon_hit = index;
-	printf("photon_hit = %d\n", index);
+	g_data->photon_hit = (i - index) * g_data->photon_total;
 }

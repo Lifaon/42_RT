@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 16:01:18 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 21:17:35 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:24:32 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_vec	vec_normalize(t_vec u);
 double	get_length(t_vec u);
 double	dot_product(t_vec u, t_vec v);
 t_vec	vec_cross_product2(t_vec u, t_vec v);
+t_vec	get_random_direction(void);
 
 /*
 **	UV mapping for textures.

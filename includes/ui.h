@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 18:27:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 15:04:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:23:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void			click_redraw(GtkWidget *widget, gpointer param);
 */
 void			add_one_light(GtkWidget *widget, gpointer param);
 void			check_caustic(GtkWidget *widget, gpointer param);
+void			change_total_photon(GtkWidget *widget, gpointer param);
 void			change_photon_size(GtkWidget *widget, gpointer param);
 void			change_photon_intensity(GtkWidget *widget, gpointer param);
 void			change_light_pos(GtkWidget *widget, gpointer param);

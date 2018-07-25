@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:45:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 16:06:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:30:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static char		*fill_caustic(char *str)
 {
-	str = my_strcopy(str, ",\n\t\t\"caustic_flag\" : ");
-	str = strcpy_int(str, g_data->caustic_flag);
 	str = my_strcopy(str, ",\n\t\t\"photon_total\" : ");
 	str = strcpy_int(str, g_data->photon_total);
 	str = my_strcopy(str, ",\n\t\t\"photon_ppx\" : ");
@@ -65,6 +63,8 @@ char		*fill_options_json(char *str)
 	str = strcpy_int(str, g_data->depth_max);
 	if (g_data->depth_of_field > -1)
 		str = fill_dof(str);
+	str = my_strcopy(str, ",\n\t\t\"caustic_flag\" : ");
+	str = strcpy_int(str, g_data->caustic_flag);
 	if (g_data->caustic_flag == 1)
 		str = fill_caustic(str);
 	str = my_strcopy(str, "\n\t}\n}");

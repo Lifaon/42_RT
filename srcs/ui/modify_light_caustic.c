@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:16:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 15:48:41 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:39:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ void		check_caustic(GtkWidget *widget, gpointer param)
 		g_data->caustic_flag = 1;
 	else
 		g_data->caustic_flag = 0;
+}
+
+void		change_total_photon(GtkWidget *widget, gpointer param)
+{
+	int		value;
+
+	if (g_ui->is_active == 0 || (!widget && !param))
+		return ;
+	value = gtk_range_get_value(GTK_RANGE(widget));
+	g_data->photon_total = value * 5000;
 }
 
 void		change_photon_size(GtkWidget *widget, gpointer param)

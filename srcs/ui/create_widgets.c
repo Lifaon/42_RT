@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 22:52:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:36:26 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, gdouble value)
 	if (!(scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,
 					wid_d->min_max.x, wid_d->min_max.y, wid_d->step)))
 		return (NULL);
+	gtk_range_set_increments(GTK_RANGE(scale), wid_d->step, wid_d->step * 2);
 	gtk_range_set_value(GTK_RANGE(scale), value);
 	if (wid_d->f)
 		g_signal_connect(G_OBJECT(scale), "value-changed",

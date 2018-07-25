@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 15:48:07 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 12:30:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:11:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static char		*str_end_digit(char *str)
 	return (str);
 }
 
-int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
+int				get_infinity(GtkWidget *wid, double *dst, char *str, int mode)
 {
 	if ((mode == MODE_PLUS_INF || mode == MODE_BOTH_INF) &&
-	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY")) 
+	(!(ft_strcmp(str, "INFINITY")) || !(ft_strcmp(str, "+INFINITY"))
 			|| !(ft_strcmp(str, "INF")) || !(ft_strcmp(str, "+INF"))))
 	{
 		*dst = INFINITY;
@@ -90,7 +90,16 @@ int		get_infinity(GtkWidget *wid, double *dst, char *str,  int mode)
 	return (0);
 }
 
-double		get_double_from_entry(GtkWidget *wid, int infinity_mode,
+static double	check_max(double max, GtkWidget *wid)
+{
+	char	*str;
+
+	str = ft_itoa(max);
+	gtk_entry_set_text(GTK_ENTRY(wid), str);
+	return (max);
+}
+
+double			get_double_from_entry(GtkWidget *wid, int infinity_mode,
 		double min, double max)
 {
 	char			*str;
@@ -113,13 +122,9 @@ double		get_double_from_entry(GtkWidget *wid, int infinity_mode,
 		str = ft_itoa(min);
 		gtk_entry_set_text(GTK_ENTRY(wid), str);
 		dst = min;
+		ft_strdel(&str);
 	}
 	else if (max != INFINITY && dst > max)
-	{
-		str = ft_itoa(max);
-		gtk_entry_set_text(GTK_ENTRY(wid), str);
-		dst = max;
-	}
-	ft_strdel(&str);
+		dst = check_max(max, wid);
 	return (dst);
 }

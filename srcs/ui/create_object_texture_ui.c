@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:18:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:54:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 23:14:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int		add_bump(t_wid_data *wid_d, t_obj *obj, 
+static int		add_bump(t_wid_data *wid_d, t_obj *obj,
 	GtkSizeGroup *gp_bump)
 {
 	GtkWidget		*w[2];
@@ -42,11 +42,11 @@ static int		add_bump(t_wid_data *wid_d, t_obj *obj,
 	return (1);
 }
 
-static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj, 
+static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj,
 	GtkSizeGroup *gp_perlin, GtkSizeGroup *gp_check)
 {
 	GtkWidget		*w[2];
-	
+
 	g_ui->is_active = 1;
 	wid_d->pos = pt_set(0, 0);
 	wid_d->f = &check_rainbow;
@@ -72,7 +72,7 @@ static int		add_checks_buttons(t_wid_data *wid_d, t_obj *obj,
 	return (1);
 }
 
-static int		phase_2(t_wid_data *wid_d, t_obj *obj, 
+static int		phase_2(t_wid_data *wid_d, t_obj *obj,
 	GtkSizeGroup *gp_perlin, GtkSizeGroup *gp_check)
 {
 	GtkWidget		*w;
@@ -102,7 +102,7 @@ static int		phase_2(t_wid_data *wid_d, t_obj *obj,
 	return (add_bump(wid_d, obj, gp_bump));
 }
 
-static int		phase_1(t_wid_data *wid_d, t_obj *obj, 
+static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 	GtkSizeGroup *gp_perlin, GtkSizeGroup *gp_check)
 {
 	t_pixelbuf		*pxb;
@@ -111,7 +111,6 @@ static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 	if (!(pxb = pixelbuf_new(pt_set(30, 30), NULL)))
 		return (0);
 	fill_pixelbuf_in_color(pxb, obj->color2.c);
-	wid_d->f = &change_obj_color2;
 	if (!(w = b_new(wid_d, (gpointer)pxb->widget, NULL, pxb->widget)))
 		return (0);
 	gtk_widget_set_sensitive(w, FALSE);
@@ -125,20 +124,19 @@ static int		phase_1(t_wid_data *wid_d, t_obj *obj,
 		return (0);
 	gtk_widget_set_sensitive(w, FALSE);
 	gtk_size_group_add_widget(gp_check, w);
-	wid_d->pos = pt_set(2, 2);
+	wid_d->pos = pt_set(2, 1);
 	wid_d->f = &check_perlin_cosine;
-	wid_d->pos.y = 1;
 	if (!(w = new_check_button(wid_d, "Cosine", gp_perlin, gp_perlin)))
 		return (0);
 	gtk_size_group_add_widget(gp_perlin, w);
 	return (phase_2(wid_d, obj, gp_perlin, gp_check));
 }
 
-int			create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
+int				create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
 {
-	GtkWidget 		*frame;
+	GtkWidget		*frame;
 	t_wid_data		frame_d;
-	GtkSizeGroup	*gp_perlin;	
+	GtkSizeGroup	*gp_perlin;
 	GtkSizeGroup	*gp_check;
 
 	if (!(frame = gtk_frame_new("Textures")))
@@ -150,7 +148,7 @@ int			create_object_texture_ui(t_wid_data *wid_d, t_obj *obj)
 	init_wid_data(&frame_d, 10, ptdb_set(10, 1000));
 	frame_d.pos = pt_set(0, 1);
 	frame_d.size = pt_set(1, 2);
-	//gtk_grid_set_row_homogeneous(GTK_GRID(wid_d->grid), TRUE);
+	frame_d.f = &change_obj_color2;
 	if (!(phase_1(&frame_d, obj, gp_perlin, gp_check)))
 		return (0);
 	if (!(create_object_file_tex_ui(&frame_d, obj)))

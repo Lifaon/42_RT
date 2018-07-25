@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:07:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/11 14:02:59 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 22:52:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,6 @@ GtkWidget	*b_new(t_wid_data *wid_d, gpointer param, const char *txt,
 	return (b);
 }
 
-GtkWidget	*tgb_new(t_wid_data *wid_d, gpointer param, const char *txt)
-{
-	GtkWidget	*tgb;
-
-	if (!(tgb = gtk_toggle_button_new_with_label(txt)))
-		return (NULL);
-	if (wid_d->f)
-		g_signal_connect(G_OBJECT(tgb), "clicked", G_CALLBACK(wid_d->f),
-				param);
-	if (wid_d)
-		gtk_grid_attach(GTK_GRID(wid_d->grid), tgb, wid_d->pos.y, wid_d->pos.x,
-			wid_d->size.x, wid_d->size.y);
-	return (tgb);
-}
-
 GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, gdouble value)
 {
 	GtkWidget		*scale;
@@ -87,7 +72,7 @@ GtkWidget	*scale_new(t_wid_data *wid_d, gpointer param, gdouble value)
 	if (wid_d)
 		gtk_grid_attach(GTK_GRID(wid_d->grid), scale, wid_d->pos.y,
 				wid_d->pos.x, wid_d->size.x, wid_d->size.y);
-    gtk_widget_set_can_focus(scale, FALSE);
+	gtk_widget_set_can_focus(scale, FALSE);
 	return (scale);
 }
 
@@ -98,12 +83,8 @@ GtkWidget	*entry_new(t_wid_data *wid_d, gpointer param, const char *txt)
 	if (!(entry = gtk_entry_new()))
 		return (NULL);
 	if (wid_d->entry_f)
-	{
-		//g_signal_connect(G_OBJECT(entry), "activate", G_CALLBACK(wid_d->f),
-		//		param);
 		g_signal_connect_after(G_OBJECT(entry), "focus-out-event",
 				G_CALLBACK(wid_d->entry_f), param);
-	}
 	if (txt)
 		gtk_entry_set_text(GTK_ENTRY(entry), txt);
 	if (wid_d)

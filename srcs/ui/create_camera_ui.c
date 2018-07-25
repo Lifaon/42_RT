@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 21:35:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:39:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		phase_2(t_wid_data *wid_d)
 	return (1);
 }
 
-	static int		phase_1(t_wid_data *wid_d)
+static int		phase_1(t_wid_data *wid_d)
 {
 	GtkWidget		*l_value;
 

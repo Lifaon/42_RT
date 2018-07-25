@@ -6,20 +6,26 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 19:38:58 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:39:39 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:06:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int			get_state_of_scale(const char *str, GtkWidget *widget)
+static int			get_state_of_scale(const char *label, GtkWidget *button,
+		gboolean label_state)
 {
-	int		 	dst;
+	int				dst;
+	const char		*str;
 
-	dst = -1;
-	if ((ft_strcmp(str, "Rainbow") == 0 ) || (ft_strcmp(str, "Checkboard") == 0))
+	dst = 0;
+	str = gtk_button_get_label(GTK_BUTTON(button));
+	if (label && ft_strcmp(str, label) == 0)
+		gtk_widget_set_sensitive(button, label_state);
+	if ((ft_strcmp(str, "Rainbow") == 0 ) ||
+		(ft_strcmp(str, "Checkboard") == 0))
 	{
-		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) == TRUE)
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == TRUE)
 			dst = 1;
 	}
 	return (dst);
@@ -28,10 +34,9 @@ static int			get_state_of_scale(const char *str, GtkWidget *widget)
 static void			check_textures(GtkSizeGroup *group, const char *label,
 	gboolean label_state)
 {
-	GtkWidget		*button;
+	GtkWidget		*son;
 	GtkWidget		*scale;
 	GSList			*lst;
-	const char 		*str;
 	gboolean		state;
 
 	state = FALSE;
@@ -39,24 +44,21 @@ static void			check_textures(GtkSizeGroup *group, const char *label,
 	lst = gtk_size_group_get_widgets(group);
 	while (lst)
 	{
-		if (GTK_IS_CHECK_BUTTON((GtkWidget*)lst->data))
+		son = (GtkWidget*)lst->data;
+		if (GTK_IS_CHECK_BUTTON(son))
 		{
-			button = (GtkWidget*)lst->data;
-			str = gtk_button_get_label(GTK_BUTTON(button));
-			if (label && ft_strcmp(str, label) == 0)
-				gtk_widget_set_sensitive(button, label_state);
-			if (get_state_of_scale(str, button) == 1)
+			if (get_state_of_scale(label, son, label_state) == 1)
 				state = TRUE;
 		}
-		else if (GTK_IS_SCALE((GtkWidget*)lst->data))
-			scale = (GtkWidget*)lst->data;
+		else if (GTK_IS_SCALE(son))
+			scale = son;
 		lst = lst->next;
 	}
 	if (scale)
 		gtk_widget_set_sensitive(scale, state);
 }
 
-void		check_checkboard(GtkWidget *widget, gpointer param)
+void				check_checkboard(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	gboolean		state;
@@ -85,7 +87,7 @@ void		check_checkboard(GtkWidget *widget, gpointer param)
 	}
 }
 
-void		check_rainbow(GtkWidget *widget, gpointer param)
+void				check_rainbow(GtkWidget *widget, gpointer param)
 {
 	GtkSizeGroup	*group;
 	gboolean		state;
@@ -106,7 +108,7 @@ void		check_rainbow(GtkWidget *widget, gpointer param)
 	}
 }
 
-void		change_color_scale(GtkWidget *widget, gpointer param)
+void				change_color_scale(GtkWidget *widget, gpointer param)
 {
 	int		value;
 

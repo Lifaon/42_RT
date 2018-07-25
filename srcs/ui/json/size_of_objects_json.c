@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:50:09 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:54:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:35:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static size_t	size_obj_type(t_obj *obj)
 
 /*
 ** size is set at 11 for the 3 cratere before the type_name '\t' '\t' '"'
-**  the 4 caracter at the end of line '"' ' ' ':' ' '
+** the 4 caracter at the end of line '"' ' ' ':' ' '
 ** and the 4 caracter of the begenning of the next line '\t' '\t' '}' '\n'
- */
+*/
 
 size_t			size_of_objects_json(void)
 {
@@ -60,4 +60,3 @@ size_t			size_of_objects_json(void)
 	size += ft_strlen("\t},\n}");
 	return (size);
 }
-

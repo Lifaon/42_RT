@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 21:21:44 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:38:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ typedef struct		s_obj
 typedef struct		s_ui
 {
 	GtkWidget		*tab;
-	t_list			*to_free;//
 	GtkWidget		*tab_light;
 	GtkWidget		*tab_cams;
 	GtkWidget		*tab_objs;
@@ -258,14 +257,5 @@ typedef struct		s_wid_data
 	void			(*f)(GtkWidget*, gpointer);
 	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;
-
-/*
-** Yes
-*/
-typedef struct		s_widget_vec
-{
-	GtkSizeGroup	*group;
-	t_vec			*vec;
-}					t_widget_vec;
 
 #endif

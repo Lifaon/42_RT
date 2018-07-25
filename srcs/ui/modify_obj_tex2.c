@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 18:21:55 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 13:05:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:20:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		switch_obj_tex_trans(GtkWidget *widget, gboolean state,
 		g_data->objs[g_ui->page_obj].tex_trans = 1;
 }
 
-void				change_obj_tex_scale(GtkWidget *widget, gpointer param)
+void		change_obj_tex_scale(GtkWidget *widget, gpointer param)
 {
 	double			value;
 
@@ -44,7 +44,7 @@ void				change_obj_tex_scale(GtkWidget *widget, gpointer param)
 	g_data->objs[g_ui->page_obj].tex_scale = value;
 }
 
-void				change_obj_tex_pos_x(GtkWidget *widget, gpointer param)
+void		change_obj_tex_pos_x(GtkWidget *widget, gpointer param)
 {
 	double			value;
 
@@ -54,7 +54,7 @@ void				change_obj_tex_pos_x(GtkWidget *widget, gpointer param)
 	g_data->objs[g_ui->page_obj].tex_pos.x = (int)value;
 }
 
-void				change_obj_tex_pos_y(GtkWidget *widget, gpointer param)
+void		change_obj_tex_pos_y(GtkWidget *widget, gpointer param)
 {
 	double			value;
 

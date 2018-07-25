@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:02:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 19:42:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:35:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*fill_obj_type(char *str, t_obj *obj)
 		str = my_strcopy(str, "cone");
 	else if (obj->obj_type == SPHERE)
 		str = my_strcopy(str, "sphere");
-	else 
+	else
 		str = my_strcopy(str, "plane");
 	str = my_strcopy(str, "\" :\n\t\t{\n");
 	str = my_strcopy(str, "\t\t\t\"angle\" : ");
@@ -34,7 +34,7 @@ static char		*fill_obj_type(char *str, t_obj *obj)
 	return (str);
 }
 
-char		*fill_objects_json(char *str)
+char			*fill_objects_json(char *str)
 {
 	int			i;
 
@@ -53,4 +53,3 @@ char		*fill_objects_json(char *str)
 	str = my_strcopy(str, "\t}\n}");
 	return (str);
 }
-

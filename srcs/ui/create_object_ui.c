@@ -6,17 +6,18 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:25 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:00:32 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 23:07:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
+
 /*
 ** because object type and object limited type are linked
 ** the combobox obj_type is create during the creation of obj_limited
 */
 
-static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
+static int			construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 {
 	t_pixelbuf		*pxb;
 
@@ -41,11 +42,11 @@ static int		construct_phase_1(t_wid_data *wid_d, t_obj *obj)
 	return (obj_construct_phase_2(wid_d, obj));
 }
 
-static GtkWidget 	*create_scrollable(GtkWidget *child)
+static GtkWidget	*create_scrollable(GtkWidget *child)
 {
 	GtkAdjustment	*v_adj;
 	GtkAdjustment	*h_adj;
-	GtkWidget 		*sbar;
+	GtkWidget		*sbar;
 
 	if (!(v_adj = gtk_adjustment_new(0, 0, 1020, 10, 100, 20)))
 		return (NULL);
@@ -56,19 +57,18 @@ static GtkWidget 	*create_scrollable(GtkWidget *child)
 	gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(sbar),
 			g_data->img->size.y - 200);
 	gtk_scrolled_window_set_overlay_scrolling(GTK_SCROLLED_WINDOW(sbar), FALSE);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sbar),
-                                GTK_POLICY_NEVER,
-                                GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sbar),
+			GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 	gtk_container_add(GTK_CONTAINER(sbar), child);
 	return (sbar);
 }
 
-int				create_object_tab(GtkWidget *tab_obj, int index)
+int					create_object_tab(GtkWidget *tab_obj, int index)
 {
 	GtkWidget		*l_title;
 	t_wid_data		wid_d;
 	char			*str;
-	GtkWidget 		*sbar;
+	GtkWidget		*sbar;
 
 	if (!(init_wid_data(&wid_d, 1, ptdb_set(-180, 180))))
 		return (0);
@@ -91,7 +91,7 @@ int				create_object_tab(GtkWidget *tab_obj, int index)
 	return (1);
 }
 
-int				create_object_ui(GtkWidget *tab)
+int					create_object_ui(GtkWidget *tab)
 {
 	GtkWidget		*l_title;
 	GtkWidget		*box;

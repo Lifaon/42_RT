@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:42:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:01:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:14:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static size_t		size_of_textures_json(t_obj *obj)
 	return (size);
 }
 
-size_t			size_of_object_common_json(t_obj *obj)
+size_t				size_of_object_common_json(t_obj *obj)
 {
 	size_t		size;
 

@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 18:48:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/17 20:50:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:34:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "parse.h"
 
-static void		reset_button_texture(GtkWidget *button)
+static void			reset_button_texture(GtkWidget *button)
 {
 	GList		*lst;
 	GtkWidget	*box;
@@ -23,7 +23,7 @@ static void		reset_button_texture(GtkWidget *button)
 		box = lst->data;
 		g_list_free(lst);
 		lst = gtk_container_get_children(GTK_CONTAINER(box));
-	 }
+	}
 	if (lst)
 	{
 		fill_img_in_color((GtkWidget*)lst->data, 0x000000);
@@ -35,7 +35,7 @@ static void		reset_button_texture(GtkWidget *button)
 	gtk_widget_set_sensitive(button, FALSE);
 }
 
-void			check_tex_file(GtkWidget *widget, gpointer param)
+void				check_tex_file(GtkWidget *widget, gpointer param)
 {
 	gboolean		state;
 	GtkWidget		*button;
@@ -59,7 +59,7 @@ void			check_tex_file(GtkWidget *widget, gpointer param)
 		reset_button_texture(button);
 }
 
-static void load_texture(t_obj *obj, char *path, GtkWidget *img)
+static void			load_texture(t_obj *obj, char *path, GtkWidget *img)
 {
 	t_pixelbuf		*old_tex;
 	t_pixelbuf		*button_pxb;
@@ -79,46 +79,55 @@ static void load_texture(t_obj *obj, char *path, GtkWidget *img)
 		{
 			pixelbuf_free(&obj->tex);
 			obj->tex = old_tex;
-			ft_putstr("pouet\n");
 		}
 		if (obj->tex)
-			scale_pxb(obj->tex, button_pxb, button_pxb->size, GDK_INTERP_BILINEAR);
+			scale_pxb(obj->tex, button_pxb, button_pxb->size,
+					GDK_INTERP_BILINEAR);
 	}
 }
+
+static GtkWidget	*get_img(GtkWidget *button)
+{
+	GList		*lst;
+	GtkWidget	*img;
+
+	if ((lst = gtk_container_get_children(GTK_CONTAINER(button))))
+	{
+		img = (GtkWidget*)lst->data;
+		g_list_free(lst);
+		lst = gtk_container_get_children(GTK_CONTAINER(img));
+	}
+	if (lst)
+	{
+		img = (GtkWidget*)lst->data;
+		g_list_free(lst);
+	}
+	return (img);
+}
+
 /*
 ** the add_alpha function is in parse_texture.c
 */
 
-void			change_obj_tex_file(GtkWidget *widget, gpointer param)
+void				change_obj_tex_file(GtkWidget *widget, gpointer param)
 {
 	GtkWidget	*select;
-	GList		*lst;
 	gchar		*path;
 	t_obj		*obj;
-	GtkWidget 	*w;
+	GtkWidget	*img;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	select = gtk_file_chooser_dialog_new("chose a file",
-			GTK_WINDOW(g_data->win),
-			GTK_FILE_CHOOSER_ACTION_OPEN, "load texture", GTK_RESPONSE_ACCEPT, NULL);
+			GTK_WINDOW(g_data->win), GTK_FILE_CHOOSER_ACTION_OPEN,
+			"load texture", GTK_RESPONSE_ACCEPT, NULL);
 	gtk_window_set_modal(GTK_WINDOW(select), TRUE);
 	obj = &g_data->objs[g_ui->page_obj];
-	if ((lst = gtk_container_get_children(GTK_CONTAINER(widget))))
-	{
-		w = lst->data;
-		g_list_free(lst);
-		lst = gtk_container_get_children(GTK_CONTAINER(w));
-	 }
-	if (lst)
-	{
-		w = (GtkWidget*)lst->data;
-		g_list_free(lst);
-	}
 	if (gtk_dialog_run(GTK_DIALOG(select)) == GTK_RESPONSE_ACCEPT)
 	{
+		img = get_img(widget);
 		path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(select));
-		load_texture(obj, path, w);
+		load_texture(obj, path, img);
 	}
 	gtk_widget_destroy(select);
 }

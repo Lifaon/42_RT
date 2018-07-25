@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:14:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/24 22:42:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static int		construct_phase_2(t_wid_data *wid_d)
 	wid_d->param = NULL;
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_depth_max;
-	if (!(make_label_and_scale(wid_d, "max number\nof reflexion", 
+	if (!(make_label_and_scale(wid_d, "max number\nof reflexion",
 			(double)g_data->depth_max, &g_data->depth_max)))
 		return (0);
 	set_wid_data_scale(wid_d, 0.1, ptdb_set(0.1, 3));
 	wid_d->f = &change_dof_coeff;
 	wid_d->pos.y += 2;
-	if (!(make_label_and_scale(wid_d, "Depth of field \nintensity", 
+	if (!(make_label_and_scale(wid_d, "Depth of field \nintensity",
 			(double)g_data->dof_coeff, &g_data->dof_coeff)))
 		return (0);
 	return (1);
@@ -44,7 +44,8 @@ static int		construct_phase_1(t_wid_data *wid_d)
 					&g_data->aa)))
 		return (0);
 	wid_d->pos = pt_set(1, 0);
-	if (!(make_label_and_switch(wid_d, "cel shading", FALSE, &switch_cel_shading)))
+	if (!(make_label_and_switch(wid_d, "cel shading", FALSE,
+					&switch_cel_shading)))
 		return (0);
 	wid_d->f = &change_filter;
 	wid_d->param = (gpointer)wid_d;

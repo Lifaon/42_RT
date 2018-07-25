@@ -151,6 +151,12 @@ SRCS  = draw/anti_aliasing.c \
 		ui/get_double_from_entry.c \
 		ui/create_object_texture_ui.c \
 		\
+		clustering/init_host.c \
+		clustering/init_client.c \
+		clustering/host_work.c \
+		clustering/client_work.c \
+		clustering/send_data.c \
+		\
 		data_init.c \
 		exit_all.c \
 		main.c
@@ -158,7 +164,7 @@ SRCS  = draw/anti_aliasing.c \
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = color draw events init parser vec ui ui/json
+OBJS_SUB_DIRS = color draw events init parser vec ui ui/json clustering
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
@@ -187,7 +193,7 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-lm \
 			-lpthread \
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033[032m✓\t\033[032mDONE !\033[0m\

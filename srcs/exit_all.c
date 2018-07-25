@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 12:41:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 19:00:20 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 void	exit_all(t_data *data)
 {
+	int		i;
+
+	i = -1;
+	if (data->clust_i == CLUST_HOST)
+	{
+		closesocket(data->clust.sock);
+		while (++i < data->clust.nb_client_for_free)
+			closesocket(data->clust.client_l[i].csock);
+	}
+	else if (data->clust_i == CLUST_CLIENT)
+	{
+		closesocket(data->clust.sock);
+		free(data->cimg);
+	}
 	if (data)
 	{
 		if (data && data->nb_objects)

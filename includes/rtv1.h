@@ -29,8 +29,9 @@
 # include "defines.h"
 
 /*
-**	Function used to parse the given file.
+**	Functions used to parse the given file.
 */
+void			parse_for_client(t_data *data, char *str);
 void			parse(t_data *data, char *file_name);
 
 /*

@@ -13,6 +13,31 @@
 #include "rtv1.h"
 #include "parse.h"
 
+void	parse_for_client(t_data *data, char *str)
+{
+	int			i;
+
+	remove_white_spaces(&str);
+//	check_error(data, str);
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\"')
+		{
+			if (read_quotes(str + i, "\"cameras\"", &i))
+				parse_cameras(data, str + i, &i);
+			else if (read_quotes(str + i, "\"lights\"", &i) && \
+				!data->nb_lights)
+				parse_lights(data, str + i, &i);
+			else if (read_quotes(str + i, "\"objects\"", &i) && \
+				!data->nb_objects)
+				parse_objects(data, str + i, &i);
+			else if (read_quotes(str + i, "\"options\"", &i))
+				parse_options(data, str + i, &i);
+		}
+	data->cam = data->cams[data->i];
+	free(str);
+}
+
 void	parse(t_data *data, char *file_name)
 {
 	char	*str;

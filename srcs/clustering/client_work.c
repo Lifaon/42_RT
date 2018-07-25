@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 14:23:35 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:57:56 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void			recv_data(int sock)
 	char	tmp[4];
 	char	buf2;
 	char	buff[5];
+	char	buf3[2];
 
 	if (g_data && g_data->nb_objects)
 		free(g_data->objs);
@@ -50,6 +51,11 @@ static void			recv_data(int sock)
 	if (send(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("send fail");
 	printf("send alive");
+	if (recv(sock, (char*)buf3, sizeof(char) * 2, 0) < 0)
+		exit_cause("recv error");
+	g_data->x = buff[0];
+	g_data->nb_client = buff[1];
+	printf("x : %d\tnb_client: %d\n", g_data->x, g_data->nb_client);
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
 	size_json = buf_to_int(tmp);

@@ -18,7 +18,7 @@ void			init_host(char *map);
 void			init_client(char *ip);
 void			host_work(int send);
 void			client_work(void);
-int				send_data(int socket);
-void			send_data_to_client(void);
+int				send_data(int socket, int client);
+int				send_data_to_client(void);
 
 #endif

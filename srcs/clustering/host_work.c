@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 14:18:22 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 14:45:06 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ void			host_work(int send)
 {
 	pthread_t		thread;
 	int				i;
+	int				ret;
 
 	i = -1;
 	if (send == 1)
-		send_data_to_client();
+		ret = send_data_to_client();
 	if (g_data->filter != FILTER_STEREO)
 	{
 		if (pthread_create(&thread, NULL, host_draw, g_data))

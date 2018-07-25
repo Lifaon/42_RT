@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 03:04:14 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/23 07:13:58 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:24:16 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,17 @@ t_vec	vec_cross_product2(t_vec u, t_vec v)
 	res.y = u.z * v.x + u.x * v.z;
 	res.z = u.x * v.y + u.y * v.x;
 	return (res);
+}
+
+t_vec			get_random_direction(void)
+{
+	t_vec		dir;
+	t_vec		angle;
+
+	dir = (t_vec){0, -1, 0};
+	angle.x = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
+	angle.y = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
+	angle.z = (36000. * rand() / (RAND_MAX + 1.0)) * .01;
+	dir = all_rotations(dir, angle);
+	return (dir);
 }

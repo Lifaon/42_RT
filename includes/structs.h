@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 12:38:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:10:06 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ typedef struct		s_data
 	int				cel_shading;	// defines if cel_shading is on
 	int				filter;		// defines if a filter is on : defines.h
 	int				depth_max;		// defines the maximum value of inter.depth
+	int				caustic_flag;	// enables caustic light
 	t_photon		*photon_map;	// to store photons, if == NULL no caustics
 	int				photon_total;	// total of photons emitted
 	int				photon_hit;		// total of photons that bounced once or +

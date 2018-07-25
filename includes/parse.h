@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:29:27 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:44:14 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:00:04 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		brackets(char *str);
 **	brackets() checks if brackets in the given file are correctly formated.
 */
 
+void	parse_options(t_data *data, char *str, int *index);
 void	parse_cameras(t_data *data, char *str, int *index);
 void	parse_lights(t_data *data, char *str, int *index);
 void	parse_objects(t_data *data, char *str, int *index);

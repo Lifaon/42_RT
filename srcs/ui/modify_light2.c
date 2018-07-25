@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 20:18:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:21:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:14:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ void			change_light_color(GtkWidget *widget, gpointer param)
 	color = &light->color;
 	chose_color((GtkWidget*)param, (gpointer)color, light);
 }
-

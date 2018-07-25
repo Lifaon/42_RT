@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:28:07 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 12:38:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,35 +75,35 @@ typedef struct		s_photon
 /*
 **	Perlin structure
 */
-typedef struct	s_perlin
+typedef struct		s_perlin
 {
-	int			bx0;
-	int			bx1;
-	int			by0;
-	int			by1;
-	int			bz0;
-	int			bz1;
-	int			b00;
-	int			b01;
-	int			b11;
-	int			b10;
-	float		rx0;
-	float		rx1;
-	float		ry0;
-	float		ry1;
-	float		rz0;
-	float		rz1;
-	float		*q;
-	float		sy;
-	float		sz;
-	float		a;
-	float		b;
-	float		c;
-	float		d;
-	float		t;
-	float		u;
-	float		v;
-}				t_perlin;
+	int				bx0;
+	int				bx1;
+	int				by0;
+	int				by1;
+	int				bz0;
+	int				bz1;
+	int				b00;
+	int				b01;
+	int				b11;
+	int				b10;
+	float			rx0;
+	float			rx1;
+	float			ry0;
+	float			ry1;
+	float			rz0;
+	float			rz1;
+	float			*q;
+	float			sy;
+	float			sz;
+	float			a;
+	float			b;
+	float			c;
+	float			d;
+	float			t;
+	float			u;
+	float			v;
+}					t_perlin;
 
 /*
  **	To add colors.
@@ -229,7 +229,6 @@ typedef struct		s_obj
 typedef struct		s_ui
 {
 	GtkWidget		*tab;
-	t_list			*to_free;//
 	GtkWidget		*tab_light;
 	GtkWidget		*tab_cams;
 	GtkWidget		*tab_objs;
@@ -273,7 +272,7 @@ typedef struct		s_data
 	int				stereo_scale;	// scaling for stereoscopy, 1 to 100
 	void			*win;		//
 	t_pixelbuf		*img;		//
-	int				draw;//		//
+	int				draw;		//
 	char			*path;		//
 	char			*long_path;		//
 	int				(*intersect[4])(struct s_obj, t_vec, t_inter *); //defines.h
@@ -323,16 +322,5 @@ typedef struct		s_wid_data
 	void			(*f)(GtkWidget*, gpointer);
 	void			(*entry_f)(GtkWidget*, GdkEvent*, gpointer);
 }					t_wid_data;
-
-/*
- ** This structure is used to make widget, position it to a grid
- ** and link to function
- */
-
-typedef struct		s_widget_vec
-{
-	GtkSizeGroup	*group;
-	t_vec			*vec;
-}					t_widget_vec;
 
 #endif

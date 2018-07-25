@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 14:57:12 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/29 04:55:16 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/24 21:56:55 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_pixelbuf		*pixelbuf_new_from_file(char *filename)
 {
 	t_pixelbuf	*pxbuf;
 	GtkWidget	*img;
-	
+
 	if (!(img = gtk_image_new_from_file(filename)))
 		return (NULL);
 	if (!(pxbuf = (t_pixelbuf*)malloc(sizeof(t_pixelbuf))))

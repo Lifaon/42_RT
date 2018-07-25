@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 19:26:36 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:44:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:19:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			change_obj_focus(GtkWidget *widget, gpointer param)
 	GtkSizeGroup	*group;
 	gboolean		status;
 	GSList			*lst;
+	GtkWidget		*son;
 
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
@@ -58,7 +59,8 @@ void			change_obj_focus(GtkWidget *widget, gpointer param)
 		g_ui->is_active = 0;
 		while (lst)
 		{
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON((GtkWidget*)lst->data), FALSE);
+			son = (GtkWidget*)lst->data;
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(son), FALSE);
 			lst = lst->next;
 		}
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), TRUE);
@@ -67,7 +69,7 @@ void			change_obj_focus(GtkWidget *widget, gpointer param)
 	}
 }
 
-void	change_obj_color(GtkWidget *widget, gpointer param)
+void			change_obj_color(GtkWidget *widget, gpointer param)
 {
 	gpointer	color;
 
@@ -77,7 +79,7 @@ void	change_obj_color(GtkWidget *widget, gpointer param)
 	chose_color((GtkWidget*)param, color, NULL);
 }
 
-void	change_obj_color2(GtkWidget *widget, gpointer param)
+void			change_obj_color2(GtkWidget *widget, gpointer param)
 {
 	gpointer	color;
 

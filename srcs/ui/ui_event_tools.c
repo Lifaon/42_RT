@@ -6,18 +6,18 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:56:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/21 09:01:47 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:02:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-void			set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
+void		set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
 {
 	GSList		*lst;
-	GtkWidget 	*son;
+	GtkWidget	*son;
 	int			i;
-	char 		*str[3];
+	char		*str[3];
 
 	lst = gtk_size_group_get_widgets(group);
 	str[0] = ft_dbtoa(vec.z);
@@ -41,13 +41,13 @@ void			set_entry_and_scale_from_vector(GtkSizeGroup *group, t_vec vec)
 		ft_strdel(&str[i]);
 }
 
-void			file_error(GtkWidget *select)
+void		file_error(GtkWidget *select)
 {
 	ft_putstr("error : invalid file\n");
 	gtk_widget_destroy(select);
 }
 
-void			set_child_widget_active(GtkContainer *container, gboolean status)
+void		set_child_widget_active(GtkContainer *container, gboolean status)
 {
 	GList		*lst;
 
@@ -60,7 +60,7 @@ void			set_child_widget_active(GtkContainer *container, gboolean status)
 	g_list_free(lst);
 }
 
-void			set_group_widget_active(GtkSizeGroup *group, gboolean status)
+void		set_group_widget_active(GtkSizeGroup *group, gboolean status)
 {
 	GSList		*lst;
 

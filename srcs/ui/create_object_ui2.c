@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_object_ui2.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/24 21:43:03 by fchevrey          #+#    #+#             */
+/*   Updated: 2018/07/24 22:43:23 by fchevrey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ui.h"
 
 static int		construct_phase_3(t_wid_data *wid_d, t_obj *obj)
@@ -25,7 +37,7 @@ int				obj_construct_phase_2(t_wid_data *wid_d, t_obj *obj)
 	GtkSizeGroup	*group;
 	GtkWidget		*check_b;
 
-	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha , obj)))
+	if (!(make_label_and_scale(wid_d, "Alpha", obj->alpha, obj)))
 		return (0);
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_obj_focus;

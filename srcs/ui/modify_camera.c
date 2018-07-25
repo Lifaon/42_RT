@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 19:19:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:48:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:17:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void			change_cam_angle(GtkWidget *widget, gpointer param)
 	g_data->cam = g_data->cams[g_data->i];
 	get_vp_up_left(&g_data->cam);
 	get_oc();
-
 }
 
 void			change_cam_pos(GtkWidget *widget, gpointer param)
@@ -54,7 +53,6 @@ void			change_cam_pos(GtkWidget *widget, gpointer param)
 	g_data->cam = g_data->cams[g_data->i];
 	get_vp_up_left(&g_data->cam);
 	get_oc();
-	printf("x= %lf, y =%lf, z = %lf\n", vec->x, vec->y, vec->z);
 }
 
 void			change_left_cam(GtkWidget *widget, gpointer param)

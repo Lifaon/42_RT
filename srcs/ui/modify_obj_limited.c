@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 16:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 20:47:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 11:22:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 
-static int			get_limited_obj_type(t_obj *obj, int axe)
+static int	get_limited_obj_type(t_obj *obj, int axe)
 {
 	if (axe == 1)
 		return (LIMIT_AXE);
@@ -34,10 +34,10 @@ static int			get_limited_obj_type(t_obj *obj, int axe)
 
 void		switch_obj_limited(GtkWidget *widget,
 		gboolean state, gpointer param)
-{	
+{
 	GList		*lst;
-	GtkWidget 	*son;
-	
+	GtkWidget	*son;
+
 	if (g_ui->is_active == 0 || (!widget && !param))
 		return ;
 	lst = gtk_container_get_children(GTK_CONTAINER(param));

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:45:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 15:20:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/25 16:06:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char		*fill_caustic(char *str)
 {
-	str = my_strcopy(str, ",\n\t\t\"depth_max\" : ");
-	str = strcpy_int(str, g_data->depth_max);
+	str = my_strcopy(str, ",\n\t\t\"caustic_flag\" : ");
+	str = strcpy_int(str, g_data->caustic_flag);
 	str = my_strcopy(str, ",\n\t\t\"photon_total\" : ");
 	str = strcpy_int(str, g_data->photon_total);
 	str = my_strcopy(str, ",\n\t\t\"photon_ppx\" : ");
@@ -27,16 +27,10 @@ static char		*fill_caustic(char *str)
 
 static char		*fill_filters(char *str)
 {
-	if (g_data->cel_shading)
-	{
-		str = my_strcopy(str, ",\n\t\t\"cel_shading\" : ");
-		str = strcpy_int(str, g_data->cel_shading);
-	}
-	if (g_data->filter)
-	{
-		str = my_strcopy(str, ",\n\t\t\"filter\" : ");
-		str = strcpy_int(str, g_data->filter);
-	}
+	str = my_strcopy(str, ",\n\t\t\"cel_shading\" : ");
+	str = strcpy_int(str, g_data->cel_shading);
+	str = my_strcopy(str, ",\n\t\t\"filter\" : ");
+	str = strcpy_int(str, g_data->filter);
 	str = my_strcopy(str, ",\n\t\t\"stereo_scale\" : ");
 	str = strcpy_int(str, g_data->stereo_scale);
 	return (str);
@@ -71,7 +65,7 @@ char		*fill_options_json(char *str)
 	str = strcpy_int(str, g_data->depth_max);
 	if (g_data->depth_of_field > -1)
 		str = fill_dof(str);
-	if (g_data->photon_map)
+	if (g_data->caustic_flag == 1)
 		str = fill_caustic(str);
 	str = my_strcopy(str, "\n\t}\n}");
 	return (str);

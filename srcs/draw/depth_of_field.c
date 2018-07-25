@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 22:57:49 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:51:20 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 12:37:48 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,11 @@ void		depth_of_field(void)
 	t_vec	point;
 	int		i;
 
-	static int h = 0;
-	TESTS(++h);
 	point = g_data->objs[g_data->depth_of_field].pos;
-
-	TESTS(++h);
 	malloc_tabs(g_data, color_tabs);
-
-	TESTS(++h);
 	fill_color_tabs(g_data, point, color_tabs);
-
-	TESTS(++h);
 	blend(g_data->clust_i == CLUST_CLIENT ? g_data->cimg : g_data->img->pxl, \
 			color_tabs, WIN_W * WIN_H);
-
-	TESTS(++h);
 	i = -1;
 	while (++i < 81)
 		free(color_tabs[i]);

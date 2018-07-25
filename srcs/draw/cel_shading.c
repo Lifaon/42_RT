@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 03:38:24 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 19:25:49 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:26:45 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,24 @@ static void	*draw_edge_thread(void *thr)
 	t_vec		vp;
 	int			i;
 	int			ymax;
+	int			xmax;
 
 	vp = g_data->cam.vp_up_left;
 	i = *((int *)thr);
 	crd.y = (i * WIN_H / NB_THR) - 1;
 	ymax = (i + 1) * WIN_H / NB_THR;
+	xmax = (WIN_W / (g_data->nb_client + 1)) * (g_data->x + 1) + 0.5;
 	while (++crd.y < ymax)
 	{
 		vp.y = g_data->cam.vp_up_left.y - (double)crd.y;
 		crd.x = -1;
-		while (++crd.x < WIN_W)
+		while (++crd.x < xmax + 1)
 		{
 			vp.x = g_data->cam.vp_up_left.x + (double)crd.x;
-			pt_to_pixelbuf(crd, g_data->img, draw_edge_pixel(vp));
+			if (g_data->clust_i == CLUST_CLIENT)
+				g_data->cimg[crd.x + (crd.y * WIN_W)] = draw_edge_pixel(vp);
+			else
+				pt_to_pixelbuf(crd, g_data->img, draw_edge_pixel(vp));
 		}
 	}
 	pthread_exit(NULL);
@@ -115,12 +120,13 @@ void		cel_shading(void)
 	int		total_size;
 	int		i;
 
-	size.x = g_data->img->size.x;
-	size.y = g_data->img->size.y;
+	size.x = WIN_W;
+	size.y = WIN_H;
 	total_size = size.x * size.y;
 	if (!(edges = (char *)malloc(sizeof(char) * total_size)))
 		return ;
-	draw_edge_image(edges, g_data->img->pxl, size);
+	draw_edge_image(edges, g_data->clust_i == CLUST_CLIENT ? g_data->cimg : \
+			g_data->img->pxl, size);
 	draw_image();
 	i = -1;
 	while (++i < total_size)

@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:36:07 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 20:03:58 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void		add_client_to_ll(char *map, int cpt)
 {
 	socklen_t		crecsize;
 	char			buff[2];
+	char			status;
 
 	crecsize = sizeof(g_data->clust.sin);
 	g_data->clust.client_l[cpt].csock = accept(g_data->clust.sock,
@@ -68,9 +69,12 @@ static void		add_client_to_ll(char *map, int cpt)
 	g_data->clust.client_l[cpt].nb_client = g_data->nb_client;
 	buff[0] = cpt + 1;
 	buff[1] = g_data->nb_client;
-	if (send(g_data->clust.client_l[cpt].csock, (char*)buff, sizeof(char) * 2, 0) < 0)
+	if (send(g_data->clust.client_l[cpt].csock, buff, sizeof(char) * 2, 0) < 0)
 		exit_cause("send error");
 	send_data(g_data->clust.client_l[cpt].csock, cpt);
+	status = 'a';
+	if (send(g_data->clust.client_l[cpt].csock, &status, sizeof(char), 0) < 0)
+		exit_cause("send error");
 }
 
 static void		configure_sockaddr_server(struct sockaddr_in *sin)

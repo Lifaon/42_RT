@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:58:29 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 20:06:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ static void	send_status(int ret)
 	char		status;
 
 	i = 0;
-	status = ret != -1 ? 'a' : 'd';
+	status = ret == -1 ? 'a' : 'd';
+	printf("in send_status : %d\n", ret);
 	while (i < g_data->nb_client)
 	{
 		if (i != ret)

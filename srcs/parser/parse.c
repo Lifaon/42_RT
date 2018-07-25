@@ -31,6 +31,8 @@ void	parse_for_client(t_data *data, char *str)
 			else if (read_quotes(str + i, "\"objects\"", &i) && \
 				!data->nb_objects)
 				parse_objects(data, str + i, &i);
+			else if (read_quotes(str + i, "\"options\"", &i))
+				parse_options(data, str + i, &i);
 		}
 	data->cam = data->cams[data->i];
 	free(str);

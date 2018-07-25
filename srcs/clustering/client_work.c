@@ -63,11 +63,19 @@ static void			recv_data(int sock)
 	json[size_json] = '\0';
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
+	ft_putendl(json);
 	parse_for_client(g_data, json);
 }
 
 static void		chose_draw(void)
 {
+	if (g_data->caustic_flag && !g_data->photon_map)
+		get_photon_map();
+	else if (!g_data->caustic_flag && g_data->photon_map)
+	{
+		free(g_data->photon_map);
+		g_data->photon_map = NULL;
+	}
 	if (g_data->px > 1)
 		draw_pixelated_image(g_data);
 	else if (g_data->cel_shading)

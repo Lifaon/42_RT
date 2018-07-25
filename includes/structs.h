@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:55:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 14:10:06 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 18:59:07 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct			s_clust
 	SOCKET				sock;
 	struct sockaddr_in	sin;
 	struct s_client		*client_l;
+	int					nb_client_for_free;
 }						t_clust;
 
 typedef struct			s_sockaddr_in

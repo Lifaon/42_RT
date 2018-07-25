@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 18:02:28 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 18:59:58 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	check_argv(int argc, char **argv, t_data *data, char* map)
 			if (!(argv[++i]))
 				exit_cause("nomber of client undefined\nUsage : -host 'nb client'");
 			g_data->nb_client = ft_atoi(argv[i]);
+			g_data->clust.nb_client_for_free = g_data->nb_client;
 			if (g_data->nb_client <= 0)
 				exit_cause("cannot have a null or negative nomber of client");
 			g_data->x = 0;

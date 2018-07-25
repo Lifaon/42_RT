@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 15:49:51 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 19:01:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ static char		*itoa_spe(int nb)
 	return (s);
 }
 
-static void	rm_client(int sock)
+static void	rm_client(int sock, int i)
 {
+	t_client	*tmp;
+
+	g_data->clust.client_l[i] = g_data->clust.client_l[g_data->nb_client];
 	closesocket(sock);
 	g_data->nb_client--;
 	printf("nb_client : %d\tx : %d\n", g_data->nb_client, g_data->x);
@@ -93,7 +96,7 @@ int		send_data(int sock, int i)
 	if (buf2 != 'A')
 	{
 		ft_putendl_color("a client died", "red");
-		rm_client(sock);
+		rm_client(sock, i);
 		return (g_data->nb_client);
 	}
 	printf("i : %d\tnb_client : %d\n", i+1, g_data->nb_client);

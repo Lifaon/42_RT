@@ -57,14 +57,18 @@ static void			recv_data(int sock)
 	if (!(json = (char*)ft_memalloc(sizeof(char) * (size_json + 1))))
 		exit_cause("malloc error");
 	json[size_json] = '\0';
+	ft_putendl_color(ft_itoa(size_json), "yellow");
+	ret = 0;
 	while (ret < sizeof(char) * size_json)
 	{
+		TEST;
 		ret += recv(sock, json + ret, 1000, 0);
 		ft_putendl(json);
+		ft_putnbr(ret);
 	}
-	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
-		exit_cause("recv fail");
-	ft_putendl(json);
+//	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
+//		exit_cause("recv fail");
+//	ft_putendl(json);
 	parse_for_client(g_data, json);
 }
 

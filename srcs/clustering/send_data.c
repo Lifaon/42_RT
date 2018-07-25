@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:41:00 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 15:03:02 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 15:25:36 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ int		send_data(int sock, int i)
 		rm_client(sock);
 		return (g_data->nb_client);
 	}
+	printf("i : %d\tnb_client : %d\n", i+1, g_data->nb_client);
+	g_data->clust.client_l[i].x = i + 1;
+	g_data->clust.client_l[i].nb_client = g_data->nb_client;
 	buf3[0] = i + 1;
 	buf3[1] = g_data->nb_client;
 	if (send(sock, (char*)buf3, sizeof(char) * 2, 0) < 0)

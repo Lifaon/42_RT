@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 04:26:11 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/25 13:00:17 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 13:30:25 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void		parse_texture(t_obj *obj, char *str, int *index)
 	char	*path_file;
 	int		i;
 
-	ft_putendl(str);
 	i = 0;
 	while (str[i] && str[i] != ':')
 		++i;

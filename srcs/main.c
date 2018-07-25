@@ -6,7 +6,7 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/24 20:58:30 by mlantonn         ###   ########.fr       */
+/*   Updated: 2018/07/25 13:28:21 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ int			main(int ac, char **av)
 	int		i;
 
 	i = 0;
+	g_data = data_init(av);
+	gtk_init(&ac, &av);
 	if (ac == 1)
 		return (ft_exit());
-	g_data = data_init(av);
+	if (create_ui() == 0)
+		return (0);
 	while(++i < ac)
 	{
 		if (ft_strstr(av[i], ".json"))
@@ -85,9 +88,6 @@ int			main(int ac, char **av)
 	if (g_data->clust_i != CLUST_CLIENT)
 	{
 		get_oc();
-		gtk_init(&ac, &av);
-		if (create_ui() == 0)
-			return (0);
 		if (g_data->clust_i == CLUST_HOST)
 			host_work(0);
 		else

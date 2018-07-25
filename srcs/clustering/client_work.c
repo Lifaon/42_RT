@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 19:57:50 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 20:32:34 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void			recv_data(int sock)
 	int		size_json;
 	char	tmp[4];
 	char	buf2;
-	char	buf3[2];
+	int		ret;
 
 	if (g_data && g_data->nb_objects)
 		free(g_data->objs);
@@ -50,17 +50,18 @@ static void			recv_data(int sock)
 	if (send(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("send fail");
 	printf("send alive\n");
-	if (recv(sock, (char*)buf3, sizeof(char) * 2, 0) < 0)
-		exit_cause("recv error");
-	g_data->x = buf3[0];
-	g_data->nb_client = buf3[1];
 	printf("x : %d\tnb_client: %d\n", g_data->x, g_data->nb_client);
 	if (recv(sock, (char*)tmp, sizeof(char) * 4, 0) < 0)
 		exit_cause("recv fail");
 	size_json = buf_to_int(tmp);
-	if (!(json = (char*)malloc(sizeof(char) * (size_json + 1))))
+	if (!(json = (char*)ft_memalloc(sizeof(char) * (size_json + 1))))
 		exit_cause("malloc error");
 	json[size_json] = '\0';
+	while (ret < sizeof(char) * size_json)
+	{
+		ret += recv(sock, json + ret, 1000, 0);
+		ft_putendl(json);
+	}
 	if (recv(sock, (char*)json, sizeof(char) * size_json, 0) < 0)
 		exit_cause("recv fail");
 	ft_putendl(json);
@@ -116,7 +117,7 @@ void			client_work(void)
 	while (1)
 	{
 		recv_data(g_data->clust.sock);
-		check_host_status(g_data->clust.sock);
+//		check_host_status(g_data->clust.sock);
 		get_oc();
 		chose_draw();
 		ret = 0;

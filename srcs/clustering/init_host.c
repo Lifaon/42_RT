@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/25 20:03:58 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/25 20:24:15 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static void		add_client_to_ll(char *map, int cpt)
 	if (send(g_data->clust.client_l[cpt].csock, buff, sizeof(char) * 2, 0) < 0)
 		exit_cause("send error");
 	send_data(g_data->clust.client_l[cpt].csock, cpt);
-	status = 'a';
-	if (send(g_data->clust.client_l[cpt].csock, &status, sizeof(char), 0) < 0)
-		exit_cause("send error");
+//	status = 'a';
+//	if (send(g_data->clust.client_l[cpt].csock, &status, sizeof(char), 0) < 0)
+//		exit_cause("send error");
 }
 
 static void		configure_sockaddr_server(struct sockaddr_in *sin)

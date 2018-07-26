@@ -6,24 +6,26 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/26 10:03:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/26 10:40:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "events.h"
 
-static GtkWidget	*make_window(GtkApplication *app)
+static void			make_window(GtkApplication *app, gpointer param)
 {
 	GtkWidget		*win;
 
-	if (!(win = gtk_window_new(GTK_WINDOW_TOPLEVEL)))
-		return (0);
+	if (!param)
+		param = NULL;
+	g_data->win = NULL;
+	if (!(win = gtk_application_window_new(app)))
+		 return ;
 	gtk_application_add_window(app, GTK_WINDOW(win));
 	g_data->win = (void*)win;
 	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
-	return (win);
 }
 
 static int			create_renderer(t_ui *ui)
@@ -41,7 +43,7 @@ static int			create_renderer(t_ui *ui)
 	gtk_widget_add_events(ui->ev_box, GDK_KEY_PRESS);
 	g_signal_connect(G_OBJECT(ui->ev_box), "key_press_event",
 				G_CALLBACK(ft_keyboard), g_data);
-	gtk_event_box_set_above_child(GTK_EVENT_BOX(ui->ev_box), TRUE);
+	//gtk_event_box_set_above_child(GTK_EVENT_BOX(ui->ev_box), TRUE);
 	return (1);
 }
 
@@ -60,16 +62,20 @@ static t_ui			*ui_new(int ac, char **av)
 	ft_putstr("pouici\n");
 	if (!(ui->app = gtk_application_new("org.gtk.exemple", G_APPLICATION_FLAGS_NONE)))
 		return (NULL);
-	if (!(make_window(ui->app)))
-		return (0);
+	g_signal_connect(ui->app, "activate", G_CALLBACK(&make_window), ui);
+	g_application_run(G_APPLICATION(ui->app), ac, av);
+	ft_putstr("maow\n");
+/*	if (!(make_window(ui->app)))
+		return (0);*/
+	ft_putstr("pouici\n");
 	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
+	if (g_data->win == NULL)
+		sleep(1);
 	if (!(create_renderer(ui)))
 		return (NULL);
-	ft_putstr("pouici\n");
-	g_application_run(G_APPLICATION(ui->app), ac, av);
 	ft_putstr("pouici\n");
 	return (ui);
 }

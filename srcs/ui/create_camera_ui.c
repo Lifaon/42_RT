@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 16:00:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 21:39:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/26 08:53:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ static int		phase_2(t_wid_data *wid_d)
 static int		phase_1(t_wid_data *wid_d)
 {
 	GtkWidget		*l_value;
+	char			*cam_nb;
 
+	cam_nb = ft_itoa(g_data->i + 1);
 	l_new(wid_d, "Select camera");
 	wid_d->pos.y = 2;
-	if (!(l_value = l_new(wid_d, "1")))
+	if (!(l_value = l_new(wid_d, cam_nb)))
 		return (0);
+	ft_strdel(&cam_nb);
 	wid_d->pos.y = 1;
 	wid_d->f = &change_left_cam;
 	if (!(b_new(wid_d, l_value, "<", NULL)))

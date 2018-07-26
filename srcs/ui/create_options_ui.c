@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:57:43 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/24 22:42:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/26 08:35:54 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int		construct_phase_2(t_wid_data *wid_d)
 {
 	gboolean	state;
 
-	wid_d->param = NULL;
 	wid_d->pos = pt_set(wid_d->pos.x + 1, 0);
 	wid_d->f = &change_depth_max;
 	if (!(make_label_and_scale(wid_d, "max number\nof reflexion",
@@ -65,6 +64,7 @@ static int		construct_phase_1(t_wid_data *wid_d)
 	txt = ft_strsplit("-- None --\fBlack & white\fSepia\fstereoscopy", '\f');
 	if (!(make_label_and_cb(wid_d, "filters", g_data->filter, txt)))
 		return (0);
+	wid_d->param = NULL;
 	return (construct_phase_2(wid_d));
 }
 

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:45:56 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/26 00:23:16 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 08:31:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static char		*fill_caustic(char *str)
 {
-	str = my_strcopy(str, ",\n\t\t\"photon_total\" : ");
-	str = strcpy_int(str, g_data->photon_total);
-	str = my_strcopy(str, ",\n\t\t\"photon_ppx\" : ");
-	str = strcpy_int(str, g_data->photon_ppx);
-	str = my_strcopy(str, ",\n\t\t\"photon_size\" : ");
-	str = strcpy_db(str, g_data->photon_size);
+	str = my_strcopy(str, ",\n\t\t\"caustic_flag\" : ");
+	str = strcpy_int(str, g_data->caustic_flag);
+	if (g_data->caustic_flag == 1)
+	{
+		str = my_strcopy(str, ",\n\t\t\"photon_total\" : ");
+		str = strcpy_int(str, g_data->photon_total);
+		str = my_strcopy(str, ",\n\t\t\"photon_ppx\" : ");
+		str = strcpy_int(str, g_data->photon_ppx);
+		str = my_strcopy(str, ",\n\t\t\"photon_size\" : ");
+		str = strcpy_db(str, g_data->photon_size);
+	}
 	return (str);
 }
 
@@ -63,10 +68,7 @@ char			*fill_options_json(char *str)
 	str = strcpy_int(str, g_data->depth_max);
 	if (g_data->depth_of_field > -1)
 		str = fill_dof(str);
-	str = my_strcopy(str, ",\n\t\t\"caustic_flag\" : ");
-	str = strcpy_int(str, g_data->caustic_flag);
-	if (g_data->caustic_flag == 1)
-		str = fill_caustic(str);
+	str = fill_caustic(str);
 	str = my_strcopy(str, "\n\t}\n}");
 	return (str);
 }

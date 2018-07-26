@@ -6,14 +6,12 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/26 00:46:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 01:16:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "clust.h"
-
-//penser a proteger les send / recv //a
 
 static void		print_wait(char *host)
 {
@@ -23,7 +21,7 @@ static void		print_wait(char *host)
 
 static void		print_host(void)
 {
-	struct ifaddrs		*ifaddr; 
+	struct ifaddrs		*ifaddr;
 	struct ifaddrs		*ifa;
 	int					family;
 	int					s;
@@ -54,7 +52,7 @@ static void		add_client_to_ll(int cpt)
 {
 	socklen_t		crecsize;
 	char			buff[2];
-//	char			status;
+	char			status;
 
 	crecsize = sizeof(g_data->clust.sin);
 	g_data->clust.client_l[cpt].csock = accept(g_data->clust.sock,
@@ -72,9 +70,9 @@ static void		add_client_to_ll(int cpt)
 	if (send(g_data->clust.client_l[cpt].csock, buff, sizeof(char) * 2, 0) < 0)
 		exit_cause("send error");
 	send_data(g_data->clust.client_l[cpt].csock, cpt);
-//	status = 'a';
-//	if (send(g_data->clust.client_l[cpt].csock, &status, sizeof(char), 0) < 0)
-//		exit_cause("send error");
+	status = 'a';
+	if (send(g_data->clust.client_l[cpt].csock, &status, sizeof(char), 0) < 0)
+		exit_cause("send error");
 }
 
 static void		configure_sockaddr_server(struct sockaddr_in *sin)

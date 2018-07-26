@@ -20,5 +20,6 @@ void			host_work(int send);
 void			client_work(void);
 int				send_data(int socket, int client);
 int				send_data_to_client(void);
+int				buf_to_int(char *tmp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:26 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/26 00:48:31 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 02:53:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void			*host_draw(void *arg)
 		black_and_white(g_data);
 	else if (g_data->filter == FILTER_SEPIA)
 		sepia(g_data);
-	else if (g_data->filter == FILTER_STEREO)
-		get_stereo();
 	return (arg);
 }
 
@@ -77,11 +75,9 @@ void			host_work(int send)
 	if (send == 1)
 		send_data_to_client();
 	if (g_data->filter != FILTER_STEREO)
-	{
 		if (pthread_create(&thread, NULL, host_draw, g_data))
 			exit_cause("error: pthread_create(): Failed");
-	}
-	else
+	if (g_data->filter == FILTER_STEREO)
 		get_stereo();
 	while (++i < g_data->nb_client)
 		if (pthread_create(&g_data->clust.client_l[i].thread, NULL, recv_work, \

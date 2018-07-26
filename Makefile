@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/28 17:43:26 by pmiceli           #+#    #+#              #
-#    Updated: 2018/07/26 00:44:31 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/07/26 01:11:19 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,6 +156,7 @@ SRCS  = draw/anti_aliasing.c \
 		clustering/host_work.c \
 		clustering/client_work.c \
 		clustering/send_data.c \
+		clustering/buf_to_int.c \
 		\
 		data_init.c \
 		exit_all.c \

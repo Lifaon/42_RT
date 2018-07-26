@@ -6,14 +6,43 @@
 /*   By: mlantonn <mlantonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 17:49:38 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/26 00:51:17 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 01:00:30 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "ui.h"
 
-static void	check_argv(int argc, char **argv, char* map)
+static void		check_host(int i, char **argv, char *map)
+{
+	if (g_data->clust_i != CLUST_NONE)
+		exit_cause("cannot have -host and -client running as the same time");
+	g_data->clust_i = CLUST_HOST;
+	if (!(argv[++i]))
+		exit_cause("nomber of client undefined\nUsage : -host 'nb client'");
+	g_data->nb_client = ft_atoi(argv[i]);
+	g_data->clust.nb_client_for_free = g_data->nb_client;
+	if (g_data->nb_client <= 0)
+		exit_cause("cannot have a null or negative nomber of client");
+	g_data->x = 0;
+	parse(g_data, map);
+	init_host();
+}
+
+static void		check_client(int i, char **argv)
+{
+	if (g_data->clust_i != CLUST_NONE)
+		exit_cause("cannot have -host and -client running as the same time");
+	g_data->clust_i = CLUST_CLIENT;
+	if (!(argv[++i]))
+		exit_cause("no ip address found\nUsage : -client 'ip_addr'");
+	if (inet_addr(argv[i]) == INADDR_NONE)
+		exit_cause("ip address not well formatted\nUsage : -client 'ip_addr'");
+	init_client(argv[i]);
+	client_work();
+}
+
+static void		check_argv(int argc, char **argv, char *map)
 {
 	int		i;
 
@@ -22,43 +51,19 @@ static void	check_argv(int argc, char **argv, char* map)
 	while (++i < argc)
 	{
 		if (ft_strcmp(argv[i], "-host") == 0)
-		{
-			printf("server\n");
-			if (g_data->clust_i != CLUST_NONE)
-				exit_cause("cannot have -host and -client running as the same time");
-			g_data->clust_i = CLUST_HOST;
-			if (!(argv[++i]))
-				exit_cause("nomber of client undefined\nUsage : -host 'nb client'");
-			g_data->nb_client = ft_atoi(argv[i]);
-			g_data->clust.nb_client_for_free = g_data->nb_client;
-			if (g_data->nb_client <= 0)
-				exit_cause("cannot have a null or negative nomber of client");
-			g_data->x = 0;
-			parse(g_data, map);
-			init_host();
-		}
+			check_host(i, argv, map);
 		if (ft_strcmp(argv[i], "-client") == 0)
-		{
-			printf("client\n");
-			if (g_data->clust_i != CLUST_NONE)
-				exit_cause("cannot have -host and -client running as the same time");
-			g_data->clust_i = CLUST_CLIENT;
-			if (!(argv[++i]))
-				exit_cause("no ip address found\nUsage : -client 'ip_addr'\n");
-			if (inet_addr(argv[i]) == INADDR_NONE)
-				exit_cause("ip address not well formatted\nUsage : -client 'ip_addr'\n");
-			init_client(argv[i]);
-			client_work();
-		}
+			check_client(i, argv);
 	}
 	if (g_data->clust_i == CLUST_NONE)
 	{
 		g_data->x = 0;
 		g_data->nb_client = 0;
+		parse(g_data, map);
 	}
 }
 
-static int ft_exit(void)
+static int		ft_exit(void)
 {
 	ft_putendl("Usage : ./rt 'file_name' -host 'nb clients' -client 'IP host'");
 	ft_putendl("        -host must have the nomber of clients");
@@ -67,7 +72,7 @@ static int ft_exit(void)
 	return (0);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	int		i;
 
@@ -76,14 +81,12 @@ int			main(int ac, char **av)
 		return (ft_exit());
 	g_data = data_init(av);
 	gtk_init(&ac, &av);
-	while(++i < ac)
+	while (++i < ac)
 	{
 		if (ft_strstr(av[i], ".json"))
-			break;
+			break ;
 	}
 	check_argv(ac, av, av[i]);
-	if (g_data->clust_i == CLUST_NONE)
-		parse(g_data, av[i]);
 	if (g_data->clust_i != CLUST_CLIENT)
 	{
 		get_oc();

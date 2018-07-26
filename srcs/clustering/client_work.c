@@ -6,26 +6,21 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:22 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/26 00:49:17 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 01:56:29 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "draw.h"
 
-static int		buf_to_int(char *buf)
+static void		free_data(void)
 {
-	int				i;
-	int				n;
-
-	n = 0;
-	i = -1;
-	while (++i < 4)
-	{
-		n <<= 8;
-		n |= buf[i] & 0xFF;
-	}
-	return (n);
+	if (g_data && g_data->nb_objects)
+		free(g_data->objs);
+	if (g_data && g_data->nb_lights)
+		free(g_data->lights);
+	g_data->nb_objects = 0;
+	g_data->nb_lights = 0;
 }
 
 static void		recv_data(int sock)
@@ -35,12 +30,7 @@ static void		recv_data(int sock)
 	char	tmp[4];
 	char	buf2;
 
-	if (g_data && g_data->nb_objects)
-		free(g_data->objs);
-	if (g_data && g_data->nb_lights)
-		free(g_data->lights);
-	g_data->nb_objects = 0;
-	g_data->nb_lights = 0;
+	free_data();
 	if (recv(sock, &buf2, sizeof(char) * 1, 0) < 0)
 		exit_cause("recv fail");
 	if (buf2 != 'a')
@@ -84,18 +74,21 @@ static void		chose_draw(void)
 	else if (g_data->filter == FILTER_STEREO)
 		get_stereo();
 }
-/*
+
 static void		check_host_status(int sock)
 {
 	char		buf;
 
 	buf = '0';
+	printf("in check_host_status\n");
 	if (recv(sock, &buf, sizeof(char), 0) < 0)
 		exit_cause("recv error");
+	printf("--%c--\n", buf);
 	if (buf != 'a')
 		exit_all(g_data);
+	printf("out check_host_status\n");
 }
-*/
+
 void			client_work(void)
 {
 	int			ret;
@@ -107,7 +100,7 @@ void			client_work(void)
 	while (1)
 	{
 		recv_data(g_data->clust.sock);
-//		check_host_status(g_data->clust.sock);
+		check_host_status(g_data->clust.sock);
 		get_oc();
 		chose_draw();
 		ret = 0;

@@ -6,12 +6,25 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/07/25 12:42:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2018/07/26 10:03:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ui.h"
 #include "events.h"
+
+static GtkWidget	*make_window(GtkApplication *app)
+{
+	GtkWidget		*win;
+
+	if (!(win = gtk_window_new(GTK_WINDOW_TOPLEVEL)))
+		return (0);
+	gtk_application_add_window(app, GTK_WINDOW(win));
+	g_data->win = (void*)win;
+	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
+	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
+	return (win);
+}
 
 static int			create_renderer(t_ui *ui)
 {
@@ -32,9 +45,9 @@ static int			create_renderer(t_ui *ui)
 	return (1);
 }
 
-static t_ui			*ui_new(void)
+static t_ui			*ui_new(int ac, char **av)
 {
-	t_ui	*ui;
+	t_ui				*ui;
 
 	if (!(ui = (t_ui*)malloc(sizeof(t_ui))))
 		return (NULL);
@@ -44,52 +57,45 @@ static t_ui			*ui_new(void)
 	ui->is_active = 0;
 	ui->gp_cam_pos = NULL;
 	ui->gp_cam_angle = NULL;
+	ft_putstr("pouici\n");
+	if (!(ui->app = gtk_application_new("org.gtk.exemple", G_APPLICATION_FLAGS_NONE)))
+		return (NULL);
+	if (!(make_window(ui->app)))
+		return (0);
 	if (!(ui->gp_dof_focus = gtk_size_group_new(GTK_SIZE_GROUP_NONE)))
 		return (NULL);
 	if (!(ui->tab = gtk_notebook_new()))
 		return (NULL);
 	if (!(create_renderer(ui)))
 		return (NULL);
+	ft_putstr("pouici\n");
+	g_application_run(G_APPLICATION(ui->app), ac, av);
+	ft_putstr("pouici\n");
 	return (ui);
 }
 
-static GtkWidget	*make_window(void)
+int					create_ui(int ac, char **av)
 {
-	GtkWidget		*win;
-
-	if (!(win = gtk_window_new(GTK_WINDOW_TOPLEVEL)))
-		return (0);
-	g_data->win = (void*)win;
-	gtk_window_set_position(GTK_WINDOW(win), GTK_WIN_POS_CENTER);
-	gtk_window_set_default_size(GTK_WINDOW(win), 250, 400);
-	return (win);
-}
-
-int					create_ui(void)
-{
-	GtkWidget		*win;
 	GtkWidget		*v_box;
 	GtkWidget		*h_box;
 
-	if (!(win = make_window()))
+	if (!(g_ui = ui_new(ac, av)))
 		return (0);
 	if (!(v_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5)))
 		return (0);
 	if (!(h_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5)))
-		return (0);
-	if (!(g_ui = ui_new()))
 		return (0);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(g_ui->tab), TRUE);
 	if (!(create_toolbar(v_box, g_ui)))
 		return (0);
 	if (!(create_sub_notebook(g_ui)))
 		return (0);
-	g_signal_connect(G_OBJECT(win), "delete-event", G_CALLBACK(gtk_main_quit),
-			NULL);
+	g_signal_connect(G_OBJECT(g_data->win), "delete-event",
+			G_CALLBACK(gtk_main_quit), NULL);
 	gtk_box_pack_start(GTK_BOX(v_box), g_ui->tab, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(h_box), v_box, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(h_box), g_ui->ev_box, FALSE, FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(win), h_box);
-	gtk_widget_show_all(win);
+	gtk_container_add(GTK_CONTAINER(g_data->win), h_box);
+	gtk_widget_show_all(g_data->win);
 	return (1);
 }

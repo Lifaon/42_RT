@@ -6,7 +6,7 @@
 /*   By: vtudes <vtudes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 16:08:07 by mlantonn          #+#    #+#             */
-/*   Updated: 2018/07/26 01:02:57 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/07/26 09:23:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void			exit_all(t_data *data)
 		exit_data(data);
 	if (g_ui)
 	{
+		g_object_unref(g_ui->app);
 		free(g_ui);
 		g_ui = NULL;
 	}

@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="600" height="315" src="42.png">
+</p>
+
 ## RT
 The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.
 

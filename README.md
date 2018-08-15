@@ -41,3 +41,18 @@ $ ./rt 'file_name' -client 'IP host'
 - Shadows
 - Translations & Rotations (camera & objects)
 # ![multispot](screenshots/multispot.png)
+
+### Refraction / Reflection
+- Both have adjustable percentages
+- Implementation of Snell-Descartes's indice of refraction
+- A semi-transparent object has its colors projected in its shadow
+# ![refraction](screenshots/refraction.png)
+# ![reflection](screenshots/reflection.png)
+
+### Textures
+- Each object can have a texture put on it
+- Variable scale & position
+- Can use alpha channel to set the transparency of the object
+- Can size the object (sets its limits)
+- 24 bits & 32 bits images support
+# ![textures](screenshots/textures.png)

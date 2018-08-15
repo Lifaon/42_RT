@@ -19,9 +19,9 @@ $ make
 ```
 
 ## Usage
-The programm takes in argument a scene written in json. Multiple scenes are directly available in the directory with the same name.
+The programm takes a scene written in json as an argument. Multiple **scenes** are directly available in the directory with the same name.
 ```
-$ ./rt 'file_name
+$ ./rt 'file_name'
 ```
 Clustering calculations are implemented. You can run the programm simultaneously on different computers as long as you're connected to the same network.<br>
 - To run the programm as the host :
@@ -86,7 +86,7 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Ponctual & parallel lights
 - Colored lights
 - Caustics
-# ![caust_reflec](screenshots/caustics_refraction_bump.png)
+# ![caust_bump_refrac](screenshots/caustics_refraction_bump.png)
 
 ### User Interface
 - Made with GTK+3, also displays the scene
@@ -100,3 +100,6 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Pixelation
 - Multi-threading
 - Clustering (works with multi-threading)
+
+# ![reflec_bump](screenshots/reflexion_bump.png)
+# ![caust_reflec](screenshots/caustic_reflexion.png)

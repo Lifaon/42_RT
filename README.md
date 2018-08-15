@@ -65,6 +65,14 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - 24 bits & 32 bits images support
 # ![textures](screenshots/textures.png)
 
+### Perturbations
+- Checkerboard / rainbow
+- Perlin noise (classic/cosine)
+- Bump mapping
+# ![checkboard](screenshots/checkboard.png)
+# ![perlin_cos](screenshots/perlin_cosine.png)
+# ![bump_reflec](screenshots/bump_reflection.png)
+
 ### Visual effects
 - Anti-aliasing (SSAA, x2 to x16)
 - Cel-shading
@@ -73,6 +81,11 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Stereoscopy
 # ![sepia](screenshots/sepia.jpg)
 # ![bnw](screenshots/bnw.jpg)
+
+### Lights
+- Ponctual & parallel lights
+- Colored lights
+- Caustics
 
 ### User Interface
 - Made with GTK+3, also displays the scene

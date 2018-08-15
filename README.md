@@ -32,7 +32,7 @@ $ ./rt 'file_name' -host 'number of clients'
 ```
 $ ./rt 'file_name' -client 'IP host'
 ```
-Once the programm is running, you can move `W A S D` and rotate `I J K L` the camera. You can anti-alias `O` or pixelate `P` the display. You can also press `ESC` to quit the programm.
+Once the programm is running, you can move `W A S D` and rotate `I J K L` the camera. You can anti-alias `O` or pixelate `P` the display. You can also press `ESC` to quit the programm. Those are hotkeys implemented to save time searching for _that_ particular display. The UI allows you to do everything you need.
 
 ## Features
 ### Basics

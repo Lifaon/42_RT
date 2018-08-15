@@ -39,8 +39,15 @@ $ ./rt 'file_name' -client 'IP host'
 - Multiple light sources
 - Phong shading
 - Shadows
-- Translations & Rotations (camera & objects)
+- Translations & rotations (camera & objects)
 # ![multispot](screenshots/multispot.png)
+
+### Limited objects
+- Each object can be cut on 3 different axes
+- These 3 axes can be either the world axes or the object axes
+- Translations & rotations are still working with cut objects
+- Planes can either be cut into rectangles or circles
+# ![limited](screenshots/limited.png)
 
 ### Refraction / Reflection
 - Both have adjustable percentages

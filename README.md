@@ -76,9 +76,11 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 ### Visual effects
 - Anti-aliasing (SSAA, x2 to x16)
 - Cel-shading
-- Depth of field (top page image)
+- Depth of field
 - Sepia & black and white filters
 - Stereoscopy
+# ![cel_shading](screenshots/cel_shading.png)
+# ![dof2](screenshots/dof2.png)
 # ![sepia](screenshots/sepia.jpg)
 # ![bnw](screenshots/bnw.jpg)
 

@@ -32,6 +32,7 @@ $ ./rt 'file_name' -host 'number of clients'
 ```
 $ ./rt 'file_name' -client 'IP host'
 ```
+Once the programm is running, you can move `W A S D` and rotate `I J K L` the camera. You can anti-alias `O` or pixelate `P` the display. You can also press `ESC` to quit the programm.
 
 ## Features
 ### Basics
@@ -63,3 +64,25 @@ $ ./rt 'file_name' -client 'IP host'
 - Can size the object (sets its limits)
 - 24 bits & 32 bits images support
 # ![textures](screenshots/textures.png)
+
+### Visual effects
+- Anti-aliasing (SSAA, x2 to x16)
+- Cel-shading
+- Depth of field (top page image)
+- Sepia & black and white filters
+- Stereoscopy
+# ![sepia](screenshots/sepia.jpg)
+# ![bnw](screenshots/bnw.jpg)
+
+### User Interface
+- Made with GTK+3, also displays the scene
+- Can open json scenes while the programm is running
+- Possibility to adjust settings of all features
+- Multiple cameras (fov, position, rotation)
+- Can save the current scene in a json file
+- Can save the current scene in a png file
+
+### Optimization
+- Pixelation
+- Multi-threading
+- Clustering (works with multi-threading)

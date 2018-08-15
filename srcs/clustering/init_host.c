@@ -6,7 +6,7 @@
 /*   By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 19:32:32 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/07/26 01:16:02 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/08/15 08:13:19 by mlantonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void		print_host(void)
 	struct ifaddrs		*ifaddr;
 	struct ifaddrs		*ifa;
 	int					family;
-	int					s;
 	char				host[NI_MAXHOST];
 
 	ft_putstr("La socket ");
@@ -38,7 +37,7 @@ static void		print_host(void)
 		family = ifa->ifa_addr->sa_family;
 		if (family == AF_INET)
 		{
-			s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), \
+			getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), \
 					host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 			if (ft_strcmp(ifa->ifa_name, "en0") == 0)
 				print_wait(host);
@@ -85,10 +84,8 @@ static void		configure_sockaddr_server(struct sockaddr_in *sin)
 void			init_host(void)
 {
 	int			on;
-	socklen_t	crecsize;
 	int			cpt;
 
-	crecsize = sizeof(g_data->clust.sin);
 	g_data->clust.sock = socket(PF_INET, SOCK_STREAM, 0);
 	print_host();
 	configure_sockaddr_server(&g_data->clust.sin);

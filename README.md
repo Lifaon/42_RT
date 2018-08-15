@@ -70,6 +70,7 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Perlin noise (classic/cosine)
 - Bump mapping
 # ![checkboard](screenshots/checkboard.png)
+# ![rainbow](screenshots/rainbow.png)
 # ![perlin](screenshots/perlin.png)
 # ![perlin_cos](screenshots/perlin_cosine.png)
 # ![bump_reflec](screenshots/bump_reflexion.png)

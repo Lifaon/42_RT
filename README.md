@@ -86,6 +86,7 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Ponctual & parallel lights
 - Colored lights
 - Caustics
+# ![caust_reflec](screenshots/caustics_refraction_bump.png)
 
 ### User Interface
 - Made with GTK+3, also displays the scene

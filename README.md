@@ -23,7 +23,7 @@ The programm takes in argument a scene written in json. Multiple scenes are dire
 ```
 $ ./rt 'file_name
 ```
-Clustering calculations are implemented. You can run the programm simultaneously on different computers as long as you're connected to the same network<br>
+Clustering calculations are implemented. You can run the programm simultaneously on different computers as long as you're connected to the same network.<br>
 - To run the programm as the host :
 ```
 $ ./rt 'file_name' -host 'number of clients'
@@ -32,3 +32,11 @@ $ ./rt 'file_name' -host 'number of clients'
 ```
 $ ./rt 'file_name' -client 'IP host'
 ```
+
+## Features
+### Basics
+- 4 objects : sphere, plane, cylinder, cone
+- Multiple light sources
+- Phong shading
+- Shadows
+- Translations & Rotations (camera & objects)

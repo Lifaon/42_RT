@@ -40,3 +40,4 @@ $ ./rt 'file_name' -client 'IP host'
 - Phong shading
 - Shadows
 - Translations & Rotations (camera & objects)
+# ![multispot](screenshots/multispot.png)

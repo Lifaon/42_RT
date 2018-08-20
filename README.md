@@ -1,5 +1,6 @@
 # ![dof](screenshots/depth_of_field.jpg)
 ## 'RT' stands for RayTracer
+Made between **_april 2018_** and **_july 2018_**.<br>
 The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.
 
 ## Installing

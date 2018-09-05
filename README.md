@@ -76,6 +76,15 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 # ![perlin_cos](screenshots/perlin_cosine.png)
 # ![bump_reflec](screenshots/bump_reflexion.png)
 
+### User Interface
+- Made with GTK+3, also displays the scene
+- Can open json scenes while the programm is running
+- Possibility to adjust settings of all features
+- Multiple cameras (fov, position, rotation)
+- Can save the current scene in a json file
+- Can save the current scene in a png file
+# ![UI](screenshots/UI.png)
+
 ### Visual effects
 - Anti-aliasing (SSAA, x2 to x16)
 - Cel-shading
@@ -92,14 +101,6 @@ Once the programm is running, you can move `W A S D` and rotate `I J K L` the ca
 - Colored lights
 - Caustics
 # ![caust_bump_refrac](screenshots/caustics_refraction_bump.png)
-
-### User Interface
-- Made with GTK+3, also displays the scene
-- Can open json scenes while the programm is running
-- Possibility to adjust settings of all features
-- Multiple cameras (fov, position, rotation)
-- Can save the current scene in a json file
-- Can save the current scene in a png file
 
 ### Optimization
 - Pixelation

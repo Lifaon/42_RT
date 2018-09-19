@@ -1,7 +1,7 @@
 # ![dof](screenshots/depth_of_field.jpg)
 ## 'RT' stands for RayTracer
-Made between **_april 2018_** and **_july 2018_**.<br>
-The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.
+<img align="left" height="120" src="screenshots/final_grade.png"><br>
+Made from the **_end of april 2018_** to the **_end of july 2018_**. The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.<br><br>
 
 ## Installing
 #### Linux and Mac portability.<br>

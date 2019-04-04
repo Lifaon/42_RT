@@ -1,39 +1,48 @@
 # ![dof](screenshots/depth_of_field.jpg)
-## 'RT' stands for RayTracer
-<img align="left" src="screenshots/final_grade.png"><br><br>
-Made from the **_end of april 2018_** to the **_end of july 2018_**. The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.<br><br><br>
 
-## Installing
-#### Linux and Mac portability.<br>
-You first need to have gtk+3 installed locally.<br>
-- Linux :
+# 'RT' stands for RayTracer
+<img align="left" src="screenshots/final_grade.png"><br /><br />
+Made from the **_end of april 2018_** to the **_end of july 2018_**. The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.<br /><br /><br />
+
+## Installation
+
+### Unix operating systems
+You first need to have gtk+3 installed locally.<br />
+- Linux
 ```
 $ apt-get install libgtk-3-dev
 ```
-- Mac _(takes time)_ :
+- Mac _(takes a lot of time)_
 ```
 $ brew install gtk+3
 ```
-Then run :
+Then run make inside the repo.
 ```
-$ make
+$ make path/to/repo
 ```
+### Windows and other operating systems
+Not implemented.<br />
 
 ## Usage
-The programm takes a scene written in json as an argument. Multiple **scenes** are directly available in the directory with the same name.
+
+### Launching the programm
+The programm takes a scene written in json as an argument. Multiple [scenes](scenes/) are directly available in the corresponding directory.<br />
 ```
-$ ./rt 'file_name'
+$ ./rt scenes/file_name.json
 ```
-Clustering calculations are implemented. You can run the programm simultaneously on different computers as long as you're connected to the same network.<br>
-- To run the programm as the host :
+Clustering calculations are implemented. You can run the programm simultaneously on different computers as long as you're connected to the same network.<br />
+- To run the programm as the host
 ```
-$ ./rt 'file_name' -host 'number of clients'
+$ ./rt scenes/file_name.json -host 'number of clients'
 ```
-- To run the programm as a client _(IP host was given when running the programm as a host)_ :
+- To run the programm as a client _(host IP was given when running the programm as the host)_
 ```
-$ ./rt 'file_name' -client 'IP host'
+$ ./rt scenes/file_name.json -client 'host IP'
 ```
-Once the programm is running, you can move `W A S D` and rotate `I J K L` the camera. You can anti-alias `O` or pixelate `P` the display. You can also press `ESC` to quit the programm. Those are hotkeys implemented to save time searching for _that_ particular display. The UI allows you to do everything you need.
+
+### Keybinds
+Once the programm is running, you can move with `W A S D` and rotate the camera with `I J K L`. You can enable antialiasing by pressing `O` or pixelate the display by pressing `P`. Press `ESC` to quit the programm. Those are keybinds implemented to save time searching for _that_ particular display.<br />
+The **UI** allows you to use every feature efficiently.<br />
 
 ## Features
 ### Basics

@@ -1,5 +1,7 @@
 # ![dof](screenshots/depth_of_field.jpg)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fa83168a96140249fcba59a73213b29)](https://app.codacy.com/app/mlantonn/RT?utm_source=github.com&utm_medium=referral&utm_content=mlantonn/RT&utm_campaign=Badge_Grade_Dashboard)
+
 # 'RT' stands for RayTracer
 <img align="left" src="screenshots/final_grade.png"><br /><br />
 Made from the **_end of april 2018_** to the **_end of july 2018_**. The objective of the project was to create computer generated images. It was a 4 people school project, made from scratch and entirely in C.<br /><br /><br />
